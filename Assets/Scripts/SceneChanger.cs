@@ -75,6 +75,11 @@ public class SceneChanger : MonoBehaviour
         {
             if (nextScene == (int)SceneName.SelectScene)
             {
+                if (currentScene == SceneName.WaitingScene)
+                {
+                    GameManager.Instance.DestroyManagerInWait();
+                }
+
                 UIManager.Instance.SetUIManager(UIManagerIndex.Select);
                 DataSender.Instance.RequestCharacterList();
 

@@ -59,8 +59,9 @@ public class DataHandler : MonoBehaviour
         server_notifier.Add((int)ServerPacketId.CharacterList, CharacterList);
         server_notifier.Add((int)ServerPacketId.CreateCharacterResult, CreateCharacterResult);
         server_notifier.Add((int)ServerPacketId.DeleteChracterResult, DeleteCharacterResult);
-        server_notifier.Add((int)ServerPacketId.RoomList, RoomList);
         server_notifier.Add((int)ServerPacketId.CharacterStatus, CharacterStatus);
+        server_notifier.Add((int)ServerPacketId.RoomList, RoomList);
+        server_notifier.Add((int)ServerPacketId.ReturnToSelectResult, ReturnToSelectResult);
         server_notifier.Add((int)ServerPacketId.CreateRoomNumber, CreateRoomNumber);
         server_notifier.Add((int)ServerPacketId.EnterRoomNumber, EnterRoomNumber);
         server_notifier.Add((int)ServerPacketId.ExitRoomNumber, ExitRoomNumber);
@@ -68,7 +69,7 @@ public class DataHandler : MonoBehaviour
         server_notifier.Add((int)ServerPacketId.StartGame, StartGame);
         server_notifier.Add((int)ServerPacketId.UdpConnection, UdpConnection);
         server_notifier.Add((int)ServerPacketId.MonsterSpawnList, MonsterSpawnList);
-        server_notifier.Add((int)ServerPacketId.DungeonData, DungeonData);
+        server_notifier.Add((int)ServerPacketId.MonsterStatusData, MonsterStatusData);
         server_notifier.Add((int)ServerPacketId.StartDungeon, StartDungeon);
     }
 
@@ -272,31 +273,6 @@ public class DataHandler : MonoBehaviour
         }
     }
 
-    //Server - 방 목록 수신
-    public void RoomList(DataPacket packet)
-    {
-        Debug.Log("방 목록 수신");
-        RoomListPacket roomListPacket = new RoomListPacket(packet.msg);
-        RoomListData roomListData = roomListPacket.GetData();
-
-        uiManager.WaitingUIManager.SetRoomListData(roomListData);
-
-        for (int i =0; i< WaitingUIManager.maxRoomNum; i++)
-        {
-            Debug.Log(roomListData.Rooms[i].RoomName);
-            Debug.Log(roomListData.Rooms[i].PlayerNum);
-        }
-
-        if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
-        {
-            SceneChanger.Instance.LoadingCheck[0] = true;
-        }
-        else if(SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.WaitingScene)
-        {
-            UIManager.Instance.WaitingUIManager.SetRoom();
-        }
-    }
-
     //Server - 캐릭터 정보 수신
     public void CharacterStatus(DataPacket packet)
     {
@@ -309,6 +285,43 @@ public class DataHandler : MonoBehaviour
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {
             SceneChanger.Instance.LoadingCheck[1] = true;
+        }
+    }
+
+    //Server - 방 목록 수신
+    public void RoomList(DataPacket packet)
+    {
+        Debug.Log("방 목록 수신");
+        RoomListPacket roomListPacket = new RoomListPacket(packet.msg);
+        RoomListData roomListData = roomListPacket.GetData();
+
+        uiManager.WaitingUIManager.SetRoomListData(roomListData);
+
+        if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
+        {
+            SceneChanger.Instance.LoadingCheck[0] = true;
+        }
+        else if(SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.WaitingScene)
+        {
+            UIManager.Instance.WaitingUIManager.SetRoom();
+        }
+    }
+
+    //Server - 선택 창으로 돌아가기 결과 수신
+    public void ReturnToSelectResult(DataPacket packet)
+    {
+        Debug.Log("선택 창으로 돌아가기 결과");
+
+        ResultPacket resultPacket = new ResultPacket(packet.msg);
+        ResultData resultData = resultPacket.GetData();
+
+        if (resultData.Result == (byte)Result.Success)
+        {
+            SceneChanger.Instance.SceneChange(SceneChanger.SceneName.SelectScene, true);
+        }
+        else
+        {
+            Debug.Log("선택창으로 돌아가기 실패");
         }
     }
 
@@ -426,9 +439,9 @@ public class DataHandler : MonoBehaviour
     }
 
     //Server - 던전 데이터 수신
-    public void DungeonData(DataPacket packet)
+    public void MonsterStatusData(DataPacket packet)
     {
-        Debug.Log("던전 데이터 수신");
+        Debug.Log("몬스터 스텟 데이터 수신");
 
         MonsterStatusPacket dungeonDataPacket = new MonsterStatusPacket(packet.msg);
         MonsterStatusData dungeonData = dungeonDataPacket.GetData();

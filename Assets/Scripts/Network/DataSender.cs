@@ -244,6 +244,20 @@ public class DataSender : MonoBehaviour
         sendMsgs.Enqueue(packet);
     }
 
+    //선택 창으로 돌아가기 -> Server
+    public void ReturnToSelect()
+    {
+        Debug.Log("선택 창으로 돌아가기");
+
+        ResultData resultData = new ResultData();
+        ResultPacket resultPacket = new ResultPacket(resultData);
+        resultPacket.SetPacketId((int)ClientPacketId.ReturnToSelect);
+
+        DataPacket packet = new DataPacket(CreatePacket(resultPacket), null);
+
+        sendMsgs.Enqueue(packet);
+    }
+
     //스킬 투자 -> Server
     public void SkillUp(int index)
     {

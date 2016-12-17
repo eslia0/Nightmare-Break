@@ -71,6 +71,7 @@ public class CharacterListPacket : Packet<CharacterList>
     }
 }
 
+[System.Serializable]
 public class CharacterList
 {
     CharacterData[] characterData;
@@ -88,6 +89,7 @@ public class CharacterList
     }
 }
 
+[System.Serializable]
 public class CharacterData
 {
     string name;

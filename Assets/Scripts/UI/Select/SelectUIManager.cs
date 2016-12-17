@@ -27,7 +27,7 @@ public class SelectUIManager : MonoBehaviour {
     private Color[] alphaChange = new Color[2];
     private EventTrigger.Entry[] clickEvent;
 
-    CharacterList characterList;
+    [SerializeField] CharacterList characterList;
     
     public int CurrentCharacterIndex { get { return currentCharacterIndex; } }
     public CharacterList CharacterList { get { return characterList; } set { characterList = value; } }

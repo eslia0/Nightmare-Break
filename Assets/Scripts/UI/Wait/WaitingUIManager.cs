@@ -10,11 +10,14 @@ public class WaitingUIManager : MonoBehaviour
 
     [SerializeField]private int selectNum;
 
+    private Button refreshBtn;
     private Button roomCreateBtn;
     private Button roomEntereBtn;
     private Button skillAddBtn;
     private Button equipInfoBtn;
     private Button myInfoBtn;
+    private Button returnToSelectBtn;
+    private Button gameExitBtn;
     private Button nextDungeonLevelBtn;
     private Button previousDungeonLevelBtn;
     private Button roomCreateExitBtn;
@@ -82,18 +85,21 @@ public class WaitingUIManager : MonoBehaviour
 		roomInfoGenderIcon = new Image[maxPlayerNum];
         skillAddIcon = new Button[CharacterStatus.skillNum];
         skillAddSelectImage = new Image[CharacterStatus.skillNum];
-
+                
         roomCreateUI = GameObject.Find("RoomCreateUI");
         skillAddUI = GameObject.Find("SkillAddUI");
         equipInfoUI = GameObject.Find("EquipInfoUI");
         myInfoUI = GameObject.Find("MyInfoUI");
         roomInfoUI = GameObject.Find("RoomInfoUI");
+        refreshBtn = GameObject.Find("RefreshBtn").GetComponent<Button>();
         roomCreateBtn = GameObject.Find("RoomCreateBtn").GetComponent<Button>();
         roomEntereBtn = GameObject.Find("RoomEnterBtn").GetComponent<Button>();
         roomCreateYesBtn = GameObject.Find("RoomCreateYesBtn").GetComponent<Button>();
         skillAddBtn = GameObject.Find("SkillAddBtn").GetComponent<Button>();
         equipInfoBtn = GameObject.Find("EquipBtn").GetComponent<Button>();
         myInfoBtn = GameObject.Find("MyInfoBtn").GetComponent<Button>();
+        returnToSelectBtn = GameObject.Find("ReturnToSelectBtn").GetComponent<Button>();
+        gameExitBtn = GameObject.Find("GameExitBtn").GetComponent<Button>();
         dungeonLevelText = GameObject.Find("DungeonLevelText").GetComponent<Text>();
         createroomName = GameObject.Find("RoomCreateInputField").GetComponent<InputField>();
         nextDungeonLevelBtn = GameObject.Find("NextDungeonLevelBtn").GetComponent<Button>();
@@ -127,12 +133,15 @@ public class WaitingUIManager : MonoBehaviour
 
     public void InitializeAddListner()
     {
+        refreshBtn.onClick.AddListener(() => OnClickrefreash());
         roomCreateBtn.onClick.AddListener(() => RoomCreate());
         roomEntereBtn.onClick.AddListener(() => OnClickEnterRoomButton());
         roomCreateYesBtn.onClick.AddListener(() => OnClickCreateRoomButton()); 
         skillAddBtn.onClick.AddListener(() => SkillAdd());
         equipInfoBtn.onClick.AddListener(() => EquipInfo());
         myInfoBtn.onClick.AddListener(() => MyInfo());
+        returnToSelectBtn.onClick.AddListener(() => OnClickReturnToSelect());
+        gameExitBtn.onClick.AddListener(() => OnClickGameExit());
         roomCreateExitBtn.onClick.AddListener(() => UIActiveCheck());
         skillAddExitBtn.onClick.AddListener(() => UIActiveCheck());
         equipInfoExitBtn.onClick.AddListener(() => UIActiveCheck());
@@ -289,6 +298,21 @@ public class WaitingUIManager : MonoBehaviour
     public void OnClickStartGameButton()
     {
         DataSender.Instance.StartGame();
+    }
+
+    public void OnClickReturnToSelect()
+    {
+        DataSender.Instance.ReturnToSelect();
+    }
+
+    public void OnClickrefreash()
+    {
+        DataSender.Instance.RequestRoomList();
+    }
+
+    public void OnClickGameExit()
+    {
+        Application.Quit();
     }
 }
 

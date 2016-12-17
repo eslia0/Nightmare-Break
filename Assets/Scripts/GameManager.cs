@@ -91,6 +91,11 @@ public class GameManager : MonoBehaviour
         networkManager.DataHandler.SetCharacterStatus();
     }
 
+    public void DestroyManagerInWait()
+    {
+        Destroy(characterStatus.gameObject);
+    }
+
     public void SetManagerInGame()
     {
         dungeonManager = (Instantiate(Resources.Load("Manager/DungeonManager")) as GameObject).GetComponent<DungeonManager>();
