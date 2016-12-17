@@ -251,7 +251,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011560793002}
   - 137: {fileID: 137000013893671216}
-  m_Layer: 0
+  - 65: {fileID: 65000012197808818}
+  m_Layer: 9
   m_Name: monster_rabbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -782,7 +783,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011541733988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6781158, y: -0.039999884, z: 8.44211}
+  m_LocalPosition: {x: 4.5667253, y: -0.039999884, z: 20.649244}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1001,6 +1002,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!65 &65000012197808818
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012111779520}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.880597, y: 0.76197165, z: 1.7835377}
+  m_Center: {x: 0.012880068, y: 0.023767114, z: 0.8768573}
 --- !u!65 &65000012686334526
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1074,15 +1087,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f4445226db14946a625617aba881f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: []
-  shockWaveInstantiate: {fileID: 0}
+  HittedBox: {fileID: 0}
   player: []
-  wall: []
-  nearWall: {fileID: 0}
   targetPlayer: {fileID: 0}
   movePoint: {x: 0, y: 0, z: 0}
+  monsterIndex: 0
+  moveSpeed: 0
+  RunRange: 0
+  attackRange: 0
+  attackCycle: 0
   currentDisTance: 0
   searchRange: 0
+  isAlive: 0
   currentDisTanceArray: []
   currentDisTanceWall: []
   pointVector: []
@@ -1256,8 +1272,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4000010828910342}
   m_AABB:
-    m_Center: {x: -0.017644733, y: 0.0027539432, z: 0.674124}
-    m_Extent: {x: 0.3883951, y: 0.5490866, z: 0.9107553}
+    m_Center: {x: -0.017644733, y: 0.0010250658, z: 0.674124}
+    m_Extent: {x: 0.3883951, y: 0.3934648, z: 0.9107553}
   m_DirtyAABB: 0
 --- !u!222 &222000012051330310
 CanvasRenderer:
