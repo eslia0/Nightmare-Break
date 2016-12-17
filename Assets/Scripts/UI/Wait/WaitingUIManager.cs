@@ -23,6 +23,7 @@ public class WaitingUIManager : MonoBehaviour
     private Button myInfoExitBtn;
     private Button roomCreateYesBtn;
 	private Button[] roomBtn;
+    private Button[] skillAddIcon;
 
     private InputField createroomName;
 
@@ -42,7 +43,6 @@ public class WaitingUIManager : MonoBehaviour
 	private Image equipWeaponIcon;
 	private Image[] roomInfoClassIcon;
 	private Image[] roomInfoGenderIcon;
-	private Image[] skillAddIcon;
     private Image[] skillAddSelectImage;
 
     Room[] rooms;
@@ -80,7 +80,7 @@ public class WaitingUIManager : MonoBehaviour
         roomIndex = new Text[maxRoomNum];
         roomInfoClassIcon = new Image[maxPlayerNum];
 		roomInfoGenderIcon = new Image[maxPlayerNum];
-		skillAddIcon = new Image[CharacterStatus.skillNum];
+        skillAddIcon = new Button[CharacterStatus.skillNum];
         skillAddSelectImage = new Image[CharacterStatus.skillNum];
 
         roomCreateUI = GameObject.Find("RoomCreateUI");
@@ -107,8 +107,8 @@ public class WaitingUIManager : MonoBehaviour
 
 		for (int i = 0; i < skillAddIcon.Length; i++) {
             skillAddSelectImage[i] = skillAddUI.transform.FindChild("SkillSelect" + (i + 1)).GetComponent<Image>();
-            skillAddIcon[i] = skillAddUI.transform.FindChild("Skill" + (i + 1)).GetComponent<Image>();
-			skillAddIcon [i].sprite = Resources.Load<Sprite> ("UI/SkillIcon/" + CharacterStatus.Instance.HClass.ToString ()+"/Skill"+(i+1)) as Sprite;
+            skillAddIcon[i] = skillAddUI.transform.FindChild("Skill" + (i + 1)).GetComponent<Button>();
+            skillAddIcon[i].image.sprite = Resources.Load<Sprite> ("UI/SkillIcon/" + CharacterStatus.Instance.HClass.ToString ()+"/Skill"+(i+1));
             skillAddSelectImage[i].gameObject.SetActive(false);
 		}
 		for (int i = 0; i < maxRoomNum; i++) {
@@ -118,8 +118,8 @@ public class WaitingUIManager : MonoBehaviour
             roomDungeonLevel [i] = roomBtn [i].transform.GetChild (2).GetComponent<Text> ();
 			roomCurrentUser [i] = roomBtn [i].transform.GetChild (3).GetComponent<Text> ();
 			if (i < maxPlayerNum) {
-				roomInfoClassIcon [i] = roomInfoUI.transform.GetChild (i).GetComponent<Image> ();
-				roomInfoUserName [i] = roomInfoClassIcon [i].transform.GetChild (0).GetComponent<Text> ();
+				roomInfoClassIcon [i] = roomInfoUI.transform.FindChild("ClassIcon" + (i+1)).GetComponent<Image> ();
+				roomInfoUserName [i] = roomInfoClassIcon [i].transform.GetChild (0).GetComponent<Text> (); 
                 roomInfoGenderIcon [i] = roomInfoClassIcon [i].transform.GetChild (1).GetComponent<Image> ();
 			}
 		}
