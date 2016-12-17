@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: d1bc4d72a88b4e04b89811e9583a1830
-timeCreated: 1481874747
+guid: 9bfe0eef011c5154ca0e5695fdd34c34
+timeCreated: 1481964963
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -72,7 +72,7 @@ ModelImporter:
     400062: //RootNode
     400064: monster_duck
     4300000: monster_duck
-    7400000: Attack
+    7400000: Damage
     9500000: //RootNode
     13700000: monster_duck
   materials:
@@ -97,17 +97,17 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Attack
+      name: Damage
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 66
+      lastFrame: 14
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
