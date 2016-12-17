@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: magic_stick
+  m_Name: map
   m_Shader: {fileID: 4800000, guid: 054a31a99d11e49d110086ba44295342, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 8b204990b469a7549b05829f33dd2cac, type: 3}
+        m_Texture: {fileID: 2800000, guid: 53faec581ed98f8429135b0fb4fcba55, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -130,7 +130,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.7976972, g: 0.7396194, b: 0.889, a: 1}
+      second: {r: 0.8246331, g: 0.7850346, b: 0.88235295, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}

@@ -118,8 +118,8 @@ public class WaitingUIManager : MonoBehaviour
             roomDungeonLevel [i] = roomBtn [i].transform.GetChild (2).GetComponent<Text> ();
 			roomCurrentUser [i] = roomBtn [i].transform.GetChild (3).GetComponent<Text> ();
 			if (i < maxPlayerNum) {
-				roomInfoClassIcon [i] = roomInfoUI.transform.GetChild (i).GetComponent<Image> ();
-				roomInfoUserName [i] = roomInfoClassIcon [i].transform.GetChild (0).GetComponent<Text> ();
+				roomInfoClassIcon [i] = roomInfoUI.transform.FindChild("ClassIcon" + (i+1)).GetComponent<Image> ();
+				roomInfoUserName [i] = roomInfoClassIcon [i].transform.GetChild (0).GetComponent<Text> (); 
                 roomInfoGenderIcon [i] = roomInfoClassIcon [i].transform.GetChild (1).GetComponent<Image> ();
 			}
 		}
