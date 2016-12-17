@@ -2109,7 +2109,7 @@ GameObject:
   - 114: {fileID: 1257281746}
   - 95: {fileID: 1257281745}
   m_Layer: 5
-  m_Name: BackImage (1)
+  m_Name: BackDarkImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2142,7 +2142,7 @@ Animator:
   m_GameObject: {fileID: 1257281743}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2fbbcc2db2ebf7b48a067e1fe8dae248, type: 2}
+  m_Controller: {fileID: 9100000, guid: 368fe3ca5cfc0554f8ea359df6e94bd6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2232,7 +2232,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.20432527, g: 0.051740922, b: 0.21323532, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
