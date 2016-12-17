@@ -8,8 +8,6 @@ public class WaitingUIManager : MonoBehaviour
     public const int maxRoomNum = 20;
     public const int maxPlayerNum = 4;
 
-    [SerializeField]private int selectNum;
-
     private Button refreshBtn;
     private Button roomCreateBtn;
     private Button roomEntereBtn;
@@ -59,7 +57,7 @@ public class WaitingUIManager : MonoBehaviour
 
     public void ManagerInitialize()
     {
-        selectNum = -1;
+        currentRoomNum = -1;
         dungeonId = 0;
         dungeonLevel = 1;
 
@@ -133,7 +131,7 @@ public class WaitingUIManager : MonoBehaviour
 
     public void InitializeAddListner()
     {
-        refreshBtn.onClick.AddListener(() => OnClickrefreash());
+        refreshBtn.onClick.AddListener(() => OnClickRefreash());
         roomCreateBtn.onClick.AddListener(() => RoomCreate());
         roomEntereBtn.onClick.AddListener(() => OnClickEnterRoomButton());
         roomCreateYesBtn.onClick.AddListener(() => OnClickCreateRoomButton()); 
@@ -274,12 +272,6 @@ public class WaitingUIManager : MonoBehaviour
 		}
     }
 
-    public void CreateRoom(int roomNum)
-    {
-        Debug.Log("방 생성 성공");
-        DataSender.Instance.EnterRoom(roomNum);
-    }
-
     public void OnClickCreateRoomButton()
     {
         DataSender.Instance.CreateRoom(createroomName.text, dungeonId, dungeonLevel);
@@ -287,17 +279,10 @@ public class WaitingUIManager : MonoBehaviour
 
     public void OnClickEnterRoomButton()
     {
-        DataSender.Instance.EnterRoom(currentRoomNum);
-    }
-
-    public void OnClickExitRoomButton()
-    {
-        DataSender.Instance.ExitRoom(currentRoomNum);
-    }
-
-    public void OnClickStartGameButton()
-    {
-        DataSender.Instance.StartGame();
+        if (currentRoomNum >= 0)
+        {
+            DataSender.Instance.EnterRoom(currentRoomNum);
+        }        
     }
 
     public void OnClickReturnToSelect()
@@ -305,7 +290,7 @@ public class WaitingUIManager : MonoBehaviour
         DataSender.Instance.ReturnToSelect();
     }
 
-    public void OnClickrefreash()
+    public void OnClickRefreash()
     {
         DataSender.Instance.RequestRoomList();
     }

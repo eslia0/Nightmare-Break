@@ -1,6 +1,7 @@
 ﻿public enum ClientPacketId
 {
     None = 0,
+    ServerConnectionAnswer,
     CreateAccount,
     DeleteAccount,
     Login,
@@ -29,6 +30,7 @@
 public enum ServerPacketId
 {
     None = 0,
+    ServerConnectionCheck,
     CreateAccountResult,
     DeleteAccountResult,
     LoginResult,

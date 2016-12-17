@@ -91,6 +91,17 @@ public class DataSender : MonoBehaviour
         udpSock.EndSendTo(ar);
     }
 
+    //연결 확인 답장 -> Server
+    public void ServerConnectionAnswer()
+    {
+        ResultData resultData = new ResultData();
+        ResultPacket resultPacket = new ResultPacket(resultData);
+        resultPacket.SetPacketId((int)ClientPacketId.ServerConnectionAnswer);
+
+        DataPacket packet = new DataPacket(CreatePacket(resultPacket), null);
+        sendMsgs.Enqueue(packet);
+    }
+
     //계정 생성 -> Server
     public void CreateAccount(string id, string pw)
     {

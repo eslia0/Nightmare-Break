@@ -52,6 +52,7 @@ public class DataHandler : MonoBehaviour
 
     public void SetServerNotifier()
     {
+        server_notifier.Add((int)ServerPacketId.ServerConnectionCheck, ServerConnectionCheck);
         server_notifier.Add((int)ServerPacketId.CreateAccountResult, CreateAccountResult);
         server_notifier.Add((int)ServerPacketId.DeleteAccountResult, DeleteAccountResult);
         server_notifier.Add((int)ServerPacketId.LoginResult, LoginResult);
@@ -136,6 +137,12 @@ public class DataHandler : MonoBehaviour
             }
 
         }
+    }
+
+    //Server - 연결 확인
+    public void ServerConnectionCheck(DataPacket packet)
+    {
+        DataSender.Instance.ServerConnectionAnswer();
     }
     
     //Server - 가입 결과
@@ -297,6 +304,18 @@ public class DataHandler : MonoBehaviour
 
         uiManager.WaitingUIManager.SetRoomListData(roomListData);
 
+        for (int roomIndex = 0; roomIndex < WaitingUIManager.maxRoomNum; roomIndex++)
+        {
+            Debug.Log(roomIndex + "번 방 유저 정보");
+            for (int userIndex = 0; userIndex < WaitingUIManager.maxPlayerNum; userIndex ++)
+            {
+                Debug.Log(roomListData.Rooms[roomIndex].RoomUserData[userIndex].UserClass);
+                Debug.Log(roomListData.Rooms[roomIndex].RoomUserData[userIndex].UserGender);
+                Debug.Log(roomListData.Rooms[roomIndex].RoomUserData[userIndex].UserName);
+                Debug.Log(roomListData.Rooms[roomIndex].RoomUserData[userIndex].UserLevel);
+            }
+        }
+
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {
             SceneChanger.Instance.LoadingCheck[0] = true;
@@ -339,7 +358,7 @@ public class DataHandler : MonoBehaviour
         else if (resultData.RoomNum <= WaitingUIManager.maxRoomNum)
         {
             StartCoroutine(uiManager.Dialog(1.0f, "방 생성 성공"));
-            uiManager.WaitingUIManager.CreateRoom(resultData.RoomNum);
+            DataSender.Instance.EnterRoom(resultData.RoomNum);
         }
     }
 
