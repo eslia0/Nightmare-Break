@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     {
         myIP = Dns.GetHostAddresses(Dns.GetHostName())[1].ToString();
         InitializeManager();
+        Application.runInBackground = true;
     }
 
     void Update()
