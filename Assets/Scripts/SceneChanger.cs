@@ -105,7 +105,7 @@ public class SceneChanger : MonoBehaviour
             {
                 GameManager.Instance.SetManagerInGame();
 
-                DungeonManager.Instance.ManagerInitialize(UIManager.Instance.RoomUIManager.DungeonId, UIManager.Instance.RoomUIManager.DungeonLevel);
+                DungeonManager.Instance.ManagerInitialize(UIManager.Instance.RoomUIManager.DungeonId, UIManager.Instance.RoomUIManager.DungeonLevel, UIManager.Instance.RoomUIManager.UserNum);
                 UIManager.Instance.SetUIManager(UIManagerIndex.InGame);
 
                 DataSender.Instance.RequestUdpConnection();
@@ -187,7 +187,7 @@ public class SceneChanger : MonoBehaviour
             NetworkManager.Instance.ReSendManager.characterCreating = true;
 
             DungeonManager.Instance.InitializePlayer(NetworkManager.Instance.UserIndex.Count);
-            DungeonManager.Instance.CreatePlayer(0);
+            DungeonManager.Instance.CreatePlayer((int)CharacterStatus.Instance.HGender, (int)CharacterStatus.Instance.HClass);
 
             currentScene = SceneName.InGameScene;
         }

@@ -7,7 +7,6 @@ public class EspadaSwordEffect : MonoBehaviour
 	GameObject giganticSword;
 	public Renderer rend;
 	public bool count;
-	public CharacterStatus charStatus;
 	public CharacterManager charManager;
 	float giganticSwordAliveTime;
 	public GameObject character;
@@ -33,7 +32,6 @@ public class EspadaSwordEffect : MonoBehaviour
 		swordSpeed = 40;
 		giganticSwordRigd.velocity = (transform.forward* swordSpeed);
 		swordDamage = 10000;
-        charStatus = charManager.CharStatus;
 		giganticSword = this.gameObject;
 		swordSound.volume = 0.1f;
 		rend = GetComponent<Renderer> ();

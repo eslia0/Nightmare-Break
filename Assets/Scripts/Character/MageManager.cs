@@ -145,19 +145,19 @@ public class MageManager : CharacterManager
 		
 		if (!poweroverwhelming)
 		{
-			Debug.Log (CharStatus.HealthPoint);
-			if (CharStatus.SkillLevel [5] < 4)
+			Debug.Log (CharacterStatus.Instance.HealthPoint);
+			if (CharacterStatus.Instance.SkillLevel [5] < 4)
 			{
 				if (charAlive)
-				{	
-					CharStatus.SkillLevel [4] = 3;
-					int chance = (CharStatus.SkillLevel [4]) * 25;
+				{
+                    CharacterStatus.Instance.SkillLevel [4] = 3;
+					int chance = (CharacterStatus.Instance.SkillLevel [4]) * 25;
 					int superArmor;
 					superArmor = Random.Range (0, 100);
 
-					if (CharStatus.HealthPoint > 0)
+					if (CharacterStatus.Instance.HealthPoint > 0)
 					{
-						CharStatus.DecreaseHealthPoint (_damage);
+                        CharacterStatus.Instance.DecreaseHealthPoint (_damage);
 
 						if (chance > superArmor)
 						{
@@ -178,7 +178,7 @@ public class MageManager : CharacterManager
 							CharState ((int)CharacterState.HitDamage);
 						}
 					}
-					else if (CharStatus.HealthPoint <= 0)
+					else if (CharacterStatus.Instance.HealthPoint <= 0)
 					{
 						CharState ((int)CharacterState.Death);
 						charAlive = false;
@@ -186,14 +186,14 @@ public class MageManager : CharacterManager
 				}
 
 			}
-			else if (CharStatus.SkillLevel [5] == 4)
+			else if (CharacterStatus.Instance.SkillLevel [5] == 4)
 			{
-				Debug.Log (CharStatus.HealthPoint);
+				Debug.Log (CharacterStatus.Instance.HealthPoint);
 				if (charAlive)
 				{
-					if (CharStatus.HealthPoint > 0)
+					if (CharacterStatus.Instance.HealthPoint > 0)
 					{
-						CharStatus.DecreaseHealthPoint (_damage);
+                        CharacterStatus.Instance.DecreaseHealthPoint (_damage);
 
 						CharState ((int)CharacterState.HitDamage);
 
@@ -202,7 +202,7 @@ public class MageManager : CharacterManager
 							CharState ((int)CharacterState.HitDamage);
 						}
 					}
-					else if (CharStatus.HealthPoint <= 0)
+					else if (CharacterStatus.Instance.HealthPoint <= 0)
 					{
 						CharState ((int)CharacterState.Death);
 						CharAudio.PlayOneShot (Skill1Sound);
@@ -227,7 +227,7 @@ public class MageManager : CharacterManager
 
     public override void SetCharacterType()
     {
-		charStatus.HClass = CharacterStatus.CharClass.Mage;
+        CharacterStatus.Instance.HClass = CharacterStatus.CharClass.Mage;
 
     }
 
@@ -235,8 +235,8 @@ public class MageManager : CharacterManager
 
 	public override void UsingMagicPoint(int SkillArray)
 	{
-		float manaFury =SkillManager.instance.SkillData.GetSkill ((int)charStatus.HClass, 6).GetSkillData (CharStatus.SkillLevel [5]).SkillValue;
-		charStatus.DecreaseMagicPoint ((int)((float)(SkillManager.instance.SkillData.GetSkill ((int)charStatus.HClass, SkillArray).ManaCost)* manaFury));
+		float manaFury =SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, 6).GetSkillData (CharacterStatus.Instance.SkillLevel [5]).SkillValue;
+        CharacterStatus.Instance.DecreaseMagicPoint ((int)((float)(SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, SkillArray).ManaCost)* manaFury));
 	}
 
 

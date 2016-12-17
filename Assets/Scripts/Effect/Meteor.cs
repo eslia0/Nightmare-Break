@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class Meteor : MonoBehaviour {
-
-	public CharacterStatus charStatus;
+    
 	public CharacterManager charManager;
 	public GameObject character;
 	public int MeteorDamage;
@@ -15,9 +14,8 @@ public class Meteor : MonoBehaviour {
 	{
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
-		charStatus = charManager.CharStatus;
-		skillLv = charStatus.SkillLevel [1];
-		MeteorDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charStatus.HClass, 2).GetSkillData (skillLv).SkillValue)*  charStatus.Attack);
+		skillLv = CharacterStatus.Instance.SkillLevel [1];
+		MeteorDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, 2).GetSkillData (skillLv).SkillValue)* CharacterStatus.Instance.Attack);
 		meteorSound = this.gameObject.GetComponent<AudioSource> ();
 		meteorDropSound = Resources.Load<AudioClip> ("Sound/MageEffectSound/MeteorDropSound");
 

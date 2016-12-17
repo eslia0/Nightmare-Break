@@ -3,8 +3,7 @@ using System.Collections;
 
 public class SwordDance : MonoBehaviour 
 {
-
-	public CharacterStatus charStatus;
+    
 	public CharacterManager charManager;
 	public GameObject character;
 	public int bladeStormDamage=1;
@@ -18,12 +17,11 @@ public class SwordDance : MonoBehaviour
 	{
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
-		charStatus = charManager.CharStatus;
 		bladeStromRigid = GetComponent<Rigidbody> ();
 		bladeStromRigid.velocity = transform.forward * bladeStormSpeed;
 		swordDanceEffect = Resources.Load<GameObject> ("Effect/SwordShadow");
-		skillLv = charStatus.SkillLevel [2];
-		bladeStormDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charStatus.HClass, 3).GetSkillData (skillLv).SkillValue)*  charStatus.Attack);
+		skillLv = CharacterStatus.Instance.SkillLevel [2];
+		bladeStormDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, 3).GetSkillData (skillLv).SkillValue)* CharacterStatus.Instance.Attack);
 	}
 	void Update()
 	{

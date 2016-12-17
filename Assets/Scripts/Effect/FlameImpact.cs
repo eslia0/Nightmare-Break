@@ -4,7 +4,6 @@ using System.Collections;
 public class FlameImpact : MonoBehaviour 
 {
 	public ParticleSystem FireBallparticleSystem;
-	public CharacterStatus charStatus;
 	public CharacterManager charManager;
 	public GameObject character;
 	public int flameImpactDamage;
@@ -16,10 +15,9 @@ public class FlameImpact : MonoBehaviour
 	{
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
-		charStatus = charManager.CharStatus;
-		skillLv = charStatus.SkillLevel [0];
+		skillLv = CharacterStatus.Instance.SkillLevel [0];
 		ringSound = this.gameObject.GetComponent<AudioSource> ();
-		flameImpactDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charStatus.HClass, 1).GetSkillData (skillLv).SkillValue)*  charStatus.Attack);
+		flameImpactDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, 1).GetSkillData (skillLv).SkillValue)* CharacterStatus.Instance.Attack);
 
 	}
 

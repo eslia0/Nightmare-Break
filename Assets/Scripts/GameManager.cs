@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
         myIP = Dns.GetHostAddresses(Dns.GetHostName())[1].ToString();
         InitializeManager();
@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 
             uiManager.SetUIManager(UIManagerIndex.Login);
             uiManager.LoginUIManager.ManagerInitialize();
-            DontDestroyOnLoad(uiManager);
+            DontDestroyOnLoad(uiManager.gameObject);
         }
         else
         {
@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
             networkManager.tag = "NetworkManager";
 
             networkManager.InitializeManager();
-            DontDestroyOnLoad(networkManager);
+            DontDestroyOnLoad(networkManager.gameObject);
         }
         else
         {
@@ -88,8 +88,6 @@ public class GameManager : MonoBehaviour
         characterStatus.name = "CharacterStatus";
         characterStatus.tag = "CharStatus";
         DontDestroyOnLoad(characterStatus);
-
-        networkManager.DataHandler.SetCharacterStatus();
     }
 
     public void DestroyManagerInWait()
@@ -110,7 +108,7 @@ public class GameManager : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        networkManager.DataSender.GameClose();
+        NetworkManager.Instance.DataSender.GameClose();
     }
 }
 

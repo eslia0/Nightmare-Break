@@ -3,7 +3,6 @@ using System.Collections;
 
 public class SwordShadow : MonoBehaviour 
 {
-	public CharacterStatus charStatus;
 	public CharacterManager charManager;
 	public GameObject character;
 	int swordShadowDamage;
@@ -15,9 +14,8 @@ public class SwordShadow : MonoBehaviour
 	{
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
-		charStatus = charManager.CharStatus;
-		skillLv = charStatus.SkillLevel [1];
-		swordShadowDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charStatus.HClass, 2).GetSkillData (skillLv).SkillValue)*  charStatus.Attack);
+		skillLv = CharacterStatus.Instance.SkillLevel [1];
+		swordShadowDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, 2).GetSkillData (skillLv).SkillValue)* CharacterStatus.Instance.Attack);
 	}	
 	// Update is called once per frame
 

@@ -4,7 +4,6 @@ using System.Collections;
 public class FireBall : MonoBehaviour {
 
   	public ParticleSystem FireBallparticleSystem;
-	public CharacterStatus charStatus;
 	public CharacterManager charManager;
 	public GameObject character;
 	public int FireBallDamage;
@@ -17,8 +16,6 @@ public class FireBall : MonoBehaviour {
     void Start()
     {
 		character = GameObject.FindWithTag ("Player");
-		charManager = character.GetComponent<CharacterManager> ();
-		charStatus = charManager.CharStatus;
 		FireBallRigid = GetComponent<Rigidbody> ();
 		FireBallRigid.velocity = transform.forward* FireBallSpeed;
 		fireBallSound =this.gameObject.GetComponent<AudioSource> ();
@@ -28,8 +25,8 @@ public class FireBall : MonoBehaviour {
 		fireBallSound.PlayOneShot (flyingBall);
 
 		FireBallparticleSystem = GetComponent<ParticleSystem>();
-		skillLv = charStatus.SkillLevel [0];
-		FireBallDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charStatus.HClass, 1).GetSkillData (skillLv).SkillValue)*  charStatus.Attack);
+		skillLv = CharacterStatus.Instance.SkillLevel [0];
+		FireBallDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, 1).GetSkillData (skillLv).SkillValue)* CharacterStatus.Instance.Attack);
 		Destroy (this.gameObject, 0.45f);
 	}
 

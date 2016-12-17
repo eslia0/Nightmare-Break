@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MonsterSpawnPoint : MonoBehaviour {
 
-	//public DungeonManager dungeonManager;
+	//public DungeonManager DungeonManager.Instance;
 	public GameObject[] MonsterSpawn;
 //	public GameObject[] DuckSpawn;
 //	public GameObject[] RabbitSpawn;
@@ -30,7 +30,7 @@ public class MonsterSpawnPoint : MonoBehaviour {
 	// Use this for initialization
 	public void SpawnMonsterGetting () {
 //		sumMonsterCount = RabbitSpawn.Length + DuckSpawn.Length + FrogSpawn.Length;
-//		//dungeonManager = GameObject.Find ("DungeonManager").GetComponent<DungeonManager>();
+//		//DungeonManager.Instance = GameObject.Find ("DungeonManager").GetComponent<DungeonManager>();
 //		spawnVector = new Vector3[sumMonsterCount];
 //		for (int i = 0; i < sumMonsterCount; i++) {
 //			if (i < FrogSpawn.Length) {

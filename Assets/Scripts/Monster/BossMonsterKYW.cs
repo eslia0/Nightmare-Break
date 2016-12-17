@@ -24,7 +24,7 @@ public class BossMonsterKYW : Monster {
 	public float currentDisTance;
 	bool halfLife;
 
-	public UIManager uiManager;
+	public UIManager UIManager.Instance;
 	public MonsterWeapon[] BossMonsterWeapon;
 
 	public BigBearBossPatternName BigBearBossState;
@@ -56,7 +56,7 @@ public class BossMonsterKYW : Monster {
             MonsterBaseData baseData = new MonsterBaseData((int)MonsterId.Bear, "Bear");
             baseData.AddLevelData(new MonsterLevelData(1, 20, 0, 300, 5));
             MonsterSet(baseData);
-            //uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+            //UIManager.Instance = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         }
 
 		isAttack = false;
@@ -144,7 +144,7 @@ public void changeDirection ()
 //		currentHP -= _Damage;
 //		shoutCount +=1;
 //
-//            //uiManager.bossHp.fillAmount = maxLife / currentLife;
+//            //UIManager.Instance.bossHp.fillAmount = maxLife / currentLife;
 //            if (currentHP > 0)
 //            {
 //                for (int i = 0; i < player.Length; i++)

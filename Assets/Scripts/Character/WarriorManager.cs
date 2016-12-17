@@ -37,10 +37,6 @@ public class WarriorManager : CharacterManager
         }
 	}
 
-	public override void SetCharacterType ()
-	{
-		charStatus.HClass = CharacterStatus.CharClass.Warrior;
-	}
 	//warrior mealstrom
 	public override void ProcessSkill1 ()
 	{
@@ -48,7 +44,7 @@ public class WarriorManager : CharacterManager
 		float maelstromDistance;
         skillTime += Time.deltaTime;
 
-		transform.Translate ((Vector3.forward * testinput.vertical - Vector3.right * testinput.horizontal) * Time.deltaTime * (charStatus.MoveSpeed-5f), Space.World);
+		transform.Translate ((Vector3.forward * testinput.vertical - Vector3.right * testinput.horizontal) * Time.deltaTime * (CharacterStatus.Instance.MoveSpeed-5f), Space.World);
 
 
         if (enermy != null)
@@ -168,29 +164,29 @@ public class WarriorManager : CharacterManager
 		if (!poweroverwhelming)
 		{
 			
-			if (CharStatus.SkillLevel [5] < 4)
+			if (CharacterStatus.Instance.SkillLevel [5] < 4)
 			{
 				if (charAlive)
 				{
 					if (charAlive)
 					{
-						if (CharStatus.HealthPoint > 0)
+						if (CharacterStatus.Instance.HealthPoint > 0)
 						{
 							int deFendDamage;
-							deFendDamage = _damage - (CharStatus.SkillLevel [5] * 1);
+							deFendDamage = _damage - (CharacterStatus.Instance.SkillLevel [5] * 1);
 							Debug.Log (deFendDamage);
 							if (deFendDamage < 0)
 							{
 								deFendDamage = 0;
 							}
-							CharStatus.DecreaseHealthPoint (deFendDamage);
+                            CharacterStatus.Instance.DecreaseHealthPoint (deFendDamage);
 
 							if (State != CharacterState.Skill1 && State != CharacterState.Skill2 && State != CharacterState.Skill3 && State != CharacterState.Skill4)
 							{
 								CharState ((int)CharacterState.HitDamage);
 							}
 						}
-						if (CharStatus.HealthPoint <= 0)
+						if (CharacterStatus.Instance.HealthPoint <= 0)
 						{
 							CharState ((int)CharacterState.Death);
 							charAlive = false;
@@ -198,21 +194,21 @@ public class WarriorManager : CharacterManager
 					}
 				}
 			}
-			else if (CharStatus.SkillLevel [5] == 4)
+			else if (CharacterStatus.Instance.SkillLevel [5] == 4)
 			{
-				Debug.Log (CharStatus.HealthPoint);
+				Debug.Log (CharacterStatus.Instance.HealthPoint);
 				if (charAlive)
 				{
-					if (CharStatus.HealthPoint > 0)
+					if (CharacterStatus.Instance.HealthPoint > 0)
 					{
 						int deFendDamage;
-						deFendDamage = _damage - (CharStatus.SkillLevel [5] * 1);
+						deFendDamage = _damage - (CharacterStatus.Instance.SkillLevel [5] * 1);
 
 						if (deFendDamage < 0)
 						{
 							deFendDamage = 0;
 						}
-						CharStatus.DecreaseHealthPoint (deFendDamage);
+                        CharacterStatus.Instance.DecreaseHealthPoint (deFendDamage);
 	
 						CharState ((int)CharacterState.HitDamage);
 
@@ -221,7 +217,7 @@ public class WarriorManager : CharacterManager
 							CharState ((int)CharacterState.HitDamage);
 						}
 					}
-					else if (CharStatus.HealthPoint <= 0)
+					else if (CharacterStatus.Instance.HealthPoint <= 0)
 					{
 					
 						CharState ((int)CharacterState.Death);
@@ -234,7 +230,7 @@ public class WarriorManager : CharacterManager
 							charAlive = true;
 							animator.SetBool ("Rise", false);
 							StartCoroutine (colltimeCheck ());
-							CharStatus.DecreaseHealthPoint ((-100));
+                            CharacterStatus.Instance.DecreaseHealthPoint ((-100));
 					
 						}
 						else if (rise)

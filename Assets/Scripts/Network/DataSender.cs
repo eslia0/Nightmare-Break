@@ -28,8 +28,6 @@ public class DataSender : MonoBehaviour
         }
     }
 
-    NetworkManager networkManager;
-
     Socket tcpSock;
     Socket udpSock;
 
@@ -42,7 +40,6 @@ public class DataSender : MonoBehaviour
 
     public void Initialize(Queue<DataPacket> newSendMsgs, Socket newTcpSock)
     {
-        networkManager = GameObject.FindGameObjectWithTag("NetworkManager").GetComponent<NetworkManager>();
         sendMsgs = newSendMsgs;
         InitializeTcpSend(newTcpSock);
         StartCoroutine(DataSend());
@@ -414,7 +411,7 @@ public class DataSender : MonoBehaviour
     {
         Debug.Log(endPoint.ToString() + " 연결 체크 요청");
 
-        int index = networkManager.GetUserIndex(endPoint);
+        int index = NetworkManager.Instance.GetUserIndex(endPoint);
 
         ResultData resultData = new ResultData(new byte());
         ResultPacket resultDataPacket = new ResultPacket(resultData);
@@ -425,7 +422,7 @@ public class DataSender : MonoBehaviour
         sendMsgs.Enqueue(packet);
 
         SendData sendData = new SendData(udpId[index], endPoint, packet.msg);
-        networkManager.ReSendManager.AddReSendData(sendData, index);
+        NetworkManager.Instance.ReSendManager.AddReSendData(sendData, index);
         udpId[index]++;
     }
 
@@ -466,13 +463,13 @@ public class DataSender : MonoBehaviour
         CreateUnitPacket createUnitDataPacket = new CreateUnitPacket(createUnitData);
         createUnitDataPacket.SetPacketId((int)P2PPacketId.CreateUnit);
 
-        int index = networkManager.GetUserIndex(endPoint);
+        int index = NetworkManager.Instance.GetUserIndex(endPoint);
 
         DataPacket packet = new DataPacket(CreateUdpPacket(createUnitDataPacket, udpId[index]), endPoint);
         sendMsgs.Enqueue(packet);
 
         SendData sendData = new SendData(udpId[index], endPoint, packet.msg);
-        networkManager.ReSendManager.AddReSendData(sendData, index);
+        NetworkManager.Instance.ReSendManager.AddReSendData(sendData, index);
         udpId[index]++;
     }
 
@@ -498,13 +495,13 @@ public class DataSender : MonoBehaviour
 
             byte[] msg = CreatePacket(unitPositionPacket);
 
-            for (int index = 0; index < networkManager.UserIndex.Count; index++)
+            for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
             {
-                int userIndex = networkManager.UserIndex[index].UserNum;
+                int userIndex = NetworkManager.Instance.UserIndex[index].UserNum;
 
-                if (networkManager.MyIndex != userIndex)
+                if (NetworkManager.Instance.MyIndex != userIndex)
                 {
-                    DataPacket packet = new DataPacket(CreateUdpPacket(unitPositionPacket, udpId[userIndex]), networkManager.UserIndex[index].EndPoint);
+                    DataPacket packet = new DataPacket(CreateUdpPacket(unitPositionPacket, udpId[userIndex]), NetworkManager.Instance.UserIndex[index].EndPoint);
                     sendMsgs.Enqueue(packet);
                 }
             }
@@ -532,13 +529,13 @@ public class DataSender : MonoBehaviour
 
             byte[] msg = CreatePacket(unitPositionPacket);
 
-            for (int index = 0; index < networkManager.UserIndex.Count; index++)
+            for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
             {
-                int userIndex = networkManager.UserIndex[index].UserNum;
+                int userIndex = NetworkManager.Instance.UserIndex[index].UserNum;
 
-                if (networkManager.MyIndex != userIndex)
+                if (NetworkManager.Instance.MyIndex != userIndex)
                 {
-                    DataPacket packet = new DataPacket(CreateUdpPacket(unitPositionPacket, udpId[userIndex]), networkManager.UserIndex[index].EndPoint);
+                    DataPacket packet = new DataPacket(CreateUdpPacket(unitPositionPacket, udpId[userIndex]), NetworkManager.Instance.UserIndex[index].EndPoint);
                     sendMsgs.Enqueue(packet);
                 }
             }
@@ -556,13 +553,13 @@ public class DataSender : MonoBehaviour
 
         Debug.Log("캐릭터 상태 보냄");
         
-        for (int index = 0; index < networkManager.UserIndex.Count; index++)
+        for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
         {
-            int userIndex = networkManager.UserIndex[index].UserNum;
+            int userIndex = NetworkManager.Instance.UserIndex[index].UserNum;
 
-            if (networkManager.MyIndex != userIndex)
+            if (NetworkManager.Instance.MyIndex != userIndex)
             {
-                DataPacket packet = new DataPacket(CreateUdpPacket(unitStatePacket, udpId[userIndex]), networkManager.UserIndex[index].EndPoint);
+                DataPacket packet = new DataPacket(CreateUdpPacket(unitStatePacket, udpId[userIndex]), NetworkManager.Instance.UserIndex[index].EndPoint);
                 sendMsgs.Enqueue(packet);
             }
         }
@@ -579,13 +576,13 @@ public class DataSender : MonoBehaviour
 
         Debug.Log("몬스터 상태 보냄");
 
-        for (int index = 0; index < networkManager.UserIndex.Count; index++)
+        for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
         {
-            int userIndex = networkManager.UserIndex[index].UserNum;
+            int userIndex = NetworkManager.Instance.UserIndex[index].UserNum;
 
-            if (networkManager.MyIndex != userIndex)
+            if (NetworkManager.Instance.MyIndex != userIndex)
             {
-                DataPacket packet = new DataPacket(CreateUdpPacket(unitStatePacket, udpId[userIndex]), networkManager.UserIndex[index].EndPoint);
+                DataPacket packet = new DataPacket(CreateUdpPacket(unitStatePacket, udpId[userIndex]), NetworkManager.Instance.UserIndex[index].EndPoint);
                 sendMsgs.Enqueue(packet);
             }
         }

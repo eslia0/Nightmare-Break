@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ArmageddonPiece : MonoBehaviour 
 {
-
-	public CharacterStatus charStatus;
 	public CharacterManager charManager;
 	public GameObject character;
 	public BoxCollider pieceBox;
@@ -16,7 +14,6 @@ public class ArmageddonPiece : MonoBehaviour
 	{
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
-		charStatus = charManager.CharStatus;
 		pieceBox = GetComponent<BoxCollider> ();
 		armageddon = this.gameObject.GetComponentInParent<Armageddon> ();
 	

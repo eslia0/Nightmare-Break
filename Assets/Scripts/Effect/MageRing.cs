@@ -5,7 +5,6 @@ public class MageRing : MonoBehaviour
 {
 
 	public ParticleSystem FireBallparticleSystem;
-	public CharacterStatus charStatus;
 	public CharacterManager charManager;
 	public GameObject character;
 	public int ringDamage;
@@ -22,10 +21,9 @@ public class MageRing : MonoBehaviour
 	
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
-		charStatus = charManager.CharStatus;
 	
-		skillLv = charStatus.SkillLevel [2];
-		ringDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charStatus.HClass, 3).GetSkillData (skillLv).SkillValue)*  charStatus.Attack);
+		skillLv = CharacterStatus.Instance.SkillLevel [2];
+		ringDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, 3).GetSkillData (skillLv).SkillValue)* CharacterStatus.Instance.Attack);
 	
 	}
 	

@@ -131,7 +131,7 @@ public class SelectUIManager : MonoBehaviour {
                         className = "Class3";
                     }
                 }
-                else if(characterList.CharacterData[CharacterIndex].Gender == (byte)CharacterStatus.Gender.FeMale)
+                else if(characterList.CharacterData[CharacterIndex].Gender == (byte)CharacterStatus.Gender.Female)
                 {
                     if (characterList.CharacterData[CharacterIndex].HClass == (byte)CharacterStatus.CharClass.Warrior)
                     {

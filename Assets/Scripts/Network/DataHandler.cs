@@ -12,12 +12,6 @@ public enum Result
 
 public class DataHandler : MonoBehaviour
 {
-    GameManager gameManager;
-    NetworkManager networkManager;
-    DungeonManager dungeonManager;
-    UIManager uiManager;
-    CharacterStatus characterStatus;
-
     public Queue<DataPacket> receiveMsgs;
     object receiveLock;
 
@@ -35,19 +29,10 @@ public class DataHandler : MonoBehaviour
         receiveMsgs = receiveQueue;
         receiveLock = newLock;
 
-        networkManager = GetComponent<NetworkManager>();
-        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-
         SetServerNotifier();
         SetUdpNotifier();
 
         StartCoroutine(DataHandle());
-    }
-
-    public void SetCharacterStatus()
-    {
-        characterStatus = GameObject.FindWithTag("CharStatus").GetComponent<CharacterStatus>();
     }
 
     public void SetServerNotifier()
@@ -60,7 +45,7 @@ public class DataHandler : MonoBehaviour
         server_notifier.Add((int)ServerPacketId.CharacterList, CharacterList);
         server_notifier.Add((int)ServerPacketId.CreateCharacterResult, CreateCharacterResult);
         server_notifier.Add((int)ServerPacketId.DeleteChracterResult, DeleteCharacterResult);
-        server_notifier.Add((int)ServerPacketId.CharacterStatus, CharacterStatus);
+        server_notifier.Add((int)ServerPacketId.CharacterStatus, SetCharacterStatus);
         server_notifier.Add((int)ServerPacketId.RoomList, RoomList);
         server_notifier.Add((int)ServerPacketId.ReturnToSelectResult, ReturnToSelectResult);
         server_notifier.Add((int)ServerPacketId.CreateRoomNumber, CreateRoomNumber);
@@ -154,12 +139,12 @@ public class DataHandler : MonoBehaviour
         
         if(resultData.Result == (byte)Result.Success)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "가입 성공"));
-            uiManager.LoginUIManager.CreateAccountSuccess();
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "가입 성공"));
+            UIManager.Instance.LoginUIManager.CreateAccountSuccess();
         }
         else if (resultData.Result == (byte)Result.Fail)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "가입 실패"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "가입 실패"));
         }
     }
 
@@ -172,11 +157,11 @@ public class DataHandler : MonoBehaviour
 
         if (resultData.Result == (byte)Result.Success)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "탈퇴 성공"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "탈퇴 성공"));
         }
         else if (resultData.Result == (byte)Result.Fail)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "탈퇴 실패"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "탈퇴 실패"));
         }
     }
 
@@ -190,12 +175,12 @@ public class DataHandler : MonoBehaviour
 
         if (resultData.Result == (byte)Result.Success)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "로그인 성공"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "로그인 성공"));
             SceneChanger.Instance.SceneChange(SceneChanger.SceneName.SelectScene, true);
         }
         else if (resultData.Result == (byte)Result.Fail)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "로그인 실패"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "로그인 실패"));
         }
     }
 
@@ -213,7 +198,7 @@ public class DataHandler : MonoBehaviour
         CharacterListPacket characterListPacket = new CharacterListPacket(packet.msg);
         CharacterList characterList = characterListPacket.GetData();
 
-        uiManager.SelectUIManager.CharacterList = characterList;
+        UIManager.Instance.SelectUIManager.CharacterList = characterList;
 
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {
@@ -221,7 +206,7 @@ public class DataHandler : MonoBehaviour
         }
         else
         {
-            uiManager.SelectUIManager.SetCharacter();
+            UIManager.Instance.SelectUIManager.SetCharacter();
         }        
     }
 
@@ -235,12 +220,12 @@ public class DataHandler : MonoBehaviour
 
         if (resultData.Result == (byte)Result.Success)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "캐릭터 생성 성공"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "캐릭터 생성 성공"));
             SceneChanger.Instance.SceneChange(SceneChanger.SceneName.SelectScene, false);
         }
         else if (resultData.Result == (byte)Result.Fail)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "캐릭터 생성 실패"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "캐릭터 생성 실패"));
         }
     }
 
@@ -254,11 +239,11 @@ public class DataHandler : MonoBehaviour
 
         if (resultData.Result == (byte)Result.Success)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "캐릭터 삭제 성공")); 
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "캐릭터 삭제 성공")); 
         }
         else if (resultData.Result == (byte)Result.Fail)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "캐릭터 삭제 실패"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "캐릭터 삭제 실패"));
         }
     }
 
@@ -272,22 +257,22 @@ public class DataHandler : MonoBehaviour
 
         if (resultData.Result == (byte)Result.Success)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "캐릭터 선택 성공"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "캐릭터 선택 성공"));
         }
         else if (resultData.Result == (byte)Result.Fail)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "캐릭터 선택 실패"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "캐릭터 선택 실패"));
         }
     }
 
     //Server - 캐릭터 정보 수신
-    public void CharacterStatus(DataPacket packet)
+    public void SetCharacterStatus(DataPacket packet)
     {
         Debug.Log("캐릭터 정보 수신");
         CharacterStatusPacket characterStatusPacket = new CharacterStatusPacket(packet.msg);
         CharacterStatusData characterStatusData = characterStatusPacket.GetData();
 
-        characterStatus.SetCharacterStatus(characterStatusData);
+        CharacterStatus.Instance.SetCharacterStatus(characterStatusData);
 
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {
@@ -302,7 +287,7 @@ public class DataHandler : MonoBehaviour
         RoomListPacket roomListPacket = new RoomListPacket(packet.msg);
         RoomListData roomListData = roomListPacket.GetData();
 
-        uiManager.WaitingUIManager.SetRoomListData(roomListData);
+        UIManager.Instance.WaitingUIManager.SetRoomListData(roomListData);
 
         for (int roomIndex = 0; roomIndex < WaitingUIManager.maxRoomNum; roomIndex++)
         {
@@ -353,11 +338,11 @@ public class DataHandler : MonoBehaviour
 
         if (resultData.RoomNum < 0)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "방 생성 실패"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "방 생성 실패"));
         }
         else if (resultData.RoomNum <= WaitingUIManager.maxRoomNum)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "방 생성 성공"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "방 생성 성공"));
             DataSender.Instance.EnterRoom(resultData.RoomNum);
         }
     }
@@ -373,11 +358,11 @@ public class DataHandler : MonoBehaviour
         
         if (roomNumberData.RoomNum < 0)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "방 입장 실패"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "방 입장 실패"));
         }
         else if (roomNumberData.RoomNum <= WaitingUIManager.maxPlayerNum)
         {
-            StartCoroutine(uiManager.Dialog(1.0f, "방 입장 성공"));
+            StartCoroutine(UIManager.Instance.Dialog(1.0f, "방 입장 성공"));
 
             SceneChanger.Instance.SceneChange(SceneChanger.SceneName.RoomScene, false);
         }
@@ -486,15 +471,15 @@ public class DataHandler : MonoBehaviour
         {
             string endPoint = udpConnectionData.endPoint[userIndex];
 
-            if (endPoint == networkManager.ServerSock.LocalEndPoint.ToString())
+            if (endPoint == NetworkManager.Instance.ServerSock.LocalEndPoint.ToString())
             {
-                networkManager.SetMyIndex(userIndex);
+                NetworkManager.Instance.SetMyIndex(userIndex);
             }
         }
 
-        networkManager.InitializeUdpConnection();
-        networkManager.ReSendManager.Initialize(udpConnectionData.playerNum);
-        DataSender.Instance.InitializeUdpSend(networkManager.ClientSock);
+        NetworkManager.Instance.InitializeUdpConnection();
+        NetworkManager.Instance.ReSendManager.Initialize(udpConnectionData.playerNum);
+        DataSender.Instance.InitializeUdpSend(NetworkManager.Instance.ClientSock);
 
         for (int userIndex = 0; userIndex < udpConnectionData.playerNum; userIndex++)
         {
@@ -503,12 +488,12 @@ public class DataHandler : MonoBehaviour
 
             IPEndPoint newEndPoint = new IPEndPoint(IPAddress.Parse(ip), NetworkManager.clientPortNumber + userIndex);
 
-            networkManager.UserIndex.Add(new UserIndex(newEndPoint, userIndex));
+            NetworkManager.Instance.UserIndex.Add(new UserIndex(newEndPoint, userIndex));
 
-            if (endPoint != networkManager.ServerSock.LocalEndPoint.ToString())
+            if (endPoint != NetworkManager.Instance.ServerSock.LocalEndPoint.ToString())
             {
                 Debug.Log("연결 아이피 : " + newEndPoint.ToString());
-                networkManager.ConnectP2P(newEndPoint);
+                NetworkManager.Instance.ConnectP2P(newEndPoint);
             }
         }
 
@@ -532,7 +517,7 @@ public class DataHandler : MonoBehaviour
         Debug.Log(packet.endPoint.ToString() + "답신 받음 아이디 : " + udpId);
 
         SendData sendData = new SendData(udpId, packet.endPoint);
-        networkManager.ReSendManager.RemoveReSendData(sendData);
+        NetworkManager.Instance.ReSendManager.RemoveReSendData(sendData);
     }
 
     //Server - 던전 시작
@@ -556,9 +541,9 @@ public class DataHandler : MonoBehaviour
         CreateUnitPacket createUnitPacket = new CreateUnitPacket(packet.msg);
         CreateUnitData createUnitData = createUnitPacket.GetData();
 
-        int index = networkManager.GetUserIndex(packet.endPoint);
+        int index = NetworkManager.Instance.GetUserIndex(packet.endPoint);
 
-        dungeonManager.CreateUnit(createUnitData.ID, index, new Vector3(createUnitData.PosX, createUnitData.PosY, createUnitData.PosZ));
+        DungeonManager.Instance.CreateUnit(createUnitData.ID, index, new Vector3(createUnitData.PosX, createUnitData.PosY, createUnitData.PosZ));
 
         DataSender.Instance.UdpAnswer(packet.endPoint, udpId);
     }
@@ -571,11 +556,11 @@ public class DataHandler : MonoBehaviour
         
         if (unitPositionData.UnitType == (byte)UnitType.Hero)
         {
-            dungeonManager.SetCharacterPosition(unitPositionData);
+            DungeonManager.Instance.SetCharacterPosition(unitPositionData);
         }
         else if (unitPositionData.UnitType == (byte)UnitType.Monster)
         {
-            dungeonManager.SetMonsterPosition(unitPositionData);
+            DungeonManager.Instance.SetMonsterPosition(unitPositionData);
         }
     }
 
@@ -587,11 +572,11 @@ public class DataHandler : MonoBehaviour
 
         if (unitStateData.UnitType == (byte)UnitType.Hero)
         {
-            dungeonManager.CharacterState(unitStateData);
+            DungeonManager.Instance.CharacterState(unitStateData);
         }
         else if (unitStateData.UnitType == (byte)UnitType.Monster)
         {
-            dungeonManager.MonsterState(unitStateData);
+            DungeonManager.Instance.MonsterState(unitStateData);
         }
     }
 }

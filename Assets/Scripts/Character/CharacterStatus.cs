@@ -6,7 +6,7 @@ public class CharacterStatus : MonoBehaviour
     public enum Gender
     {
         Male = 0,
-        FeMale = 1,
+        Female = 1,
     }
 
     public enum CharClass
@@ -20,6 +20,8 @@ public class CharacterStatus : MonoBehaviour
     public const int skillNum = 6;
     public const int equipNum = 4;
     public const int maxLevel = 20;
+    public const int maxGender = 2;
+    public const int maxClass = 2;
 
     string hName;
     Gender hGender;

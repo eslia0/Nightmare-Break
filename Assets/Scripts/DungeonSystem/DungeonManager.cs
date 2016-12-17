@@ -47,15 +47,13 @@ public class DungeonManager : MonoBehaviour
     public SceneChangeObject[] sceneChangeObject;
 	public BossMonsterKYW bossMonster;
     //public Section[] section;
-
-    InputManager inputManager;
-    UIManager uiManager;
-    NetworkManager networkManager;
+    
     GameObject m_camera;
 
     int mapNumber;
     int dungeonId;
     int dungeonLevel;
+    int userNum;
 
     bool normalMode; //false  -> normalBattle, true -> Defence; 
 
@@ -123,11 +121,11 @@ public class DungeonManager : MonoBehaviour
 	//}
 
     //각종 매니저 초기화
-    public void ManagerInitialize(int newDungeonId, int newDungeonLevel)
+    public void ManagerInitialize(int newDungeonId, int newDungeonLevel, int newUserNum)
     {
-        networkManager = GameObject.FindWithTag("NetworkManager").GetComponent<NetworkManager>();
         dungeonId = newDungeonId;
         dungeonLevel = newDungeonLevel;
+        userNum = newUserNum;
     }
 
     public void InitializePlayer(int playerNum)
@@ -320,40 +318,37 @@ public class DungeonManager : MonoBehaviour
 	//	monsterTransForm = _monsterTransForm;
 	//}
 
-    public GameObject CreatePlayer(int characterId)
+    public GameObject CreatePlayer(int gender, int hClass)
     {
         //여기서는 플레이어 캐릭터 딕셔너리 -> 각 직업에 따른 플레이어 스탯과 능력치, 스킬, 이름을 가지고 있음
         //딕셔너리를 사용하여 그에 맞는 캐릭터를 소환해야 하지만 Prototype 진행 시에는 고정된 플레이어를 소환하도록 함.
 
-        GameObject player = Instantiate(Resources.Load("ManWarrior")) as GameObject;
-        player.name = "ManWarrior";
+        int characterIndex = hClass * CharacterStatus.maxGender + hClass;
+
+        GameObject player = Instantiate(Resources.Load("Character" + characterIndex)) as GameObject;        
         player.tag = "Player";
         player.transform.position = Vector3.zero;
+        
+        players[userNum] = player;
 
-        characterData[networkManager.MyIndex] = player.GetComponent<CharacterManager>();
-        characterData[networkManager.MyIndex].enabled = true;
-        characterData[networkManager.MyIndex].SetUserNum(networkManager.MyIndex);
-
-        players[networkManager.MyIndex] = player;
+        characterData[userNum] = player.GetComponent<CharacterManager>();
+        characterData[userNum].enabled = true;
+        characterData[userNum].SetUserNum(userNum);
 
         m_camera = GameObject.FindGameObjectWithTag("MainCamera");
         StartCoroutine(m_camera.GetComponent<CameraController>().CameraCtrl(player.transform));
-
-        inputManager = GameObject.FindGameObjectWithTag("InputManager").GetComponent<InputManager>();
-        inputManager.InitializeManager();
-        StartCoroutine(inputManager.GetKeyInput());
-
-        uiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
-
-        player.GetComponent<CharacterManager>().UIManager = uiManager;
+        
+        InputManager.Instance.InitializeManager();
+        StartCoroutine(InputManager.Instance.GetKeyInput());
+        
         player.GetComponent<CharacterManager>().SetCharacterStatus();
         player.GetComponent<CharacterManager>().SetCharacterType();
 
-        for (int index = 0; index < networkManager.UserIndex.Count; index++)
+        for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
         {
-            if (networkManager.MyIndex != networkManager.UserIndex[index].UserNum)
+            if (NetworkManager.Instance.MyIndex != NetworkManager.Instance.UserIndex[index].UserNum)
             {
-                DataSender.Instance.CreateUnitSend(networkManager.UserIndex[index].EndPoint, (short)characterId, player.transform.position.x, player.transform.position.y, player.transform.position.z);
+                DataSender.Instance.CreateUnitSend(NetworkManager.Instance.UserIndex[index].EndPoint, (byte)characterIndex, player.transform.position.x, player.transform.position.y, player.transform.position.z);
             }
         }
 
