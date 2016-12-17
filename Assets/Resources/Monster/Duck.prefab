@@ -573,7 +573,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014020594150}
   - 137: {fileID: 137000011345462650}
-  m_Layer: 0
+  - 65: {fileID: 65000013208742580}
+  m_Layer: 9
   m_Name: duck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +699,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012217331354}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3295653, y: -0.039999884, z: 6.011009}
+  m_LocalPosition: {x: 4.825109, y: -0.039999884, z: 22.172}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -980,7 +981,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014294156710}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.1685386e-10, y: -0.00107783, z: 0.0026733049}
+  m_LocalPosition: {x: 0.043, y: -0.00107783, z: 0.0026733049}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -1058,6 +1059,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!65 &65000013208742580
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014294156710}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8759913, y: 1.1083926, z: 1.4841126}
+  m_Center: {x: -0.085204065, y: 0.10758221, z: 0.6580672}
 --- !u!65 &65000014097948880
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1162,15 +1175,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f4445226db14946a625617aba881f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCollider: []
-  shockWaveInstantiate: {fileID: 0}
+  HittedBox: {fileID: 0}
   player: []
-  wall: []
-  nearWall: {fileID: 0}
   targetPlayer: {fileID: 0}
   movePoint: {x: 0, y: 0, z: 0}
+  monsterIndex: 0
+  moveSpeed: 0
+  RunRange: 0
+  attackRange: 0
+  attackCycle: 0
   currentDisTance: 0
   searchRange: 0
+  isAlive: 0
   currentDisTanceArray: []
   currentDisTanceWall: []
   pointVector: []
@@ -1285,8 +1301,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 4000012265067450}
   m_AABB:
-    m_Center: {x: 0.018634886, y: 0.045315266, z: 0.539353}
-    m_Extent: {x: 0.5833367, y: 0.47818434, z: 0.74205625}
+    m_Center: {x: 0.018634915, y: -0.012883648, z: 0.539353}
+    m_Extent: {x: 0.5833367, y: 0.4199854, z: 0.74205625}
   m_DirtyAABB: 0
 --- !u!222 &222000010148299122
 CanvasRenderer:

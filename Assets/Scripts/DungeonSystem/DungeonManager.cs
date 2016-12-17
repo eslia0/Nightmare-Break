@@ -79,7 +79,7 @@ public class DungeonManager : MonoBehaviour
         }		
 
 		//Instantiate 스폰포인트 생성조건 - > mapNumber != 2;
-		mapNumber = 2;
+		mapNumber = 0;
 		normalMode = false;
 
 		DungeonConstruct();
@@ -284,7 +284,6 @@ public class DungeonManager : MonoBehaviour
             //생성 횟수 만큼 설정
             for (int spawnNum = 0; spawnNum < maxSpawnNum; spawnNum++)
             {
-                Debug.Log(monsterIndex);
                 monsterData[monsterIndex].MonsterSet(monsterStatusData.MonsterData[spawnIndex]);
                 monsterIndex++;
             }

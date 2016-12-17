@@ -14,6 +14,7 @@ public class SceneChanger : MonoBehaviour
         WaitingScene,
         RoomScene,
         InGameScene,
+		DefenseScene,
     }
 
     public enum SelectLoadingData
@@ -192,6 +193,14 @@ public class SceneChanger : MonoBehaviour
         }
         #endregion
         
+		#region 연우씨 씬 로드
+		else if (scene.name == "")
+		{
+			currentScene = SceneName.DefenseScene;
+			//kyw
+		}
+		#endregion
+
     }
 
     public void SceneChange(SceneName sceneName, bool needLoadingScene)
