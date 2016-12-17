@@ -1,0 +1,62 @@
+﻿public enum ClientPacketId
+{
+    None = 0,
+    CreateAccount,
+    DeleteAccount,
+    Login,
+    Logout,
+    GameClose,
+    RequestCharacterList,
+    CreateCharacter,
+    DeleteCharacter,
+    RequestCharacterStatus,
+    RequestRoomList,
+    SkillUp,
+    EquipUpgrade,
+    CreateRoom,
+    EnterRoom,
+    ExitRoom,
+    RequestRoomUserData,
+    SwapPlayer,
+    StartGame,
+    RequestUdpConnection,
+    RequestMonsterSpawnList,
+    RequestMonsterStatusData,
+    UdpConnectComplete,
+}
+
+public enum ServerPacketId
+{
+    None = 0,
+    CreateAccountResult,
+    DeleteAccountResult,
+    LoginResult,
+    LogoutResult,
+    CharacterList,
+    CreateCharacterResult,
+    DeleteChracterResult,
+    RoomList,
+    CharacterStatus,
+    SkillUpResult,
+    EquipUpgradeResult,
+    CreateRoomNumber,
+    EnterRoomNumber,
+    RoomData,
+    ExitRoomNumber,
+    StartGame,
+    MonsterSpawnList,
+    DungeonData,
+    UdpConnection,
+    StartDungeon,
+}
+
+public enum P2PPacketId
+{
+    None = 0,
+    RequestConnectionCheck,
+    ConnectionCheckAnswer,
+    UdpAnswer,
+    CreateUnit,
+    UnitPosition,
+    UnitState,
+}

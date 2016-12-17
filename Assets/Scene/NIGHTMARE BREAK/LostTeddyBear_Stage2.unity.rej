@@ -1,0 +1,65 @@
+diff a/Assets/Scene/NIGHTMARE BREAK/LostTeddyBear_Stage2.unity b/Assets/Scene/NIGHTMARE BREAK/LostTeddyBear_Stage2.unity	(rejected hunks)
+@@ -17483,63 +17483,6 @@
+   m_PrefabInternal: {fileID: 0}
+   m_GameObject: {fileID: 2010956141}
+   m_Mesh: {fileID: 4300002, guid: 74c181daafd73d64abe385a1db6d8b32, type: 3}
+---- !u!1 &2014446334
+-GameObject:
+-  m_ObjectHideFlags: 0
+-  m_PrefabParentObject: {fileID: 100028, guid: e900fdf9b8e4c38449b848c9d2834713, type: 3}
+-  m_PrefabInternal: {fileID: 0}
+-  serializedVersion: 4
+-  m_Component:
+-  - 4: {fileID: 2014446335}
+-  m_Layer: 0
+-  m_Name: Bip01 L Finger1Nub
+-  m_TagString: Untagged
+-  m_Icon: {fileID: 0}
+-  m_NavMeshLayer: 0
+-  m_StaticEditorFlags: 0
+-  m_IsActive: 1
+---- !u!4 &2014446335
+-Transform:
+-  m_ObjectHideFlags: 0
+-  m_PrefabParentObject: {fileID: 400028, guid: e900fdf9b8e4c38449b848c9d2834713, type: 3}
+-  m_PrefabInternal: {fileID: 0}
+-  m_GameObject: {fileID: 2014446334}
+-  m_LocalRotation: {x: -0.0000000017174637, y: -2.431571e-10, z: 6.6546996e-10, w: 1}
+-  m_LocalPosition: {x: -0.05415566, y: -0.00000000230415, z: 0.0000000110903535}
+-  m_LocalScale: {x: 1, y: 1, z: 1}
+-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_Children: []
+-  m_Father: {fileID: 400928473}
+-  m_RootOrder: 0
+---- !u!1 &2014517651
+-GameObject:
+-  m_ObjectHideFlags: 0
+-  m_PrefabParentObject: {fileID: 100070, guid: e1cf817d7639cf84c86b81d9da90b736, type: 3}
+-  m_PrefabInternal: {fileID: 0}
+-  serializedVersion: 4
+-  m_Component:
+-  - 4: {fileID: 2014517652}
+-  m_Layer: 0
+-  m_Name: Bip01 R Finger1
+-  m_TagString: Untagged
+-  m_Icon: {fileID: 0}
+-  m_NavMeshLayer: 0
+-  m_StaticEditorFlags: 0
+-  m_IsActive: 1
+---- !u!4 &2014517652
+-Transform:
+-  m_ObjectHideFlags: 0
+-  m_PrefabParentObject: {fileID: 400070, guid: e1cf817d7639cf84c86b81d9da90b736, type: 3}
+-  m_PrefabInternal: {fileID: 0}
+-  m_GameObject: {fileID: 2014517651}
+-  m_LocalRotation: {x: 0.0003975435, y: 0.000022171373, z: -0.055682328, w: 0.9984485}
+-  m_LocalPosition: {x: -0.16861996, y: 0.024540097, z: 0.05955399}
+-  m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 1}
+-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+-  m_Children:
+-  - {fileID: 154092030}
+-  m_Father: {fileID: 1969579552}
+-  m_RootOrder: 1
+ --- !u!1 &2019586348
+ GameObject:
+   m_ObjectHideFlags: 0
