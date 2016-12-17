@@ -17,8 +17,10 @@ public class RoomUIManager : MonoBehaviour {
     private Button skillCloseBtn;
     private Button myInfoCloseBtn;
     private Button[] userSkillBtn;
+    private Button[] skillAddBtn;
 
     private Image[] characterBackImage;
+    private Image[] skillSelectImage;
     private Image[] classIcon;
     private Text[] userName;
 
@@ -29,6 +31,7 @@ public class RoomUIManager : MonoBehaviour {
     private GameObject[] playerPrefeb;
 
     private RoomData roomData;
+    private Text[] myInfoText;
 
     Text roomName;
     Text roomDungeon;
@@ -53,9 +56,10 @@ public class RoomUIManager : MonoBehaviour {
     {
         rendPos = new GameObject[maxUser];
         playerPrefeb = new GameObject[maxUser];
-
         userName = new Text[maxUser];
         classIcon = new Image[maxUser];
+        skillSelectImage = new Image[CharacterStatus.skillNum];
+        skillAddBtn = new Button[CharacterStatus.skillNum];
 
         characterBackImage = new Image[maxUser];
         userSkillBtn = new Button[maxSkill];
@@ -89,6 +93,13 @@ public class RoomUIManager : MonoBehaviour {
             classIcon[i] = GameObject.Find("ClassIcon" + (i + 1)).GetComponent<Image>();
             characterBackImage[i] = GameObject.Find("CharacterBackImage" + (i + 1)).GetComponent<Image>();
             characterBackImage[i].gameObject.SetActive(false);
+        }
+
+        for(int i = 0; i < skillAddBtn.Length; i++)
+        {
+            skillAddBtn[i] = skillAddUI.transform.FindChild("Skill" + (i + 1)).GetComponent<Button>();
+            skillSelectImage[i] = skillAddUI.transform.FindChild("SkillSelect" + (i + 1)).GetComponent<Image>();
+            skillSelectImage[i].gameObject.SetActive(true);
         }
     }
 

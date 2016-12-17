@@ -146,9 +146,10 @@ public class SelectUIManager : MonoBehaviour {
                 if (className != "")
                 {
                     GameObject character = Instantiate(Resources.Load<GameObject>("UI/" + className), characterPos[CharacterIndex].transform) as GameObject;
-                    nickName[CharacterIndex].text = characterList.CharacterData[CharacterIndex].Name;
+                    nickName[CharacterIndex].text ="Lv." + characterList.CharacterData[CharacterIndex].Level.ToString()+ "  "+ characterList.CharacterData[CharacterIndex].Name;
                     character.SetActive(true);
                     character.transform.localPosition = Vector3.zero;
+                    character.transform.localPosition += new Vector3(0, -0.2f, 0);
                     character.transform.localRotation = Quaternion.identity;
                     characterAnim[CharacterIndex] = character.GetComponent<Animator>();
                     characterAnim[CharacterIndex].speed = 0;
