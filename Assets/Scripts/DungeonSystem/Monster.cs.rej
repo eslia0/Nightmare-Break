@@ -1,0 +1,308 @@
+diff a/Assets/Scripts/DungeonSystem/Monster.cs b/Assets/Scripts/DungeonSystem/Monster.cs	(rejected hunks)
+@@ -4,205 +4,306 @@
+  
+  public enum StatePosition
+  {
+++<<<<<<< HEAD
+ +    Idle = 0,
+ +    Run,
+ +    Attack,
+ +    BossOneHandAttack,
+ +    BossJumpAttack,
+ +    BossRoar,
+ +    TakeDamage,
+ +    Death
+++=======
++ 	Idle=0,
++ 	Run,
++ 	Attack,
++ 	BossOneHandAttack,
++ 	BossJumpAttack,
++ 	BossRoar,
++ 	TakeDamage,
++ 	Death
+++>>>>>>> parent of fee902f... 몬스터
+  }
+  
+  public enum DefenseMoveDirectionArray
+  {
+++<<<<<<< HEAD
+ +    Up = 1,
+ +    Down,
+ +    Middle,
+ +    case4,
+ +    Comback
+ +}
+ +
+ +public class Monster : MonoBehaviour
+ +{
+ +    public bool normalMode;
+ +    public enum TargetPlayerPosition
+ +    {
+ +        Zero = 1,
+ +        Left,
+ +        Right,
+ +        Up,
+ +        Down
+ +
+ +    }
+ +    bool direction;
+ +    public TargetPlayerPosition target;
+ +
+ +    public const bool right = true;
+ +    public const bool left = false;
+ +
+ +    protected Animator animator;
+ +    protected AnimatorStateInfo aniState;
+ +    [SerializeField]
+ +    protected BoxCollider HittedBox;
+ +    [SerializeField]
+ +    protected MonsterWeapon[] attackCollider;
+ +    [SerializeField]
+ +    protected GameObject[] bulletInstantiate;
+ +
+ +    public GameObject[] player;
+ +    protected GameObject[] wall;
+ +    protected GameObject nearWall;
+ +    [SerializeField]
+ +    protected GameObject targetPlayer;
+ +    [SerializeField]
+ +    protected Vector3 movePoint;
+ +
+ +    protected int monsterRunAttackAround;
+ +
+ +    protected int randomStandby;
+ +    public int RandomStandby
+ +    {
+ +        set { randomStandby = value; }
+ +    }
+ +    //mode,gateArraynumber,monsterArraynumber
+ +    protected bool moveAble;
+ +
+ +    protected int monsterIndex;
+ +    protected MonsterId monsterId;
+ +    protected string _name;
+ +    protected int level;
+ +    [SerializeField]
+ +    protected int currentHP;
+ +    protected int maxHP;
+ +    [SerializeField]
+ +    protected int attack;
+ +    protected int defense;
+ +    [SerializeField]
+ +    protected int moveSpeed;
+ +
+ +
+ +    //monster getting variable;
+ +    [SerializeField]
+ +    protected float RunRange;
+ +    [SerializeField]
+ +    protected float attackRange;
+ +    [SerializeField]
+ +    protected float attackCycle;
+ +    [SerializeField]
+ +    protected float currentDisTance;
+ +    [SerializeField]
+ +    protected float searchRange;
+ +    StatePosition statePosition;
+ +
+ +    public bool isAlive;
+ +    protected bool isAttack;
+ +    protected bool isHited;
+ +
+ +    //boss skill 
+ +    protected int bossPatternCount;
+ +    [SerializeField]
+ +    protected bool bossNormalAttackCycle;
+ +    protected bool bossSkill;
+ +    [SerializeField]
+ +    protected int bossRandomPattern;
+ +    public int shootNumber;
+ +
+ +    public GameObject chasePlayer;
+ +
+ +
+ +
+ +    protected float[] playerToMonsterDamage;
+ +    private float[] aggroRank; //playertoMonsterdamage/currentdistancePlayer;
+ +    private float changeTargetTime = 0;
+ +
+ +    [SerializeField]
+ +    private float[] currentDisTanceArray;
+ +    [SerializeField]
+ +    private float[] currentDisTanceWall;
+ +    [SerializeField]
+ +    protected Vector3 checkDirection; // monster chaseplayer and move variable;
+ +    [SerializeField]
+ +    protected Vector3[] pointVector;
+ +    GameObject roarField;
+ +    public bool roarBreak;
+ +
+ +    public AudioSource MonsterAudio;
+ +    public AudioClip bearRoar;
+ +    public AudioClip frogAttack;
+ +    public AudioClip frogDeath;
+ +    public AudioClip frogHit;
+ +    public AudioClip middleBossAttack1;
+ +    public AudioClip middleBossAttack2;
+ +    public AudioClip middleBossDeath;
+ +    public AudioClip middleBossWave;
+ +    public AudioClip rabbitAttack;
+ +    public AudioClip rabbitDeath;
+ +    public AudioClip rabbitHit;
+ +
+ +    public void SetMonsterSound()
+ +    {
+ +        MonsterAudio = this.GetComponent<AudioSource>();
+ +        MonsterAudio.volume = 0.5f;
+ +        bearRoar = Resources.Load<AudioClip>("Sound/MonsterSound/MiddleBossWave");
+ +        frogAttack = Resources.Load<AudioClip>("Sound/MonsterSound/FrogAttack");
+ +        frogDeath = Resources.Load<AudioClip>("Sound/MonsterSound/FrogDeath");
+ +        frogHit = Resources.Load<AudioClip>("Sound/MonsterSound/FrogHit");
+ +        middleBossAttack1 = Resources.Load<AudioClip>("Sound/MonsterSound/MiddleBossAttack1");
+ +        middleBossAttack2 = Resources.Load<AudioClip>("Sound/MonsterSound/MiddleBossAttack2");
+ +        middleBossDeath = Resources.Load<AudioClip>("Sound/MonsterSound/middleBossDeath");
+ +        middleBossWave = Resources.Load<AudioClip>("Sound/MonsterSound/bearRoar");
+ +        rabbitAttack = Resources.Load<AudioClip>("Sound/MonsterSound/RabbitAttack");
+ +        rabbitDeath = Resources.Load<AudioClip>("Sound/MonsterSound/RabbitDeath");
+ +        rabbitHit = Resources.Load<AudioClip>("Sound/MonsterSound/RabbitHit");
+ +    }
+ +
+ +    public void BearRoarSound()
+ +    {
+ +        MonsterAudio.PlayOneShot(bearRoar);
+ +    }
+ +    public void FrogAttackSound()
+ +    {
+ +        MonsterAudio.PlayOneShot(frogAttack);
+ +    }
+ +    public void FrogDeathSound()
+ +    {
+ +        MonsterAudio.PlayOneShot(frogDeath);
+ +    }
+ +    public void FrogHitSound()
+ +    {
+ +        MonsterAudio.PlayOneShot(frogHit);
+ +    }
+ +    public void MiddleBossAttack1Sound()
+ +    {
+ +        MonsterAudio.PlayOneShot(middleBossAttack1);
+ +    }
+ +    public void MiddleBossAttack2Sound()
+ +    {
+ +        MonsterAudio.PlayOneShot(middleBossAttack2);
+ +    }
+ +    public void MiddleBossDeathSound()
+ +    {
+ +        MonsterAudio.PlayOneShot(middleBossDeath);
+ +    }
+ +    public void MiddleWaveSound()
+ +    {
+ +        MonsterAudio.PlayOneShot(middleBossWave);
+ +    }
+ +    public void RabbitAttackSound()
+ +    {
+ +        MonsterAudio.PlayOneShot(rabbitAttack);
+ +    }
+ +    public void RabbitDeathSound()
+ +    {
+ +        MonsterAudio.PlayOneShot(rabbitDeath);
+ +    }
+ +    public void RabbitHitSound()
+ +    {
+ +        MonsterAudio.PlayOneShot(rabbitHit);
+ +    }
+ +
+ +
+++=======
++ 	Up = 1,
++ 	Down,
++ 	Middle,
++ 	case4,
++ 	Comback
++ }
++ 
++ public class Monster : MonoBehaviour {
++ 	public bool normalMode;
++ 	public enum TargetPlayerPosition{
++ 		Zero = 1,
++ 		Left,
++ 		Right,
++ 		Up,
++ 		Down
++ 
++ 	}
++ 	bool direction;
++ 	public TargetPlayerPosition target;
++ 
++ 	public const bool right = true;
++     public const bool left = false;
++ 
++     protected Animator animator;
++ 	protected AnimatorStateInfo aniState;
++ 	[SerializeField]protected BoxCollider HittedBox;
++ 	[SerializeField]protected MonsterWeapon[] attackCollider;
++ 	[SerializeField]protected GameObject[] bulletInstantiate;
++ 
++     public GameObject[] player;
++ 	protected GameObject[] wall;
++ 	protected GameObject nearWall;
++ 	[SerializeField]protected GameObject targetPlayer;
++ 	[SerializeField]protected Vector3 movePoint;
++ 
++     protected int monsterRunAttackAround;
++ 
++ 	protected int randomStandby;
++ 	public int RandomStandby{
++ 		set {randomStandby = value; }
++ 	}
++ 	//mode,gateArraynumber,monsterArraynumber
++ 	protected bool moveAble;
++ 
++ 	protected int monsterIndex;
++ 	protected MonsterId monsterId;
++     protected string _name;
++     protected int level;
++ 	[SerializeField]protected int currentHP;
++ 	protected int maxHP;
++ 	[SerializeField]protected int attack;
++     protected int defense;
++ 	[SerializeField]protected int moveSpeed;
++ 
++ 
++     //monster getting variable;
++ 	[SerializeField]protected float RunRange;
++ 	[SerializeField]protected float attackRange;
++ 	[SerializeField]protected float attackCycle;
++ 	[SerializeField]protected float currentDisTance;
++ 	[SerializeField]protected float searchRange;
++ 	StatePosition statePosition;
++     
++ 	public  bool isAlive;
++ 	protected bool isAttack;
++ 	protected bool isHited;
++ 
++ 	//boss skill 
++ 	protected int bossPatternCount;
++ 	[SerializeField]protected bool bossNormalAttackCycle;
++ 	protected bool bossSkill;
++ 	[SerializeField]protected int bossRandomPattern;
++ 	public int shootNumber;
++ 
++ 	public GameObject chasePlayer;
++ 
++ 
++ 
++     protected float[] playerToMonsterDamage;
++ 	private float[] aggroRank; //playertoMonsterdamage/currentdistancePlayer;
++     private float changeTargetTime=0;
++ 
++ 	[SerializeField]private float[]currentDisTanceArray;
++ 	[SerializeField]private float[] currentDisTanceWall;
++ 	[SerializeField]protected Vector3 checkDirection; // monster chaseplayer and move variable;
++ 	[SerializeField]protected Vector3[] pointVector;
++     
+++>>>>>>> parent of fee902f... 몬스터
+      public int MonsterIndex
+      {
+          get { return monsterIndex; }
