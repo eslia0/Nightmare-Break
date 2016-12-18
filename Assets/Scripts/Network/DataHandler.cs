@@ -521,9 +521,7 @@ public class DataHandler : MonoBehaviour
 
         Debug.Log("유닛 생성 아이디 : " + createUnitData.ID);
 
-        int index = NetworkManager.Instance.GetUserIndex(packet.endPoint);
-
-        DungeonManager.Instance.CreateUnit(createUnitData.ID, index, new Vector3(createUnitData.PosX, createUnitData.PosY, createUnitData.PosZ));
+        DungeonManager.Instance.CreateUnit(createUnitData);
 
         DataSender.Instance.UdpAnswer(packet.endPoint, udpId);
     }
@@ -533,8 +531,6 @@ public class DataHandler : MonoBehaviour
     {
         UnitPositionPacket unitPositionPacket = new UnitPositionPacket(packet.msg);
         UnitPositionData unitPositionData = unitPositionPacket.GetData();
-
-        Debug.Log("유닛 인덱스" + unitPositionData.UnitIndex);
 
         if (unitPositionData.UnitType == (byte)UnitType.Hero)
         {
