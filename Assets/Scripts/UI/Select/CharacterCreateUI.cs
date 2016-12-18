@@ -7,7 +7,7 @@ public class CharacterCreateUI : MonoBehaviour {
 	public const int maxClass = 4;
     private const int rotateValue = 30;
     public const int minClass = 2;
-    private const int maxRotateBtn = 2;
+    private const int maxRotateBtn = 8;
 	private string nickName; 
 	private int currentPickClass;
     private int currentGender; //0은 남자, 1은 여자
