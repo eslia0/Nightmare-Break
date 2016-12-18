@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000013066424720}
   - 114: {fileID: 114000011644074150}
   m_Layer: 0
-  m_Name: MonsterSpawnPoint0
+  m_Name: MonsterSpawnPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

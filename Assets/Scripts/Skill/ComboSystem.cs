@@ -12,9 +12,7 @@ public class ComboSystem : MonoBehaviour {
     void Start()
     {
       //  instance = this.gameObject.GetComponent<ComboSystem>();
-        comboText = GameObject.Find("ComBoObject").transform.GetChild(0).GetComponent<Text>();
-		comboAnim = comboText.transform.parent.GetComponent<Animator>();
-        comboText.transform.parent.gameObject.SetActive(false);
+        
     }
 
     public void ComboProcess(int count)
@@ -23,6 +21,7 @@ public class ComboSystem : MonoBehaviour {
         {
             comboText.transform.parent.gameObject.SetActive(true);
         }
+        ComboAction(Camera.main.transform);
         comboText.text = count.ToString();
 		comboAnim.Play ("ComboAnim", -1, 0);
     }
