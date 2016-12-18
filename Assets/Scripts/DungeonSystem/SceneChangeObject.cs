@@ -15,6 +15,9 @@ public class SceneChangeObject : MonoBehaviour {
 //		ColliderEnterCount = 0;
 //		DungeonManager.Instance = transform.GetComponentInParent<DungeonManager>();
 //	}
+	void Start(){
+		Players = GameObject.FindGameObjectsWithTag ("Player");
+	}
 
 	public void SceneChangeObjectSet(int _number){
 		//Players = new GameObject[playerLength];
@@ -32,19 +35,16 @@ public class SceneChangeObject : MonoBehaviour {
 	
 	public void OnTriggerEnter(Collider coll){
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Player")) {
-			ColliderEnterCount+=1;
+			Debug.Log ("a");
+			DungeonManager dungeonManager=GameObject.Find("DungeonManager").GetComponent<DungeonManager>();
+			dungeonManager.SceneChange ();
 
-			if (lookAtSceneNumber != 4) {
-				if (ColliderEnterCount == 4) {
-					DungeonManager.Instance.SceneChange ();
-				}
-			}
 		}
 	}
 
-	public void OnTriggerExit(Collider coll){
-		if(coll.gameObject.layer == LayerMask.NameToLayer("Player")){
-			ColliderEnterCount -= 1;
-		}
-	}
+//	public void OnTriggerExit(Collider coll){
+//		if(coll.gameObject.layer == LayerMask.NameToLayer("Player")){
+//			ColliderEnterCount -= 1;
+//		}
+//	}
 }
