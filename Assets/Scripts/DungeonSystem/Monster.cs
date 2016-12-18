@@ -229,7 +229,7 @@ public class Monster : MonoBehaviour {
 			//	
 			//		}
 
-		normalMode = false;
+		normalMode = true;
 		MonsterAIStart (normalMode);
 
     }

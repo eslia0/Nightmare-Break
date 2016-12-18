@@ -98,11 +98,11 @@ public class DungeonManager : MonoBehaviour
 
             MonsterBaseData[] monsterBaseData = new MonsterBaseData[3];
             monsterBaseData[0] = new MonsterBaseData((int)MonsterId.Frog, "Frog");
-            monsterBaseData[0].AddLevelData(new MonsterLevelData(1, 2, 0, 30, 5));
+            monsterBaseData[0].AddLevelData(new MonsterLevelData(1, 2, 0, 900, 3));
             monsterBaseData[1] = new MonsterBaseData((int)MonsterId.Duck, "Duck");
-            monsterBaseData[1].AddLevelData(new MonsterLevelData(1, 3, 0, 35, 4));
+            monsterBaseData[1].AddLevelData(new MonsterLevelData(1, 3, 0, 1050, 3));
             monsterBaseData[2] = new MonsterBaseData((int)MonsterId.Rabbit, "Rabbit");
-            monsterBaseData[2].AddLevelData(new MonsterLevelData(1, 5, 0, 75, 4));
+            monsterBaseData[2].AddLevelData(new MonsterLevelData(1, 5, 0, 2250, 4));
 
             MonsterStatusData monsterStatusData = new MonsterStatusData(3, monsterBaseData);
             SetMonsterData(monsterStatusData);
