@@ -68,7 +68,7 @@ public class OneHandAttack : MonoBehaviour
 	{
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Map"))
 		{
-//			Instantiate (Resources.Load<GameObject> ("Effect/Test"), transform.position, Quaternion.Euler (0, 0, 0));
+			Instantiate (Resources.Load<GameObject> ("Effect/BossSphereExplosion"), transform.position, Quaternion.Euler (0, 0, 0));
 			Destroy (gameObject);
 		}
 
