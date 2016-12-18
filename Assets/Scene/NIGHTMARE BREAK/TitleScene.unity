@@ -2911,7 +2911,7 @@ GameObject:
   - 82: {fileID: 1755342082}
   - 114: {fileID: 1755342084}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: BackGroundSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3015,6 +3015,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf2a5b1717114a245af3cbbaea0bf73c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 1755342082}
+  backSound:
+  - {fileID: 8300000, guid: 1a5d78fa452a17c498bdd1df994785c1, type: 3}
+  - {fileID: 8300000, guid: 23bf1c1d597e5f2438dea6f802fcf720, type: 3}
+  - {fileID: 8300000, guid: fa59d9f9692c4ff4bb5448936d0940a0, type: 3}
 --- !u!1 &1791050301
 GameObject:
   m_ObjectHideFlags: 0
