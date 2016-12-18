@@ -4,7 +4,7 @@ using System.Collections;
 public class BossDarkSwing : MonoBehaviour 
 {
 
-	public Monster monster;
+	public GameObject Attacker;
 	public int damage;
 	public Rigidbody sphereRigid;
 	public CapsuleCollider swingBox;
@@ -17,13 +17,18 @@ public class BossDarkSwing : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		damage = 10;
+		
 		swingSpeed = 10.0f;
 		swingRigd = GetComponent<Rigidbody> ();
 		player = GameObject.FindGameObjectWithTag ("Player");
 		swingBox = this.GetComponent<CapsuleCollider> ();
 		swingRigd.velocity = -transform.up * swingSpeed;
 		Destroy (this.gameObject , 3f);	
+	}
+
+	public void SetDamage(int _damage ,GameObject _Attacker){
+		damage = _damage;
+		Attacker = _Attacker;
 	}
 
 	void OnTriggerEnter(Collider coll)
