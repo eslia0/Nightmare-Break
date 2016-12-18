@@ -203,8 +203,9 @@ public class Monster : MonoBehaviour {
 				bulletInstantiate [0] = Resources.Load<GameObject> ("Effect/BossDarkSphere");
 			}
 			attackCollider = this.transform.GetComponentsInChildren<MonsterWeapon> ();
-			attackCollider[0].MonsterWeaponSet ();
-			attackCollider[1].MonsterWeaponSet ();
+			for (int i = 0; i < attackCollider.Length; i++) {
+				attackCollider [i].MonsterWeaponSet ();
+			}
 			searchRange = 12;
 			attackRange = 3;
 			RunRange = 30;
@@ -229,7 +230,7 @@ public class Monster : MonoBehaviour {
 			//	
 			//		}
 
-		normalMode = false;
+		normalMode = true;
 		MonsterAIStart (normalMode);
 
     }
