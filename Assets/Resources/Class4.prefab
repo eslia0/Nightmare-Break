@@ -267,7 +267,7 @@ GameObject:
   - 114: {fileID: 114000010673212446}
   - 82: {fileID: 82000013406156102}
   m_Layer: 8
-  m_Name: WomanMage
+  m_Name: Class4
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -511,7 +511,7 @@ GameObject:
   - 114: {fileID: 114000010590172216}
   - 65: {fileID: 65000013394770730}
   m_Layer: 8
-  m_Name: ManWarrior
+  m_Name: Class1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1881,11 +1881,13 @@ MonoBehaviour:
   rise: 0
   bloodingWeapon: {fileID: 0}
   riseCooltime: 0
+  swordCircle: {fileID: 0}
   trailRenderer: {fileID: 0}
   swordFinishSound: {fileID: 0}
   giganticSwordFinishSound: {fileID: 0}
   espadasword: {fileID: 0}
   mealStromFinishSound: {fileID: 0}
+  mealStromTranslate: 0
   poweroverwhelming: 0
 --- !u!114 &114000014144843878
 MonoBehaviour:

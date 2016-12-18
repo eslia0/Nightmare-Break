@@ -272,6 +272,8 @@ public class DataHandler : MonoBehaviour
         CharacterStatusPacket characterStatusPacket = new CharacterStatusPacket(packet.msg);
         CharacterStatusData characterStatusData = characterStatusPacket.GetData();
 
+        Debug.Log(characterStatusData.HClass + ", " + characterStatusData.Gender);
+
         CharacterStatus.Instance.SetCharacterStatus(characterStatusData);
 
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
