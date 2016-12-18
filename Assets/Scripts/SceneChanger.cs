@@ -106,7 +106,7 @@ public class SceneChanger : MonoBehaviour
             {
                 GameManager.Instance.SetManagerInGame();
 
-                DungeonManager.Instance.ManagerInitialize(UIManager.Instance.RoomUIManager.DungeonId, UIManager.Instance.RoomUIManager.DungeonLevel, UIManager.Instance.RoomUIManager.UserNum);
+                DungeonManager.Instance.ManagerInitialize(UIManager.Instance.RoomUIManager.DungeonId, UIManager.Instance.RoomUIManager.DungeonLevel);
                 UIManager.Instance.SetUIManager(UIManagerIndex.InGame);
 
                 DataSender.Instance.RequestUdpConnection();

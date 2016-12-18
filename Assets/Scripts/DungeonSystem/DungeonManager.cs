@@ -155,10 +155,14 @@ public class DungeonManager : MonoBehaviour
 	}
 
     //각종 매니저 초기화
-    public void ManagerInitialize(int newDungeonId, int newDungeonLevel, int newUserNum)
+    public void ManagerInitialize(int newDungeonId, int newDungeonLevel)
     {
         dungeonId = newDungeonId;
         dungeonLevel = newDungeonLevel;
+    }
+
+    public void SetUserNum(int newUserNum)
+    {
         userNum = newUserNum;
     }
 

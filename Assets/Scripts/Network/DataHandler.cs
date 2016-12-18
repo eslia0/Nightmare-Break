@@ -411,19 +411,6 @@ public class DataHandler : MonoBehaviour
 
         MonsterSpawnListPacket monsterSpawnListPacket = new MonsterSpawnListPacket(packet.msg);
         DungeonLevelData monsterSpawnList = monsterSpawnListPacket.GetData();
-        
-        Debug.Log("총 스테이지 개수" + monsterSpawnList.Stages.Count);
-        Debug.Log("총 몬스터 개수" + monsterSpawnList.GetMonsterNum());
-
-        for (int i = 0; i < monsterSpawnList.Stages.Count; i++)
-        {
-            Debug.Log(i + "스테이지 몬스터 스폰 종류 개수 " + monsterSpawnList.Stages[i].MonsterSpawnData.Count);
-
-            for (int j = 0; j < monsterSpawnList.Stages[i].MonsterSpawnData.Count; j++)
-            {
-                Debug.Log(j + "번 몬스터 개수 " + monsterSpawnList.Stages[i].MonsterSpawnData[j].MonsterNum);
-            }
-        }
 
         DungeonManager.Instance.SetMonsterSpawnList(monsterSpawnList);
 
@@ -465,6 +452,7 @@ public class DataHandler : MonoBehaviour
             if (endPoint == NetworkManager.Instance.ServerSock.LocalEndPoint.ToString())
             {
                 NetworkManager.Instance.SetMyIndex(userIndex);
+                DungeonManager.Instance.SetUserNum(userIndex);
             }
         }
 
