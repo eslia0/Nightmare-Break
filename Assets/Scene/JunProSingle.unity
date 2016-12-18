@@ -168,22 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!65 &5500389
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3009,23 +2993,6 @@ Transform:
   - {fileID: 1310383972}
   m_Father: {fileID: 337750852}
   m_RootOrder: 0
---- !u!1 &207893519 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000012917879084, guid: fa8bfcf57857cfd41a62ac20aca5b4b7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1177607505}
---- !u!65 &207893521
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 207893519}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &209529132
 GameObject:
   m_ObjectHideFlags: 0
@@ -3167,6 +3134,23 @@ Transform:
   - {fileID: 1438885802}
   m_Father: {fileID: 1524348537}
   m_RootOrder: 0
+--- !u!1 &219197444 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012479710882, guid: 0b9b8a278ef417846beb05231b30651a,
+    type: 2}
+  m_PrefabInternal: {fileID: 2047035346}
+--- !u!65 &219197446
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 219197444}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &223172723
 GameObject:
   m_ObjectHideFlags: 0
@@ -3922,7 +3906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3684c7dcdc0a64fbdeabafa34c79be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonManager: {fileID: 0}
 --- !u!4 &289901749
 Transform:
   m_ObjectHideFlags: 0
@@ -4368,7 +4351,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013993134472, guid: 73645ea7512aae64488da952077e036c, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1000012210811746, guid: 73645ea7512aae64488da952077e036c, type: 2}
       propertyPath: m_IsActive
@@ -4619,22 +4602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!65 &366621111
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5484,22 +5451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!65 &415268784
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5790,6 +5741,11 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 427505797}
+--- !u!1 &428164764 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010165977460, guid: 0b9b8a278ef417846beb05231b30651a,
+    type: 2}
+  m_PrefabInternal: {fileID: 2047035346}
 --- !u!1 &436975342
 GameObject:
   m_ObjectHideFlags: 0
@@ -5822,7 +5778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970a924e5e7e93e49bbbc88ba6942ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonManager: {fileID: 0}
   Players: []
   lookAtSceneNumber: 0
   sceneObject: {fileID: 0}
@@ -6123,10 +6078,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d29c9c80e3af91b4aa1922b026dfb9d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalMode: 0
+  attackCollider: []
+  bulletInstantiate: []
   player: []
   targetPlayer: {fileID: 0}
   movePoint: {x: 0, y: 0, z: 0}
   monsterIndex: 0
+  attack: 0
   moveSpeed: 0
   RunRange: 0
   attackRange: 0
@@ -6134,8 +6093,12 @@ MonoBehaviour:
   currentDisTance: 0
   searchRange: 0
   isAlive: 0
+  bossRandomPattern: 0
+  shootNumber: 0
+  chasePlayer: {fileID: 0}
   currentDisTanceArray: []
   currentDisTanceWall: []
+  checkDirection: {x: 0, y: 0, z: 0}
   pointVector: []
   middleboss: {fileID: 0}
   monsterState: 0
@@ -9157,22 +9120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!95 &723040211
 Animator:
   serializedVersion: 3
@@ -9378,7 +9325,7 @@ Transform:
   - {fileID: 1533228483}
   - {fileID: 723040208}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1 &741359594
 GameObject:
   m_ObjectHideFlags: 0
@@ -10201,22 +10148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!65 &824976641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11946,22 +11877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!95 &958054541
 Animator:
   serializedVersion: 3
@@ -12447,22 +12362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!65 &1008506878
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14644,76 +14543,6 @@ Transform:
   - {fileID: 1382275356}
   m_Father: {fileID: 352795460}
   m_RootOrder: 2
---- !u!1001 &1177607505
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4000011628702018, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 3.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011628702018, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011628702018, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -116.78208
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011628702018, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011628702018, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011628702018, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011628702018, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000011628702018, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000014231545946, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-      propertyPath: m_Name
-      value: FireBallPos
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012923866766, guid: fa8bfcf57857cfd41a62ac20aca5b4b7,
-        type: 2}
-      propertyPath: FireBallPos
-      value: 
-      objectReference: {fileID: 1295346114}
-    - target: {fileID: 114000012923866766, guid: fa8bfcf57857cfd41a62ac20aca5b4b7,
-        type: 2}
-      propertyPath: charWeapon
-      value: 
-      objectReference: {fileID: 207893521}
-    - target: {fileID: 1000010588702482, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82000010949627246, guid: fa8bfcf57857cfd41a62ac20aca5b4b7,
-        type: 2}
-      propertyPath: panLevelCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82000010949627246, guid: fa8bfcf57857cfd41a62ac20aca5b4b7,
-        type: 2}
-      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: fa8bfcf57857cfd41a62ac20aca5b4b7, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1178110253
 GameObject:
   m_ObjectHideFlags: 0
@@ -15289,22 +15118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!65 &1230060371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16050,22 +15863,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!4 &1275355246
 Transform:
   m_ObjectHideFlags: 0
@@ -16473,22 +16270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!95 &1284810405
 Animator:
   serializedVersion: 3
@@ -16507,11 +16288,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!1 &1295346114 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000014231545946, guid: fa8bfcf57857cfd41a62ac20aca5b4b7,
-    type: 2}
-  m_PrefabInternal: {fileID: 1177607505}
 --- !u!1 &1296264076
 GameObject:
   m_ObjectHideFlags: 0
@@ -16805,7 +16581,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3684c7dcdc0a64fbdeabafa34c79be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonManager: {fileID: 0}
 --- !u!1 &1314391824
 GameObject:
   m_ObjectHideFlags: 0
@@ -17264,7 +17039,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   charManager: {fileID: 0}
-  charStatus: {fileID: 0}
   damage: 0
   attackSound: {fileID: 0}
   attack1: {fileID: 0}
@@ -17636,7 +17410,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013201858814, guid: 22f6fc76b5b463b489f0e921016c9481, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 54000014154291672, guid: 22f6fc76b5b463b489f0e921016c9481,
         type: 2}
@@ -18594,22 +18368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!95 &1447598222
 Animator:
   serializedVersion: 3
@@ -19484,22 +19242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!65 &1529843242
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19591,22 +19333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!95 &1533228486
 Animator:
   serializedVersion: 3
@@ -20652,22 +20378,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!65 &1624110510
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21940,12 +21650,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d6bf8e6a2538c4eb6a25cc15af3f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalMode: 0
+  attackCollider: []
+  bulletInstantiate: []
   player:
   - {fileID: 0}
   - {fileID: 0}
   targetPlayer: {fileID: 0}
   movePoint: {x: 0, y: 0, z: 0}
   monsterIndex: 0
+  attack: 0
   moveSpeed: 1
   RunRange: 0
   attackRange: 0
@@ -21953,8 +21667,12 @@ MonoBehaviour:
   currentDisTance: 0
   searchRange: 0
   isAlive: 0
+  bossRandomPattern: 0
+  shootNumber: 0
+  chasePlayer: {fileID: 0}
   currentDisTanceArray: []
   currentDisTanceWall: []
+  checkDirection: {x: 0, y: 0, z: 0}
   pointVector: []
 --- !u!4 &1696302531 stripped
 Transform:
@@ -22134,7 +21852,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3684c7dcdc0a64fbdeabafa34c79be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonManager: {fileID: 0}
 --- !u!4 &1699044388
 Transform:
   m_ObjectHideFlags: 0
@@ -23363,22 +23080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!64 &1786780987
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -24425,7 +24126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970a924e5e7e93e49bbbc88ba6942ff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonManager: {fileID: 0}
   Players: []
   lookAtSceneNumber: 0
   sceneObject: {fileID: 0}
@@ -27083,6 +26783,58 @@ Transform:
   - {fileID: 858048026}
   m_Father: {fileID: 1264157814}
   m_RootOrder: 0
+--- !u!1001 &2047035346
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000010942906108, guid: 0b9b8a278ef417846beb05231b30651a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 3.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010942906108, guid: 0b9b8a278ef417846beb05231b30651a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010942906108, guid: 0b9b8a278ef417846beb05231b30651a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -94.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010942906108, guid: 0b9b8a278ef417846beb05231b30651a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010942906108, guid: 0b9b8a278ef417846beb05231b30651a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010942906108, guid: 0b9b8a278ef417846beb05231b30651a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010942906108, guid: 0b9b8a278ef417846beb05231b30651a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010942906108, guid: 0b9b8a278ef417846beb05231b30651a, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010673212446, guid: 0b9b8a278ef417846beb05231b30651a,
+        type: 2}
+      propertyPath: charWeapon
+      value: 
+      objectReference: {fileID: 219197446}
+    - target: {fileID: 114000010673212446, guid: 0b9b8a278ef417846beb05231b30651a,
+        type: 2}
+      propertyPath: FireBallPos
+      value: 
+      objectReference: {fileID: 428164764}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0b9b8a278ef417846beb05231b30651a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2047315600
 GameObject:
   m_ObjectHideFlags: 0
@@ -27626,22 +27378,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!65 &2085449910
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27765,22 +27501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c04ec75d8b4574479970db43cf655fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  pointVector: []
-  middleboss: {fileID: 0}
-  monsterState: 0
 --- !u!95 &2089734050
 Animator:
   serializedVersion: 3

@@ -8,7 +8,7 @@ public class MageNormalAttack : MonoBehaviour {
 	public CharacterStatus charStatus;
 
 	public int MageBallDamage;
-	public float MageBallSpeed = 5;
+	public float MageBallSpeed;
 	public Rigidbody MageBallRigid;
 
 	void Start () 
@@ -17,7 +17,7 @@ public class MageNormalAttack : MonoBehaviour {
 		charManager = character.GetComponent<CharacterManager> ();
 		charStatus = GameObject.FindGameObjectWithTag("CharStatus").GetComponent<CharacterStatus>();
 		charStatus.SetCharacterStatus ();
-
+		MageBallSpeed = 15;
 		MageBallRigid = GetComponent<Rigidbody> ();
 		MageBallRigid.velocity = transform.forward* MageBallSpeed;
 		Destroy (this.gameObject, 1f);

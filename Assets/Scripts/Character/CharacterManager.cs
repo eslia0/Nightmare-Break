@@ -511,19 +511,19 @@ public class CharacterManager : MonoBehaviour
 		MoveSound = Resources.Load<AudioClip> ("Sound/MoveSound");
 		if (true)
 		{
-			attack1 = Resources.Load<AudioClip> ("Sound/ManWarriorattack1");
-			attack2 = Resources.Load<AudioClip> ("Sound/ManWarriorattack2");
-			attack3 = Resources.Load<AudioClip> ("Sound/ManWarriorattack3");
-			dieSound = Resources.Load<AudioClip> ("Sound/ManDie");
-			hitSound = Resources.Load<AudioClip> ("Sound/ManHit");
+			attack1 = Resources.Load<AudioClip> ("Sound/ManSound/ManWarriorattack1");
+			attack2 = Resources.Load<AudioClip> ("Sound/ManSound/ManWarriorattack2");
+			attack3 = Resources.Load<AudioClip> ("Sound/ManSound/ManWarriorattack3");
+			dieSound = Resources.Load<AudioClip> ("Sound/ManSound/ManDie");
+			hitSound = Resources.Load<AudioClip> ("Sound/ManSound/ManHit");
 		}
 		else if (false)
 		{
-			attack1 = Resources.Load<AudioClip> ("Sound/WoManattack1");
-			attack2 = Resources.Load<AudioClip> ("Sound/WoManattack2");
-			attack3 = Resources.Load<AudioClip> ("Sound/WoManattack3");
-			dieSound = Resources.Load<AudioClip> ("Sound/WomanDie");
-			hitSound = Resources.Load<AudioClip> ("Sound/WoManHit");
+			attack1 = Resources.Load<AudioClip> ("Sound/WoManSound/WoManattack1");
+			attack2 = Resources.Load<AudioClip> ("Sound/WoManSound/WoManattack2");
+			attack3 = Resources.Load<AudioClip> ("Sound/WoManSound/WoManattack3");
+			dieSound = Resources.Load<AudioClip> ("Sound/WoManSound/WomanDie");
+			hitSound = Resources.Load<AudioClip> ("Sound/WoManSound/WoManHit");
 		}
 
 	}
