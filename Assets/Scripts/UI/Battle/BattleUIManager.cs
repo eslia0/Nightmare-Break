@@ -26,10 +26,78 @@ public class BattleUIManager : MonoBehaviour
     private Image mpBar;
     private Image monsterHpBar;
 
-    
+    private Animator comboAnim;
    
 	public Image[] SkillCoolTimeUI{ get{ return skillCoolTimeUI; }}
 	public Text MouseOverUI{ get { return mouseOverUI; } set { mouseOverUI = value; } }
+
+    public void ManagerInitialize()
+    {
+        SetUIObject();
+
+        comboText.transform.parent.gameObject.SetActive(false);
+        mouseOverUI.transform.parent.gameObject.SetActive(false);
+      //  monsterHpBar.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void SetUIObject()
+    {
+        partyGenderIcon = new Image[maxUser];
+        partyClassIcon = new Image[maxUser];
+        hpBar = GameObject.Find("HPBar").GetComponent<Image>();
+        mpBar = GameObject.Find("MPBar").GetComponent<Image>();
+        //monsterHpBar = GameObject.Find("MonsterHPBar").GetComponent<Image>();
+        //monsterName = GameObject.Find("MonsterName").GetComponent<Text>();
+        mouseOverUI = GameObject.Find("MouseOverUI").GetComponent<Text>();
+        potionCoolTimeUI = GameObject.Find("Potion_CoolTime").GetComponent<Image>();
+
+        comboText = GameObject.Find("ComBoText").GetComponent<Text>();
+        comboAnim = comboText.GetComponent<Animator>();
+    
+        skillUI = new Image[maxSkillUI];
+        skillCoolTimeUI = new Image[maxskillCoolTimeUI];
+        EventTrigger.Entry[] enterEvent = new EventTrigger.Entry[maxSkillUI];
+        EventTrigger.Entry exitEvent = new EventTrigger.Entry();
+        exitEvent.eventID = EventTriggerType.PointerExit;
+        exitEvent.callback.AddListener((data) => { OnPointExit(); });
+        for (int i = 0; i < skillUI.Length; i++)
+        {
+            skillUI[i] = GameObject.Find("Skill" + (i + 1)).GetComponent<Image>();
+            skillUI[i].sprite = Resources.Load<Sprite>("UI/SkillIcon/" + CharacterStatus.Instance.HClass.ToString() + "/Skill" + (i + 1));
+            enterEvent[i] = new EventTrigger.Entry();
+            enterEvent[i].eventID = EventTriggerType.PointerEnter;
+            skillUI[i].GetComponent<EventTrigger>().triggers.Add(enterEvent[i]);
+            skillUI[i].GetComponent<EventTrigger>().triggers.Add(exitEvent);
+          
+            if (i < skillCoolTimeUI.Length)
+            {
+                skillCoolTimeUI[i] = GameObject.Find("Skill" + (i + 1) + "_CoolTime").GetComponent<Image>();
+                partyClassIcon[i] = GameObject.Find("ClassIcon"+(i + 1)).GetComponent<Image>();
+                partyGenderIcon[i] = GameObject.Find("GenderIcon"+(i + 1)).GetComponent<Image>();
+            }
+        }
+        enterEvent[0].callback.AddListener((data) => { PointEnter(0); });
+        enterEvent[1].callback.AddListener((data) => { PointEnter(1); });
+        enterEvent[2].callback.AddListener((data) => { PointEnter(2); });
+        enterEvent[3].callback.AddListener((data) => { PointEnter(3); });
+        enterEvent[4].callback.AddListener((data) => { PointEnter(4); });
+        enterEvent[5].callback.AddListener((data) => { PointEnter(5); });
+    }
+
+    public void SetPointEnterUI(int skillIndex, int skillLevel, int classIndex)
+    {
+        SkillBasicData skillData = SkillManager.instance.SkillData.GetSkill(classIndex, skillIndex + 1);
+        if (!mouseOverUI.IsActive())
+        {
+            mouseOverUI.gameObject.transform.parent.gameObject.SetActive(true);
+        } else
+        {
+            skillData = null;
+            skillData = SkillManager.instance.SkillData.GetSkill(classIndex, skillIndex + 1);
+        }
+       mouseOverUI.transform.parent.transform.localPosition = new Vector2(skillUI[skillIndex].transform.localPosition.x + mouseOverUI_xPos, mouseOverUI_yPos);
+       mouseOverUI.text = "스킬이름: " + skillData.SkillName + "  " + "쿨타임: " + skillData.SkillCoolTime.ToString() + "초" + "\n" + skillData.SkillBasicExplanation +"\n"+ skillData.GetSkillData(skillLevel).SkillExplanation;
+    }
 
     #region 스킬쿨타임 제어 코루틴
     public IEnumerator SetSkillCoolTimeUI(int skillNum, float coolTime)
@@ -58,7 +126,7 @@ public class BattleUIManager : MonoBehaviour
         potionCoolTimeUI.color += new Color(0, 0, 0, 1);
         float potionCoolTime = 15.0f;
         float time = Time.smoothDeltaTime;
-    //    potionCoolTimeUI.gameObject.SetActive(true);
+        //    potionCoolTimeUI.gameObject.SetActive(true);
         potionCoolTimeUI.fillAmount = 1;
         while (potionCoolTimeUI.fillAmount != 0.0f)
         {
@@ -71,88 +139,57 @@ public class BattleUIManager : MonoBehaviour
     }
     #endregion
 
-    public void ManagerInitialize()
-    {
-
-    }
-
     public void hpBarCalculation(int maxHp, int currentHP)
     {
-        hpBar.fillAmount = (float) currentHP / maxHp;
+        hpBar.fillAmount = (float)currentHP / maxHp;
     }
 
     public void mpBarCalculation(int maxMp, int currentMP)
     {
-        mpBar.fillAmount = (float) currentMP / maxMp; 
+        mpBar.fillAmount = (float)currentMP / maxMp;
     }
 
     public void monsterHpBarCalculation(string name, float maxHp, float currentHP)
     {
         if (!monsterHpBar.transform.parent.gameObject.activeSelf)
-        { 
-        monsterHpBar.transform.parent.gameObject.SetActive(true);
+        {
+            monsterHpBar.transform.parent.gameObject.SetActive(true);
         }
         monsterName.text = name;
-        monsterHpBar.fillAmount = currentHP / maxHp; 
+        monsterHpBar.fillAmount = currentHP / maxHp;
     }
 
-    public void SetUIObject()
+    public void ComboProcess(int count)
     {
-        partyGenderIcon = new Image[maxUser];
-        partyClassIcon = new Image[maxUser];
-        hpBar = GameObject.Find("HPBar").GetComponent<Image>();
-        mpBar = GameObject.Find("MPBar").GetComponent<Image>();
-        monsterHpBar = GameObject.Find("MonsterHPBar").GetComponent<Image>();
-        monsterName = GameObject.Find("MonsterName").GetComponent<Text>();
-        mouseOverUI = GameObject.Find("MouseOverUI").GetComponent<Text>();
-        potionCoolTimeUI = GameObject.Find("Potion_CoolTime").GetComponent<Image>();
-
-        mouseOverUI.transform.parent.gameObject.SetActive(false);
-        monsterHpBar.transform.parent.gameObject.SetActive(false);
-        skillUI = new Image[maxSkillUI];
-        skillCoolTimeUI = new Image[maxskillCoolTimeUI];
-        EventTrigger.Entry[] enterEvent = new EventTrigger.Entry[maxSkillUI];
-        EventTrigger.Entry exitEvent = new EventTrigger.Entry();
-        exitEvent.eventID = EventTriggerType.PointerExit;
-        exitEvent.callback.AddListener((data) => { UIManager.Instance.OnPointExit(); });
-        for (int i = 0; i < skillUI.Length; i++)
+        if (!comboText.transform.parent.gameObject.activeSelf)
         {
-            skillUI[i] = GameObject.Find("Skill" + (i + 1)).GetComponent<Image>();
-            skillUI[i].sprite = Resources.Load<Sprite>("UI/SkillIcon/" + CharacterStatus.Instance.HClass.ToString() + (i + 1));
-            enterEvent[i] = new EventTrigger.Entry();
-            enterEvent[i].eventID = EventTriggerType.PointerEnter;
-            skillUI[i].GetComponent<EventTrigger>().triggers.Add(enterEvent[i]);
-            skillUI[i].GetComponent<EventTrigger>().triggers.Add(exitEvent);
-          
-            if (i < skillCoolTimeUI.Length)
-            {
-                skillCoolTimeUI[i] = GameObject.Find("Skill" + (i + 1) + "_CoolTime").GetComponent<Image>();
-                partyClassIcon[i] = GameObject.Find("ClassIcon"+(i + 1)).GetComponent<Image>();
-                partyGenderIcon[i] = GameObject.Find("GenderIcon"+(i + 1)).GetComponent<Image>();
-            }
+            comboText.transform.parent.gameObject.SetActive(true);
         }
-        enterEvent[0].callback.AddListener((data) => { UIManager.Instance.PointEnter(0); });
-        enterEvent[1].callback.AddListener((data) => { UIManager.Instance.PointEnter(1); });
-        enterEvent[2].callback.AddListener((data) => { UIManager.Instance.PointEnter(2); });
-        enterEvent[3].callback.AddListener((data) => { UIManager.Instance.PointEnter(3); });
-        enterEvent[4].callback.AddListener((data) => { UIManager.Instance.PointEnter(4); });
-        enterEvent[5].callback.AddListener((data) => { UIManager.Instance.PointEnter(5); });
+        ComboAction(Camera.main.transform);
+        comboText.text = count.ToString();
+        comboAnim.Play("ComboAnim", -1, 0);
     }
 
-    public void SetPointEnterUI(int skillIndex, int skillLevel, int classIndex)
+    public void ComboAction(Transform mCamera)
     {
-        SkillBasicData skillData = SkillManager.instance.SkillData.GetSkill(classIndex, skillIndex + 1);
-        if (!mouseOverUI.IsActive())
-        {
-            mouseOverUI.gameObject.transform.parent.gameObject.SetActive(true);
-        } else
-        {
-            skillData = null;
-            skillData = SkillManager.instance.SkillData.GetSkill(classIndex, skillIndex + 1);
-        }
-       mouseOverUI.transform.parent.transform.localPosition = new Vector2(skillUI[skillIndex].transform.localPosition.x + mouseOverUI_xPos, mouseOverUI_yPos);
-       mouseOverUI.text = "스킬이름: " + skillData.SkillName + "  " + "쿨타임: " + skillData.SkillCoolTime.ToString() + "초" + "\n" + skillData.SkillBasicExplanation +"\n"+ skillData.GetSkillData(skillLevel).SkillExplanation;
+        mCamera.gameObject.transform.position = new Vector3(Random.Range(mCamera.position.x - 0.09f, mCamera.position.x + 0.09f), Random.Range(mCamera.position.y - 0.09f, mCamera.position.y + 0.09f), mCamera.position.z);
+
     }
 
+    public void ComboEnd()
+    {
+        comboText.transform.parent.gameObject.SetActive(false);
+        comboText.text = "";
+    }
+
+    public void PointEnter(int skillIndex)
+    {
+        SetPointEnterUI(skillIndex, 2, (int)CharacterStatus.Instance.HClass);
+    }
+
+    public void OnPointExit()
+    {
+        MouseOverUI.gameObject.transform.parent.gameObject.SetActive(false);
+    }
 
 }
