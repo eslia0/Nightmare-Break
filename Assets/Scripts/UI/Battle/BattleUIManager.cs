@@ -10,13 +10,19 @@ public class BattleUIManager : MonoBehaviour
 	private const float mouseOverUI_yPos = 105f;
     private const int maxSkillUI = 6;
     private const int maxskillCoolTimeUI = 4;
-	private Image potionUI;
+    private const int maxUser = 4;
+
+	private Image potionCoolTimeUI;
 	private Text mouseOverUI;
+
 	private Image[] skillUI;
 	private Image[] skillCoolTimeUI; // 0 - SKill1 // 1 - SKill2 // 2 - Skill3 // 3 - Skill4 //
+    private Image[] partyGenderIcon;
+    private Image[] partyClassIcon;
     private Image hpBar;
     private Image mpBar;
     private Image monsterHpBar;
+
     private Text monsterName;
    
 	public Image[] SkillCoolTimeUI{ get{ return skillCoolTimeUI; }}
@@ -46,18 +52,18 @@ public class BattleUIManager : MonoBehaviour
     #region 물약쿨타임제어
     public IEnumerator PotionCoolTimeUI()
     {
-        potionUI.color += new Color(0, 0, 0, 1);
+        potionCoolTimeUI.color += new Color(0, 0, 0, 1);
         float potionCoolTime = 15.0f;
         float time = Time.smoothDeltaTime;
-        potionUI.gameObject.SetActive(true);
-        potionUI.fillAmount = 1;
-        while (potionUI.fillAmount != 0.0f)
+    //    potionCoolTimeUI.gameObject.SetActive(true);
+        potionCoolTimeUI.fillAmount = 1;
+        while (potionCoolTimeUI.fillAmount != 0.0f)
         {
-            potionUI.fillAmount -= 1 * time / potionCoolTime;
+            potionCoolTimeUI.fillAmount -= 1 * time / potionCoolTime;
             yield return null;
         }
         time = 0;
-        potionUI.color -= new Color(0, 0, 0, 0);
+        potionCoolTimeUI.color -= new Color(0, 0, 0, 0);
         yield break;
     }
     #endregion
@@ -89,14 +95,17 @@ public class BattleUIManager : MonoBehaviour
 
     public void SetUIObject()
     {
+        partyGenderIcon = new Image[maxUser];
+        partyClassIcon = new Image[maxUser];
         hpBar = GameObject.Find("HPBar").GetComponent<Image>();
         mpBar = GameObject.Find("MPBar").GetComponent<Image>();
         monsterHpBar = GameObject.Find("MonsterHPBar").GetComponent<Image>();
-       monsterName = GameObject.Find("MonsterName").GetComponent<Text>();
+        monsterName = GameObject.Find("MonsterName").GetComponent<Text>();
         mouseOverUI = GameObject.Find("MouseOverUI").GetComponent<Text>();
+        potionCoolTimeUI = GameObject.Find("Potion_CoolTime").GetComponent<Image>();
 
         mouseOverUI.transform.parent.gameObject.SetActive(false);
-       monsterHpBar.transform.parent.gameObject.SetActive(false);
+        monsterHpBar.transform.parent.gameObject.SetActive(false);
         skillUI = new Image[maxSkillUI];
         skillCoolTimeUI = new Image[maxskillCoolTimeUI];
         EventTrigger.Entry[] enterEvent = new EventTrigger.Entry[maxSkillUI];
@@ -106,6 +115,7 @@ public class BattleUIManager : MonoBehaviour
         for (int i = 0; i < skillUI.Length; i++)
         {
             skillUI[i] = GameObject.Find("Skill" + (i + 1)).GetComponent<Image>();
+            skillUI[i].sprite = Resources.Load<Sprite>("UI/SkillIcon/" + CharacterStatus.Instance.HClass.ToString() + (i + 1));
             enterEvent[i] = new EventTrigger.Entry();
             enterEvent[i].eventID = EventTriggerType.PointerEnter;
             skillUI[i].GetComponent<EventTrigger>().triggers.Add(enterEvent[i]);
@@ -114,6 +124,8 @@ public class BattleUIManager : MonoBehaviour
             if (i < skillCoolTimeUI.Length)
             {
                 skillCoolTimeUI[i] = GameObject.Find("Skill" + (i + 1) + "_CoolTime").GetComponent<Image>();
+                partyClassIcon[i] = GameObject.Find("ClassIcon"+(i + 1)).GetComponent<Image>();
+                partyGenderIcon[i] = GameObject.Find("GenderIcon"+(i + 1)).GetComponent<Image>();
             }
         }
         enterEvent[0].callback.AddListener((data) => { UIManager.Instance.PointEnter(0); });
@@ -137,6 +149,7 @@ public class BattleUIManager : MonoBehaviour
         }
        mouseOverUI.transform.parent.transform.localPosition = new Vector2(skillUI[skillIndex].transform.localPosition.x + mouseOverUI_xPos, mouseOverUI_yPos);
        mouseOverUI.text = "스킬이름: " + skillData.SkillName + "  " + "쿨타임: " + skillData.SkillCoolTime.ToString() + "초" + "\n" + skillData.SkillBasicExplanation +"\n"+ skillData.GetSkillData(skillLevel).SkillExplanation;
-    
     }
+
+
 }

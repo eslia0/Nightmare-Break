@@ -259,7 +259,7 @@ public class WaitingUIManager : MonoBehaviour
             if (rooms[i].PlayerNum != 0)
 			{
 				roomBtn [i].image.sprite = Resources.Load<Sprite> ("UI/WaitingRoomImage/RoomActive");
-				roomIndex[i].text = "00"+i;
+				roomIndex[i].text = "00"+(i+1);
 				roomName [i].text = rooms [i].RoomName;
 				roomDungeonLevel [i].text = rooms [i].DungeonLevel.ToString();
 				roomCurrentUser [i].text = (rooms [i].PlayerNum.ToString () + "/" + maxPlayerNum.ToString ());

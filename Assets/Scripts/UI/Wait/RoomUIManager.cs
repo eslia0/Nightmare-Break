@@ -17,8 +17,8 @@ public class RoomUIManager : MonoBehaviour {
     private Button skillCloseBtn;
     private Button myInfoCloseBtn;
     private Button[] userSkillBtn;
-    private Button[] skillAddBtn;
-
+    private Button[] skillAddIcon;
+ 
     private Image[] characterBackImage;
     private Image[] skillSelectImage;
     private Image[] classIcon;
@@ -59,7 +59,7 @@ public class RoomUIManager : MonoBehaviour {
         userName = new Text[maxUser];
         classIcon = new Image[maxUser];
         skillSelectImage = new Image[CharacterStatus.skillNum];
-        skillAddBtn = new Button[CharacterStatus.skillNum];
+        skillAddIcon = new Button[CharacterStatus.skillNum];
 
         characterBackImage = new Image[maxUser];
         userSkillBtn = new Button[maxSkill];
@@ -93,13 +93,13 @@ public class RoomUIManager : MonoBehaviour {
             classIcon[i] = GameObject.Find("ClassIcon" + (i + 1)).GetComponent<Image>();
             characterBackImage[i] = GameObject.Find("CharacterBackImage" + (i + 1)).GetComponent<Image>();
         }
+        for (int i = 0; i < skillAddIcon.Length; i++) {
 
-        for(int i = 0; i < skillAddBtn.Length; i++)
-        {
-            skillAddBtn[i] = skillAddUI.transform.FindChild("Skill" + (i + 1)).GetComponent<Button>();
             skillSelectImage[i] = skillAddUI.transform.FindChild("SkillSelect" + (i + 1)).GetComponent<Image>();
-            skillSelectImage[i].gameObject.SetActive(true);
-        }
+            skillAddIcon[i] = skillAddUI.transform.FindChild("Skill" + (i + 1)).GetComponent<Button>();
+            skillAddIcon[i].image.sprite = Resources.Load<Sprite> ("UI/SkillIcon/" + CharacterStatus.Instance.HClass.ToString ()+"/Skill"+(i+1));
+            skillSelectImage[i].gameObject.SetActive(false);
+		}
     }
 
     public void InitializeAddListner()
@@ -150,6 +150,7 @@ public class RoomUIManager : MonoBehaviour {
             }
         }
     }
+
 
     public void SetMyNum(int newUserNum)
     {
