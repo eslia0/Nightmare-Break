@@ -3,37 +3,42 @@ using System.Collections;
 
 public class OneHandAttack : MonoBehaviour 
 {
-	public Monster monster;
-	int damage;
+	public GameObject monster;
+	[SerializeField]int damage;
 	public Rigidbody sphereRigid;
 	public float sphereSpeed;
 	// Use this for initialization
-	public GameObject player;
+	public GameObject[] player;
 	public Vector3 playerpos;
 
 	public bool chase;
 	void Start () 
 	{
-	//	monster = 
-		damage = 10;
 		StartCoroutine (SpherePosUp());
 		sphereRigid = GetComponent<Rigidbody> ();
 		sphereSpeed = 12;
 		sphereRigid.velocity = transform.up * sphereSpeed;
-		player = GameObject.FindGameObjectWithTag ("Player");
+		player = GameObject.FindGameObjectsWithTag ("Player");
 		chase = false;
-
 	}
+	public void SetDamage(int _damage, GameObject _AttackMonster){
+		damage = _damage;
+		monster = _AttackMonster;
+	}
+
 
 
 	IEnumerator SpherePosUp()
 	{
 		yield return new WaitForSeconds (1f);
 		sphereRigid.velocity = transform.up * 0;
-		playerpos = player.transform.position;
-		playerpos.y = 0;
 		chase = true;
+//		playerpos = player[0].transform.position;
+		playerpos = player[Random.Range(0,player.Length)].transform.position;
 
+		playerpos.y = 0;
+
+		yield return new WaitForSeconds (0.2f);
 		StartCoroutine (SphereChase());
 	}
 

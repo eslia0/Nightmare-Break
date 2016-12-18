@@ -72,7 +72,7 @@ ModelImporter:
     400062: //RootNode
     400064: monster_duck
     4300000: monster_duck
-    7400000: Damage
+    7400000: TakeDamage
     9500000: //RootNode
     13700000: monster_duck
   materials:
@@ -97,7 +97,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Damage
+      name: TakeDamage
       takeName: Take 001
       firstFrame: 0
       lastFrame: 14

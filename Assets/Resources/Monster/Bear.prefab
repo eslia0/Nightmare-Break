@@ -368,21 +368,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1000011830148064
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000011275506474}
-  m_Layer: 9
-  m_Name: HandPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000011938227806
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,7 +864,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010977677556}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.23295736, y: -0.095, z: -116.05}
+  m_LocalPosition: {x: 6.159693, y: 0.4, z: 14.11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -890,7 +875,6 @@ Transform:
   - {fileID: 4000011379358478}
   - {fileID: 4000011242835082}
   - {fileID: 4000013626628194}
-  - {fileID: 4000011275506474}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000010419693202
@@ -989,19 +973,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000010375311164}
   m_RootOrder: 5
---- !u!4 &4000011275506474
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011830148064}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.24, z: 4.03}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000010375311164}
-  m_RootOrder: 7
 --- !u!4 &4000011329880814
 Transform:
   m_ObjectHideFlags: 1
@@ -1479,7 +1450,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!54 &54000011012842116
 Rigidbody:
@@ -1541,7 +1512,7 @@ Animator:
   m_GameObject: {fileID: 1000010977677556}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a6767fe5353d8d444a1df5dc2848bf9f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4f6ef3d2c1e2f09488841ef0959c289a, type: 2}
+  m_Controller: {fileID: 9100000, guid: bc4b4e173a05ebb43b97bd962ce26a90, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1560,17 +1531,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f4445226db14946a625617aba881f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalMode: 0
+  attackCollider: []
+  bulletInstantiate:
+  - {fileID: 0}
   player: []
   targetPlayer: {fileID: 0}
   movePoint: {x: 0, y: 0, z: 0}
+  monsterIndex: 0
+  attack: 0
   moveSpeed: 0
   RunRange: 0
   attackRange: 0
   attackCycle: 0
   currentDisTance: 0
   searchRange: 0
+  isAlive: 0
+  bossRandomPattern: 0
+  shootNumber: 0
+  chasePlayer: {fileID: 0}
   currentDisTanceArray: []
   currentDisTanceWall: []
+  checkDirection: {x: 0, y: 0, z: 0}
   pointVector: []
 --- !u!114 &114000013295930594
 MonoBehaviour:

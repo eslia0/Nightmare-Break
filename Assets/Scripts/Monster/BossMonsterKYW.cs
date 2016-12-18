@@ -24,7 +24,7 @@ public class BossMonsterKYW : Monster {
 	public float currentDisTance;
 	bool halfLife;
 
-	public UIManager UIManager.Instance;
+	//public UIManager UIManager.Instance;
 	public MonsterWeapon[] BossMonsterWeapon;
 
 	public BigBearBossPatternName BigBearBossState;

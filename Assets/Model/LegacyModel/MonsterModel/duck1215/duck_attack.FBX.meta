@@ -121,7 +121,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.42964825
-        functionName: NewEvent
+        functionName: AttackBlitz
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

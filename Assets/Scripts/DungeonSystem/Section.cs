@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Section : MonoBehaviour {
-	public DungeonManager DungeonManager.Instance;
+	//public DungeonManager DungeonManager.Instance;
 //	public Frog[] Frog;
 //	public Rabbit[] Rabbit;
 //	public Duck[] shockWaveMonster;
