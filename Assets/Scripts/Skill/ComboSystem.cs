@@ -8,15 +8,12 @@ public class ComboSystem : MonoBehaviour {
     private const float comboCheckTime = 1.5f;
 	private Animator comboAnim;
     private Text comboText;
-    private CharacterManager characterManager;
-    public static ComboSystem instance = null;
 
     void Start()
     {
-        instance = this.gameObject.GetComponent<ComboSystem>();
+      //  instance = this.gameObject.GetComponent<ComboSystem>();
         comboText = GameObject.Find("ComBoObject").transform.GetChild(0).GetComponent<Text>();
 		comboAnim = comboText.transform.parent.GetComponent<Animator>();
-        characterManager = GameObject.FindWithTag("Player").GetComponent<CharacterManager>();
         comboText.transform.parent.gameObject.SetActive(false);
     }
 
