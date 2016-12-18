@@ -41,7 +41,7 @@ public class DungeonManager : MonoBehaviour
     CharacterManager[] characterData;
 	[SerializeField]Monster[] monsterData;
 
-    DungeonData dungeonData;
+    DungeonLevelData dungeonLevelData;
     MonsterStatusData monsterStatusData;
 
     public SceneChangeObject[] sceneChangeObject;
@@ -86,8 +86,6 @@ public class DungeonManager : MonoBehaviour
         {
             InitializeMonsterSpawnPoint(1);
 
-            dungeonData = new DungeonData();
-
 			Stage stage1 = new Stage(1);
 			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 3));
 			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 3));
@@ -103,9 +101,11 @@ public class DungeonManager : MonoBehaviour
 			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
 			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.BlackBear, 1, 1));
 
-			dungeonData.Stages.Add(stage1);
-			dungeonData.Stages.Add(stage2);
-			dungeonData.Stages.Add(stage3);
+            dungeonLevelData = new DungeonLevelData(1);
+
+            dungeonLevelData.AddStage(stage1);
+            dungeonLevelData.AddStage(stage2);
+            dungeonLevelData.AddStage(stage3);
 
             MonsterBaseData[] monsterBaseData = new MonsterBaseData[5];
             monsterBaseData[0] = new MonsterBaseData((int)MonsterId.Frog, "Frog");
@@ -180,23 +180,25 @@ public class DungeonManager : MonoBehaviour
 
     public void InitializeMonsterSpawnPoint(int stageIndex)
     {
-        Stage stageData = dungeonData.GetStageData(stageIndex);
+        Stage stageData = dungeonLevelData.GetStage(stageIndex);
 
         monsterSpawnPoints = new GameObject[stageData.GetMonsterNum()];
-        for (int i = 0; i < monsters.Length; i++)
+        Debug.Log(stageIndex);
+        Debug.Log(stageData.GetMonsterNum());
+        for (int i = 0; i < stageData.GetMonsterNum(); i++)
         {
             monsterSpawnPoints[i] = GameObject.Find("MonsterSpawnPoint" + (i + 1));
         }
     }
 
-    public void SetMonsterSpawnList(DungeonData newDungeonData)
+    public void SetMonsterSpawnList(DungeonLevelData newDungeonData)
     {
-        dungeonData = newDungeonData;
+        dungeonLevelData = newDungeonData;
     }
 
     public void SpawnMonster(int stageIndex)
     {
-        Stage stageData = dungeonData.GetStageData(stageIndex);
+        Stage stageData = dungeonLevelData.GetStage(stageIndex);
 
         monsters = new GameObject[stageData.GetMonsterNum()];
         monsterData = new Monster[stageData.GetMonsterNum()];
@@ -228,6 +230,7 @@ public class DungeonManager : MonoBehaviour
         if (userNum == 0)
         {
             InitializeMonsterSpawnPoint(1);
+            SpawnMonster(1);
         }
     }
 
@@ -280,7 +283,7 @@ public class DungeonManager : MonoBehaviour
 
     public void SetMonsterStatus(int stageIndex)
     {
-        Stage stageData = dungeonData.GetStageData(stageIndex);
+        Stage stageData = dungeonLevelData.GetStage(stageIndex);
 
         int spawnCount = stageData.MonsterSpawnData.Count;
         int monsterIndex = 0;
@@ -330,7 +333,6 @@ public class DungeonManager : MonoBehaviour
         //딕셔너리를 사용하여 그에 맞는 캐릭터를 소환해야 하지만 Prototype 진행 시에는 고정된 플레이어를 소환하도록 함.
 
         int characterId = (hClass * CharacterStatus.maxGender) + gender + 1;
-        Debug.Log(characterId);
 
         GameObject player = Instantiate(Resources.Load("Class" + characterId)) as GameObject;
         player.tag = "Player";

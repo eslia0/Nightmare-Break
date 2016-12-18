@@ -408,7 +408,7 @@ public class DataHandler : MonoBehaviour
         if (resultData.Result == (byte)Result.Success)
         {
             Debug.Log("게임 시작");
-            SceneChanger.Instance.SceneChange(SceneChanger.SceneName.InGameScene, true);
+            SceneChanger.Instance.SceneChange(SceneChanger.SceneName.TeddyBearStage1, true);
         }
         else if (resultData.Result == (byte)Result.Fail)
         {
@@ -422,9 +422,21 @@ public class DataHandler : MonoBehaviour
         Debug.Log("던전 몬스터 소환 데이터 수신");
 
         MonsterSpawnListPacket monsterSpawnListPacket = new MonsterSpawnListPacket(packet.msg);
-        DungeonData monsterSpawnData = monsterSpawnListPacket.GetData();
+        DungeonLevelData monsterSpawnList = monsterSpawnListPacket.GetData();
 
-        DungeonManager.Instance.SetMonsterSpawnList(monsterSpawnData);
+        Debug.Log(monsterSpawnList.GetMonsterNum());
+        Debug.Log(monsterSpawnList.Stages.Count);
+
+        for (int i = 0; i < monsterSpawnList.Stages.Count; i++)
+        {
+            Debug.Log(monsterSpawnList.Stages[i].MonsterSpawnData.Count);
+            for (int j = 0; j < monsterSpawnList.Stages[i].MonsterSpawnData.Count; j++)
+            {
+                Debug.Log(monsterSpawnList.Stages[i].MonsterSpawnData[j].MonsterNum);
+            }
+        }
+
+        DungeonManager.Instance.SetMonsterSpawnList(monsterSpawnList);
 
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {

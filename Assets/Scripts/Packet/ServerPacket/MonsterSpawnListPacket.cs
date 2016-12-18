@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-public class MonsterSpawnListPacket : Packet<DungeonData>
+public class MonsterSpawnListPacket : Packet<DungeonLevelData>
 {
     public class MonsterSpawnListSerializer : Serializer
     {
-        public bool Serialize(DungeonData data)
+        public bool Serialize(DungeonLevelData data)
         {
             bool ret = true;
 
@@ -27,7 +27,7 @@ public class MonsterSpawnListPacket : Packet<DungeonData>
             return ret;
         }
 
-        public bool Deserialize(ref DungeonData element)
+        public bool Deserialize(ref DungeonLevelData element)
         {
             if (GetDataSize() == 0)
             {
@@ -43,7 +43,6 @@ public class MonsterSpawnListPacket : Packet<DungeonData>
             byte monsterNum = 0;
 
             ret &= Deserialize(ref stageNum);
-            element = new DungeonData();
 
             for (int stageIndex = 0; stageIndex < stageNum; stageIndex++)
             {
@@ -56,7 +55,7 @@ public class MonsterSpawnListPacket : Packet<DungeonData>
                     ret &= Deserialize(ref monsterNum);
                 }
 
-                element.Stages.Add(new Stage(stageIndex));
+                element.AddStage(new Stage(stageIndex));
                 element.Stages[stageIndex].AddMonster(monsterId, monsterLevel, monsterNum);
             }
 
@@ -64,14 +63,14 @@ public class MonsterSpawnListPacket : Packet<DungeonData>
         }
     }
 
-    public MonsterSpawnListPacket(DungeonData data) // 데이터로 초기화(송신용)
+    public MonsterSpawnListPacket(DungeonLevelData data) // 데이터로 초기화(송신용)
     {
         m_data = data;
     }
 
     public MonsterSpawnListPacket(byte[] data) // 패킷을 데이터로 변환(수신용)
     {
-        m_data = new DungeonData();
+        m_data = new DungeonLevelData();
         MonsterSpawnListSerializer serializer = new MonsterSpawnListSerializer();
         serializer.SetDeserializedData(data);
         serializer.Deserialize(ref m_data);
@@ -84,40 +83,95 @@ public class MonsterSpawnListPacket : Packet<DungeonData>
         return serializer.GetSerializedData();
     }
 }
-
-public class DungeonData
+public class DungeonBaseData
 {
     int id;
     string name;
-    int level;
-    List<Stage> stages;
+    List<DungeonLevelData> dungeonLevelData;
 
     public int Id { get { return id; } }
     public string Name { get { return name; } }
-    public int Level { get { return level; } }
-    public List<Stage> Stages { get { return stages; } }
+    public List<DungeonLevelData> DungeonLevelData { get { return dungeonLevelData; } }
 
-    public DungeonData()
+    public DungeonBaseData()
     {
         id = 0;
         name = "";
+        dungeonLevelData = new List<DungeonLevelData>();
+    }
+
+    public DungeonBaseData(int _id, string _name)
+    {
+        id = _id;
+        name = _name;
+        dungeonLevelData = new List<DungeonLevelData>();
+    }
+
+    public DungeonLevelData GetLevelData(int level)
+    {
+        for (int index = 0; index < dungeonLevelData.Count; index++)
+        {
+            if (dungeonLevelData[index].Level == level)
+            {
+                return dungeonLevelData[index];
+            }
+        }
+
+        return null;
+    }
+
+    public bool AddLevelData(DungeonLevelData newDungeonLevelData)
+    {
+        try
+        {
+            dungeonLevelData.Add(newDungeonLevelData);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public bool RemoveLevelData(int index)
+    {
+        try
+        {
+            dungeonLevelData.Remove(GetLevelData(index));
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+}
+
+public class DungeonLevelData
+{
+    int level;
+    List<Stage> stages;
+
+    public int Level { get { return level; } }
+    public List<Stage> Stages { get { return stages; } }
+
+    public DungeonLevelData()
+    {
         level = 0;
         stages = new List<Stage>();
     }
 
-    public DungeonData(int _id, int _level, string _name)
+    public DungeonLevelData(int newLevel)
     {
-        id = _id;
-        name = _name;
-        level = _level;
+        level = newLevel;
         stages = new List<Stage>();
     }
 
-    public Stage GetStageData(int stageNum)
+    public Stage GetStage(int index)
     {
         for (int i = 0; i < stages.Count; i++)
         {
-            if(stages[i].StageNum == stageNum)
+            if (stages[i].StageNum == index)
             {
                 return stages[i];
             }
@@ -125,6 +179,33 @@ public class DungeonData
 
         return null;
     }
+
+    public bool AddStage(Stage newStage)
+    {
+        try
+        {
+            stages.Add(newStage);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    public bool RemoveLevelData(int index)
+    {
+        try
+        {
+            stages.Remove(GetStage(index));
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     public int GetMonsterNum()
     {
         int count = 0;
@@ -167,6 +248,19 @@ public class Stage
         catch
         {
 
+        }
+    }
+
+    public bool RemoveMonster(int index)
+    {
+        try
+        {
+            monsterSpawnData.Remove(monsterSpawnData[index]);
+            return true;
+        }
+        catch
+        {
+            return false;
         }
     }
 
