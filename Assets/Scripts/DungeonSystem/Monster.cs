@@ -241,7 +241,7 @@ public class Monster : MonoBehaviour {
 		normalMode = dun.NormalMode;
 
 
-		//MonsterAIStart (dun.NormalMode);
+		MonsterAIStart (dun.NormalMode);
 
     }
 
@@ -271,7 +271,7 @@ public class Monster : MonoBehaviour {
 		}
 
 		if (_normalMode) {
-			
+			Debug.Log (monsterIndex);
 			if (monsterId == MonsterId.Rabbit) {
 				StartCoroutine (MonsterMoveAI (_normalMode));
 				StartCoroutine (MonsterActAI (_normalMode));
@@ -1050,11 +1050,15 @@ public class Monster : MonoBehaviour {
 		//if (direction == right)
 		if(this.transform.rotation == Quaternion.Euler(new Vector3(0, 0, 0)))
 		{
-			Instantiate (Resources.Load<GameObject> ("Effect/WarningEffect"), new Vector3 (-3.55f, 0.15f, this.transform.position.z + 10f), Quaternion.Euler (-90, 0, 0));
+			GameObject roarField = Instantiate (Resources.Load<GameObject> ("Effect/WarningEffect"), new Vector3 (-3.55f, 0.15f, this.transform.position.z + 10f), Quaternion.Euler (-90, 0, 0))as GameObject;		
+			roarField.GetComponent<BearRoar> ().SetDamage (attack, this.gameObject);
+//			Instantiate (Resources.Load<GameObject> ("Effect/WarningEffect"), new Vector3 (-3.55f, 0.15f, this.transform.position.z + 10f), Quaternion.Euler (-90, 0, 0));
 		}
 		else if (this.transform.rotation == Quaternion.Euler(new Vector3(0, 180, 0)))
 		{
-			Instantiate (Resources.Load<GameObject> ("Effect/WarningEffect"), new Vector3 (3.55f, 0.15f, this.transform.position.z - 10f), Quaternion.Euler (-90, 0, 0));
+			GameObject roarField = Instantiate (Resources.Load<GameObject> ("Effect/WarningEffect"), new Vector3 (-3.55f, 0.15f, this.transform.position.z - 10f), Quaternion.Euler (-90, 0, 0))as GameObject;		
+			roarField.GetComponent<BearRoar> ().SetDamage (attack, this.gameObject);
+			//Instantiate (Resources.Load<GameObject> ("Effect/WarningEffect"), new Vector3 (3.55f, 0.15f, this.transform.position.z - 10f), Quaternion.Euler (-90, 0, 0));
 		} 
 
 		//GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<RedRenderImage> ().enabled = true;
@@ -1082,6 +1086,7 @@ public class Monster : MonoBehaviour {
 	public void MonsterArrayEraser(GameObject thisGameObject)
 	{
 		this.gameObject.SetActive (false);
+
 		//DungeonManager dun = GameObject.Find ("DungeonManager").GetComponent<DungeonManager> ();
 
 
@@ -1105,9 +1110,8 @@ public class Monster : MonoBehaviour {
 				statePosition = StatePosition.TakeDamage;
 				Pattern (statePosition);
 			} else {
+			
 			}
-
-
 		}
 		else
 		{
@@ -1119,24 +1123,9 @@ public class Monster : MonoBehaviour {
 		}
 	}
 
-	public void GetTargetPlayer(GameObject _TargerPlayer){
-		
-	}
-
-	public void SendTargetPlayer(){
-		
-	}
-
 	void OnTriggerStay(Collider coll){
 		Rigidbody rigid = this.gameObject.GetComponent<Rigidbody>();
 		rigid.velocity = Vector3.zero;
-
-
-
-//		if (rigid.velocity == Vector3.zero) {
-//			statePosition = StatePosition.Idle;
-//			Pattern (statePosition);
-//		}
 	}
 
 	void SetStateDefault ()
@@ -1187,7 +1176,7 @@ public class Monster : MonoBehaviour {
 	{
 		if (monsterId == MonsterId.Bear) 
 		{
-			StartCoroutine ( BossWaveAttack());
+			BossWSwingAttack();
 		}
 
 		if (monsterId == MonsterId.BlackBear) 
@@ -1197,6 +1186,21 @@ public class Monster : MonoBehaviour {
 
 		}
 
+	}
+	public void BossWSwingAttack()
+	{
+		if(this.transform.rotation == Quaternion.Euler(new Vector3(0, 0, 0)))
+		{	
+			GameObject bullet = Instantiate (Resources.Load<GameObject> ("Effect/BossSwing"), new Vector3(this.transform.position.x,this.transform.position.y+2f, this.transform.position.z), Quaternion.Euler (-90, 0, 0))as GameObject;		
+			bullet.GetComponent<BossDarkSwing>().SetDamage (attack, this.gameObject);
+			//Instantiate (Resources.Load<GameObject> ("Effect/BossSwing"), new Vector3 (this.transform.position.x, this.transform.position.y + 2f, this.transform.position.z), Quaternion.Euler (-90, 0, 0));
+		}
+		else if (this.transform.rotation == Quaternion.Euler(new Vector3(0, 180, 0)))
+		{
+			GameObject bullet = Instantiate (Resources.Load<GameObject> ("Effect/BossSwing"), new Vector3 (this.transform.position.x, this.transform.position.y + 2f, this.transform.position.z), Quaternion.Euler (-90, -90, -90))as GameObject;
+			bullet.GetComponent<BossDarkSwing>().SetDamage (attack, this.gameObject);
+			//Instantiate (Resources.Load<GameObject> ("Effect/BossSwing"), new Vector3(this.transform.position.x,this.transform.position.y+2f,this.transform.position.z),Quaternion.Euler (-90, -90, -90));
+		} 
 	}
 
 	IEnumerator BossWaveAttack()
@@ -1209,12 +1213,32 @@ public class Monster : MonoBehaviour {
 		//Instantiate (Resources.Load<GameObject> ("Effect/BossWave"), new Vector3(this.transform.position.x,this.transform.position.y+0.5f,this.transform.position.z+(3f)), this.transform.rotation);
 		while (wave <waveLength ) 
 		{	
+
+
 			darkWaveSize += 0.3f; 
 			yield return new WaitForSeconds (0.2f);
-			darkWave[wave] = Instantiate (Resources.Load<GameObject> ("Effect/BossWave"), new Vector3(this.transform.position.x,this.transform.position.y+0.8f,this.transform.position.z+(4f*(wave+1))), this.transform.rotation)as GameObject;
-			darkWave [wave].transform.localScale = new Vector3 (darkWaveSize,darkWaveSize,darkWaveSize);
+
+			if(this.transform.rotation == Quaternion.Euler(new Vector3(0, 0, 0)))
+			{			
+				darkWave[wave] = Instantiate (Resources.Load<GameObject> ("Effect/BossWave"), new Vector3(this.transform.position.x,this.transform.position.y+0.8f,this.transform.position.z+(4f*(wave+1))), this.transform.rotation)as GameObject;
+				darkWave [wave].transform.localScale = new Vector3 (darkWaveSize,darkWaveSize,darkWaveSize);
+			}
+			else if (this.transform.rotation == Quaternion.Euler(new Vector3(0, 180, 0)))
+			{
+				darkWave[wave] = Instantiate (Resources.Load<GameObject> ("Effect/BossWave"), new Vector3(this.transform.position.x,this.transform.position.y+0.8f,this.transform.position.z-(4f*(wave+1))), Quaternion.Euler (0, 0, 0))as GameObject;
+
+			} 
+
 			wave++;
 		}
 		yield return new WaitForSeconds (0.2f);
+	}
+
+	public void GetTargetPlayer(GameObject _TargerPlayer){
+
+	}
+
+	public void SendTargetPlayer(){
+
 	}
 }

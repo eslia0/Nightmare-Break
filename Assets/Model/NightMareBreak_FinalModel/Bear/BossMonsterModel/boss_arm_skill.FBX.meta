@@ -167,7 +167,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.35609755
+      - time: 0.30985478
         functionName: MiddleBossNiddleshot
         data: 
         objectReferenceParameter: {instanceID: 0}
