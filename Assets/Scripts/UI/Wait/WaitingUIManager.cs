@@ -109,6 +109,7 @@ public class WaitingUIManager : MonoBehaviour
         equipInfoExitBtn = equipInfoUI.transform.FindChild("ExitBtn").GetComponent<Button>();
         myInfoExitBtn = myInfoUI.transform.FindChild("ExitBtn").GetComponent<Button>();
 
+        dungeonLevelText.text = dungeonLevel.ToString();
 		for (int i = 0; i < skillAddIcon.Length; i++) {
             skillAddSelectImage[i] = skillAddUI.transform.FindChild("SkillSelect" + (i + 1)).GetComponent<Image>();
             skillAddIcon[i] = skillAddUI.transform.FindChild("Skill" + (i + 1)).GetComponent<Button>();
@@ -209,7 +210,7 @@ public class WaitingUIManager : MonoBehaviour
         dungeonLevel--;
         if (dungeonLevel < 1)
         {
-            dungeonLevel = 1;
+            dungeonLevel = 10;
         }
         dungeonLevelText.text = dungeonLevel.ToString();
     }
@@ -234,7 +235,6 @@ public class WaitingUIManager : MonoBehaviour
 	public void RoomInfo(int roomNum)
 	{
 		UIActiveCheck ();
-		//룸 리퀘스트 호출
 		roomInfoUI.SetActive (true);
         for (int i = 0; i < maxPlayerNum; i++)
         {
@@ -245,7 +245,6 @@ public class WaitingUIManager : MonoBehaviour
                 roomInfoGenderIcon[i].sprite = Resources.Load<Sprite>("RoomClassIcon/Gender" + rooms[roomNum].RoomUserData[i].UserGender);
             }
         }
-
         currentRoomNum = roomNum;
     }
 
@@ -259,7 +258,7 @@ public class WaitingUIManager : MonoBehaviour
 		for (int i = 0; i < maxRoomNum; i++) {
             if (rooms[i].PlayerNum != 0)
 			{
-				roomBtn [i].image.sprite = Resources.Load<Sprite> ("WaitingRoomImage/RoomActive");
+				roomBtn [i].image.sprite = Resources.Load<Sprite> ("UI/WaitingRoomImage/RoomActive");
 				roomIndex[i].text = "00"+i;
 				roomName [i].text = rooms [i].RoomName;
 				roomDungeonLevel [i].text = rooms [i].DungeonLevel.ToString();
@@ -267,10 +266,10 @@ public class WaitingUIManager : MonoBehaviour
 			}
             else
             {
-				roomBtn [i].image.sprite = Resources.Load<Sprite> ("WaitingRoomImage/RoomNotActive");
+				roomBtn [i].image.sprite = Resources.Load<Sprite> ("UI/WaitingRoomImage/RoomNotActive") as Sprite;
 				roomIndex [i].text = "";
                 roomName[i].text = "";
-                roomDungeonLevel[i].text = "1";
+                roomDungeonLevel[i].text = "";
                 roomCurrentUser[i].text = "";
             }
 		}
