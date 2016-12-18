@@ -625,7 +625,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 88611312}
   m_Layer: 0
-  m_Name: PlayerStartPoint2
+  m_Name: PlayerSpawnPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -4072,7 +4072,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 608134984}
   m_Layer: 0
-  m_Name: PlayerStartPoint3
+  m_Name: PlayerSpawnPoint3
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -6520,7 +6520,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!1 &966001187
 GameObject:
   m_ObjectHideFlags: 0
@@ -7239,7 +7239,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 17.098001, y: -91.993004, z: -0.588}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &1060160263
 GameObject:
   m_ObjectHideFlags: 0
@@ -8582,7 +8582,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &1280745838
 GameObject:
   m_ObjectHideFlags: 0
@@ -9256,7 +9256,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1334752727}
   m_Layer: 0
-  m_Name: PlayerStartPoint1
+  m_Name: PlayerSpawnPoint1
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9498,7 +9498,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1378548269}
   m_Layer: 0
-  m_Name: PlayerStartPoint4
+  m_Name: PlayerSpawnPoint4
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -12118,9 +12118,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1733937830}
   m_Layer: 0
-  m_Name: StartPoint
+  m_Name: PlayerSpawnPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -12141,7 +12141,7 @@ Transform:
   - {fileID: 608134984}
   - {fileID: 1378548269}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 7
 --- !u!1 &1734423651
 GameObject:
   m_ObjectHideFlags: 0

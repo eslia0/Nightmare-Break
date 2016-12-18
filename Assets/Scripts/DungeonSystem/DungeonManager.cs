@@ -79,7 +79,6 @@ public class DungeonManager : MonoBehaviour
 
 		//Instantiate 스폰포인트 생성조건 - > mapNumber != 2;
 
-		DungeonConstruct();
 		CurrentScene();
 		Debug.Log (mapNumber);
         if (GameObject.FindGameObjectWithTag("GameManager") == null)
@@ -132,7 +131,6 @@ public class DungeonManager : MonoBehaviour
 				SpawnMonster (3);
 				SetMonsterStatus (3);
 			}
-
         }
 	}
 
@@ -167,8 +165,17 @@ public class DungeonManager : MonoBehaviour
 
     public void InitializePlayer(int playerNum)
     {
+        Debug.Log("유저 수 : " + playerNum);
         players = new GameObject[playerNum];
         characterData = new CharacterManager[playerNum];
+    }
+
+    public void InitializePlayerSpawnPoint()
+    {
+        for (int i =0; i< players.Length; i++)
+        {
+            playerSpawnPoints[i] = GameObject.Find("PlayerSpawnPoint" + (i + 1));
+        }        
     }
 
     public void InitializeMonsterSpawnPoint()
@@ -182,36 +189,8 @@ public class DungeonManager : MonoBehaviour
         {
 			SceneManager.LoadScene("LostTeddyBear_SingleType"+(mapNumber+1));// loadScene;
 			mapNumber++;
-        }
-     
+        }     
     }
-
-    void DungeonConstruct()
-    {
-		
-		//if(mapNumber != 2){
-			//GameObject monsterSpawnPoint= (GameObject)Instantiate (Resources.Load ("Monster/MonsterSpawnPoint" + mapNumber.ToString()), this.transform.parent);
-            //요고의 차일드를 받으세요
-			
-			//MonsterSet ();
-		//}
-
-
-
-        //if (mapNumber == 0) {
-//        	nextSceneObject.SceneChangeObjectSet (mapNumber+1);
-        //}
-        //else if(mapNumber!= 0 || mapNumber!=4){
-        //	nextSceneObject.SceneChangeObjectSet (mapNumber+1);
-        //	beforeScneObject.SceneChangeObjectSet (mapNumber-1);
-        //}
-        //else if (mapNumber == 4) {
-        //	beforeScneObject.SceneChangeObjec  tSet (mapNumber - 1);
-        //}
-
-    }
-
-
 
     public void SetMonsterSpawnList(DungeonData newDungeonData)
     {
@@ -239,6 +218,19 @@ public class DungeonManager : MonoBehaviour
                 monsters[monsterIndex] = CreateMonster(stageData.MonsterSpawnData[spawnIndex].MonsterId, monsterIndex, monsterSpawnPoints[monsterIndex].transform.position);
                 monsterIndex++;
             }            
+        }
+    }
+
+    public void StartDungeon(int playerNum)
+    {
+        InitializePlayer(playerNum);
+
+        CreatePlayer((int)CharacterStatus.Instance.HGender, (int)CharacterStatus.Instance.HClass);
+
+
+        if (userNum == 0)
+        {
+
         }
     }
 
@@ -293,7 +285,6 @@ public class DungeonManager : MonoBehaviour
     {
         Stage stageData = dungeonData.GetStageData(stageIndex);
 
-
         int spawnCount = stageData.MonsterSpawnData.Count;
         int monsterIndex = 0;
 
@@ -336,42 +327,36 @@ public class DungeonManager : MonoBehaviour
         SceneChange();
     }
 
-	//monsterspawnPoint getting
-	//public void GetMonsterTransForm(Vector3[] _monsterTransForm){
-	//	monsterTransForm = _monsterTransForm;
-	//}
-
     public GameObject CreatePlayer(int gender, int hClass)
     {
         //여기서는 플레이어 캐릭터 딕셔너리 -> 각 직업에 따른 플레이어 스탯과 능력치, 스킬, 이름을 가지고 있음
         //딕셔너리를 사용하여 그에 맞는 캐릭터를 소환해야 하지만 Prototype 진행 시에는 고정된 플레이어를 소환하도록 함.
 
-        int characterIndex = hClass * CharacterStatus.maxGender + hClass;
+        int characterId = hClass * CharacterStatus.maxGender + hClass;
 
-        GameObject player = Instantiate(Resources.Load("Character" + characterIndex)) as GameObject;        
+        GameObject player = Instantiate(Resources.Load("Character" + characterId)) as GameObject;
         player.tag = "Player";
-        player.transform.position = Vector3.zero;
-        
+        player.transform.position = playerSpawnPoints[userNum].transform.position;
         players[userNum] = player;
 
         characterData[userNum] = player.GetComponent<CharacterManager>();
         characterData[userNum].enabled = true;
         characterData[userNum].SetUserNum(userNum);
+        characterData[userNum].SetCharacterStatus();
+        characterData[userNum].SetCharacterType();
 
         m_camera = GameObject.FindGameObjectWithTag("MainCamera");
         StartCoroutine(m_camera.GetComponent<CameraController>().CameraCtrl(player.transform));
         
-        InputManager.Instance.InitializeManager();
-        StartCoroutine(InputManager.Instance.GetKeyInput());
+        InputManager.Instance.InitializeManager(player);
         
-        player.GetComponent<CharacterManager>().SetCharacterStatus();
-        player.GetComponent<CharacterManager>().SetCharacterType();
+        ReSendManager.Instance.characterCreating = true;
 
         for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
         {
-            if (NetworkManager.Instance.MyIndex != NetworkManager.Instance.UserIndex[index].UserNum)
+            if (index != userNum)
             {
-                DataSender.Instance.CreateUnitSend(NetworkManager.Instance.UserIndex[index].EndPoint, (byte)characterIndex, player.transform.position.x, player.transform.position.y, player.transform.position.z);
+                DataSender.Instance.CreateUnitSend(NetworkManager.Instance.UserIndex[index].EndPoint, (byte)characterId, player.transform.position.x, player.transform.position.y, player.transform.position.z);
             }
         }
 

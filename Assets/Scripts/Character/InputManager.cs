@@ -22,9 +22,11 @@ public class InputManager : MonoBehaviour
 
     public CharacterManager characterManager;
     
-    public void InitializeManager()
+    public void InitializeManager(GameObject player)
     {
-        characterManager = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterManager>();
+        characterManager = player.GetComponent<CharacterManager>();
+
+        StartCoroutine(GetKeyInput());
     }
 
     public IEnumerator GetKeyInput()

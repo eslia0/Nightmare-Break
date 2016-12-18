@@ -289,15 +289,11 @@ public class DataHandler : MonoBehaviour
 
         UIManager.Instance.WaitingUIManager.SetRoomListData(roomListData);
 
-        for (int roomIndex = 0; roomIndex < WaitingUIManager.maxRoomNum; roomIndex++)
+        for (int i = 0; i < WaitingUIManager.maxRoomNum; i++)
         {
-            Debug.Log(roomIndex + "번 방 유저 정보");
-            for (int userIndex = 0; userIndex < WaitingUIManager.maxPlayerNum; userIndex ++)
+            for (int j = 0; j < WaitingUIManager.maxPlayerNum; j++)
             {
-                Debug.Log(roomListData.Rooms[roomIndex].RoomUserData[userIndex].UserClass);
-                Debug.Log(roomListData.Rooms[roomIndex].RoomUserData[userIndex].UserGender);
-                Debug.Log(roomListData.Rooms[roomIndex].RoomUserData[userIndex].UserName);
-                Debug.Log(roomListData.Rooms[roomIndex].RoomUserData[userIndex].UserLevel);
+                Debug.Log(i + " - " + j + roomListPacket.GetData().Rooms[i].RoomUserData[j].UserName + " ");
             }
         }
 
