@@ -180,7 +180,7 @@ public class SceneChanger : MonoBehaviour
         #endregion
 
         #region 던전 씬 로드
-        else if (scene.name == "InGameScene")
+        else if (scene.name == "LostTeddyBear_Stage1")
         {
             UIManager.Instance.BattleUIManager.ManagerInitialize();
 
