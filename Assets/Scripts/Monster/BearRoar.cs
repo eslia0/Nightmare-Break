@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BearRoar : MonoBehaviour 
 {
-	public Monster monster;
+	public GameObject Attacker;
 	public int damage;
 	public Rigidbody sphereRigid;
 	public BoxCollider roarBox;
@@ -12,12 +12,17 @@ public class BearRoar : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		damage = 10;
 		player = GameObject.FindGameObjectWithTag ("Player");
 		roarBox = this.GetComponent<BoxCollider> ();
 		roarBox.enabled = false;
 		StartCoroutine (Roar());
 	}
+	public void SetDamage(int _damage, GameObject _Attacker){
+		damage = _damage;
+		Attacker = _Attacker;
+		
+	}
+
 
 	void Update ()
 	{
