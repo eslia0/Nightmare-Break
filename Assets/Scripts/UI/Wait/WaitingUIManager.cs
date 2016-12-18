@@ -72,6 +72,7 @@ public class WaitingUIManager : MonoBehaviour
         equipInfoUI.SetActive(false);
         myInfoUI.SetActive(false);
         roomInfoUI.SetActive(false);
+        lockImage.gameObject.SetActive(false);
     }
 
     public void SetUIObject()
