@@ -13,8 +13,9 @@ public class SceneChanger : MonoBehaviour
         CreateScene,
         WaitingScene,
         RoomScene,
-        InGameScene,
-		DefenseScene,
+        TeddyBearStage1,
+        TeddyBearStage2,
+        TeddyBearBoss,
     }
 
     public enum SelectLoadingData
@@ -101,7 +102,7 @@ public class SceneChanger : MonoBehaviour
 
                 StartCoroutine(CheckLoading());
             }
-            else if (nextScene == (int)SceneName.InGameScene)
+            else if (nextScene == (int)SceneName.TeddyBearStage1)
             {
                 GameManager.Instance.SetManagerInGame();
 
@@ -186,14 +187,14 @@ public class SceneChanger : MonoBehaviour
 
             DungeonManager.Instance.StartDungeon(NetworkManager.Instance.UserIndex.Count);
 
-            currentScene = SceneName.InGameScene;
+            currentScene = SceneName.TeddyBearStage1;
         }
         #endregion
         
 		#region 연우씨 씬 로드
 		else if (scene.name == "")
 		{
-			currentScene = SceneName.DefenseScene;
+			currentScene = SceneName.TeddyBearStage2;
 			//kyw
 		}
 		#endregion
@@ -256,7 +257,7 @@ public class SceneChanger : MonoBehaviour
         {
             loadingCheck = new bool[2];
         }
-        else if (nextScene == (int)SceneName.InGameScene)
+        else if (nextScene == (int)SceneName.TeddyBearStage1)
         {
             LoadingCheck = new bool[4];
         }
