@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public enum StatePosition
 {
 	Idle=0,
@@ -152,8 +153,14 @@ public class Monster : MonoBehaviour {
     public int Attack { get { return attack; } }
     public MonsterId MonsterId { get { return monsterId; } set { monsterId = value; } }
 
+//	public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+//	{
+//
+//	}
+
     public void MonsterSet(MonsterBaseData monster)
 	{
+		
 		player = GameObject.FindGameObjectsWithTag ("Player");
 		wall = GameObject.FindGameObjectsWithTag("Wall");
 		currentDisTanceWall = new float[wall.Length];
@@ -230,8 +237,11 @@ public class Monster : MonoBehaviour {
 			//	
 			//		}
 
-		normalMode = true;
-		MonsterAIStart (normalMode);
+		DungeonManager dun = GameObject.Find("DungeonManager").GetComponent<DungeonManager>();
+
+
+
+		MonsterAIStart (dun.NormalMode);
 
     }
 

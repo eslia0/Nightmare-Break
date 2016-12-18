@@ -50,7 +50,7 @@ public class DungeonManager : MonoBehaviour
     
     GameObject m_camera;
 
-    int mapNumber;
+	[SerializeField]int mapNumber;
     int dungeonId;
     int dungeonLevel;
     int userNum;
@@ -71,31 +71,41 @@ public class DungeonManager : MonoBehaviour
 	void Start()
 	{
         //test
+
         if (GameObject.FindGameObjectWithTag("GameManager") == null)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
         }		
 
 		//Instantiate 스폰포인트 생성조건 - > mapNumber != 2;
-		mapNumber = 0;
-		normalMode = false;
 
 		DungeonConstruct();
-
+		CurrentScene();
+		Debug.Log (mapNumber);
         if (GameObject.FindGameObjectWithTag("GameManager") == null)
         {
             InitializeMonsterSpawnPoint();
 
             dungeonData = new DungeonData();
 
-            Stage stage1 = new Stage(1);
+			Stage stage1 = new Stage(1);
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 3));
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 3));
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Bear, 1, 1));
+			Stage stage2 = new Stage(2);
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 9));
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 9));
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 9));
+			Stage stage3 = new Stage(3);
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 3));
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 3));
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Bear, 1, 1));
 
-            stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 3));
-            stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 3));
-            stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
-			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.BlackBear, 1, 1));
-
-            dungeonData.Stages.Add(stage1);
+			dungeonData.Stages.Add(stage1);
+			dungeonData.Stages.Add(stage2);
+			dungeonData.Stages.Add(stage3);
 
             MonsterBaseData[] monsterBaseData = new MonsterBaseData[4];
             monsterBaseData[0] = new MonsterBaseData((int)MonsterId.Frog, "Frog");
@@ -104,17 +114,41 @@ public class DungeonManager : MonoBehaviour
             monsterBaseData[1].AddLevelData(new MonsterLevelData(1, 3, 0, 1050, 3));
             monsterBaseData[2] = new MonsterBaseData((int)MonsterId.Rabbit, "Rabbit");
             monsterBaseData[2].AddLevelData(new MonsterLevelData(1, 5, 0, 2250, 4));
-			monsterBaseData[3] = new MonsterBaseData((int)MonsterId.BlackBear, "BlackBear");
+			monsterBaseData[3] = new MonsterBaseData((int)MonsterId.Bear, "Bear");
 			monsterBaseData[3].AddLevelData(new MonsterLevelData(1, 25, 0, 11250, 3));
 
             MonsterStatusData monsterStatusData = new MonsterStatusData(4, monsterBaseData);
             SetMonsterData(monsterStatusData);
 
-            SpawnMonster(1);
-            SetMonsterStatus(1);
+			if (mapNumber==0) {
+				SpawnMonster (1);
+				SetMonsterStatus (1);
+			}
+			if (mapNumber==1){
+				SpawnMonster(1);
+				SetMonsterStatus (1);
+			}
+			if (mapNumber==2) {
+				SpawnMonster (1);
+				SetMonsterStatus (1);
+			}
+
         }
 	}
 
+
+	public void CurrentScene(){
+		//SceneManager.GetActiveScene ().name;
+		for (int i = 0; i < 2; i++) {
+			if (SceneManager.GetActiveScene ().name == "LostTeddyBear_SingleType"+i) {
+				mapNumber = i;
+				if (i == 1) {
+					normalMode = false;
+				} else
+					normalMode = true;
+			}
+		}
+	}
 	//void Update()
 	//{
  //       for (int i = 0; i < monsters.Length; i++)
@@ -142,28 +176,12 @@ public class DungeonManager : MonoBehaviour
         monsterSpawnPoints = GameObject.FindGameObjectsWithTag("MonsterSpawnPoint");
     }
 
-    //defence mode, normal mode
-    public void ModeChange(bool modeForm)
-    {
-		if (normalMode)
-        {
-			modeForm = false;
-            //player1,player2 ->  nextScene; 
-            //respwanstart;
-        }
-
-        if (!modeForm)
-        {
-			modeForm = true;
-        }
-    }
-
     public void SceneChange()
     {
-        if (mapNumber < 4)
+        if (mapNumber < 2)
         {
+			SceneManager.LoadScene("LostTeddyBear_SingleType"+(mapNumber+1));// loadScene;
 			mapNumber++;
-            SceneManager.LoadScene(mapNumber + 1);// loadScene;
         }
      
     }
@@ -192,6 +210,8 @@ public class DungeonManager : MonoBehaviour
         //}
 
     }
+
+
 
     public void SetMonsterSpawnList(DungeonData newDungeonData)
     {

@@ -67,6 +67,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013778987594}
   - 95: {fileID: 95000011887125858}
+  - 65: {fileID: 65000010173741008}
   m_Layer: 0
   m_Name: BossPotal
   m_TagString: Untagged
@@ -168,7 +169,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013323874742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 14.05}
+  m_LocalPosition: {x: -0.24, y: 0, z: 28.13}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -299,6 +300,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014293978860}
   m_Mesh: {fileID: 4300002, guid: d064caa9bbb009a4ebec5bdb9ee7b6fc, type: 3}
+--- !u!65 &65000010173741008
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013323874742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.8445601, y: 0.773935, z: 1.3020694}
+  m_Center: {x: 0.05009715, y: -0.11303282, z: -2.2569542}
 --- !u!95 &95000011887125858
 Animator:
   serializedVersion: 3
