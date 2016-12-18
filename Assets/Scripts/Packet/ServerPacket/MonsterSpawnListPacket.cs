@@ -43,20 +43,27 @@ public class MonsterSpawnListPacket : Packet<DungeonLevelData>
             byte monsterNum = 0;
 
             ret &= Deserialize(ref stageNum);
+            UnityEngine.Debug.Log("총 스테이지 개수" + stageNum);
 
             for (int stageIndex = 0; stageIndex < stageNum; stageIndex++)
             {
                 ret &= Deserialize(ref monsterKind);
+                UnityEngine.Debug.Log(stageIndex + " 스테이지 몬스터 종류수" + monsterKind);
 
+                element.AddStage(new Stage(stageIndex));
+                
                 for (int monsterIndex = 0; monsterIndex < monsterKind; monsterIndex++)
                 {
                     ret &= Deserialize(ref monsterId);
                     ret &= Deserialize(ref monsterLevel);
                     ret &= Deserialize(ref monsterNum);
-                }
 
-                element.AddStage(new Stage(stageIndex));
-                element.Stages[stageIndex].AddMonster(monsterId, monsterLevel, monsterNum);
+                    UnityEngine.Debug.Log(monsterIndex + " 번 몬스터 아이디" + monsterId);
+                    UnityEngine.Debug.Log(monsterIndex + " 번 몬스터 레벨" + monsterLevel);
+                    UnityEngine.Debug.Log(monsterIndex + " 번 몬스터 갯수" + monsterNum);
+
+                    element.Stages[stageIndex].AddMonster(monsterId, monsterLevel, monsterNum);
+                }
             }
 
             return ret;

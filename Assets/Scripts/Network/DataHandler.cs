@@ -364,17 +364,6 @@ public class DataHandler : MonoBehaviour
         Debug.Log("방 유저 정보 수신");
         RoomDataPacket roomDataPacket = new RoomDataPacket(packet.msg);
         RoomData roomData = roomDataPacket.GetData();
-
-        Debug.Log(roomData.DungeonName);
-
-        for (int i = 0; i < WaitingUIManager.maxPlayerNum; i++)
-        {
-            Debug.Log(roomData.RoomUserData[i].UserName);
-            Debug.Log(roomData.RoomUserData[i].UserGender);
-            Debug.Log(roomData.RoomUserData[i].UserClass);
-            Debug.Log(roomData.RoomUserData[i].UserLevel);
-        }
-
         UIManager.Instance.RoomUIManager.SetRoom(roomData);
     }
 
@@ -400,14 +389,13 @@ public class DataHandler : MonoBehaviour
     //Server - 게임 시작
     public void StartGame(DataPacket packet)
     {
-        Debug.Log("게임 시작");
+        Debug.Log("게임 시작 결과");
 
         ResultPacket resultPacket = new ResultPacket(packet.msg);
         ResultData resultData = resultPacket.GetData();
 
         if (resultData.Result == (byte)Result.Success)
         {
-            Debug.Log("게임 시작");
             SceneChanger.Instance.SceneChange(SceneChanger.SceneName.TeddyBearStage1, true);
         }
         else if (resultData.Result == (byte)Result.Fail)
@@ -423,16 +411,17 @@ public class DataHandler : MonoBehaviour
 
         MonsterSpawnListPacket monsterSpawnListPacket = new MonsterSpawnListPacket(packet.msg);
         DungeonLevelData monsterSpawnList = monsterSpawnListPacket.GetData();
-
-        Debug.Log(monsterSpawnList.GetMonsterNum());
-        Debug.Log(monsterSpawnList.Stages.Count);
+        
+        Debug.Log("총 스테이지 개수" + monsterSpawnList.Stages.Count);
+        Debug.Log("총 몬스터 개수" + monsterSpawnList.GetMonsterNum());
 
         for (int i = 0; i < monsterSpawnList.Stages.Count; i++)
         {
-            Debug.Log(monsterSpawnList.Stages[i].MonsterSpawnData.Count);
+            Debug.Log(i + "스테이지 몬스터 스폰 종류 개수 " + monsterSpawnList.Stages[i].MonsterSpawnData.Count);
+
             for (int j = 0; j < monsterSpawnList.Stages[i].MonsterSpawnData.Count; j++)
             {
-                Debug.Log(monsterSpawnList.Stages[i].MonsterSpawnData[j].MonsterNum);
+                Debug.Log(j + "번 몬스터 개수 " + monsterSpawnList.Stages[i].MonsterSpawnData[j].MonsterNum);
             }
         }
 
