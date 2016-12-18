@@ -22,7 +22,7 @@ public class SceneChanger : MonoBehaviour
         CharacterList = 0,
     }
 
-    private const float fadeValue = 0.8f;
+    private const float fadeValue = 1.5f;
     private float fadeTime;
     private Image fadePanel;
     private LoadingSceneUI loadingScene;
