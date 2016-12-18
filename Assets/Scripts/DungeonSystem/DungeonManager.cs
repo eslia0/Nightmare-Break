@@ -349,8 +349,6 @@ public class DungeonManager : MonoBehaviour
         StartCoroutine(m_camera.GetComponent<CameraController>().CameraCtrl(player.transform));
         
         InputManager.Instance.InitializeManager(player);
-        
-        ReSendManager.Instance.characterCreating = true;
 
         for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
         {
@@ -379,7 +377,7 @@ public class DungeonManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("이미 있는 캐릭터 인덱스");
+                Debug.Log("이미 있는 캐릭터 인덱스 : " + unitIndex);
             }
         }
         else

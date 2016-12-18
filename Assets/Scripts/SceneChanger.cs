@@ -104,6 +104,7 @@ public class SceneChanger : MonoBehaviour
             }
             else if (nextScene == (int)SceneName.TeddyBearStage1)
             {
+                //매니저 생성
                 GameManager.Instance.SetManagerInGame();
 
                 DungeonManager.Instance.ManagerInitialize(UIManager.Instance.RoomUIManager.DungeonId, UIManager.Instance.RoomUIManager.DungeonLevel);
@@ -186,6 +187,7 @@ public class SceneChanger : MonoBehaviour
             UIManager.Instance.BattleUIManager.ManagerInitialize();
 
             DungeonManager.Instance.StartDungeon(NetworkManager.Instance.UserIndex.Count);
+            ReSendManager.Instance.characterCreating = true;
 
             currentScene = SceneName.TeddyBearStage1;
         }
