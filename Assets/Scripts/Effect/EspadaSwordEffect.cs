@@ -3,9 +3,7 @@ using System.Collections;
 
 public class EspadaSwordEffect : MonoBehaviour
 {
-    ParticleSystem myParticle;
 	GameObject giganticSword;
-	public bool count;
 	public CharacterManager charManager;
 	float giganticSwordAliveTime;
 	public GameObject character;
@@ -25,8 +23,6 @@ public class EspadaSwordEffect : MonoBehaviour
 
     void Start()
     {
-		count = true;
-       // myParticle = transform.GetChild(0).GetComponent<ParticleSystem>();
 		character = GameObject.FindWithTag ("Player");
 		swordSound = this.gameObject.GetComponent<AudioSource> ();
 		swordSummonSound =  Resources.Load<AudioClip> ("Sound/WarriorEffectSound/GiganticSwordSummonEffectSound");
@@ -51,8 +47,10 @@ public class EspadaSwordEffect : MonoBehaviour
 
 	IEnumerator SwordAlpha()
 	{
+		yield return new WaitForSeconds (0.35f);
 		while (true)
 		{
+// 			swordDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charStatus.HClass, 4).GetSkillData (charStatus.skillLv).SkillValue)*  charStatus.Attack);
 			swordAlpha -= 0.1f;
 			swordMaterial.SetFloat ("_Alpha", swordAlpha);
 			Debug.Log (swordAlpha);
@@ -61,22 +59,13 @@ public class EspadaSwordEffect : MonoBehaviour
 		}
 	}
 
-    void OnCollisionEnter(Collision coll)
-    {
-		
-        if (coll.gameObject.layer == LayerMask.NameToLayer("Map"))
-        {
-			swordEffect =Instantiate(Resources.Load<GameObject>("Effect/SwordExplosion"), transform.position,new Quaternion(90,-90,0,0))as GameObject;
-
-			Destroy (swordEffect, 2.5f);
-			count = false;
-			swordSound.PlayOneShot (swordFinishSound);
-			Debug.Log ("in Field");
-        }
-    }
-
 	void OnTriggerEnter(Collider coll)
 	{
+
+		if (coll.gameObject.layer == LayerMask.NameToLayer ("Map"))
+		{
+			StartCoroutine (InStopSword());
+		}
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Enermy"))
 		{
 			Debug.Log ("in monster");
@@ -93,4 +82,21 @@ public class EspadaSwordEffect : MonoBehaviour
 		}
 	}
 
+	IEnumerator InStopSword()
+	{
+		yield return new WaitForSeconds (0.15f);
+		StartCoroutine (SwordAlpha ());
+		giganticSwordRigd.velocity = (transform.forward* 0);
+		giganticSwordRigd.useGravity = false;
+		swordEffect =Instantiate(Resources.Load<GameObject>("Effect/SwordExplosion"), new Vector3(this.transform.position.x,this.transform.position.y-1f,this.transform.position.z),new Quaternion(90,-90,0,0))as GameObject;
+		
+		Destroy (swordEffect, 2.5f);
+		swordSound.PlayOneShot (swordFinishSound);
+	}
+
 }
+//
+//swordEffect =Instantiate(Resources.Load<GameObject>("Effect/SwordExplosion"), transform.position,new Quaternion(90,-90,0,0))as GameObject;
+//
+//Destroy (swordEffect, 2.5f);
+//swordSound.PlayOneShot (swordFinishSound);

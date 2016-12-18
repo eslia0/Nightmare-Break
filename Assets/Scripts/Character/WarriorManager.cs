@@ -13,6 +13,7 @@ public class WarriorManager : CharacterManager
 	public CharWeapon bloodingWeapon;
 	public float riseCooltime;
     private GameObject wind;
+	public GameObject swordCircle;
     [SerializeField]
     private TrailRenderer trailRenderer;
     private GameObject[] attackEffect;
@@ -21,7 +22,7 @@ public class WarriorManager : CharacterManager
 	public AudioClip giganticSwordFinishSound;
 	public EspadaSwordEffect espadasword;
 	public AudioClip mealStromFinishSound;
-
+	public bool mealStromTranslate;
 	public bool poweroverwhelming;
 
 	public override void NormalAttack ()
@@ -46,8 +47,10 @@ public class WarriorManager : CharacterManager
 		float maelstromDistance;
         skillTime += Time.deltaTime;
 
-		transform.Translate ((Vector3.forward * testinput.vertical - Vector3.right * testinput.horizontal) * Time.deltaTime * (CharacterStatus.Instance.MoveSpeed-5f), Space.World);
-
+		if (wind)
+		{
+			transform.Translate ((Vector3.forward * testinput.vertical - Vector3.right * testinput.horizontal) * Time.deltaTime * (CharacterStatus.Instance.MoveSpeed - 5f), Space.World);
+		}
 
         if (enermy != null)
 		{
@@ -71,6 +74,23 @@ public class WarriorManager : CharacterManager
 		}
 
 	}
+
+	public void MealStromFinish()
+	{
+		mealStromTranslate = false;
+		Debug.Log ("in finish");
+		if (testinput.vertical < 0)
+		{
+			transform.rotation = Quaternion.Euler (new Vector3 (0, 180.0f, 0));
+			charDir = false;
+		}
+		else if (testinput.vertical > 0)
+		{
+			transform.rotation = Quaternion.Euler (new Vector3 (0, 0.0f, 0));
+			charDir = true;
+		}
+	}
+
 	public void WindEffect()
 	{
 		wind = Instantiate(Resources.Load<GameObject>("Effect/Wind"), new Vector3(transform.position.x, transform.position.y + 1.0f, transform.position.z), Quaternion.identity) as GameObject;
@@ -120,7 +140,7 @@ public class WarriorManager : CharacterManager
 
 		Ray cutOffDistance = new Ray (this.transform.position, transform.forward);
 		RaycastHit rayHit;
-
+		Debug.Log (cutOffDistance );
 		if (Physics.Raycast (cutOffDistance, out rayHit, 5f, 1 << LayerMask.NameToLayer ("Map")))
 		{
 			transform.Translate (0, 0, rayHit.distance - 0.5f);
@@ -139,11 +159,22 @@ public class WarriorManager : CharacterManager
 
 	public void SwordDanceBoxSummon ()
 	{
-		Debug.Log ("DanceSummon");
 		Instantiate (Resources.Load<GameObject> ("Effect/SwordDanceBox"), new Vector3 (transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-
+	
 	}
-
+	public void GiganticSwordCast()
+	{
+		float giganticSwordCastPos;
+		if (charDir)
+		{
+			giganticSwordCastPos = 7.0f;
+		}
+		else
+		{
+			giganticSwordCastPos = -7.0f;
+		}
+		swordCircle =  Instantiate (Resources.Load<GameObject> ("Effect/SwordSummonCircle"), transform.position + new Vector3 (0.0f, 0.0f, giganticSwordCastPos),Quaternion.Euler (new Vector3 (-90.0f, 0, 0))) as GameObject;
+	}
 	public void GiganticSwordSummon ()
 	{
 		float giganticSwordPos;
@@ -155,7 +186,7 @@ public class WarriorManager : CharacterManager
 		{
 			giganticSwordPos = -7.0f;
 		}
-
+	
 		giganticSwordTemp = Instantiate (Resources.Load<GameObject> ("GiganticSword"), transform.position + new Vector3 (0.0f, 20.0f, giganticSwordPos), Quaternion.Euler (new Vector3 (90.0f, 90.0f, -180.0f))) as GameObject;
 		espadasword = giganticSwordTemp.GetComponent<EspadaSwordEffect> ();
 		giganticSwordTemp.gameObject.GetComponent<Rigidbody> ().AddForce (-Vector3.up * giganticSwordSpeed, ForceMode.Impulse);

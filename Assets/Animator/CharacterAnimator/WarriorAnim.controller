@@ -718,7 +718,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: GiganticSwordSummon
+  m_Name: Skill4
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -872,29 +872,29 @@ AnimatorStateMachine:
     m_Position: {x: 108, y: 252, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110234012}
-    m_Position: {x: 252, y: 12, z: 0}
+    m_Position: {x: -120, y: 168, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110245150}
-    m_Position: {x: 384, y: 96, z: 0}
+    m_Position: {x: 408, y: 108, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000012672440370}
-    m_Position: {x: -156, y: 108, z: 0}
+    m_Position: {x: 324, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000011464553430}
-    m_Position: {x: -204, y: 0, z: 0}
+    m_Position: {x: 432, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000013017375366}
-    m_Position: {x: -156, y: 456, z: 0}
+    m_Position: {x: -144, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000013923019516}
-    m_Position: {x: 456, y: 624, z: 0}
+    m_Position: {x: 300, y: 372, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102000012376501252}
-    m_Position: {x: 432, y: 252, z: 0}
+    m_Position: {x: 432, y: 180, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 1107000010366501556}
-    m_Position: {x: 432, y: 372, z: 0}
+    m_Position: {x: 420, y: 288, z: 0}
   m_AnyStateTransitions:
   - {fileID: 1101000013911785858}
   - {fileID: 1101000013738825212}
@@ -905,7 +905,7 @@ AnimatorStateMachine:
       second:
       - {fileID: 1109000012944942094}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 120, y: 636, z: 0}
+  m_AnyStatePosition: {x: 96, y: 372, z: 0}
   m_EntryPosition: {x: -108, y: 252, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

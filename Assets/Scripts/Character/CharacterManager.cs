@@ -226,37 +226,6 @@ public class CharacterManager : MonoBehaviour
 		}
 
 	}
-
-
-	public void CheckGrounded ()
-	{
-		if (state == CharacterState.Jump)
-		{
-			if (transform.position.y <= 0.1f)
-			{
-				CharState ((int)CharacterState.Idle);
-			}
-		}
-	}
-
-	public void Jump ()
-	{
-		runState = this.animator.GetCurrentAnimatorStateInfo (0);
-
-		if (state != CharacterState.Jump && state != CharacterState.Attack && state != CharacterState.Skill1 && state != CharacterState.Skill2 && state != CharacterState.Skill1 && state != CharacterState.Skill4)
-		{
-			CharState ((int)CharacterState.Jump);
-		}
-
-
-	}
-
-	public void JumpForce ()
-	{
-		rigdbody.AddForce (Vector3.up * 10, ForceMode.Impulse);
-		JumpMove = true;
-	}
-
 	public virtual void NormalAttack ()
 	{
 		//if ( state != characterState.Skill2 && state != CharacterState.Attack  && state != characterState.Skill1 && state != characterState.Skill4 && state != CharacterState.HitDamage && state != CharacterState.Death)

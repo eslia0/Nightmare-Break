@@ -38,7 +38,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011237120542}
   m_Layer: 0
-  m_Name: SwordExplosion
+  m_Name: SwordExplosion 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,10 +50,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014288708220}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.48316526, y: 0.66196024, z: -109.90649}
-  m_LocalScale: {x: 7, y: 7, z: 7}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalRotation: {x: 0.58400375, y: -0.39867222, z: -0.5840038, w: -0.39867225}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.66666657, y: 2.333333, z: 2.3333328}
+  m_LocalEulerAnglesHint: {x: 0, y: 561.1, z: -90.00001}
   m_Children:
   - {fileID: 4000013628852432}
   m_Father: {fileID: 0}
