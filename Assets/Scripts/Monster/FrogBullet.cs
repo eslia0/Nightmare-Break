@@ -7,6 +7,11 @@ public class FrogBullet : MonoBehaviour {
 	public int damage;
 	public Vector3 moveVector;
 
+
+	void Start()
+	{
+		Destroy (this.gameObject,3.0f);
+	}
 	public void SetDamage(int _damage, GameObject _AttackMonster){
 		AttackMonster = _AttackMonster;
 		damage = _damage;
@@ -26,6 +31,7 @@ public class FrogBullet : MonoBehaviour {
 	void OnTriggerEnter(Collider coll){
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Player")) {
 			coll.gameObject.GetComponent<CharacterManager> ().HitDamage (damage);
+			Destroy (this.gameObject);
 		}
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Map")) {
 			Destroy (this.gameObject);

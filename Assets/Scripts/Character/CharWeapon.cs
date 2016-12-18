@@ -36,7 +36,7 @@ public class CharWeapon : MonoBehaviour
 		mealstromEffectSound=Resources.Load<AudioClip> ("Sound/WarriorEffectSound/MealstromEffectSound");
 		swordDanceFinishEffectSound =Resources.Load<AudioClip> ("Sound/WarriorEffectSound/SwordDanceFinishEffectSound");
 		giganticSwordSound = Resources.Load<AudioClip> ("Sound/WarriorEffectSound/GiganticSwordSummonSound");
-		attackSound.volume = 0.1f;
+		attackSound.volume = 0.5f;
 		skillLv = CharacterStatus.Instance.SkillLevel[5];
     }
 

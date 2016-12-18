@@ -21,6 +21,8 @@ GameObject:
   - 4: {fileID: 4000011360562666}
   - 198: {fileID: 198000011173080208}
   - 199: {fileID: 199000013622963348}
+  - 65: {fileID: 65000012476185394}
+  - 114: {fileID: 114000012486106306}
   m_Layer: 0
   m_Name: BossRoar
   m_TagString: Untagged
@@ -35,12 +37,40 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011559332084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.13, y: 4.39, z: -13.78}
+  m_LocalPosition: {x: 0.28, y: 4.39, z: -13.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!65 &65000012476185394
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011559332084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.548424, y: 6.548423, z: 14.548419}
+  m_Center: {x: 0.00000011920929, y: -0.00000011920929, z: 4.1999993}
+--- !u!114 &114000012486106306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011559332084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c590e1ad97fb94cb6b2ec78a4e0714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attacker: {fileID: 0}
+  damage: 0
+  sphereRigid: {fileID: 0}
+  roarBox: {fileID: 0}
+  player: {fileID: 0}
 --- !u!198 &198000011173080208
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -91,7 +121,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1454126953
+  randomSeed: 1307909776
   InitialModule:
     serializedVersion: 2
     enabled: 1

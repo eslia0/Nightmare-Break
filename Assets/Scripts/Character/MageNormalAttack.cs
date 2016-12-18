@@ -40,14 +40,14 @@ public class MageNormalAttack : MonoBehaviour {
 			}
 
 			Destroy (gameObject);
-			Instantiate (Resources.Load<GameObject> ("Effect/MeteorExplosion"), this.transform.position, Quaternion.identity);
+			Instantiate (Resources.Load<GameObject> ("Effect/NormalAttackExplosion"), this.transform.position, Quaternion.identity);
 
 		}
 		else if (coll.gameObject.layer == LayerMask.NameToLayer ("Map"))
 		{
 
 			Destroy (gameObject);
-			Instantiate (Resources.Load<GameObject> ("Effect/MeteorExplosion"), this.transform.position, Quaternion.identity);
+			Instantiate (Resources.Load<GameObject> ("Effect/NormalAttackExplosion"), this.transform.position, Quaternion.identity);
 			
 		}
 	}

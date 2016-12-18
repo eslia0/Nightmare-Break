@@ -49,7 +49,7 @@ public class WarriorManager : CharacterManager
 
 		if (wind)
 		{
-			transform.Translate ((Vector3.forward * testinput.vertical - Vector3.right * testinput.horizontal) * Time.deltaTime * (CharacterStatus.Instance.MoveSpeed - 5f), Space.World);
+			//transform.Translate ((Vector3.forward * testinput.vertical - Vector3.right * testinput.horizontal) * Time.deltaTime * (CharacterStatus.Instance.MoveSpeed - 5f), Space.World);
 		}
 
         if (enermy != null)
@@ -78,12 +78,12 @@ public class WarriorManager : CharacterManager
 	public void MealStromFinish()
 	{
 		mealStromTranslate = false;
-		if (testinput.vertical < 0)
+	//	if (testinput.vertical < 0)
 		{
 			transform.rotation = Quaternion.Euler (new Vector3 (0, 180.0f, 0));
 			charDir = false;
 		}
-		else if (testinput.vertical > 0)
+		//else if (testinput.vertical > 0)
 		{
 			transform.rotation = Quaternion.Euler (new Vector3 (0, 0.0f, 0));
 			charDir = true;

@@ -90,7 +90,7 @@ public class Armageddon : MonoBehaviour
 		armageddonImpact = Instantiate(Resources.Load<GameObject>("Effect/ArmageddonImpact"), new Vector3 (this.transform.position.x, this.transform.position.y-1f , this.transform.position.z), Quaternion.identity) as GameObject;
 		armageddonExplosion =Instantiate (Resources.Load<GameObject> ("Effect/ArmageddonExplosion"), transform.position, Quaternion.identity)as GameObject;
 		armageddonSmallExplosion = Instantiate (Resources.Load<GameObject> ("Effect/ArmageddonSmallExplosion"), transform.position, Quaternion.identity)as GameObject;
-		meteorExplosion = Instantiate (Resources.Load<GameObject> ("Effect/MeteorExplosion"), transform.position, Quaternion.identity)as GameObject;
+		meteorExplosion = Instantiate (Resources.Load<GameObject> ("Effect/ArmageddonExplosion"), transform.position, Quaternion.identity)as GameObject;
 
 		//		meteorCreatorHurtRigd.useGravity = true;
 		//		meteorCenterRigd.useGravity = true;

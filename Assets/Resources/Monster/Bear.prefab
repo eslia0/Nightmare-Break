@@ -388,6 +388,7 @@ GameObject:
   - 54: {fileID: 54000012526854600}
   - 65: {fileID: 65000010137928118}
   - 114: {fileID: 114000011122868438}
+  - 82: {fileID: 82000012234484964}
   m_Layer: 9
   m_Name: Bear
   m_TagString: Enermy
@@ -1474,7 +1475,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 36
@@ -1530,6 +1531,80 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.584047, y: 1, z: 1}
   m_Center: {x: -0.1402058, y: 0.00069299224, z: -0.00008817229}
+--- !u!82 &82000012234484964
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012063004732}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95000012424996954
 Animator:
   serializedVersion: 3
@@ -1597,6 +1672,19 @@ MonoBehaviour:
   currentDisTanceWall: []
   checkDirection: {x: 0, y: 0, z: 0}
   pointVector: []
+  roarBreak: 0
+  MonsterAudio: {fileID: 0}
+  bearRoar: {fileID: 0}
+  frogAttack: {fileID: 0}
+  frogDeath: {fileID: 0}
+  frogHit: {fileID: 0}
+  middleBossAttack1: {fileID: 0}
+  middleBossAttack2: {fileID: 0}
+  middleBossDeath: {fileID: 0}
+  middleBossWave: {fileID: 0}
+  rabbitAttack: {fileID: 0}
+  rabbitDeath: {fileID: 0}
+  rabbitHit: {fileID: 0}
 --- !u!114 &114000013346823492
 MonoBehaviour:
   m_ObjectHideFlags: 1

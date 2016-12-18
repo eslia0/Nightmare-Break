@@ -144,7 +144,6 @@ public class DungeonManager : MonoBehaviour
 		for (int i = 0; i < 3; i++) {
 			if (SceneManager.GetActiveScene ().name == "LostTeddyBear_SingleType"+i) {
 				mapNumber = i;
-				Debug.Log (i);
 				if (i == 1) {
 					normalMode = false;
 				} else
@@ -225,11 +224,11 @@ public class DungeonManager : MonoBehaviour
 
         CreatePlayer((int)CharacterStatus.Instance.HGender, (int)CharacterStatus.Instance.HClass);
         
-        //if (NetworkManager.Instance.MyIndex == 0)
-        //{
-        //    InitializeMonsterSpawnPoint(1);
-        //    SpawnMonster(1);
-        //}
+        if (NetworkManager.Instance.MyIndex == 0)
+        {
+            InitializeMonsterSpawnPoint(1);
+            SpawnMonster(1);
+        }
     }
 
     public GameObject CreateMonster(int unitId, int unitIndex, Vector3 createPoint)

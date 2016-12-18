@@ -170,12 +170,27 @@ ModelImporter:
       - time: 0.63276726
         functionName: RoarHit
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 11500000, guid: f7f4445226db14946a625617aba881f5,
+          type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 1
         functionName: AttackEnd
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: RoarHitWarning
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.5850541
+        functionName: BearRoarSound
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

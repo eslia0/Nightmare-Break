@@ -505,6 +505,7 @@ GameObject:
   - 65: {fileID: 65000014109305910}
   - 114: {fileID: 114000013341134228}
   - 54: {fileID: 54000013236339662}
+  - 82: {fileID: 82000011817876504}
   m_Layer: 9
   m_Name: Duck
   m_TagString: Enermy
@@ -985,7 +986,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 36
@@ -1014,6 +1015,80 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8759913, y: 1.1083926, z: 1.4841126}
   m_Center: {x: -0.085204065, y: 0.10758221, z: 0.6580672}
+--- !u!82 &82000011817876504
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014161353026}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95000010412994360
 Animator:
   serializedVersion: 3
@@ -1044,12 +1119,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalMode: 0
   target: 0
+  HittedBox: {fileID: 0}
   attackCollider: []
   bulletInstantiate: []
   player: []
   targetPlayer: {fileID: 0}
   movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
+  currentHP: 0
   attack: 0
   moveSpeed: 0
   RunRange: 0
@@ -1058,6 +1134,7 @@ MonoBehaviour:
   currentDisTance: 0
   searchRange: 0
   isAlive: 0
+  bossNormalAttackCycle: 0
   bossRandomPattern: 0
   shootNumber: 0
   chasePlayer: {fileID: 0}
@@ -1065,6 +1142,19 @@ MonoBehaviour:
   currentDisTanceWall: []
   checkDirection: {x: 0, y: 0, z: 0}
   pointVector: []
+  roarBreak: 0
+  MonsterAudio: {fileID: 0}
+  bearRoar: {fileID: 0}
+  frogAttack: {fileID: 0}
+  frogDeath: {fileID: 0}
+  frogHit: {fileID: 0}
+  middleBossAttack1: {fileID: 0}
+  middleBossAttack2: {fileID: 0}
+  middleBossDeath: {fileID: 0}
+  middleBossWave: {fileID: 0}
+  rabbitAttack: {fileID: 0}
+  rabbitDeath: {fileID: 0}
+  rabbitHit: {fileID: 0}
 --- !u!137 &137000012283526120
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
