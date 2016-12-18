@@ -291,14 +291,6 @@ public class DataHandler : MonoBehaviour
 
         UIManager.Instance.WaitingUIManager.SetRoomListData(roomListData);
 
-        for (int i = 0; i < WaitingUIManager.maxRoomNum; i++)
-        {
-            for (int j = 0; j < WaitingUIManager.maxPlayerNum; j++)
-            {
-                Debug.Log(i + " - " + j + roomListData.Rooms[i].RoomUserData[j].UserName + " ");
-            }
-        }
-
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {
             SceneChanger.Instance.LoadingCheck[0] = true;
