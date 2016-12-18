@@ -92,7 +92,6 @@ public class RoomUIManager : MonoBehaviour {
             userName[i] = GameObject.Find("UserName" + (i + 1)).GetComponent<Text>();
             classIcon[i] = GameObject.Find("ClassIcon" + (i + 1)).GetComponent<Image>();
             characterBackImage[i] = GameObject.Find("CharacterBackImage" + (i + 1)).GetComponent<Image>();
-            characterBackImage[i].gameObject.SetActive(false);
         }
 
         for(int i = 0; i < skillAddBtn.Length; i++)
