@@ -218,7 +218,7 @@ public class WaitingUIManager : MonoBehaviour
 	{
 		if (roomCreateUI.activeSelf) {
 			createroomName.text = "";
-            dungeonLevel = 0;
+            dungeonLevel = 1;
             roomCreateUI.SetActive (false);
 		} else if (skillAddUI.activeSelf) {
 			skillAddUI.SetActive (false);
@@ -259,14 +259,18 @@ public class WaitingUIManager : MonoBehaviour
 		for (int i = 0; i < maxRoomNum; i++) {
             if (rooms[i].PlayerNum != 0)
 			{
+				roomBtn [i].image.sprite = Resources.Load<Sprite> ("WaitingRoomImage/RoomActive");
+				roomIndex[i].text = "00"+i;
 				roomName [i].text = rooms [i].RoomName;
 				roomDungeonLevel [i].text = rooms [i].DungeonLevel.ToString();
 				roomCurrentUser [i].text = (rooms [i].PlayerNum.ToString () + "/" + maxPlayerNum.ToString ());
 			}
             else
             {
+				roomBtn [i].image.sprite = Resources.Load<Sprite> ("WaitingRoomImage/RoomNotActive");
+				roomIndex [i].text = "";
                 roomName[i].text = "";
-                roomDungeonLevel[i].text = "";
+                roomDungeonLevel[i].text = "1";
                 roomCurrentUser[i].text = "";
             }
 		}
