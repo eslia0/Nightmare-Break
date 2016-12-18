@@ -3,18 +3,9 @@ using System.Collections;
 
 public class SceneChangeObject : MonoBehaviour {
 	public GameObject[] Players;
-	public int lookAtSceneNumber;
 	public GameObject sceneObject;
-	public int ColliderEnterCount;
 
 
-//	public void SceneChangeObjectSet(GameObject[] _Players, int playerLength){
-//		Players = new GameObject[playerLength];
-//		Players = _Players;
-//		sceneObject = this.gameObject;
-//		ColliderEnterCount = 0;
-//		DungeonManager.Instance = transform.GetComponentInParent<DungeonManager>();
-//	}
 	void Start(){
 		
 	}
@@ -23,13 +14,18 @@ public class SceneChangeObject : MonoBehaviour {
 		//Players = new GameObject[playerLength];
 		//Players = _Players;
 		sceneObject = this.gameObject;
-		ColliderEnterCount = 0;
-		lookAtSceneNumber = _number;
 		Players = GameObject.FindGameObjectsWithTag ("Player");
-
+		sceneObject = this.gameObject;
 		sceneObject.SetActive (false);
 	}
 
+	public void SceneChangeObjectSetFalse(){
+		this.gameObject.SetActive (false);
+	}
+
+	public void SceneChangeObjectSettrue(){
+		this.gameObject.SetActive (true);
+	}
 
 
 

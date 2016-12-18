@@ -41,7 +41,7 @@ public class Monster : MonoBehaviour {
 
     protected Animator animator;
 	protected AnimatorStateInfo aniState;
-	protected BoxCollider HittedBox;
+	[SerializeField]protected BoxCollider HittedBox;
 	[SerializeField]protected MonsterWeapon[] attackCollider;
 	[SerializeField]protected GameObject[] bulletInstantiate;
 
@@ -60,11 +60,11 @@ public class Monster : MonoBehaviour {
 	//mode,gateArraynumber,monsterArraynumber
 	protected bool moveAble;
 
-	[SerializeField]protected int monsterIndex;
+	protected int monsterIndex;
 	protected MonsterId monsterId;
     protected string _name;
     protected int level;
-    protected int currentHP;
+	[SerializeField]protected int currentHP;
 	protected int maxHP;
 	[SerializeField]protected int attack;
     protected int defense;
@@ -241,7 +241,7 @@ public class Monster : MonoBehaviour {
 		normalMode = dun.NormalMode;
 
 
-		MonsterAIStart (dun.NormalMode);
+		//MonsterAIStart (dun.NormalMode);
 
     }
 
@@ -1082,8 +1082,8 @@ public class Monster : MonoBehaviour {
 	public void MonsterArrayEraser(GameObject thisGameObject)
 	{
 		this.gameObject.SetActive (false);
-		DungeonManager dun = GameObject.Find ("DungeonManager").GetComponent<DungeonManager> ();
-		//dun.
+		//DungeonManager dun = GameObject.Find ("DungeonManager").GetComponent<DungeonManager> ();
+
 
 	}
 
@@ -1091,6 +1091,7 @@ public class Monster : MonoBehaviour {
 	{
 		currentHP -= _Damage;
 
+		Debug.Log ("in boss");
 		if (currentHP > 0)
 		{
 			for (int i = 0; i < player.Length; i++)
@@ -1103,7 +1104,10 @@ public class Monster : MonoBehaviour {
 			if (monsterId != MonsterId.Bear || monsterId != MonsterId.BlackBear) {
 				statePosition = StatePosition.TakeDamage;
 				Pattern (statePosition);
+			} else {
 			}
+
+
 		}
 		else
 		{
