@@ -184,10 +184,7 @@ public class SceneChanger : MonoBehaviour
         {
             UIManager.Instance.BattleUIManager.ManagerInitialize();
 
-            NetworkManager.Instance.ReSendManager.characterCreating = true;
-
-            DungeonManager.Instance.InitializePlayer(NetworkManager.Instance.UserIndex.Count);
-            DungeonManager.Instance.CreatePlayer((int)CharacterStatus.Instance.HGender, (int)CharacterStatus.Instance.HClass);
+            DungeonManager.Instance.StartDungeon(NetworkManager.Instance.UserIndex.Count);
 
             currentScene = SceneName.InGameScene;
         }
