@@ -92,19 +92,22 @@ public class DungeonManager : MonoBehaviour
 
             stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 3));
             stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 3));
-            stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 3));
+            stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
+			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.BlackBear, 1, 1));
 
             dungeonData.Stages.Add(stage1);
 
-            MonsterBaseData[] monsterBaseData = new MonsterBaseData[3];
+            MonsterBaseData[] monsterBaseData = new MonsterBaseData[4];
             monsterBaseData[0] = new MonsterBaseData((int)MonsterId.Frog, "Frog");
             monsterBaseData[0].AddLevelData(new MonsterLevelData(1, 2, 0, 900, 3));
             monsterBaseData[1] = new MonsterBaseData((int)MonsterId.Duck, "Duck");
             monsterBaseData[1].AddLevelData(new MonsterLevelData(1, 3, 0, 1050, 3));
             monsterBaseData[2] = new MonsterBaseData((int)MonsterId.Rabbit, "Rabbit");
             monsterBaseData[2].AddLevelData(new MonsterLevelData(1, 5, 0, 2250, 4));
+			monsterBaseData[3] = new MonsterBaseData((int)MonsterId.BlackBear, "BlackBear");
+			monsterBaseData[3].AddLevelData(new MonsterLevelData(1, 25, 0, 11250, 3));
 
-            MonsterStatusData monsterStatusData = new MonsterStatusData(3, monsterBaseData);
+            MonsterStatusData monsterStatusData = new MonsterStatusData(4, monsterBaseData);
             SetMonsterData(monsterStatusData);
 
             SpawnMonster(1);
