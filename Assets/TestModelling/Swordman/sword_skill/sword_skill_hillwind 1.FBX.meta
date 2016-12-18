@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3328bf5280f818344b5e212138611cee
-timeCreated: 1481889318
+guid: 53c613e8a299d434a9cfbfa1904b178b
+timeCreated: 1482057262
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -141,7 +141,7 @@ ModelImporter:
     4300014: pants
     4300016: face
     4300018: sword
-    7400000: WarriorMealStromFinish
+    7400000: MealStrom
     9500000: //RootNode
     13700000: b_hair
     13700002: cloth
@@ -174,10 +174,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: WarriorMealStromFinish
+      name: MealStrom
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 100
+      lastFrame: 85
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -213,7 +213,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.53582275
+      - time: 0.5983264
         functionName: MealStromFinishSound
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 49494eaf77bde6e4a96a0fded9f18500,
@@ -221,16 +221,16 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.5951417
-        functionName: MealStromFinish
+      - time: 0.93363076
+        functionName: AnimationEnd
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 49494eaf77bde6e4a96a0fded9f18500,
           type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.90603346
-        functionName: AnimationEnd
+      - time: 0.59458673
+        functionName: MealStromFinish
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 49494eaf77bde6e4a96a0fded9f18500,
           type: 3}
