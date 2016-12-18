@@ -11,10 +11,13 @@ public class BattleUIManager : MonoBehaviour
     private const int maxSkillUI = 6;
     private const int maxskillCoolTimeUI = 4;
     private const int maxUser = 4;
+    private const float comboCheckTime = 1.5f;
 
-	private Image potionCoolTimeUI;
-	private Text mouseOverUI;
+    private Text mouseOverUI;
+    private Text comboText;
+    private Text monsterName;
 
+    private Image potionCoolTimeUI;
 	private Image[] skillUI;
 	private Image[] skillCoolTimeUI; // 0 - SKill1 // 1 - SKill2 // 2 - Skill3 // 3 - Skill4 //
     private Image[] partyGenderIcon;
@@ -23,7 +26,7 @@ public class BattleUIManager : MonoBehaviour
     private Image mpBar;
     private Image monsterHpBar;
 
-    private Text monsterName;
+    
    
 	public Image[] SkillCoolTimeUI{ get{ return skillCoolTimeUI; }}
 	public Text MouseOverUI{ get { return mouseOverUI; } set { mouseOverUI = value; } }
