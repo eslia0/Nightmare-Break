@@ -75,7 +75,7 @@ GameObject:
   - 23: {fileID: 23000011930662744}
   - 54: {fileID: 54000010063203306}
   - 114: {fileID: 114000014043587278}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LeftWall
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
