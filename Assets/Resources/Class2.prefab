@@ -597,7 +597,7 @@ GameObject:
   - 114: {fileID: 114000013532767510}
   - 65: {fileID: 65000010977477084}
   m_Layer: 8
-  m_Name: WomanWarrior
+  m_Name: Class2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1765,8 +1765,6 @@ MonoBehaviour:
   rigdbody: {fileID: 0}
   charWeapon: {fileID: 0}
   weapon: {fileID: 0}
-  inputmanager: {fileID: 0}
-  charStatus: {fileID: 0}
   enermy: []
   jumpPower: 0
   charDir: 0
@@ -1798,10 +1796,13 @@ MonoBehaviour:
   rise: 0
   bloodingWeapon: {fileID: 0}
   riseCooltime: 0
+  swordCircle: {fileID: 0}
   trailRenderer: {fileID: 0}
   swordFinishSound: {fileID: 0}
   giganticSwordFinishSound: {fileID: 0}
   espadasword: {fileID: 0}
+  mealStromFinishSound: {fileID: 0}
+  mealStromTranslate: 0
   poweroverwhelming: 0
 --- !u!137 &137000010972728996
 SkinnedMeshRenderer:

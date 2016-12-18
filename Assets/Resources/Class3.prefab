@@ -147,7 +147,7 @@ GameObject:
   - 82: {fileID: 82000011346337602}
   - 114: {fileID: 114000013487755496}
   m_Layer: 8
-  m_Name: ManMage
+  m_Name: Class3
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1837,6 +1837,7 @@ MonoBehaviour:
   armaDestroy: {fileID: 0}
   ArmageddonFinishSound: {fileID: 0}
   Meteor: {fileID: 0}
+  fireBallCastSound: {fileID: 0}
 --- !u!137 &137000010079281018
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

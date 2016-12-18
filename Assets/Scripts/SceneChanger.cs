@@ -22,7 +22,7 @@ public class SceneChanger : MonoBehaviour
         CharacterList = 0,
     }
 
-    private const float fadeValue = 0.8f;
+    private const float fadeValue = 1.5f;
     private float fadeTime;
     private Image fadePanel;
     private LoadingSceneUI loadingScene;
@@ -180,11 +180,11 @@ public class SceneChanger : MonoBehaviour
         #endregion
 
         #region 던전 씬 로드
-        else if (scene.name == "InGameScene")
+        else if (scene.name == "LostTeddyBear_Stage1")
         {
             UIManager.Instance.BattleUIManager.ManagerInitialize();
 
-        //    DungeonManager.Instance.StartDungeon(NetworkManager.Instance.UserIndex.Count);
+            DungeonManager.Instance.StartDungeon(NetworkManager.Instance.UserIndex.Count);
 
             currentScene = SceneName.InGameScene;
         }

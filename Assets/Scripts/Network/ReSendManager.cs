@@ -4,7 +4,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ReSendManager : MonoBehaviour
-{    
+{
+    private static ReSendManager instance;
+
+    public static ReSendManager Instance
+    {
+        get
+        {
+            if (!instance)
+            {
+                instance = FindObjectOfType(typeof(ReSendManager)) as ReSendManager;
+                if (!instance)
+                {
+                    GameObject container = new GameObject();
+                    container.name = "ReSendManager";
+                    instance = container.AddComponent(typeof(ReSendManager)) as ReSendManager;
+                }
+            }
+
+            return instance;
+        }
+    }
+
     private Dictionary<int, SendData>[] reSendDatum;
     SendData reSendData;
 

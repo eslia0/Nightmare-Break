@@ -127,12 +127,13 @@ public class WaitingUIManager : MonoBehaviour
             roomName [i] = roomBtn [i].transform.GetChild (1).GetComponent<Text> ();
             roomDungeonLevel [i] = roomBtn [i].transform.GetChild (2).GetComponent<Text> ();
 			roomCurrentUser [i] = roomBtn [i].transform.GetChild (3).GetComponent<Text> ();
-			if (i < maxPlayerNum) {
-				roomInfoClassIcon [i] = roomInfoUI.transform.FindChild("ClassIcon" + (i+1)).GetComponent<Image> ();
-				roomInfoUserName [i] = roomInfoClassIcon [i].transform.GetChild (0).GetComponent<Text> (); 
-                roomInfoGenderIcon [i] = roomInfoClassIcon [i].transform.GetChild (1).GetComponent<Image> ();
-			}
 		}
+        for (int i = 0; i < maxPlayerNum; i++)
+        {
+            roomInfoClassIcon[i] = roomInfoUI.transform.FindChild("ClassIcon" + (i + 1)).GetComponent<Image>();
+            roomInfoUserName[i] = roomInfoClassIcon[i].transform.GetChild(0).GetComponent<Text>();
+            roomInfoGenderIcon[i] = roomInfoClassIcon[i].transform.GetChild(1).GetComponent<Image>();
+        }
     }
 
     public void InitializeAddListner()
@@ -244,7 +245,7 @@ public class WaitingUIManager : MonoBehaviour
 		roomInfoUI.SetActive (true);
         for (int i = 0; i < maxPlayerNum; i++)
         {
-            if (rooms[i].PlayerNum > 0)
+            if (rooms[roomNum].PlayerNum > 0)
             {
                 roomInfoClassIcon[i].sprite = Resources.Load<Sprite>("RoomClassIcon/Class" + (rooms[roomNum].RoomUserData[i].UserClass));
                 roomInfoUserName[i].text = rooms[roomNum].RoomUserData[i].UserName;

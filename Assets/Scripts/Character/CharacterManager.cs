@@ -536,7 +536,7 @@ public class CharacterManager : MonoBehaviour
         if(comboCount == count)
         {
             comboCount = 0;
-            ComboSystem.instance.ComboEnd();
+         //   ComboSystem.instance.ComboEnd();
         }
         checkTime = 0;
     }

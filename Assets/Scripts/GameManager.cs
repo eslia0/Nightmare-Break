@@ -34,7 +34,14 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        myIP = Dns.GetHostAddresses(Dns.GetHostName())[1].ToString();
+        for (int addressIndex =0; addressIndex < Dns.GetHostAddresses(Dns.GetHostName()).Length; addressIndex++)
+        {
+            if(Dns.GetHostAddresses(Dns.GetHostName())[addressIndex].ToString().Length == 13)
+            {
+                myIP = Dns.GetHostAddresses(Dns.GetHostName())[addressIndex].ToString();
+            }
+        }
+        
         InitializeManager();
         Application.runInBackground = true;
     }
@@ -100,10 +107,12 @@ public class GameManager : MonoBehaviour
         dungeonManager = (Instantiate(Resources.Load("Manager/DungeonManager")) as GameObject).GetComponent<DungeonManager>();
         dungeonManager.name = "DungeonManager";
         dungeonManager.tag = "DungeonManager";
+        DontDestroyOnLoad(dungeonManager);
 
         inputManager = (Instantiate(Resources.Load("Manager/InputManager")) as GameObject).GetComponent<InputManager>();
         inputManager.name = "InputManager";
         inputManager.tag = "InputManager";
+        DontDestroyOnLoad(inputManager);
     }
 
     public void OnApplicationQuit()
