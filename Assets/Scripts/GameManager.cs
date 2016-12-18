@@ -34,7 +34,14 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        myIP = Dns.GetHostAddresses(Dns.GetHostName())[1].ToString();
+        for (int addressIndex =0; addressIndex < Dns.GetHostAddresses(Dns.GetHostName()).Length; addressIndex++)
+        {
+            if(Dns.GetHostAddresses(Dns.GetHostName())[addressIndex].ToString().Length == 13)
+            {
+                myIP = Dns.GetHostAddresses(Dns.GetHostName())[addressIndex].ToString();
+            }
+        }
+        
         InitializeManager();
         Application.runInBackground = true;
     }
