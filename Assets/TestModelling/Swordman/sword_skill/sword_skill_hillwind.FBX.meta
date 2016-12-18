@@ -213,7 +213,23 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.92036057
+      - time: 0.5951417
+        functionName: MealStromFinish
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 49494eaf77bde6e4a96a0fded9f18500,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6034556
+        functionName: MealStromFinishSound
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 49494eaf77bde6e4a96a0fded9f18500,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.90603346
         functionName: AnimationEnd
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 49494eaf77bde6e4a96a0fded9f18500,
