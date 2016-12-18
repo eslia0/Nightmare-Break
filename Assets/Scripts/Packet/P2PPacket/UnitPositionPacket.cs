@@ -6,6 +6,7 @@
         {
             bool ret = true;
 
+            ret &= Serialize(data.UnitType);
             ret &= Serialize(data.Dir);
             ret &= Serialize(data.UnitIndex);
             ret &= Serialize(data.PosX);
@@ -25,17 +26,17 @@
             bool ret = true;
             byte unitType = 0;
             bool dir = true;
+            byte unitIndex = 0;
             float posX = 0;
             float posY = 0;
             float posZ = 0;
-            byte unitIndex = 0;
 
             ret &= Deserialize(ref unitType);
             ret &= Deserialize(ref dir);
+            ret &= Deserialize(ref unitIndex);
             ret &= Deserialize(ref posX);
             ret &= Deserialize(ref posY);
             ret &= Deserialize(ref posZ);
-            ret &= Deserialize(ref unitIndex);
 
             element = new UnitPositionData(unitType, dir, posX, posY, posZ, unitIndex);
 

@@ -54,7 +54,6 @@ public class DungeonManager : MonoBehaviour
 	[SerializeField]int mapNumber;
     int dungeonId;
     int dungeonLevel;
-    int userNum;
 
     bool normalMode; //false  -> normalBattle, true -> Defence; 
 
@@ -161,11 +160,6 @@ public class DungeonManager : MonoBehaviour
         dungeonLevel = newDungeonLevel;
     }
 
-    public void SetUserNum(int newUserNum)
-    {
-        userNum = newUserNum;
-    }
-
     public void InitializePlayer(int playerNum)
     {
         Debug.Log("유저 수 : " + playerNum);
@@ -231,11 +225,11 @@ public class DungeonManager : MonoBehaviour
 
         CreatePlayer((int)CharacterStatus.Instance.HGender, (int)CharacterStatus.Instance.HClass);
         
-        if (userNum == 0)
-        {
-            InitializeMonsterSpawnPoint(1);
-            SpawnMonster(1);
-        }
+        //if (NetworkManager.Instance.MyIndex == 0)
+        //{
+        //    InitializeMonsterSpawnPoint(1);
+        //    SpawnMonster(1);
+        //}
     }
 
     public GameObject CreateMonster(int unitId, int unitIndex, Vector3 createPoint)
@@ -337,6 +331,8 @@ public class DungeonManager : MonoBehaviour
         //딕셔너리를 사용하여 그에 맞는 캐릭터를 소환해야 하지만 Prototype 진행 시에는 고정된 플레이어를 소환하도록 함.
 
         int characterId = (hClass * CharacterStatus.maxGender) + gender + 1;
+        int userNum = NetworkManager.Instance.MyIndex;
+        Debug.Log("내 캐릭터 생성 번호" + userNum);
 
         GameObject player = Instantiate(Resources.Load("Class" + characterId)) as GameObject;
         player.tag = "Player";
@@ -375,7 +371,7 @@ public class DungeonManager : MonoBehaviour
             {
                 GameObject unit = Instantiate(Resources.Load("Class" + unitId)) as GameObject;
                 unit.transform.position = newPosition;
-                unit.tag = "Untagged";
+                unit.tag = "Player";
                 players[unitIndex] = unit;
 
                 characterData[unitIndex] = unit.GetComponent<CharacterManager>();

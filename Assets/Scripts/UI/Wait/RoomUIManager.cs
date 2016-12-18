@@ -40,9 +40,7 @@ public class RoomUIManager : MonoBehaviour {
     int dungeonLevel;
 
     int roomNum;
-    int userNum;
-
-    public int UserNum { get { return userNum; } }
+    
     public int DungeonId { get { return dungeonId; } }
     public int DungeonLevel { get { return dungeonLevel; } }
 
@@ -124,7 +122,7 @@ public class RoomUIManager : MonoBehaviour {
         roomDungeonLevel.text = dungeonLevel.ToString();
 
         roomData = newRoomData;
-
+        
         for (int i = 0; i < roomData.RoomUserData.Length; i++)
         {
             if (roomData.RoomUserData[i].UserLevel > 0)
@@ -149,12 +147,6 @@ public class RoomUIManager : MonoBehaviour {
                 classIcon[i].color = new Color(0,0,0,0);
             }
         }
-    }
-
-
-    public void SetMyNum(int newUserNum)
-    {
-        userNum = newUserNum;
     }
 
     void GameStart()

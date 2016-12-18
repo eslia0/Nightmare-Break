@@ -490,7 +490,7 @@ public class DataSender : MonoBehaviour
             float yPos = characterManager.transform.position.y;
             float zPos = characterManager.transform.position.z;
 
-            UnitPositionData unitPositionData = new UnitPositionData((byte)UnitType.Hero ,dir, xPos, yPos, zPos, (byte)characterManager.UserNum);
+            UnitPositionData unitPositionData = new UnitPositionData((byte)UnitType.Hero ,dir, xPos, yPos, zPos, (byte)NetworkManager.Instance.MyIndex);
             UnitPositionPacket unitPositionPacket = new UnitPositionPacket(unitPositionData);
             unitPositionPacket.SetPacketId((int)P2PPacketId.UnitPosition);
 

@@ -452,7 +452,6 @@ public class DataHandler : MonoBehaviour
             if (endPoint == NetworkManager.Instance.ServerSock.LocalEndPoint.ToString())
             {
                 NetworkManager.Instance.SetMyIndex(userIndex);
-                DungeonManager.Instance.SetUserNum(userIndex);
             }
         }
 
@@ -534,7 +533,9 @@ public class DataHandler : MonoBehaviour
     {
         UnitPositionPacket unitPositionPacket = new UnitPositionPacket(packet.msg);
         UnitPositionData unitPositionData = unitPositionPacket.GetData();
-        
+
+        Debug.Log("유닛 인덱스" + unitPositionData.UnitIndex);
+
         if (unitPositionData.UnitType == (byte)UnitType.Hero)
         {
             DungeonManager.Instance.SetCharacterPosition(unitPositionData);

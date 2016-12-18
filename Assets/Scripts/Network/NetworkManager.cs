@@ -56,7 +56,7 @@ public class NetworkManager : MonoBehaviour
     ReSendManager reSendManager;
 
     List<UserIndex> userIndex;
-    int myIndex;
+    [SerializeField] int myIndex;
 
     public int MyIndex { get { return myIndex; } }
     public Socket ServerSock { get { return serverSock; } }
