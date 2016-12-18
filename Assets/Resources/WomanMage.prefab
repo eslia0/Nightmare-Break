@@ -1781,8 +1781,6 @@ MonoBehaviour:
   rigdbody: {fileID: 0}
   charWeapon: {fileID: 0}
   weapon: {fileID: 0}
-  inputmanager: {fileID: 0}
-  charStatus: {fileID: 0}
   enermy: []
   jumpPower: 0
   charDir: 0
@@ -1819,6 +1817,7 @@ MonoBehaviour:
   armaDestroy: {fileID: 0}
   ArmageddonFinishSound: {fileID: 0}
   Meteor: {fileID: 0}
+  fireBallCastSound: {fileID: 0}
 --- !u!137 &137000010183245268
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
