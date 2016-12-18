@@ -1130,13 +1130,6 @@ public class Monster : MonoBehaviour {
 	void OnTriggerStay(Collider coll){
 		Rigidbody rigid = this.gameObject.GetComponent<Rigidbody>();
 		rigid.velocity = Vector3.zero;
-
-
-
-//		if (rigid.velocity == Vector3.zero) {
-//			statePosition = StatePosition.Idle;
-//			Pattern (statePosition);
-//		}
 	}
 
 	void SetStateDefault ()
@@ -1187,7 +1180,7 @@ public class Monster : MonoBehaviour {
 	{
 		if (monsterId == MonsterId.Bear) 
 		{
-			StartCoroutine ( BossWaveAttack());
+			BossWSwingAttack();
 		}
 
 		if (monsterId == MonsterId.BlackBear) 
@@ -1197,6 +1190,21 @@ public class Monster : MonoBehaviour {
 
 		}
 
+	}
+	public void BossWSwingAttack()
+	{
+		if(this.transform.rotation == Quaternion.Euler(new Vector3(0, 0, 0)))
+		{	
+			GameObject bullet = Instantiate (Resources.Load<GameObject> ("Effect/BossSwing"), new Vector3(this.transform.position.x,this.transform.position.y+2f, this.transform.position.z), Quaternion.Euler (-90, 0, 0))as GameObject;		
+			bullet.GetComponent<BossDarkSwing>().SetDamage (attack, this.gameObject);
+			//Instantiate (Resources.Load<GameObject> ("Effect/BossSwing"), new Vector3 (this.transform.position.x, this.transform.position.y + 2f, this.transform.position.z), Quaternion.Euler (-90, 0, 0));
+		}
+		else if (this.transform.rotation == Quaternion.Euler(new Vector3(0, 180, 0)))
+		{
+			GameObject bullet = Instantiate (Resources.Load<GameObject> ("Effect/BossSwing"), new Vector3 (this.transform.position.x, this.transform.position.y + 2f, this.transform.position.z), Quaternion.Euler (-90, -90, -90))as GameObject;
+			//Instantiate (Resources.Load<GameObject> ("Effect/BossSwing"), new Vector3(this.transform.position.x,this.transform.position.y+2f,this.transform.position.z),Quaternion.Euler (-90, -90, -90));
+			bullet.GetComponent<BossDarkSwing>().SetDamage (attack, this.gameObject);
+		} 
 	}
 
 	IEnumerator BossWaveAttack()
@@ -1209,10 +1217,22 @@ public class Monster : MonoBehaviour {
 		//Instantiate (Resources.Load<GameObject> ("Effect/BossWave"), new Vector3(this.transform.position.x,this.transform.position.y+0.5f,this.transform.position.z+(3f)), this.transform.rotation);
 		while (wave <waveLength ) 
 		{	
+
+
 			darkWaveSize += 0.3f; 
 			yield return new WaitForSeconds (0.2f);
-			darkWave[wave] = Instantiate (Resources.Load<GameObject> ("Effect/BossWave"), new Vector3(this.transform.position.x,this.transform.position.y+0.8f,this.transform.position.z+(4f*(wave+1))), this.transform.rotation)as GameObject;
-			darkWave [wave].transform.localScale = new Vector3 (darkWaveSize,darkWaveSize,darkWaveSize);
+
+			if(this.transform.rotation == Quaternion.Euler(new Vector3(0, 0, 0)))
+			{			
+				darkWave[wave] = Instantiate (Resources.Load<GameObject> ("Effect/BossWave"), new Vector3(this.transform.position.x,this.transform.position.y+0.8f,this.transform.position.z+(4f*(wave+1))), this.transform.rotation)as GameObject;
+				darkWave [wave].transform.localScale = new Vector3 (darkWaveSize,darkWaveSize,darkWaveSize);
+			}
+			else if (this.transform.rotation == Quaternion.Euler(new Vector3(0, 180, 0)))
+			{
+				darkWave[wave] = Instantiate (Resources.Load<GameObject> ("Effect/BossWave"), new Vector3(this.transform.position.x,this.transform.position.y+0.8f,this.transform.position.z-(4f*(wave+1))), Quaternion.Euler (0, 0, 0))as GameObject;
+
+			} 
+
 			wave++;
 		}
 		yield return new WaitForSeconds (0.2f);
