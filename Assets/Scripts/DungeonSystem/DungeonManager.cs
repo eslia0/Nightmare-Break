@@ -94,14 +94,14 @@ public class DungeonManager : MonoBehaviour
 			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
 			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Bear, 1, 1));
 			Stage stage2 = new Stage(2);
-			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 9));
-			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 9));
-			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 9));
+			stage2.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 9));
+			stage2.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 9));
+			stage2.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 9));
 			Stage stage3 = new Stage(3);
-			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 3));
-			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 3));
-			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
-			stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Bear, 1, 1));
+			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 3));
+			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 3));
+			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
+			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Bear, 1, 1));
 
 			dungeonData.Stages.Add(stage1);
 			dungeonData.Stages.Add(stage2);
@@ -125,12 +125,12 @@ public class DungeonManager : MonoBehaviour
 				SetMonsterStatus (1);
 			}
 			if (mapNumber==1){
-				SpawnMonster(1);
-				SetMonsterStatus (1);
+				SpawnMonster(2);
+				SetMonsterStatus (2);
 			}
 			if (mapNumber==2) {
-				SpawnMonster (1);
-				SetMonsterStatus (1);
+				SpawnMonster (3);
+				SetMonsterStatus (3);
 			}
 
         }
@@ -190,7 +190,7 @@ public class DungeonManager : MonoBehaviour
     {
 		
 		//if(mapNumber != 2){
-			GameObject monsterSpawnPoint= (GameObject)Instantiate (Resources.Load ("Monster/MonsterSpawnPoint" + mapNumber.ToString()), this.transform.parent);
+			//GameObject monsterSpawnPoint= (GameObject)Instantiate (Resources.Load ("Monster/MonsterSpawnPoint" + mapNumber.ToString()), this.transform.parent);
             //요고의 차일드를 받으세요
 			
 			//MonsterSet ();
