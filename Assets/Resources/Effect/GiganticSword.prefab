@@ -202,7 +202,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -230,6 +230,7 @@ MonoBehaviour:
   charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
+  swordEffect: {fileID: 0}
   swordDamage: 0
   swordSound: {fileID: 0}
   swordSummonSound: {fileID: 0}
