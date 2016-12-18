@@ -207,8 +207,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012536825538}
-  m_LocalRotation: {x: 0.0059309583, y: 0.9999824, z: 0.00000013316757, w: -0.0000000012093141}
-  m_LocalPosition: {x: -4.517015, y: -0.03545181, z: 0.8163056}
+  m_LocalRotation: {x: 0.005930958, y: 0.9999824, z: 0.00000013675162, w: -0.0000000018626451}
+  m_LocalPosition: {x: -4.5170145, y: -0.035445273, z: 0.81628746}
   m_LocalScale: {x: -0.99999994, y: -1.0000001, z: -0.99999994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -221,7 +221,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010462128540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6895356, y: 0.39699376, z: -116.30762}
+  m_LocalPosition: {x: 0.51366186, y: 0.39199394, z: -142.29602}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -237,8 +237,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013191523496}
-  m_LocalRotation: {x: 5.6976153e-11, y: -0.0000000068085724, z: 0.9999824, w: 0.005930692}
-  m_LocalPosition: {x: -4.191615, y: -0.039313428, z: 0.81630504}
+  m_LocalRotation: {x: 3.4924597e-10, y: -0.000000059604645, z: 0.9999825, w: 0.005930693}
+  m_LocalPosition: {x: -4.1916156, y: -0.039335728, z: 0.81630486}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -277,8 +277,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013945553234}
-  m_LocalRotation: {x: 0.00000006027069, y: -0.000000047026333, z: 0.7163971, w: 0.69769275}
-  m_LocalPosition: {x: -3.747219, y: -0.15354925, z: 1.2813857}
+  m_LocalRotation: {x: -0, y: -0.000000119209275, z: 0.7163972, w: 0.6976927}
+  m_LocalPosition: {x: -3.7472315, y: -0.15354216, z: 1.2813945}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1.0000001}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -332,8 +332,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012314658536}
-  m_LocalRotation: {x: 0.7163963, y: -0.69769365, z: -0.000000093398576, w: 0.000000094911805}
-  m_LocalPosition: {x: -4.6767273, y: -0.17814104, z: 1.2813865}
+  m_LocalRotation: {x: 0.7163962, y: -0.6976937, z: -0.00000010244547, w: 0.0000001369044}
+  m_LocalPosition: {x: -4.676721, y: -0.17834353, z: 1.2814443}
   m_LocalScale: {x: -1, y: -1, z: -0.99999994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -345,7 +345,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011793264046}
-  m_LocalRotation: {x: 0.61475956, y: 0.63123924, z: 0.33876368, w: -0.32991976}
+  m_LocalRotation: {x: 0.6147595, y: 0.6312392, z: 0.33876365, w: -0.32991973}
   m_LocalPosition: {x: 0.009638963, y: 5.3197136, z: 3.4074135}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -520,7 +520,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010462128540}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 100
   m_Drag: 1
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -581,7 +581,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012314658536}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 6.9807467, y: 5.891463, z: 11.499858}
   m_Center: {x: -0.29083845, y: 2.5373619, z: -0.45108092}
@@ -593,7 +593,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000013191523496}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 6.3053246, y: 7.8134627, z: 10.842957}
   m_Center: {x: -2.246848, y: 0.476713, z: -0.7795317}
@@ -617,7 +617,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000012536825538}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 7.6163726, y: 8.097104, z: 10.668827}
   m_Center: {x: 1.5913233, y: 0.2028161, z: -0.8665755}
@@ -629,7 +629,7 @@ BoxCollider:
   m_GameObject: {fileID: 1000013945553234}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 7.0727563, y: 7.26565, z: 10.350509}
   m_Center: {x: -0.16061282, y: -1.8911674, z: -1.0257444}
@@ -738,9 +738,10 @@ MonoBehaviour:
   charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
-  pieceBox: {fileID: 0}
-  armageddon: {fileID: 0}
+  pieceBox: {fileID: 65000014102167700}
+  armageddon: {fileID: 114000012172614606}
   armageddonPieceDamage: 0
+  armageddionPieceRigid: {fileID: 0}
 --- !u!114 &114000011240148512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -755,9 +756,10 @@ MonoBehaviour:
   charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
-  pieceBox: {fileID: 0}
-  armageddon: {fileID: 0}
+  pieceBox: {fileID: 65000010065523774}
+  armageddon: {fileID: 114000012172614606}
   armageddonPieceDamage: 0
+  armageddionPieceRigid: {fileID: 0}
 --- !u!114 &114000011514022258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -772,9 +774,10 @@ MonoBehaviour:
   charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
-  pieceBox: {fileID: 0}
-  armageddon: {fileID: 0}
+  pieceBox: {fileID: 65000013258440550}
+  armageddon: {fileID: 114000012172614606}
   armageddonPieceDamage: 0
+  armageddionPieceRigid: {fileID: 0}
 --- !u!114 &114000011633448268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -789,9 +792,10 @@ MonoBehaviour:
   charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
-  pieceBox: {fileID: 0}
-  armageddon: {fileID: 0}
+  pieceBox: {fileID: 65000012240712852}
+  armageddon: {fileID: 114000012172614606}
   armageddonPieceDamage: 0
+  armageddionPieceRigid: {fileID: 0}
 --- !u!114 &114000012172614606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -808,14 +812,24 @@ MonoBehaviour:
   charManager: {fileID: 0}
   character: {fileID: 0}
   armageddonDamage: 0
-  FireBallSpeed: 0
-  FireBallRigid: {fileID: 0}
-  armageddonClipSound: {fileID: 0}
+  FireBallSpeed: 30
+  FireBallRigid: {fileID: 54000011055593424}
+  armageddonClipSound: {fileID: 8300000, guid: 21d41f06010961546be5fc34b5fc3d92, type: 3}
   armageddonImpact: {fileID: 0}
   armageddonExplosion: {fileID: 0}
+  armageddonSmallExplosion: {fileID: 0}
   meteorExplosion: {fileID: 0}
   meteorCenter: {fileID: 0}
-  armageddonBox: {fileID: 0}
-  armageddonAni: {fileID: 0}
-  armageddonPiece: []
+  meteorCreatorHurt: {fileID: 0}
+  armageddonBox: {fileID: 65000013200273238}
+  armageddonAni: {fileID: 95000011641399606}
+  armageddonPiece:
+  - {fileID: 114000010807152084}
+  - {fileID: 114000011633448268}
+  - {fileID: 114000011240148512}
+  - {fileID: 114000011514022258}
   pieceAttack: 0
+  meteorCenterRigd: {fileID: 0}
+  meteorCreatorHurtRigd: {fileID: 0}
+  meteorMaterial: {fileID: 2100000, guid: 6c4de17a558a59d4c80d080c9bfddaa2, type: 2}
+  meteorAlpha: 0

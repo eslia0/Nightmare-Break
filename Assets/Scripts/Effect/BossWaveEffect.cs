@@ -20,10 +20,16 @@ public class BossWaveEffect : MonoBehaviour
 		player = GameObject.FindGameObjectWithTag ("Player");
 		waveBox = this.GetComponent<BoxCollider> ();
 		waveBox.enabled = false;
-		//Destroy (this.gameObject , 3f);
-			
+		//Destroy (this.gameObject , 1f);
+		StartCoroutine (WaveDown());
 	}
 
+	IEnumerator WaveDown()
+	{
+		
+		yield return new WaitForSeconds (0.3f);
+		waveRigd.velocity = transform.up * 3f;
+	}
 	public void BoxColliderOn()
 	{
 		waveBox.enabled = true;
