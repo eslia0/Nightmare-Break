@@ -5,7 +5,6 @@ public class EspadaSwordEffect : MonoBehaviour
 {
     ParticleSystem myParticle;
 	GameObject giganticSword;
-	public Renderer rend;
 	public bool count;
 	public CharacterManager charManager;
 	float giganticSwordAliveTime;
@@ -19,6 +18,11 @@ public class EspadaSwordEffect : MonoBehaviour
 	public Rigidbody giganticSwordRigd;
 	public float swordSpeed;
 
+
+	public BoxCollider giganticSwordBox;
+	public Material swordMaterial;
+	public float swordAlpha;
+
     void Start()
     {
 		count = true;
@@ -29,15 +33,34 @@ public class EspadaSwordEffect : MonoBehaviour
 		swordFinishSound = Resources.Load<AudioClip> ("Sound/WarriorEffectSound/GiganticSwordFinishEffectSound");
 		charManager = character.GetComponent<CharacterManager> ();
 		giganticSwordRigd = GetComponent<Rigidbody> ();
+		giganticSwordBox = GetComponent<BoxCollider> ();
 		swordSpeed = 40;
 		giganticSwordRigd.velocity = (transform.forward* swordSpeed);
 		swordDamage = 10000;
 		giganticSword = this.gameObject;
 		swordSound.volume = 0.1f;
-		rend = GetComponent<Renderer> ();
 		swordSound.PlayOneShot (swordSummonSound);
 		Destroy (this.gameObject, 3.0f);
+
+		swordMaterial.SetFloat ("_Alpha",1);
+		swordAlpha = 1f;
+
 	}
+
+
+
+	IEnumerator SwordAlpha()
+	{
+		while (true)
+		{
+			swordAlpha -= 0.1f;
+			swordMaterial.SetFloat ("_Alpha", swordAlpha);
+			Debug.Log (swordAlpha);
+			yield return new WaitForSeconds (0.1f);
+
+		}
+	}
+
     void OnCollisionEnter(Collision coll)
     {
 		

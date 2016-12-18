@@ -15,6 +15,8 @@ public class MageManager : CharacterManager
 	public Armageddon armaDestroy;
 	public AudioClip ArmageddonFinishSound;
 	public AudioClip Meteor;
+	public AudioClip fireBallCastSound;
+
 
 	public override void ProcessSkill1 ()
 	{
@@ -247,21 +249,23 @@ public class MageManager : CharacterManager
 
 		if (false)
 		{
-			Skill1Sound = Resources.Load<AudioClip> ("Sound/ManMageFireBall");
-			Skill2Sound = Resources.Load<AudioClip> ("Sound/ManMageDestroy");
-			Skill3Sound = Resources.Load<AudioClip> ("Sound/ManMageHowling");
-			Skill4Sound = Resources.Load<AudioClip> ("Sound/ManMageArmageddon");
-			Meteor = Resources.Load<AudioClip> ("Sound/ManMageDestroyCast");
-			ArmageddonFinishSound = Resources.Load<AudioClip> ("Sound/ManGiganticSwordFinish");
+			Skill1Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageFireBall");
+			Skill2Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageDestroy");
+			Skill3Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageHowling");
+			Skill4Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageArmageddon");
+			Meteor = Resources.Load<AudioClip> ("Sound/ManSound/ManMageDestroyCast");
+			fireBallCastSound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageFireBallCast");
+			ArmageddonFinishSound = Resources.Load<AudioClip> ("Sound/ManSound/ManGiganticSwordFinish");
 		}
 		else if (true)
 		{
-			Skill1Sound = Resources.Load<AudioClip> ("Sound/WoManMageFireBall");
-			Skill2Sound = Resources.Load<AudioClip> ("Sound/WoManDestroyCast");
-			Skill3Sound = Resources.Load<AudioClip> ("Sound/WoManMageHowling");
-			Skill4Sound = Resources.Load<AudioClip> ("Sound/WomanSwordDance");
-			Meteor = Resources.Load<AudioClip> ("Sound/WoManMageDestroyCast");
-			ArmageddonFinishSound = Resources.Load<AudioClip> ("Sound/WoManMageArmageddon");
+			Skill1Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WoManMageFireBall");
+			Skill2Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WoManDestroyCast");
+			Skill3Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WoManMageHowling");
+			Skill4Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WomanSwordDance");
+			Meteor = Resources.Load<AudioClip> ("Sound/WoManSound/WoManMageDestroyCast");
+			fireBallCastSound = Resources.Load<AudioClip> ("Sound/WoManSound/WoManMageFireBallCast");
+			ArmageddonFinishSound = Resources.Load<AudioClip> ("Sound/WoManSound/WoManMageArmageddon");
 
 		}
 	}
@@ -281,6 +285,12 @@ public class MageManager : CharacterManager
 	{
 		CharAudio.PlayOneShot (attack3);
 	}
+
+	public void FireBallCastSound()
+	{
+		CharAudio.PlayOneShot (fireBallCastSound);
+	}
+
 
 	public void FireBallSound()
 	{

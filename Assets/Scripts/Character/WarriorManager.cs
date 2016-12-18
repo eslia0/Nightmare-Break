@@ -20,6 +20,8 @@ public class WarriorManager : CharacterManager
 	public AudioClip swordFinishSound;
 	public AudioClip giganticSwordFinishSound;
 	public EspadaSwordEffect espadasword;
+	public AudioClip mealStromFinishSound;
+
 	public bool poweroverwhelming;
 
 	public override void NormalAttack ()
@@ -302,27 +304,30 @@ public class WarriorManager : CharacterManager
 	{
 		base.classSound ();
 
-		if (true)
+		if (false)
 		{
-			Skill1Sound = Resources.Load<AudioClip> ("Sound/ManMealStrom");
-			Skill2Sound = Resources.Load<AudioClip> ("Sound/ManCutOff");
-			Skill3Sound = Resources.Load<AudioClip> ("Sound/ManSwordDance");
-			Skill4Sound = Resources.Load<AudioClip> ("Sound/ManGiganticSwordStart");
-			giganticSwordFinishSound = Resources.Load<AudioClip> ("Sound/ManGiganticSwordFinish");
-			swordFinishSound = Resources.Load<AudioClip> ("Sound/ManSwordDanceFinish");
+			Skill1Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMealStrom");
+			Skill2Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManCutOff");
+			Skill3Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManSwordDance");
+			Skill4Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManGiganticSwordStart");
+			mealStromFinishSound = Resources.Load<AudioClip> ("Sound/ManSound/ManSwordDanceFinish");
+			giganticSwordFinishSound = Resources.Load<AudioClip> ("Sound/ManSound/ManGiganticSwordFinish");
+			swordFinishSound = Resources.Load<AudioClip> ("Sound/ManSound/ManSwordDanceFinish");
 		}
-		else if (false)
+		else if (true)
 		{
-			Skill1Sound = Resources.Load<AudioClip> ("Sound/WomanMealStrom");
-			Skill2Sound = Resources.Load<AudioClip> ("Sound/WomanCutOff");
-			Skill3Sound = Resources.Load<AudioClip> ("Sound/WomanSwordDance");
-			Skill4Sound = Resources.Load<AudioClip> ("Sound/WomanGiganticSwordStart");
-			giganticSwordFinishSound = Resources.Load<AudioClip> ("Sound/WoManGiganticSwordFinish");
+			Skill1Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WomanMealStrom");
+			Skill2Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WomanCutOff");
+			Skill3Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WomanSwordDance");
+			Skill4Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WomanGiganticSwordStart");
+			mealStromFinishSound = Resources.Load<AudioClip> ("Sound/WoManSound/WomanMealStromFinishSound");
+			giganticSwordFinishSound = Resources.Load<AudioClip> ("Sound/WoManSound/WoManGiganticSwordFinish");
 
-			swordFinishSound = Resources.Load<AudioClip> ("Sound/WomanSwordDanceFinish");
+			swordFinishSound = Resources.Load<AudioClip> ("Sound/WoManSound/WomanSwordDanceFinish");
 		}
 
 	}
+
 
 	public void AttackSound1()
 	{

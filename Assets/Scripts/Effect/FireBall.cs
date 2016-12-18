@@ -7,7 +7,7 @@ public class FireBall : MonoBehaviour {
 	public CharacterManager charManager;
 	public GameObject character;
 	public int FireBallDamage;
-	public float FireBallSpeed = 180;
+	public float FireBallSpeed;
 	public Rigidbody FireBallRigid;
 
 	int skillLv;
@@ -19,6 +19,7 @@ public class FireBall : MonoBehaviour {
 		FireBallRigid = GetComponent<Rigidbody> ();
 		FireBallRigid.velocity = transform.forward* FireBallSpeed;
 		fireBallSound =this.gameObject.GetComponent<AudioSource> ();
+		FireBallSpeed = 15;
 
 		flyingBall = Resources.Load<AudioClip> ("Sound/MageEffectSound/MeteorDropSound");
 
@@ -27,7 +28,7 @@ public class FireBall : MonoBehaviour {
 		FireBallparticleSystem = GetComponent<ParticleSystem>();
 		skillLv = CharacterStatus.Instance.SkillLevel [0];
 		FireBallDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, 1).GetSkillData (skillLv).SkillValue)* CharacterStatus.Instance.Attack);
-		Destroy (this.gameObject, 0.45f);
+		Destroy (this.gameObject, 1.45f);
 	}
 
     void Update()
