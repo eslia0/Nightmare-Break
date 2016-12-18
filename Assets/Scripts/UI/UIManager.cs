@@ -123,16 +123,7 @@ public class UIManager : MonoBehaviour
 
         //dialogPanel.SetActive(false);
     }
-		 
-	public void PointEnter(int skillIndex)
-	{
-		battleUIManager.SetPointEnterUI (skillIndex, 2, (int)CharacterStatus.Instance.HClass);
-	}
-	 
-	public void OnPointExit()
-	{
-		battleUIManager.MouseOverUI.gameObject.transform.parent.gameObject.SetActive (false);
-	}
+		
 }
 
     
