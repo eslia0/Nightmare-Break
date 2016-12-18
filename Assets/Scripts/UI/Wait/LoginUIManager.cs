@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
 public class LoginUIManager : MonoBehaviour
@@ -6,6 +7,8 @@ public class LoginUIManager : MonoBehaviour
     GameObject loginPanel;
     GameObject createAccountPanel;
     GameObject deleteAccountPanel;
+    GameObject logoObject;
+    GameObject[] loginObject;
 
     Button loginButton;
     Button createAccountButton;
@@ -26,6 +29,8 @@ public class LoginUIManager : MonoBehaviour
     InputField loginPwField;
     InputField accountPwField;
     InputField deletePwField;
+
+    bool isInput;
 
     public void ManagerInitialize()
     {
@@ -57,6 +62,16 @@ public class LoginUIManager : MonoBehaviour
 
         //deleteId = GameObject.Find("LoginId").GetComponent<Text>();
         //deletePw = GameObject.Find("LoginPw").GetComponent<Text>();
+
+        logoObject = GameObject.Find("LogoObject");
+        loginObject = new GameObject[2];
+
+        for (int i = 0; i < loginObject.Length; i++)
+        {
+           loginObject[i] = GameObject.Find("LoginObject" + (i + 1));
+           loginObject[i].SetActive(false);
+        }
+        StartCoroutine(LogoInputCheck());
     }
 
     public void InitializeAddListener()
@@ -138,4 +153,20 @@ public class LoginUIManager : MonoBehaviour
         Application.Quit();
     }
 
+    IEnumerator LogoInputCheck()
+    {
+        while (!isInput)
+        {
+            if (Input.anyKeyDown)
+            {
+                isInput = true;
+                logoObject.SetActive(false);
+                for (int i = 0; i < loginObject.Length; i++)
+                {
+                    loginObject[i].SetActive(true);
+                }
+            }
+            yield return null;
+        }
+    }
 }
