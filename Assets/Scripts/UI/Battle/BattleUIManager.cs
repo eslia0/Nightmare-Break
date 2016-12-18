@@ -25,6 +25,8 @@ public class BattleUIManager : MonoBehaviour
     private Image hpBar;
     private Image mpBar;
     private Image monsterHpBar;
+    private Image startImage;
+    private Image readyImage;
 
     private Animator comboAnim;
    
@@ -37,6 +39,8 @@ public class BattleUIManager : MonoBehaviour
 
         comboText.transform.parent.gameObject.SetActive(false);
         mouseOverUI.transform.parent.gameObject.SetActive(false);
+        startImage.gameObject.SetActive(false);
+        readyImage.gameObject.SetActive(false);
       //  monsterHpBar.transform.parent.gameObject.SetActive(false);
     }
 
@@ -46,6 +50,8 @@ public class BattleUIManager : MonoBehaviour
         partyClassIcon = new Image[maxUser];
         hpBar = GameObject.Find("HPBar").GetComponent<Image>();
         mpBar = GameObject.Find("MPBar").GetComponent<Image>();
+        startImage = GameObject.Find("StartImage").GetComponent<Image>();
+        readyImage = GameObject.Find("ReadyImage").GetComponent<Image>();
         //monsterHpBar = GameObject.Find("MonsterHPBar").GetComponent<Image>();
         //monsterName = GameObject.Find("MonsterName").GetComponent<Text>();
         mouseOverUI = GameObject.Find("MouseOverUI").GetComponent<Text>();
