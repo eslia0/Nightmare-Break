@@ -244,11 +244,11 @@ public class WaitingUIManager : MonoBehaviour
 		roomInfoUI.SetActive (true);
         for (int i = 0; i < maxPlayerNum; i++)
         {
-            if (rooms[i].PlayerNum > 0)
+            if (rooms[roomNum].PlayerNum > 0)
             {
-                roomInfoClassIcon[i].sprite = Resources.Load<Sprite>("RoomClassIcon/Class" + (rooms[roomNum].RoomUserData[i].UserClass));
-                roomInfoUserName[i].text = rooms[roomNum].RoomUserData[i].UserName;
-                roomInfoGenderIcon[i].sprite = Resources.Load<Sprite>("RoomClassIcon/Gender" + rooms[roomNum].RoomUserData[i].UserGender);
+                roomInfoClassIcon[roomNum].sprite = Resources.Load<Sprite>("RoomClassIcon/Class" + (rooms[roomNum].RoomUserData[i].UserClass));
+                roomInfoUserName[roomNum].text = rooms[roomNum].RoomUserData[i].UserName;
+                roomInfoGenderIcon[roomNum].sprite = Resources.Load<Sprite>("RoomClassIcon/Gender" + rooms[roomNum].RoomUserData[i].UserGender);
             }
         }
         currentRoomNum = roomNum;
