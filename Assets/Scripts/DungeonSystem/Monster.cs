@@ -237,6 +237,7 @@ public class Monster : MonoBehaviour {
 			//	
 			//		}
 
+		//던전매니저
 		DungeonManager dun = GameObject.Find("DungeonManager").GetComponent<DungeonManager>();
 		normalMode = dun.NormalMode;
 
@@ -271,7 +272,6 @@ public class Monster : MonoBehaviour {
 		}
 
 		if (_normalMode) {
-			Debug.Log (monsterIndex);
 			if (monsterId == MonsterId.Rabbit) {
 				StartCoroutine (MonsterMoveAI (_normalMode));
 				StartCoroutine (MonsterActAI (_normalMode));
@@ -1095,8 +1095,6 @@ public class Monster : MonoBehaviour {
 	public void HitDamage(int _Damage, GameObject _weapon)
 	{
 		currentHP -= _Damage;
-
-		Debug.Log ("in boss");
 		if (currentHP > 0)
 		{
 			for (int i = 0; i < player.Length; i++)
