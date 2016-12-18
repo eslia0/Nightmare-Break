@@ -21,7 +21,7 @@ public class BossWaveEffect : MonoBehaviour
 		waveBox = this.GetComponent<BoxCollider> ();
 		waveBox.enabled = false;
 		//Destroy (this.gameObject , 1f);
-		StartCoroutine (WaveDown());
+		//StartCoroutine (WaveDown());
 	}
 
 	IEnumerator WaveDown()
@@ -33,6 +33,10 @@ public class BossWaveEffect : MonoBehaviour
 	public void BoxColliderOn()
 	{
 		waveBox.enabled = true;
+	}
+	public void WaveGravitiy()
+	{
+	//	waveRigd.useGravity = true;
 	}
 	void OnTriggerEnter(Collider coll)
 	{

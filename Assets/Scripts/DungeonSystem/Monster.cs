@@ -26,7 +26,7 @@ public enum DefenseMoveDirectionArray
 public class Monster : MonoBehaviour {
 	public bool normalMode;
 	public enum TargetPlayerPosition{
-		Zero = 0,
+		Zero = 1,
 		Left,
 		Right,
 		Up,
@@ -34,7 +34,7 @@ public class Monster : MonoBehaviour {
 
 	}
 	bool direction;
-
+	public TargetPlayerPosition target;
 
 	public const bool right = true;
     public const bool left = false;
@@ -85,7 +85,7 @@ public class Monster : MonoBehaviour {
 
 	//boss skill 
 	protected int bossPatternCount;
-	protected bool bossNormalAttackCycle;
+	[SerializeField]protected bool bossNormalAttackCycle;
 	protected bool bossSkill;
 	[SerializeField]protected int bossRandomPattern;
 	public int shootNumber;
@@ -238,7 +238,7 @@ public class Monster : MonoBehaviour {
 			//		}
 
 		DungeonManager dun = GameObject.Find("DungeonManager").GetComponent<DungeonManager>();
-
+		normalMode = dun.NormalMode;
 
 
 		MonsterAIStart (dun.NormalMode);
@@ -303,7 +303,7 @@ public class Monster : MonoBehaviour {
 
 	public IEnumerator MonsterDefenceWaveControll(bool _normalMode){
 		if (monsterIndex >= 9) {
-			this.gameObject.transform.position = new Vector3 (this.transform.position.x,2,this.transform.position.z);
+			this.gameObject.transform.position = new Vector3 (this.transform.position.x,100,this.transform.position.z);
 		}
 		if (monsterIndex < 9) {
 			if (monsterId == MonsterId.Rabbit) {
@@ -372,8 +372,8 @@ public class Monster : MonoBehaviour {
 					if (!normalMode) {
 						this.transform.Translate (movePoint.normalized * moveSpeed * Time.deltaTime);
 					}
-				}
-				else {
+
+				} else {
 					this.transform.Translate ((targetPlayer.transform.position - this.transform.position).normalized * moveSpeed * Time.deltaTime, 0);
 				}
 			}
@@ -381,6 +381,7 @@ public class Monster : MonoBehaviour {
 			yield return null;
 		}
 	}
+
 
 	IEnumerator MonsterMoveAI(bool _normalMode)
 	{
@@ -390,7 +391,6 @@ public class Monster : MonoBehaviour {
 			if (_normalMode) {
 				if (targetPlayer != null) {
 					if (currentDisTance < searchRange) {
-						searchRange = 100;
 						if (randomStandby != 0)
 						{							
 							SetTargetPlayerPosition ();
@@ -428,6 +428,8 @@ public class Monster : MonoBehaviour {
 		}
 	}
 
+
+
 	public void SetTargetPlayerPosition()
 	{
 		switch (randomStandby) 
@@ -462,14 +464,15 @@ public class Monster : MonoBehaviour {
 	public IEnumerator ChangeRandomStanby()
 	{
 		while (isAlive) {
-			if (monsterId == MonsterId.Duck || monsterId == MonsterId.Frog) {
-				randomStandby = Random.Range(2,4);
-			}
-			else
+//			if (monsterId == MonsterId.Duck || monsterId == MonsterId.Frog) {
+//				randomStandby = Random.Range(1,3);
+//			}
+//			else
 			randomStandby = Random.Range(2,6);
 			yield return new WaitForSeconds (2);
 			randomStandby = 1;
-			yield return new WaitForSeconds (5);
+			yield return new WaitForSeconds (2);
+
 		}
 	}
 
@@ -479,16 +482,16 @@ public class Monster : MonoBehaviour {
 			movePoint = new Vector3(targetPlayer.transform.position.x-transform.position.x, 0, targetPlayer.transform.position.z - transform.position.z);
 			break;
 		case TargetPlayerPosition.Left:
-			movePoint = new Vector3 (checkDirection.x, 0, targetPlayer.transform.position.z - transform.position.z - (attackRange));
+			movePoint = new Vector3 (checkDirection.x, 0, targetPlayer.transform.position.z - transform.position.z - (3));
 			break;
 		case TargetPlayerPosition.Right:
-			movePoint = new Vector3 (checkDirection.x, 0, targetPlayer.transform.position.z - transform.position.z + (attackRange));
+			movePoint = new Vector3 (checkDirection.x, 0, targetPlayer.transform.position.z - transform.position.z + (3));
 			break;
 		case TargetPlayerPosition.Up:
-			movePoint = new Vector3 (targetPlayer.transform.position.x - transform.position.x + (attackRange*0.5f), 0, checkDirection.z);
+			movePoint = new Vector3 (targetPlayer.transform.position.x - transform.position.x + (1.5f), 0, checkDirection.z);
 			break;
 		case TargetPlayerPosition.Down:
-			movePoint = new Vector3 (targetPlayer.transform.position.x - transform.position.x - (attackRange*0.5f), 0, checkDirection.z);
+			movePoint = new Vector3 (targetPlayer.transform.position.x - transform.position.x - (1.5f), 0, checkDirection.z);
 			break;
 		}
 	}
@@ -496,6 +499,7 @@ public class Monster : MonoBehaviour {
 	IEnumerator MonsterActAI(bool _normal){
 		while (_normal) {
 			if (isAlive) {
+				yield return new WaitForSeconds (0.2f);
 				if (targetPlayer != null) {	
 					currentDisTance = Vector3.Distance (targetPlayer.transform.position, this.gameObject.transform.position);
 					checkDirection = targetPlayer.transform.position - this.gameObject.transform.position;
@@ -524,42 +528,44 @@ public class Monster : MonoBehaviour {
 						}
 					}
 				}
-				yield return new WaitForSeconds (0.2f);
-			} else
-				break;
-		}
-		while (!_normal) {
-			if (isAlive) {
-				if (targetPlayer != null) {
-					currentDisTance = Vector3.Distance (targetPlayer.transform.position, this.gameObject.transform.position);
-					checkDirection = targetPlayer.transform.position - this.gameObject.transform.position;
-				}
-				attackCycle += 0.2f;
-				//int 
-				int randomvariable= Random.Range(1,4);
-				if (attackCycle > randomvariable) {
-					statePosition = StatePosition.Idle;
-					Pattern (statePosition);
-					yield return new WaitForSeconds (0.5f);
 
-					moveAble = false;
-					isAttack = true;
-					statePosition = StatePosition.Attack;
-					Pattern (statePosition);
-					yield return new WaitForSeconds (1.0f);
-					attackCycle = 0;
+			} 
+		
+			while (!_normal) {
+				if (isAlive) {
+					if (targetPlayer != null) {
+						currentDisTance = Vector3.Distance (targetPlayer.transform.position, this.gameObject.transform.position);
+						checkDirection = targetPlayer.transform.position - this.gameObject.transform.position;
+					}
+					attackCycle += 0.2f;
+					//int 
+					int randomvariable = Random.Range (1, 4);
+					if (attackCycle > randomvariable) {
+						statePosition = StatePosition.Idle;
+						Pattern (statePosition);
+						yield return new WaitForSeconds (0.5f);
 
+						moveAble = false;
+						isAttack = true;
+						statePosition = StatePosition.Attack;
+						Pattern (statePosition);
+						yield return new WaitForSeconds (1.0f);
+						attackCycle = 0;
+
+					}
+					if (attackCycle <= randomvariable) {
+						moveAble = true;
+						isAttack = false;
+						statePosition = StatePosition.Run;
+						Pattern (statePosition);
+					}
+					yield return new WaitForSeconds (0.2f);
 				}
-				if (attackCycle <= randomvariable) {
-					moveAble = true;
-					isAttack = false;
-					statePosition = StatePosition.Run;
-					Pattern (statePosition);
-				}
-				yield return new WaitForSeconds (0.2f);
-			}else break;
+			}
 		}
 	}
+		
+	
 
 	IEnumerator MonsterActAIADC(bool _normalMode){
 		while (_normalMode) {
@@ -725,29 +731,30 @@ public class Monster : MonoBehaviour {
 			bossSkill = true;
 			animator.SetBool ("BossSkill", true);
 
-				checkDirection = targetPlayer.transform.position - transform.position;
-				if (checkDirection.z > 0) {
-						movePoint = new Vector3 (checkDirection.x, 0, checkDirection.z - 3f);
-				}
-				if (checkDirection.z < 0) {
-						movePoint = new Vector3 (checkDirection.x, 0, checkDirection.z + 3f);
-				}
+//				checkDirection = targetPlayer.transform.position - transform.position;
+//				if (checkDirection.z > 0) {
+//						movePoint = new Vector3 (checkDirection.x, 0, checkDirection.z - 3f);
+//				}
+//				if (checkDirection.z < 0) {
+//						movePoint = new Vector3 (checkDirection.x, 0, checkDirection.z + 3f);
+//				}
 
-			if (bossRandomPattern == 0)
-			{
+			if (currentDisTance <= searchRange) {
 				statePosition = StatePosition.BossJumpAttack;
-				Pattern(statePosition);
+				Pattern (statePosition);
+			} else {
+				if (bossRandomPattern == 0) {
+					statePosition = StatePosition.BossJumpAttack;
+					Pattern (statePosition);
 
-			}
-			else if (bossRandomPattern == 1)
-			{
-				statePosition = StatePosition.BossRoar;
-				Pattern(statePosition);
-			}
-			else if (bossRandomPattern == 2)
-			{
-				statePosition = StatePosition.BossOneHandAttack;
-				Pattern(statePosition);
+				} else if (bossRandomPattern == 1) {
+					statePosition = StatePosition.BossRoar;
+					Pattern (statePosition);
+				} else if (bossRandomPattern == 2) {
+					statePosition = StatePosition.BossOneHandAttack;
+					Pattern (statePosition);
+				}
+			
 			}
 
 
@@ -1019,9 +1026,11 @@ public class Monster : MonoBehaviour {
 
 	}
 	public void AttackEnd(){
+		animator.SetInteger ("State", 0);
 		moveAble=true;
 		isAttack = false;
-		animator.SetInteger ("State", 0);
+
+
 
 		if (monsterId == MonsterId.Rabbit || monsterId == MonsterId.Bear || monsterId == MonsterId.BlackBear) {
 			for (int i = 0; i < attackCollider.Length; i++) {
@@ -1067,14 +1076,14 @@ public class Monster : MonoBehaviour {
 			shootNum++;
 			}
 		yield return new WaitForSeconds (0.2f);
-
-		Debug.Log (shootNumber);
 	}
 
 	//monsterdie event;
 	public void MonsterArrayEraser(GameObject thisGameObject)
 	{
 		this.gameObject.SetActive (false);
+		DungeonManager dun = GameObject.Find ("DungeonManager").GetComponent<DungeonManager> ();
+		//dun.
 
 	}
 
@@ -1170,13 +1179,38 @@ public class Monster : MonoBehaviour {
 	}
 
 	//bossmonster onehandpattern;
-	public void MiddleBossNiddleshot(){
-		if (monsterId == MonsterId.Bear) {
+	public void MiddleBossNiddleshot()
+	{
+		if (monsterId == MonsterId.Bear) 
+		{
+			StartCoroutine ( BossWaveAttack());
 		}
 
-		if (monsterId == MonsterId.BlackBear) {
-		
+		if (monsterId == MonsterId.BlackBear) 
+		{
+			//real boss
+			StartCoroutine ( BossWaveAttack());
+
 		}
 
+	}
+
+	IEnumerator BossWaveAttack()
+	{
+		int wave = 0;
+		int waveLength = 3;
+		float darkWaveSize = 0.5f;
+		GameObject[] darkWave;
+		darkWave = new GameObject[3];
+		//Instantiate (Resources.Load<GameObject> ("Effect/BossWave"), new Vector3(this.transform.position.x,this.transform.position.y+0.5f,this.transform.position.z+(3f)), this.transform.rotation);
+		while (wave <waveLength ) 
+		{	
+			darkWaveSize += 0.3f; 
+			yield return new WaitForSeconds (0.2f);
+			darkWave[wave] = Instantiate (Resources.Load<GameObject> ("Effect/BossWave"), new Vector3(this.transform.position.x,this.transform.position.y+0.8f,this.transform.position.z+(4f*(wave+1))), this.transform.rotation)as GameObject;
+			darkWave [wave].transform.localScale = new Vector3 (darkWaveSize,darkWaveSize,darkWaveSize);
+			wave++;
+		}
+		yield return new WaitForSeconds (0.2f);
 	}
 }
