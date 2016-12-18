@@ -19,7 +19,7 @@ public class Wall : MonoBehaviour {
 	void OnTriggerEnter(Collider coll){
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Enermy")) {
 			
-			coll.gameObject.GetComponent<Monster> ().RandomStandby = 1;
+			//coll.gameObject.GetComponent<Monster> ().RandomStandby = 1;
 		}
 	}
 

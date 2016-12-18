@@ -16,7 +16,7 @@ public class SceneChangeObject : MonoBehaviour {
 //		DungeonManager.Instance = transform.GetComponentInParent<DungeonManager>();
 //	}
 	void Start(){
-		Players = GameObject.FindGameObjectsWithTag ("Player");
+		
 	}
 
 	public void SceneChangeObjectSet(int _number){
@@ -25,6 +25,7 @@ public class SceneChangeObject : MonoBehaviour {
 		sceneObject = this.gameObject;
 		ColliderEnterCount = 0;
 		lookAtSceneNumber = _number;
+		Players = GameObject.FindGameObjectsWithTag ("Player");
 
 		sceneObject.SetActive (false);
 	}

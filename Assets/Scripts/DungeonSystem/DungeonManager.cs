@@ -39,7 +39,7 @@ public class DungeonManager : MonoBehaviour
     GameObject[] players;
     GameObject[] monsters;
     CharacterManager[] characterData;
-	Monster[] monsterData;
+	[SerializeField]Monster[] monsterData;
 
     DungeonData dungeonData;
     MonsterStatusData monsterStatusData;
@@ -81,7 +81,8 @@ public class DungeonManager : MonoBehaviour
 
 		DungeonConstruct();
 		CurrentScene();
-		Debug.Log (mapNumber);
+
+
         if (GameObject.FindGameObjectWithTag("GameManager") == null)
         {
             InitializeMonsterSpawnPoint();
@@ -101,13 +102,13 @@ public class DungeonManager : MonoBehaviour
 			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 3));
 			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 3));
 			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
-			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Bear, 1, 1));
+			stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.BlackBear, 1, 1));
 
 			dungeonData.Stages.Add(stage1);
 			dungeonData.Stages.Add(stage2);
 			dungeonData.Stages.Add(stage3);
 
-            MonsterBaseData[] monsterBaseData = new MonsterBaseData[4];
+            MonsterBaseData[] monsterBaseData = new MonsterBaseData[5];
             monsterBaseData[0] = new MonsterBaseData((int)MonsterId.Frog, "Frog");
             monsterBaseData[0].AddLevelData(new MonsterLevelData(1, 2, 0, 900, 3));
             monsterBaseData[1] = new MonsterBaseData((int)MonsterId.Duck, "Duck");
@@ -117,7 +118,10 @@ public class DungeonManager : MonoBehaviour
 			monsterBaseData[3] = new MonsterBaseData((int)MonsterId.Bear, "Bear");
 			monsterBaseData[3].AddLevelData(new MonsterLevelData(1, 25, 0, 11250, 3));
 
-            MonsterStatusData monsterStatusData = new MonsterStatusData(4, monsterBaseData);
+			monsterBaseData[3] = new MonsterBaseData((int)MonsterId.BlackBear, "BlackBear");
+			monsterBaseData[3].AddLevelData(new MonsterLevelData(1, 25, 0, 11250, 3));
+
+            MonsterStatusData monsterStatusData = new MonsterStatusData(5, monsterBaseData);
             SetMonsterData(monsterStatusData);
 
 			if (mapNumber==0) {
@@ -139,9 +143,10 @@ public class DungeonManager : MonoBehaviour
 
 	public void CurrentScene(){
 		//SceneManager.GetActiveScene ().name;
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 3; i++) {
 			if (SceneManager.GetActiveScene ().name == "LostTeddyBear_SingleType"+i) {
 				mapNumber = i;
+				Debug.Log (i);
 				if (i == 1) {
 					normalMode = false;
 				} else
