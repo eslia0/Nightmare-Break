@@ -281,7 +281,7 @@ GameObject:
   - 54: {fileID: 54000010772328008}
   - 65: {fileID: 65000010350973366}
   - 114: {fileID: 114000010302674024}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: BlackBear
   m_TagString: Enermy
   m_Icon: {fileID: 0}
@@ -1560,12 +1560,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalMode: 0
   target: 0
+  HittedBox: {fileID: 0}
   attackCollider: []
   bulletInstantiate: []
   player: []
   targetPlayer: {fileID: 0}
   movePoint: {x: 0, y: 0, z: 0}
-  monsterIndex: 0
+  currentHP: 0
   attack: 0
   moveSpeed: 0
   RunRange: 0
@@ -1574,6 +1575,7 @@ MonoBehaviour:
   currentDisTance: 0
   searchRange: 0
   isAlive: 0
+  bossNormalAttackCycle: 0
   bossRandomPattern: 0
   shootNumber: 0
   chasePlayer: {fileID: 0}
