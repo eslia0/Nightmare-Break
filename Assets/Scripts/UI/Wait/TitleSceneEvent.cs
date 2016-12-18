@@ -11,6 +11,10 @@ public class TitleSceneEvent : MonoBehaviour {
     void Start()
     {
         StartCoroutine(InputCheck());   
+        for(int i=0; i < loginObject.Length; i++)
+        {
+            loginObject[i].SetActive(false);
+        }
     }
 
    IEnumerator InputCheck()

@@ -4732,7 +4732,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 828241296}
   m_HandleRect: {fileID: 828241295}
   m_Direction: 0
-  m_Value: 0.25
+  m_Value: 0
   m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -9685,7 +9685,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1628013898}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.31700364
+  m_Size: 0.31700367
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11528,6 +11528,8 @@ GameObject:
   - 224: {fileID: 1331064878}
   - 222: {fileID: 1331064880}
   - 114: {fileID: 1331064879}
+  - 114: {fileID: 1331064882}
+  - 114: {fileID: 1331064881}
   m_Layer: 5
   m_Name: EquipInfoUI
   m_TagString: Untagged
@@ -11575,7 +11577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -11595,6 +11597,66 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1331064877}
+--- !u!114 &1331064881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1331064877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d68bc6fa8771e4b9d331148672692a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testImage: {fileID: 1331064879}
+  isDrag: 0
+--- !u!114 &1331064882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1331064877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 13
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1331064881}
+          m_MethodName: CreateRay
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1331064881}
+          m_MethodName: OutDrag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1348609597
 GameObject:
   m_ObjectHideFlags: 0
@@ -11673,8 +11735,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1443896620}
   m_HandleRect: {fileID: 1443896619}
   m_Direction: 2
-  m_Value: 0.99999976
-  m_Size: 0.6665681
+  m_Value: 1
+  m_Size: 0.68534714
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13374,7 +13436,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 411115739}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
