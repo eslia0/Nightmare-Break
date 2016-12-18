@@ -22,6 +22,7 @@ public class WaitingUIManager : MonoBehaviour
     private Button skillAddExitBtn;
     private Button equipInfoExitBtn;
     private Button myInfoExitBtn;
+    private Button roomInfoExitBtn;
     private Button roomCreateYesBtn;
 	private Button[] roomBtn;
     private Button[] skillAddIcon;
@@ -34,6 +35,7 @@ public class WaitingUIManager : MonoBehaviour
 	private GameObject myInfoUI;
 	private GameObject roomInfoUI;
 
+    private Text myInfoData;
     private Text dungeonLevelText;
     private Text[] roomIndex;
     private Text[] roomName;
@@ -42,7 +44,8 @@ public class WaitingUIManager : MonoBehaviour
 	private Text[] roomInfoUserName;
 
 	private Image equipWeaponIcon;
-	private Image[] roomInfoClassIcon;
+
+    private Image[] roomInfoClassIcon;
 	private Image[] roomInfoGenderIcon;
     private Image[] skillAddSelectImage;
 
@@ -83,7 +86,8 @@ public class WaitingUIManager : MonoBehaviour
 		roomInfoGenderIcon = new Image[maxPlayerNum];
         skillAddIcon = new Button[CharacterStatus.skillNum];
         skillAddSelectImage = new Image[CharacterStatus.skillNum];
-                
+
+        myInfoData = GameObject.Find("MyInfoData").GetComponent<Text>();
         roomCreateUI = GameObject.Find("RoomCreateUI");
         skillAddUI = GameObject.Find("SkillAddUI");
         equipInfoUI = GameObject.Find("EquipInfoUI");
@@ -108,6 +112,7 @@ public class WaitingUIManager : MonoBehaviour
         skillAddExitBtn = skillAddUI.transform.FindChild("ExitBtn").GetComponent<Button>();
         equipInfoExitBtn = equipInfoUI.transform.FindChild("ExitBtn").GetComponent<Button>();
         myInfoExitBtn = myInfoUI.transform.FindChild("ExitBtn").GetComponent<Button>();
+        roomInfoExitBtn = roomInfoUI.transform.FindChild("ExitBtn").GetComponent<Button>();
 
         dungeonLevelText.text = dungeonLevel.ToString();
 		for (int i = 0; i < skillAddIcon.Length; i++) {
@@ -145,6 +150,7 @@ public class WaitingUIManager : MonoBehaviour
         skillAddExitBtn.onClick.AddListener(() => UIActiveCheck());
         equipInfoExitBtn.onClick.AddListener(() => UIActiveCheck());
         myInfoExitBtn.onClick.AddListener(() => UIActiveCheck());
+        roomInfoExitBtn.onClick.AddListener(() => UIActiveCheck());
         nextDungeonLevelBtn.onClick.AddListener(() => DungeonLevelUP());
         previousDungeonLevelBtn.onClick.AddListener(() => DungeonLevelDown());
 
@@ -302,6 +308,14 @@ public class WaitingUIManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void SetMyInfoData()
+    {
+        myInfoData.text = "\n" + "공격력:" + CharacterStatus.Instance.Attack.ToString() + "\n" + "방어력: " + CharacterStatus.Instance.Defense.ToString() + "\n" + "체력: " + CharacterStatus.Instance.MaxHealthPoint.ToString()
+             + "\n" + "마나: " + CharacterStatus.Instance.MaxMagicPoint.ToString() + "\n" + "체력회복: " + CharacterStatus.Instance.HpRegeneration.ToString() + "\n" + "마나회복: " + CharacterStatus.Instance.MpRegeneration.ToString()
+             + "\n" + "공격력 증가량: 10" + "\n" + "방어력 증가량: 10" + "\n" + "체력 증가량: 10" + "\n" + "마나 증가량: 10" + "\n" + "체력회복 증가량: 10" + "\n" + "마나회복 증가량: 10";
+    }
+
 }
 
 public class Room
