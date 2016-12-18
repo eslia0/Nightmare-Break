@@ -129,7 +129,7 @@ GameObject:
   - 114: {fileID: 114000011320169562}
   - 54: {fileID: 54000010992348138}
   m_Layer: 9
-  m_Name: Frog
+  m_Name: frog
   m_TagString: Enermy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -869,6 +869,7 @@ MonoBehaviour:
   currentDisTance: 0
   searchRange: 0
   isAlive: 0
+  bossNormalAttackCycle: 0
   bossRandomPattern: 0
   shootNumber: 0
   chasePlayer: {fileID: 0}

@@ -567,6 +567,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010111953416}
+  - 65: {fileID: 65000013027896008}
+  - 114: {fileID: 114000010518660118}
   m_Layer: 0
   m_Name: Bip01 Prop2
   m_TagString: Untagged
@@ -1006,7 +1008,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011355425384}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.8700001, y: 0, z: -3.7100003}
+  m_LocalPosition: {x: 3.06, y: 0, z: -94.58}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -1674,6 +1676,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.4, z: 1}
   m_Center: {x: 0, y: 1.2, z: 0}
+--- !u!65 &65000013027896008
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012479710882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82000013406156102
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1765,6 +1779,29 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000010518660118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012479710882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b143f7a0671c14ab000f9a7fbb12ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  charManager: {fileID: 0}
+  damage: 0
+  attackSound: {fileID: 0}
+  attack1: {fileID: 0}
+  attack2: {fileID: 0}
+  attack3: {fileID: 0}
+  cutOffEffectSound: {fileID: 0}
+  swordDanceEffectSound: {fileID: 0}
+  mealstromEffectSound: {fileID: 0}
+  swordDanceFinishEffectSound: {fileID: 0}
+  giganticSwordSound: {fileID: 0}
 --- !u!114 &114000010673212446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1779,7 +1816,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   rend: {fileID: 0}
   rigdbody: {fileID: 0}
-  charWeapon: {fileID: 0}
+  charWeapon: {fileID: 65000013027896008}
   weapon: {fileID: 0}
   enermy: []
   jumpPower: 0
@@ -1807,7 +1844,7 @@ MonoBehaviour:
   testinput: {fileID: 0}
   frameDestroy: {fileID: 0}
   fireBall: {fileID: 0}
-  FireBallPos: {fileID: 0}
+  FireBallPos: {fileID: 1000010165977460}
   armageddon: {fileID: 0}
   mageRing: {fileID: 0}
   ArmageddonDamage: {fileID: 0}

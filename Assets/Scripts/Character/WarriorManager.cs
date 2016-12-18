@@ -78,7 +78,6 @@ public class WarriorManager : CharacterManager
 	public void MealStromFinish()
 	{
 		mealStromTranslate = false;
-		Debug.Log ("in finish");
 		if (testinput.vertical < 0)
 		{
 			transform.rotation = Quaternion.Euler (new Vector3 (0, 180.0f, 0));
@@ -173,7 +172,7 @@ public class WarriorManager : CharacterManager
 		{
 			giganticSwordCastPos = -7.0f;
 		}
-		swordCircle =  Instantiate (Resources.Load<GameObject> ("Effect/SwordSummonCircle"), transform.position + new Vector3 (0.0f, 0.0f, giganticSwordCastPos),Quaternion.Euler (new Vector3 (-90.0f, 0, 0))) as GameObject;
+		swordCircle =  Instantiate (Resources.Load<GameObject> ("Effect/SwordSummonCircle"), transform.position + new Vector3 (0.0f, 0.2f, giganticSwordCastPos),Quaternion.Euler (new Vector3 (-90.0f, 0, 0))) as GameObject;
 	}
 	public void GiganticSwordSummon ()
 	{
@@ -384,6 +383,11 @@ public class WarriorManager : CharacterManager
 	{
 		CharAudio.PlayOneShot (Skill1Sound);
 		weapon.MealstromEffectSound ();
+	}
+
+	public void MealStromFinishSound()
+	{
+		CharAudio.PlayOneShot (mealStromFinishSound);
 	}
 	public void CutOffSound()
 	{

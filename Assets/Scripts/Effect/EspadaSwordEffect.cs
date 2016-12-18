@@ -15,7 +15,7 @@ public class EspadaSwordEffect : MonoBehaviour
 
 	public Rigidbody giganticSwordRigd;
 	public float swordSpeed;
-
+	public bool checkMap;
 
 	public BoxCollider giganticSwordBox;
 	public Material swordMaterial;
@@ -36,6 +36,7 @@ public class EspadaSwordEffect : MonoBehaviour
 		giganticSword = this.gameObject;
 		swordSound.volume = 0.1f;
 		swordSound.PlayOneShot (swordSummonSound);
+		checkMap = true;
 		Destroy (this.gameObject, 3.0f);
 
 		swordMaterial.SetFloat ("_Alpha",1);
@@ -62,8 +63,9 @@ public class EspadaSwordEffect : MonoBehaviour
 	void OnTriggerEnter(Collider coll)
 	{
 
-		if (coll.gameObject.layer == LayerMask.NameToLayer ("Map"))
+		if (coll.gameObject.layer == LayerMask.NameToLayer ("Map") && checkMap)
 		{
+			checkMap = false;
 			StartCoroutine (InStopSword());
 		}
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Enermy"))
@@ -88,15 +90,10 @@ public class EspadaSwordEffect : MonoBehaviour
 		StartCoroutine (SwordAlpha ());
 		giganticSwordRigd.velocity = (transform.forward* 0);
 		giganticSwordRigd.useGravity = false;
-		swordEffect =Instantiate(Resources.Load<GameObject>("Effect/SwordExplosion"), new Vector3(this.transform.position.x,this.transform.position.y-1f,this.transform.position.z),new Quaternion(90,-90,0,0))as GameObject;
+		swordEffect =Instantiate(Resources.Load<GameObject>("Effect/SwordExplosion"), new Vector3(this.transform.position.x,this.transform.position.y-3f,this.transform.position.z),new Quaternion(90,-90,0,0))as GameObject;
 		
 		Destroy (swordEffect, 2.5f);
 		swordSound.PlayOneShot (swordFinishSound);
 	}
 
 }
-//
-//swordEffect =Instantiate(Resources.Load<GameObject>("Effect/SwordExplosion"), transform.position,new Quaternion(90,-90,0,0))as GameObject;
-//
-//Destroy (swordEffect, 2.5f);
-//swordSound.PlayOneShot (swordFinishSound);

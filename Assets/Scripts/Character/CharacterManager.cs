@@ -85,7 +85,8 @@ public class CharacterManager : MonoBehaviour
 		testinput = GameObject.Find ("TestInputManager").GetComponent<TestInputManager> ();
 		charDir = true;
 		JumpMove = false;
-		weapon = this.gameObject.GetComponentInChildren<CharWeapon> ();
+		weapon = this.gameObject.GetComponentInChildren<CharWeapon>();
+		charWeapon =this.gameObject.GetComponentInChildren<CharWeapon>().GetComponent<BoxCollider>();
 		CharAudio.volume = 0.3f;
 		jumpPower = 10;
         comboCount = 0;

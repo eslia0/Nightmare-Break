@@ -90,7 +90,7 @@ public class NetworkManager : MonoBehaviour
     {
         serverEndPoint = new IPEndPoint(IPAddress.Parse(serverIP), serverPortNumber);
         serverSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
+		 
         ConnectServer();
     }
 
