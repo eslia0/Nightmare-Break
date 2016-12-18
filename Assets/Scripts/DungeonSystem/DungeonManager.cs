@@ -84,7 +84,7 @@ public class DungeonManager : MonoBehaviour
 
         if (GameObject.FindGameObjectWithTag("GameManager") == null)
         {
-            InitializeMonsterSpawnPoint();
+            InitializeMonsterSpawnPoint(1);
 
             dungeonData = new DungeonData();
 
@@ -152,13 +152,6 @@ public class DungeonManager : MonoBehaviour
 			}
 		}
 	}
-	//void Update()
-	//{
- //       for (int i = 0; i < monsters.Length; i++)
- //       {
-	//		monsterData[i].MonsterUpdate();
- //       }
-	//}
 
     //각종 매니저 초기화
     public void ManagerInitialize(int newDungeonId, int newDungeonLevel, int newUserNum)
@@ -177,24 +170,23 @@ public class DungeonManager : MonoBehaviour
 
     public void InitializePlayerSpawnPoint()
     {
-        for (int i =0; i< players.Length; i++)
+        playerSpawnPoints = new GameObject[players.Length];
+
+        for (int i = 0; i < players.Length; i++)
         {
             playerSpawnPoints[i] = GameObject.Find("PlayerSpawnPoint" + (i + 1));
-        }        
+        }
     }
 
-    public void InitializeMonsterSpawnPoint()
+    public void InitializeMonsterSpawnPoint(int stageIndex)
     {
-        monsterSpawnPoints = GameObject.FindGameObjectsWithTag("MonsterSpawnPoint");
-    }
+        Stage stageData = dungeonData.GetStageData(stageIndex);
 
-    public void SceneChange()
-    {
-        if (mapNumber < 2)
+        monsterSpawnPoints = new GameObject[stageData.GetMonsterNum()];
+        for (int i = 0; i < monsters.Length; i++)
         {
-			SceneManager.LoadScene("LostTeddyBear_SingleType"+(mapNumber+1));// loadScene;
-			mapNumber++;
-        }     
+            monsterSpawnPoints[i] = GameObject.Find("MonsterSpawnPoint" + (i + 1));
+        }
     }
 
     public void SetMonsterSpawnList(DungeonData newDungeonData)
@@ -229,13 +221,13 @@ public class DungeonManager : MonoBehaviour
     public void StartDungeon(int playerNum)
     {
         InitializePlayer(playerNum);
+        InitializePlayerSpawnPoint();
 
         CreatePlayer((int)CharacterStatus.Instance.HGender, (int)CharacterStatus.Instance.HClass);
-
-
+        
         if (userNum == 0)
         {
-
+            InitializeMonsterSpawnPoint(1);
         }
     }
 
@@ -329,7 +321,7 @@ public class DungeonManager : MonoBehaviour
             }
         }
 
-        SceneChange();
+        //SceneChange();
     }
 
     public GameObject CreatePlayer(int gender, int hClass)
@@ -337,9 +329,10 @@ public class DungeonManager : MonoBehaviour
         //여기서는 플레이어 캐릭터 딕셔너리 -> 각 직업에 따른 플레이어 스탯과 능력치, 스킬, 이름을 가지고 있음
         //딕셔너리를 사용하여 그에 맞는 캐릭터를 소환해야 하지만 Prototype 진행 시에는 고정된 플레이어를 소환하도록 함.
 
-        int characterId = hClass * CharacterStatus.maxGender + gender;
+        int characterId = (hClass * CharacterStatus.maxGender) + gender + 1;
+        Debug.Log(characterId);
 
-        GameObject player = Instantiate(Resources.Load("Character" + characterId)) as GameObject;
+        GameObject player = Instantiate(Resources.Load("Class" + characterId)) as GameObject;
         player.tag = "Player";
         player.transform.position = playerSpawnPoints[userNum].transform.position;
         players[userNum] = player;

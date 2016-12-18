@@ -34,7 +34,7 @@ public class SceneChangeObject : MonoBehaviour {
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Player")) {
 			Debug.Log ("a");
 			DungeonManager dungeonManager=GameObject.Find("DungeonManager").GetComponent<DungeonManager>();
-			dungeonManager.SceneChange ();
+			//dungeonManager.SceneChange ();
 
 		}
 	}

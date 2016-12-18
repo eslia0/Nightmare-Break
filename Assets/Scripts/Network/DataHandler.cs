@@ -295,7 +295,7 @@ public class DataHandler : MonoBehaviour
         {
             for (int j = 0; j < WaitingUIManager.maxPlayerNum; j++)
             {
-                Debug.Log(i + " - " + j + roomListPacket.GetData().Rooms[i].RoomUserData[j].UserName + " ");
+                Debug.Log(i + " - " + j + roomListData.Rooms[i].RoomUserData[j].UserName + " ");
             }
         }
 

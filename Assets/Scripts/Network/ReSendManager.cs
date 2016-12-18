@@ -43,7 +43,7 @@ public class ReSendManager : MonoBehaviour
             reSendDatum[i] = new Dictionary<int, SendData>();
         }
 
-        StartCoroutine(StartCheckSendData());
+        StartCoroutine(CheckReSendData());
         isConnecting = true;
     }
 
@@ -51,7 +51,7 @@ public class ReSendManager : MonoBehaviour
     {
         try
         {
-            Debug.Log(index + "번 유저에 " + sendData.UdpId + " 아이디 메소드 추가");
+            Debug.Log(index + "번 유저에 " + sendData.UdpId + " 아이디 데이터 추가");
             reSendDatum[index].Add(sendData.UdpId, sendData);
         }
         catch
@@ -70,7 +70,7 @@ public class ReSendManager : MonoBehaviour
         {
             try
             {
-                Debug.Log(index + "번 유저에 " + sendData.UdpId + " 아이디 메소드 삭제");
+                Debug.Log(index + "번 유저에 " + sendData.UdpId + " 아이디 데이터 삭제");
                 reSendDatum[index].Remove(sendData.UdpId);
             }
             catch
@@ -86,7 +86,7 @@ public class ReSendManager : MonoBehaviour
         DataSender.Instance.SendMsgs.Enqueue(packet);
     }
 
-    public IEnumerator StartCheckSendData()
+    public IEnumerator CheckReSendData()
     {
         while (true)
         {

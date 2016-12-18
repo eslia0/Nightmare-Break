@@ -75,8 +75,19 @@ public class RoomListPacket : Packet<RoomListData>
                     roomUserData[j] = new RoomUserData(userName, userGender, userClass, userLevel);
                 }
 
+                UnityEngine.Debug.Log(i);
+                UnityEngine.Debug.Log(roomUserData[0].UserName);
+                UnityEngine.Debug.Log(roomUserData[1].UserName);
+                UnityEngine.Debug.Log(roomUserData[2].UserName);
+                UnityEngine.Debug.Log(roomUserData[3].UserName);
+
                 rooms[i] = new Room(roomName, dungeonId, dungeonLevel, roomUserData, playerNum);
             }
+
+            UnityEngine.Debug.Log(rooms[0].RoomUserData[0].UserName);
+            UnityEngine.Debug.Log(rooms[0].RoomUserData[1].UserName);
+            UnityEngine.Debug.Log(rooms[0].RoomUserData[2].UserName);
+            UnityEngine.Debug.Log(rooms[0].RoomUserData[3].UserName);
 
             element = new RoomListData(rooms);
 

@@ -340,7 +340,7 @@ public class Room
     public int DungeonLevel { get { return dungeonLevel; } }
 	public int PlayerNum { get { return playerNum; } }
     public RoomUserData[] RoomUserData { get { return roomUserData; } }
-
+    
     public Room()
     {
         roomName = "";
@@ -356,39 +356,19 @@ public class Room
         }
     }
 
-    public Room(string newRoomName, string newDungeonName, int newDungeonId, int newDungeonLevel)
-    {
-        roomName = newRoomName;
-        dungeonName = newDungeonName;
-        dungeonId = newDungeonId;
-        dungeonLevel = newDungeonLevel;
-        playerNum = 0;
-        roomUserData = new RoomUserData[WaitingUIManager.maxPlayerNum];
-
-        for (int i = 0; i < WaitingUIManager.maxPlayerNum; i++)
-        {
-            roomUserData[i] = new RoomUserData();
-        }
-    }
-
     public Room(string newRoomName, int newDungeonId, int newDungeonLevel, RoomUserData[] newRoomUserData, int newPlayerNum)
     {
         roomName = newRoomName;
         dungeonName = "";
         dungeonId = newDungeonId;
         dungeonLevel = newDungeonLevel;
+        roomUserData = new RoomUserData[newRoomUserData.Length];
         playerNum = newPlayerNum;
-        roomUserData = newRoomUserData;
-    }
 
-    public Room(string newRoomName, string newDungeonName, int newDungeonId, int newDungeonLevel, RoomUserData[] newRoomUserData, int newPlayerNum)
-    {
-        roomName = newRoomName;
-        dungeonName = newDungeonName;
-        dungeonId = newDungeonId;
-        dungeonLevel = newDungeonLevel;
-        playerNum = newPlayerNum;
-        roomUserData = newRoomUserData;
+        for (int i = 0; i < newRoomUserData.Length; i++)
+        {
+            roomUserData[i] = new RoomUserData(newRoomUserData[i].UserName, newRoomUserData[i].UserGender, newRoomUserData[i].UserClass, newRoomUserData[i].UserLevel);
+        }
     }
 }
 
