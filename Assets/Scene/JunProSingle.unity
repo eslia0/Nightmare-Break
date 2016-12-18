@@ -6074,6 +6074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalMode: 0
+  target: 0
   attackCollider: []
   bulletInstantiate: []
   player: []
@@ -6088,6 +6089,7 @@ MonoBehaviour:
   currentDisTance: 0
   searchRange: 0
   isAlive: 0
+  bossNormalAttackCycle: 0
   bossRandomPattern: 0
   shootNumber: 0
   chasePlayer: {fileID: 0}
@@ -8845,6 +8847,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1787724383}
   m_RootOrder: 2
+--- !u!1001 &687729805
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000011241482450, guid: 0c79364ced8f93e4bb4ddbe5402db0d2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011241482450, guid: 0c79364ced8f93e4bb4ddbe5402db0d2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011241482450, guid: 0c79364ced8f93e4bb4ddbe5402db0d2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011241482450, guid: 0c79364ced8f93e4bb4ddbe5402db0d2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011241482450, guid: 0c79364ced8f93e4bb4ddbe5402db0d2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011241482450, guid: 0c79364ced8f93e4bb4ddbe5402db0d2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011241482450, guid: 0c79364ced8f93e4bb4ddbe5402db0d2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011241482450, guid: 0c79364ced8f93e4bb4ddbe5402db0d2, type: 2}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010045650610, guid: 0c79364ced8f93e4bb4ddbe5402db0d2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0c79364ced8f93e4bb4ddbe5402db0d2, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &687875194
 GameObject:
   m_ObjectHideFlags: 0
@@ -9294,8 +9342,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b55df912c131d44d8c71db0893ecdc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterData: []
   sceneChangeObject: []
   bossMonster: {fileID: 0}
+  mapNumber: 0
 --- !u!4 &739589852
 Transform:
   m_ObjectHideFlags: 0
@@ -21539,6 +21589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalMode: 0
+  target: 0
   attackCollider: []
   bulletInstantiate: []
   player:
@@ -21555,6 +21606,7 @@ MonoBehaviour:
   currentDisTance: 0
   searchRange: 0
   isAlive: 0
+  bossNormalAttackCycle: 0
   bossRandomPattern: 0
   shootNumber: 0
   chasePlayer: {fileID: 0}
@@ -23149,8 +23201,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b55df912c131d44d8c71db0893ecdc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterData: []
   sceneChangeObject: []
   bossMonster: {fileID: 0}
+  mapNumber: 0
 --- !u!4 &1797509691
 Transform:
   m_ObjectHideFlags: 0
