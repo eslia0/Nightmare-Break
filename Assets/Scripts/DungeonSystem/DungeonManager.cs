@@ -6,7 +6,8 @@ using System.Collections;
 
 public enum UnitId
 {
-    ManWarrior = 0,
+    None = 0,
+    ManWarrior,
     WomanWarrior,
     ManMage,
     WomanMage,
@@ -183,8 +184,7 @@ public class DungeonManager : MonoBehaviour
         Stage stageData = dungeonLevelData.GetStage(stageIndex);
 
         monsterSpawnPoints = new GameObject[stageData.GetMonsterNum()];
-        Debug.Log(stageIndex);
-        Debug.Log(stageData.GetMonsterNum());
+
         for (int i = 0; i < stageData.GetMonsterNum(); i++)
         {
             monsterSpawnPoints[i] = GameObject.Find("MonsterSpawnPoint" + (i + 1));
@@ -369,9 +369,8 @@ public class DungeonManager : MonoBehaviour
         {
             if (players[unitIndex] == null)
             {
-                GameObject unit = Instantiate(Resources.Load("ManWarrior")) as GameObject;
+                GameObject unit = Instantiate(Resources.Load("Class" + unitId)) as GameObject;
                 unit.transform.position = newPosition;
-                unit.name = "Warrior";
                 unit.tag = "Untagged";
                 players[unitIndex] = unit;
 

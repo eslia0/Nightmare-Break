@@ -190,14 +190,6 @@ public class SceneChanger : MonoBehaviour
             currentScene = SceneName.TeddyBearStage1;
         }
         #endregion
-        
-		#region 연우씨 씬 로드
-		else if (scene.name == "")
-		{
-			currentScene = SceneName.TeddyBearStage2;
-			//kyw
-		}
-		#endregion
 
     }
 

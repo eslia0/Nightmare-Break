@@ -532,6 +532,8 @@ public class DataHandler : MonoBehaviour
         CreateUnitPacket createUnitPacket = new CreateUnitPacket(packet.msg);
         CreateUnitData createUnitData = createUnitPacket.GetData();
 
+        Debug.Log("유닛 생성 아이디 : " + createUnitData.ID);
+
         int index = NetworkManager.Instance.GetUserIndex(packet.endPoint);
 
         DungeonManager.Instance.CreateUnit(createUnitData.ID, index, new Vector3(createUnitData.PosX, createUnitData.PosY, createUnitData.PosZ));

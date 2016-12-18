@@ -457,8 +457,6 @@ public class CharacterManager : MonoBehaviour
 
 	public void SetPosition (UnitPositionData newPositionData)
 	{
-		Debug.Log ("캐릭터 위치 설정 유저 번호 : " + userNum);
-
 		if (newPositionData.Dir)
 		{
 			transform.rotation = Quaternion.Euler (new Vector3 (0, 0.0f, 0));

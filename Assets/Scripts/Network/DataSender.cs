@@ -457,7 +457,7 @@ public class DataSender : MonoBehaviour
     //캐릭터의 생성 -> Client
     public void CreateUnitSend(EndPoint endPoint, short characterId, float posX, float posY, float posZ)
     {
-        Debug.Log(endPoint.ToString() + "캐릭터 생성 보냄");
+        Debug.Log(endPoint.ToString() + "캐릭터 생성 보냄 아이디 " + characterId);
 
         CreateUnitData createUnitData = new CreateUnitData(characterId, posX, posY, posZ);
         CreateUnitPacket createUnitDataPacket = new CreateUnitPacket(createUnitData);
@@ -470,6 +470,7 @@ public class DataSender : MonoBehaviour
 
         SendData sendData = new SendData(udpId[index], endPoint, packet.msg);
         NetworkManager.Instance.ReSendManager.AddReSendData(sendData, index);
+        ReSendManager.Instance.characterCreating = true;
         udpId[index]++;
     }
 
