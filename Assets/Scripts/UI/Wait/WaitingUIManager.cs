@@ -44,7 +44,7 @@ public class WaitingUIManager : MonoBehaviour
 	private Text[] roomInfoUserName;
 
 	private Image equipWeaponIcon;
-
+    private Image lockImage;
     private Image[] roomInfoClassIcon;
 	private Image[] roomInfoGenderIcon;
     private Image[] skillAddSelectImage;
@@ -87,6 +87,7 @@ public class WaitingUIManager : MonoBehaviour
         skillAddIcon = new Button[CharacterStatus.skillNum];
         skillAddSelectImage = new Image[CharacterStatus.skillNum];
 
+        lockImage = GameObject.Find("LockObject").GetComponent<Image>();
         myInfoData = GameObject.Find("MyInfoData").GetComponent<Text>();
         roomCreateUI = GameObject.Find("RoomCreateUI");
         skillAddUI = GameObject.Find("SkillAddUI");
@@ -175,31 +176,34 @@ public class WaitingUIManager : MonoBehaviour
 		roomBtn [17].onClick.AddListener (() => RoomInfo (17));
 		roomBtn [18].onClick.AddListener (() => RoomInfo (18));
 		roomBtn [19].onClick.AddListener (() => RoomInfo (19));
-
     }
 
     public void RoomCreate()
 	{
 		UIActiveCheck ();
 		roomCreateUI.SetActive (true);
-	}
+        lockImage.gameObject.SetActive(true);
+    }
 
 	public void SkillAdd()
 	{
 		UIActiveCheck ();
 		skillAddUI.SetActive (true);
-	}
+        lockImage.gameObject.SetActive(true);
+    }
 
 	public void EquipInfo()
 	{
 		UIActiveCheck ();
 		equipInfoUI.SetActive(true);
-	}
+        lockImage.gameObject.SetActive(true);
+    }
 
     public void MyInfo()
     {
         UIActiveCheck();
         myInfoUI.SetActive(true);
+        lockImage.gameObject.SetActive(true);
     }
 
     public void DungeonLevelUP()
@@ -237,6 +241,7 @@ public class WaitingUIManager : MonoBehaviour
 		} else if (roomInfoUI.activeSelf) {
 			roomInfoUI.SetActive (false);
 		}
+        lockImage.gameObject.SetActive(false);
     }
 
 	public void RoomInfo(int roomNum)
