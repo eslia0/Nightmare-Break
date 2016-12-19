@@ -20,7 +20,6 @@ public class SkillManager : MonoBehaviour {
                 {
                     GameObject container = new GameObject();
                     container.name = "SkillManager";
-                    container.tag = "SkillManager";
                     instance = container.AddComponent(typeof(SkillManager)) as SkillManager;   
                 }
             }

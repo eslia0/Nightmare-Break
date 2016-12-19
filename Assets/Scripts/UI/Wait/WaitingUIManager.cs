@@ -217,7 +217,7 @@ public class WaitingUIManager : MonoBehaviour
         mySkillInfo.transform.parent.position = skillAddIcon[skillIndex].transform.position;
         mySkillInfo.transform.parent.position += new Vector3(120f, 35f, 0);
         currentSkill = skillIndex;
-        SkillBasicData skillData = SkillManager.Instance.SkillData.GetSkill(1, skillIndex + 1);  // 고쳐야함
+        SkillBasicData skillData = SkillManager.Instance.SkillData.GetSkill(1,skillIndex + 1);  // 고쳐야함
         mySkillInfo.text = "스킬이름: " + skillData.SkillName + "  " + "쿨타임: " + skillData.SkillCoolTime.ToString() + "초" + "\n" + skillData.SkillBasicExplanation + "\n" + skillData.GetSkillData(1).SkillExplanation;
     }
 

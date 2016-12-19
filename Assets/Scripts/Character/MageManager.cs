@@ -226,7 +226,8 @@ public class MageManager : CharacterManager
 				}
 			}
 		}
-	}
+        UIManager.Instance.BattleUIManager.hpBarCalculation(characterStatus.MaxHealthPoint, characterStatus.HealthPoint);
+    }
 
 	IEnumerator unbeatableCall()
 	{
@@ -240,8 +241,9 @@ public class MageManager : CharacterManager
     
 	public override void UsingMagicPoint(int SkillArray)
 	{
-		float manaFury =SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 6).GetSkillData (characterStatus.SkillLevel [5]).SkillValue;
+		float manaFury = SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 6).GetSkillData (characterStatus.SkillLevel [5]).SkillValue;
         characterStatus.DecreaseMagicPoint ((int)((float)(SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, SkillArray).ManaCost)* manaFury));
+        UIManager.Instance.BattleUIManager.mpBarCalculation(characterStatus.MaxMagicPoint, characterStatus.MagicPoint);
 	}
 
 
