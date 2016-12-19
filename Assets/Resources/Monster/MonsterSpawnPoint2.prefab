@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010873641928}
   m_Layer: 9
-  m_Name: Frog2
+  m_Name: MonsterSpawnPoint5
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010953897990}
   m_Layer: 9
-  m_Name: Duck8
+  m_Name: MonsterSpawnPoint20
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -50,7 +50,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010115283824}
   m_Layer: 9
-  m_Name: Rabbit5
+  m_Name: MonsterSpawnPoint17
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013659072418}
   m_Layer: 9
-  m_Name: Duck2
+  m_Name: MonsterSpawnPoint2
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -80,7 +80,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012345760644}
   m_Layer: 9
-  m_Name: Frog5
+  m_Name: MonsterSpawnPoint14
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011822262726}
   m_Layer: 9
-  m_Name: Rabbit3
+  m_Name: MonsterSpawnPoint9
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013972162946}
   m_Layer: 9
-  m_Name: Frog3
+  m_Name: MonsterSpawnPoint6
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012885746058}
   m_Layer: 9
-  m_Name: Frog7
+  m_Name: MonsterSpawnPoint22
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -156,7 +156,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013410554772}
   m_Layer: 9
-  m_Name: Duck1
+  m_Name: MonsterSpawnPoint1
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011593701670}
   m_Layer: 9
-  m_Name: Duck5
+  m_Name: MonsterSpawnPoint11
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -186,7 +186,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012683682114}
   m_Layer: 9
-  m_Name: Frog4
+  m_Name: MonsterSpawnPoint13
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -201,7 +201,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012483445162}
   m_Layer: 9
-  m_Name: Frog1
+  m_Name: MonsterSpawnPoint4
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -216,7 +216,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014221143830}
   m_Layer: 9
-  m_Name: Rabbit7
+  m_Name: MonsterSpawnPoint25
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -231,7 +231,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010274065030}
   m_Layer: 9
-  m_Name: Rabbit8
+  m_Name: MonsterSpawnPoint26
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -246,7 +246,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013075237460}
   m_Layer: 9
-  m_Name: Rabbit1
+  m_Name: MonsterSpawnPoint7
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011221663028}
   m_Layer: 9
-  m_Name: Rabbit6
+  m_Name: MonsterSpawnPoint18
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013309445752}
   m_Layer: 9
-  m_Name: Rabbit9
+  m_Name: MonsterSpawnPoint27
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -291,7 +291,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012542640704}
   m_Layer: 9
-  m_Name: Rabbit4
+  m_Name: MonsterSpawnPoint16
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -306,7 +306,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012717129568}
   m_Layer: 9
-  m_Name: Duck9
+  m_Name: MonsterSpawnPoint21
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -321,7 +321,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010254911944}
   m_Layer: 9
-  m_Name: Duck6
+  m_Name: MonsterSpawnPoint12
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -336,7 +336,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010560482912}
   m_Layer: 9
-  m_Name: Frog9
+  m_Name: MonsterSpawnPoint24
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -351,7 +351,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014293804066}
   m_Layer: 9
-  m_Name: Duck4
+  m_Name: MonsterSpawnPoint10
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -366,7 +366,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011405513478}
   m_Layer: 9
-  m_Name: Duck3
+  m_Name: MonsterSpawnPoint3
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -381,7 +381,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011895116408}
   m_Layer: 9
-  m_Name: Rabbit2
+  m_Name: MonsterSpawnPoint8
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -396,7 +396,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011392833956}
   m_Layer: 9
-  m_Name: Duck7
+  m_Name: MonsterSpawnPoint19
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011905383538}
   m_Layer: 9
-  m_Name: Frog8
+  m_Name: MonsterSpawnPoint23
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -426,7 +426,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000014219047534}
   m_Layer: 9
-  m_Name: Frog6
+  m_Name: MonsterSpawnPoint15
   m_TagString: MonsterSpawnPoint
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -452,7 +452,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012729936776}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.87, y: -0.09999988, z: -24.47}
+  m_LocalPosition: {x: -5.1, y: -0.09999988, z: -22.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -544,7 +544,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010759269040}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.95, y: -0.09999988, z: -12.08}
+  m_LocalPosition: {x: 0.69, y: -0.09999988, z: -14.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -557,7 +557,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012385211642}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9, y: -0.09999988, z: -24.84}
+  m_LocalPosition: {x: 0.9, y: -0.09999988, z: -17.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -622,7 +622,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013377919130}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.16, y: -0.09999988, z: -9.4}
+  m_LocalPosition: {x: 1.18, y: -0.09999988, z: -9.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -726,7 +726,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012268703930}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.62, y: -0.09999988, z: -18.4}
+  m_LocalPosition: {x: 3.41, y: -0.09999988, z: -16.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
