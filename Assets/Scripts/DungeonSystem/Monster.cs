@@ -333,15 +333,12 @@ public class Monster : MonoBehaviour
 
         if (NetworkManager.Instance.MyIndex == 0)
         {
-            Debug.Log("몬스터 보내기!!!!!!!!!!!");
             StartCoroutine(MonsterUpdate());
             StartCoroutine(ChangeRandomStanby());
 
             normalMode = DungeonManager.Instance.NormalMode;
             normalMode = true;
             MonsterAIStart(normalMode);
-
-            Debug.Log("노말 : " + normalMode);
 
             DataSender.Instance.UnitPositionSend(gameObject);
         }

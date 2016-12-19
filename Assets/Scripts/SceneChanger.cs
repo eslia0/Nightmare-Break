@@ -85,7 +85,7 @@ public class SceneChanger : MonoBehaviour
                 UIManager.Instance.SetUIManager(UIManagerIndex.Select);
                 DataSender.Instance.RequestCharacterList();
 
-                StartCoroutine(CheckLoading());
+                StartCoroutine(CheckLoading(1));
             }
             else if (nextScene == (int)SceneName.TitleScene)
             {
@@ -100,7 +100,7 @@ public class SceneChanger : MonoBehaviour
                 DataSender.Instance.RequestCharacterStatus();
                 DataSender.Instance.RequestRoomList();
 
-                StartCoroutine(CheckLoading());
+                StartCoroutine(CheckLoading(2));
             }
             else if (nextScene == (int)SceneName.TeddyBearStage1)
             {
@@ -238,23 +238,17 @@ public class SceneChanger : MonoBehaviour
         
     }
 
-    public IEnumerator CheckLoading()
+    public IEnumerator CheckLoading(int checkSize)
     {
-        if(nextScene == (int)SceneName.SelectScene)
+        loadingCheck = new bool[checkSize];
+
+        if (nextScene == (int)SceneName.TeddyBearStage1)
         {
-            loadingCheck = new bool[1];
-        }
-        else if (nextScene == (int)SceneName.WaitingScene)
-        {
-            loadingCheck = new bool[2];
-        }
-        else if (nextScene == (int)SceneName.TeddyBearStage1)
-        {
-            LoadingCheck = new bool[NetworkManager.Instance.UserIndex.Count + 2];
             LoadingCheck[NetworkManager.Instance.MyIndex + 2] = true;
         }
 
         bool checkComplete = false;
+        Debug.Log("로딩 체크 시작 " + checkSize);
 
         while (!checkComplete)
         {
