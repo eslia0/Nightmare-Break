@@ -4,7 +4,7 @@ using System.Collections;
 public class FireBall : MonoBehaviour {
 
   	public ParticleSystem FireBallparticleSystem;
-	public CharacterManager charManager;
+	public CharacterManager characterManager;
 	public GameObject character;
 	public int FireBallDamage;
 	public float FireBallSpeed;
@@ -13,23 +13,24 @@ public class FireBall : MonoBehaviour {
 	int skillLv;
 	AudioSource fireBallSound;
 	AudioClip flyingBall;
-    void Start()
+
+    public void InitializeFireBall(CharacterManager newCharacterManager)
     {
-		character = GameObject.FindWithTag ("Player");
-		FireBallRigid = GetComponent<Rigidbody> ();
-		FireBallRigid.velocity = transform.forward* FireBallSpeed;
-		fireBallSound =this.gameObject.GetComponent<AudioSource> ();
-		FireBallSpeed = 15;
+        characterManager = newCharacterManager;
+        FireBallRigid = GetComponent<Rigidbody>();
+        FireBallRigid.velocity = transform.forward * FireBallSpeed;
+        fireBallSound = this.gameObject.GetComponent<AudioSource>();
+        FireBallSpeed = 15;
 
-		flyingBall = Resources.Load<AudioClip> ("Sound/MageEffectSound/MeteorDropSound");
+        flyingBall = Resources.Load<AudioClip>("Sound/MageEffectSound/MeteorDropSound");
 
-		fireBallSound.PlayOneShot (flyingBall);
+        fireBallSound.PlayOneShot(flyingBall);
 
-		FireBallparticleSystem = GetComponent<ParticleSystem>();
-		skillLv = charManager.CharacterStatus.SkillLevel [0];
-		FireBallDamage =(int) ((SkillManager.Instance.SkillData.GetSkill ((int)charManager.CharacterStatus.HClass, 1).GetSkillData (skillLv).SkillValue)* charManager.CharacterStatus.Attack);
-		Destroy (this.gameObject, 1.45f);
-	}
+        FireBallparticleSystem = GetComponent<ParticleSystem>();
+        skillLv = characterManager.CharacterStatus.SkillLevel[0];
+        FireBallDamage = (int)((SkillManager.Instance.SkillData.GetSkill((int)characterManager.CharacterStatus.HClass, 1).GetSkillData(skillLv).SkillValue) * characterManager.CharacterStatus.Attack);
+        Destroy(this.gameObject, 1.45f);
+    }
 
     void Update()
     {

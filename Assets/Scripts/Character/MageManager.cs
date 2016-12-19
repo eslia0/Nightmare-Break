@@ -58,11 +58,13 @@ public class MageManager : CharacterManager
 			if (transform.rotation.y == 0)
 			{
 				fireBall = Instantiate (Resources.Load<GameObject> ("Effect/FireBall"),FireBallPos.transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
-			}
+                fireBall.GetComponent<FireBall>().InitializeFireBall(this);
+            }
 			else
 			{
 				fireBall = Instantiate (Resources.Load<GameObject> ("Effect/FireBall"), FireBallPos.transform.position,Quaternion.Euler (0, 180, 0)) as GameObject;
-			}
+                fireBall.GetComponent<FireBall>().InitializeFireBall(this);
+            }
 			
 		}
 		

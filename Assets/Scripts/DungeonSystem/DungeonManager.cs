@@ -45,9 +45,8 @@ public class DungeonManager : MonoBehaviour
     DungeonLevelData dungeonLevelData;
     MonsterStatusData monsterStatusData;
 
-    public SceneChangeObject[] sceneChangeObject;
-    public BossMonsterKYW bossMonster;
-    //public Section[] section;
+    StagePortal[] stagePortal;
+    SceneChanger.SceneName[] sceneList;
 
     GameObject m_camera;
 
@@ -60,6 +59,7 @@ public class DungeonManager : MonoBehaviour
 
     public GameObject[] Players { get { return players; } }
     public CharacterManager[] CharacterData { get { return characterData; } }
+    public SceneChanger.SceneName[] SceneList { get { return sceneList; } }
 
     public int DungeonId { get { return dungeonId; } }
     public int DungeonLevel { get { return dungeonLevel; } }
@@ -159,16 +159,28 @@ public class DungeonManager : MonoBehaviour
     public void StartDungeon()
     {
         InitializePlayerSpawnPoint();
+        InitializeSceneName(dungeonId);
 
         CreatePlayer((int)GameManager.Instance.CharacterStatus.HGender, (int)GameManager.Instance.CharacterStatus.HClass);
-
-
+                
         if (NetworkManager.Instance.IsHost)
         {
+            InitializeStagePortal();
             InitializeMonsterSpawnPoint(stageNum);
             SpawnMonster(stageNum);
             SetMonsterStatus(stageNum);
-        }        
+        }
+    }
+
+    public void InitializeSceneName(int dungeonId)
+    {
+        if (dungeonId == 0)
+        {
+            sceneList = new SceneChanger.SceneName[3];
+            sceneList[0] = SceneChanger.SceneName.TeddyBearStage1;
+            sceneList[1] = SceneChanger.SceneName.TeddyBearStage2;
+            sceneList[2] = SceneChanger.SceneName.TeddyBearBoss;
+        }
     }
 
     public void InitializePlayerSpawnPoint()
@@ -190,6 +202,31 @@ public class DungeonManager : MonoBehaviour
         for (int i = 0; i < stageData.GetMonsterNum(); i++)
         {
             monsterSpawnPoints[i] = GameObject.Find("MonsterSpawnPoint" + (i + 1));
+        }
+    }
+
+    public void InitializeStagePortal()
+    {
+        int portalNum = 0;
+
+        if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.TeddyBearStage1)
+        {
+            portalNum = 1;
+        }
+        else if(SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.TeddyBearStage2)
+        {
+            portalNum = 2;
+        }
+        else if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.TeddyBearBoss)
+        {
+            portalNum = 0;
+        }
+
+        stagePortal = new StagePortal[portalNum];
+
+        for (int i = 0; i < portalNum; i++)
+        {
+            stagePortal[i] = GameObject.Find("StagePortal" + (i + 1)).GetComponent<StagePortal>();
         }
     }
 

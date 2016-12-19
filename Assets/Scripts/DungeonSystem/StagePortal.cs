@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneChangeObject : MonoBehaviour {
+public class StagePortal : MonoBehaviour {
 	SceneChanger a;
 	public GameObject[] Players;
 	public BoxCollider enterBox;
@@ -13,13 +13,9 @@ public class SceneChangeObject : MonoBehaviour {
 
 	public void SceneChangeObjectSet(int _number){
 		Players = GameObject.FindGameObjectsWithTag ("Player");
-		//Players = new GameObject[playerLength];
-		//Players = _Players;
 		enterBox = this.gameObject.GetComponent<BoxCollider>();
 		sceneObject = this.gameObject;
 		inPlayer = new bool[Players.Length];
-		//      sceneObject.SetActive (false);
-
 	}
 
 	public void SceneChangeObjectSetFalse(){
@@ -29,9 +25,6 @@ public class SceneChangeObject : MonoBehaviour {
 	public void SceneChangeObjectSettrue(){
 		this.gameObject.SetActive (true);
 	}
-
-
-
 
 	public void OnTriggerEnter(Collider coll){
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Player")) {
@@ -47,6 +40,7 @@ public class SceneChangeObject : MonoBehaviour {
 			}
 
 			if (playercount >= Players.Length) {
+                SceneChanger.Instance.SceneChange(DungeonManager.Instance.SceneList[DungeonManager.Instance.StageNum], false);
 
 				//DungeonManager dungeonManager=GameObject.Find("DungeonManager").GetComponent<DungeonManager>();
 				//      dungeonManager.SceneChange ();
