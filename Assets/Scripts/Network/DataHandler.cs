@@ -475,6 +475,8 @@ public class DataHandler : MonoBehaviour
             }
         }
 
+        DungeonManager.Instance.InitializePlayer(udpConnectionData.playerNum);
+
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {
             SceneChanger.Instance.LoadingCheck[2] = true;
@@ -496,6 +498,7 @@ public class DataHandler : MonoBehaviour
 
         SendData sendData = new SendData(udpId, packet.endPoint);
         NetworkManager.Instance.ReSendManager.RemoveReSendData(sendData);
+        SceneChanger.Instance.LoadingCheck[NetworkManager.Instance.GetUserIndex(packet.endPoint) + 2] = true;
     }
 
     //Server - 던전 시작
@@ -508,7 +511,7 @@ public class DataHandler : MonoBehaviour
 
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {
-            SceneChanger.Instance.LoadingCheck[3] = true;
+            SceneChanger.Instance.LoadingCheck[NetworkManager.Instance.UserIndex.Count + 2] = true;
         }
     }
 

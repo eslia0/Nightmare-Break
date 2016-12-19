@@ -441,7 +441,7 @@ public class DataSender : MonoBehaviour
     }
 
     //연결 완료 -> Server
-    public void UdpConnectComplete()
+    public void LoadingComplete()
     {
         Debug.Log("Udp 연결 완료");
 
@@ -455,11 +455,11 @@ public class DataSender : MonoBehaviour
     }
 
     //캐릭터의 생성 -> Client
-    public void CreateUnitSend(EndPoint endPoint, short characterId, byte unitIndex, float posX, float posY, float posZ)
+    public void CreateUnitSend(EndPoint endPoint, byte unitType, short characterId, byte unitIndex, float posX, float posY, float posZ)
     {
         Debug.Log(endPoint.ToString() + "캐릭터 생성 보냄 아이디 " + characterId);
 
-        CreateUnitData createUnitData = new CreateUnitData(characterId, unitIndex, posX, posY, posZ);
+        CreateUnitData createUnitData = new CreateUnitData(unitType, characterId, unitIndex, posX, posY, posZ);
         CreateUnitPacket createUnitDataPacket = new CreateUnitPacket(createUnitData);
         createUnitDataPacket.SetPacketId((int)P2PPacketId.CreateUnit);
 
@@ -575,15 +575,11 @@ public class DataSender : MonoBehaviour
 
         byte[] msg = CreatePacket(unitStatePacket);
 
-        Debug.Log("몬스터 상태 보냄");
-
         for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
         {
-            int userIndex = NetworkManager.Instance.UserIndex[index].UserNum;
-
-            if (NetworkManager.Instance.MyIndex != userIndex)
+            if (index != NetworkManager.Instance.MyIndex)
             {
-                DataPacket packet = new DataPacket(CreateUdpPacket(unitStatePacket, udpId[userIndex]), NetworkManager.Instance.UserIndex[index].EndPoint);
+                DataPacket packet = new DataPacket(CreateUdpPacket(unitStatePacket, udpId[index]), NetworkManager.Instance.UserIndex[index].EndPoint);
                 sendMsgs.Enqueue(packet);
             }
         }

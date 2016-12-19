@@ -186,7 +186,7 @@ public class SceneChanger : MonoBehaviour
         {
             UIManager.Instance.BattleUIManager.ManagerInitialize();
 
-            DungeonManager.Instance.StartDungeon(NetworkManager.Instance.UserIndex.Count);
+            DungeonManager.Instance.StartDungeon();
             ReSendManager.Instance.characterCreating = true;
             DungeonManager.Instance.SetCurrentStateNum(1);
 
@@ -254,7 +254,8 @@ public class SceneChanger : MonoBehaviour
         }
         else if (nextScene == (int)SceneName.TeddyBearStage1)
         {
-            LoadingCheck = new bool[4];
+            LoadingCheck = new bool[NetworkManager.Instance.UserIndex.Count + 2];
+            LoadingCheck[NetworkManager.Instance.MyIndex + 2] = true;
         }
 
         bool checkComplete = false;
@@ -275,6 +276,11 @@ public class SceneChanger : MonoBehaviour
                     break;
                 }
             }
+        }
+
+        if (nextScene == (int)SceneName.TeddyBearStage1)
+        {
+            DataSender.Instance.LoadingComplete();
         }
 
         SceneManager.LoadScene(nextScene);

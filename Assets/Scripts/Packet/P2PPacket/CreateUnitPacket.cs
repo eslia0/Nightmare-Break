@@ -6,6 +6,7 @@
         {
             bool ret = true;
 
+            ret &= Serialize(data.UnitType);
             ret &= Serialize(data.ID);
             ret &= Serialize(data.UnitIndex);
             ret &= Serialize(data.PosX);
@@ -23,18 +24,20 @@
             }
 
             bool ret = true;
+            byte type = 0;
             short id = 0;
             byte unitIndex = 0;
             float posX = 0;
             float posY = 0;
             float posZ = 0;
 
+            ret &= Deserialize(ref type);
             ret &= Deserialize(ref id);
             ret &= Deserialize(ref unitIndex);
             ret &= Deserialize(ref posX);
             ret &= Deserialize(ref posY);
             ret &= Deserialize(ref posZ);
-            element = new CreateUnitData(id, unitIndex, posX, posY, posZ);
+            element = new CreateUnitData(type, id, unitIndex, posX, posY, posZ);
 
             return ret;
         }
@@ -63,12 +66,14 @@
 
 public class CreateUnitData
 {
+    private byte unitType;
     private short id;
     private byte unitIndex;
     private float posX;
     private float posY;
     private float posZ;
 
+    public byte UnitType { get { return unitType; } }
     public short ID { get { return id; } }
     public byte UnitIndex { get { return unitIndex; } }
     public float PosX { get { return posX; } }
@@ -77,6 +82,7 @@ public class CreateUnitData
 
     public CreateUnitData()
     {
+        unitType = 0;
         id = 0;
         unitIndex = 0;
         posX = 0;
@@ -84,8 +90,9 @@ public class CreateUnitData
         posZ = 0;
     }
 
-    public CreateUnitData(short newId, byte newUnitIndex, float newX, float newY, float newZ)
+    public CreateUnitData(byte newType, short newId, byte newUnitIndex, float newX, float newY, float newZ)
     {
+        unitType = newType;
         id = newId;
         unitIndex = newUnitIndex;
         posX = newX;

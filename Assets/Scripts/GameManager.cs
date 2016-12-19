@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     InputManager inputManager;
     UIManager uiManager;
     CharacterStatus characterStatus;
+    SkillManager skillManager;
     
     string myIP;    
     public string MyIP
@@ -113,6 +114,10 @@ public class GameManager : MonoBehaviour
         inputManager.name = "InputManager";
         inputManager.tag = "InputManager";
         DontDestroyOnLoad(inputManager);
+
+        skillManager = (Instantiate(Resources.Load("Manager/SkillManager")) as GameObject).GetComponent<SkillManager>();
+        skillManager.name = "SkillManager";
+        DontDestroyOnLoad(skillManager);
     }
 
     public void OnApplicationQuit()

@@ -40,8 +40,7 @@ public class InputManager : MonoBehaviour
             vertical = Input.GetAxisRaw("Vertical");
             horizontal = Input.GetAxisRaw("Horizontal");
             characterManager.Move(vertical, horizontal);
-
-
+            
             if (Input.GetKeyDown(KeyCode.T))
             {
                 characterManager.UsingPotion();

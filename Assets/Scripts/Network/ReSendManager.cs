@@ -31,8 +31,8 @@ public class ReSendManager : MonoBehaviour
 
     List<int> reSendKey;
 
-    public bool isConnecting;
     public bool characterCreating;
+    public bool monsterCreateing;
 
     public void Initialize(int userNum)
     {
@@ -44,7 +44,6 @@ public class ReSendManager : MonoBehaviour
         }
 
         StartCoroutine(CheckReSendData());
-        isConnecting = true;
     }
 
     public void AddReSendData(SendData sendData, int index)
@@ -106,27 +105,6 @@ public class ReSendManager : MonoBehaviour
                 }
             }
 
-            if (isConnecting)
-            {
-                for (int userIndex = 0; userIndex < reSendDatum.Length; userIndex++)
-                {
-                    if (reSendDatum[userIndex].Count != 0)
-                    {
-                        isConnecting = true;
-                        break;
-                    }
-                    else
-                    {
-                        isConnecting = false;
-                    }
-                }
-
-                if (!isConnecting)
-                {
-                    DataSender.Instance.UdpConnectComplete();
-                }
-            }
-
             if (characterCreating)
             {
                 for (int userIndex = 0; userIndex < reSendDatum.Length; userIndex++)
@@ -146,6 +124,30 @@ public class ReSendManager : MonoBehaviour
                 {
                     GameObject character = GameObject.FindWithTag("Player");
                     StartCoroutine(DataSender.Instance.CharacterPositionSend(character));
+                }
+            }
+
+            if (monsterCreateing)
+            {
+                for (int userIndex = 0; userIndex < reSendDatum.Length; userIndex++)
+                {
+                    if (reSendDatum[userIndex].Count != 0)
+                    {
+                        monsterCreateing = true;
+                        break;
+                    }
+                    else
+                    {
+                        monsterCreateing = false;
+                    }
+                }
+
+                if (!monsterCreateing)
+                {
+                    for (int i = 0; i < DungeonManager.Instance.Monsters.Length; i++)
+                    {
+                        StartCoroutine(DataSender.Instance.UnitPositionSend(DungeonManager.Instance.Monsters[i]));
+                    }                    
                 }
             }
         }
