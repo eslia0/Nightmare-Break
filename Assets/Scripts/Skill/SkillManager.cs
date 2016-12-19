@@ -29,8 +29,8 @@ public class SkillManager : MonoBehaviour {
 
     void Start()
     {
-        instance = this;
         skillData.Initialize();
+        DontDestroyOnLoad(gameObject);
     }
 }
 

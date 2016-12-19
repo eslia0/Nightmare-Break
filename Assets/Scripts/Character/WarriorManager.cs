@@ -274,6 +274,7 @@ public class WarriorManager : CharacterManager
                 }
             }
         }
+        UIManager.Instance.BattleUIManager.hpBarCalculation(characterStatus.MaxHealthPoint, characterStatus.HealthPoint);
     }
 
     IEnumerator unbeatableCall()

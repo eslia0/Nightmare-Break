@@ -6,6 +6,7 @@ public class RoomUIManager : MonoBehaviour {
 
     private const int maxUser = 4;
     private const int maxSkill = 6;
+    private int currentSkill;
 
     private Button skillBtn;
     private Button equipBtn;
@@ -18,10 +19,12 @@ public class RoomUIManager : MonoBehaviour {
     private Button myInfoCloseBtn;
     private Button[] userSkillBtn;
     private Button[] skillAddIcon;
- 
+   
+
     private Image[] characterBackImage;
     private Image[] skillSelectImage;
     private Image[] classIcon;
+    private Image[] skillAddSelectImage;
     private Text[] userName;
 
     private GameObject equipInfoUI;
@@ -32,6 +35,7 @@ public class RoomUIManager : MonoBehaviour {
 
     private RoomData roomData;
     private Text[] myInfoText;
+    private Text mySkillInfo;
 
     Text roomName;
     Text roomDungeon;
@@ -61,6 +65,7 @@ public class RoomUIManager : MonoBehaviour {
 
         characterBackImage = new Image[maxUser];
         userSkillBtn = new Button[maxSkill];
+        mySkillInfo = GameObject.Find("MouseOverUI").GetComponent<Text>();
         roomName = GameObject.Find("RoomName").GetComponent<Text>();
         roomDungeon = GameObject.Find("DungeonType").GetComponent<Text>();
         roomDungeonLevel = GameObject.Find("DungeonLevel").GetComponent<Text>();
@@ -80,6 +85,7 @@ public class RoomUIManager : MonoBehaviour {
         skillCloseBtn = skillAddUI.transform.FindChild("ExitBtn").GetComponent<Button>();
         myInfoCloseBtn = myInfoUI.transform.FindChild("ExitBtn").GetComponent<Button>();
 
+        mySkillInfo.transform.parent.gameObject.SetActive(false);
         equipInfoUI.SetActive(false);
         skillAddUI.SetActive(false);
         myInfoUI.SetActive(false);
@@ -110,6 +116,13 @@ public class RoomUIManager : MonoBehaviour {
         equipCloseBtn.onClick.AddListener(() => CloseEquipUI());
         myInfoCloseBtn.onClick.AddListener(() => CloseMyInfoUI());
         skillCloseBtn.onClick.AddListener(() => CloseSkillUI());
+
+        skillAddIcon[0].onClick.AddListener(() => SkillInfoEnter(0));
+        skillAddIcon[1].onClick.AddListener(() => SkillInfoEnter(1));
+        skillAddIcon[2].onClick.AddListener(() => SkillInfoEnter(2));
+        skillAddIcon[3].onClick.AddListener(() => SkillInfoEnter(3));
+        skillAddIcon[4].onClick.AddListener(() => SkillInfoEnter(4));
+        skillAddIcon[5].onClick.AddListener(() => SkillInfoEnter(5));
     }
 
     public void SetRoom(RoomData newRoomData)
@@ -167,6 +180,25 @@ public class RoomUIManager : MonoBehaviour {
     void OpenSkillUI()
     {
         skillAddUI.SetActive(true);
+    }
+
+    public void SkillInfoEnter(int skillIndex)
+    {
+
+        for (int i = 0; i < skillAddIcon.Length; i++)
+        {
+            if (skillSelectImage[i].IsActive())
+            {
+                skillSelectImage[i].gameObject.SetActive(false);
+            }
+        }
+        skillSelectImage[skillIndex].gameObject.SetActive(true);
+        mySkillInfo.transform.parent.gameObject.SetActive(true);
+        mySkillInfo.transform.parent.position = skillAddIcon[skillIndex].transform.position;
+        mySkillInfo.transform.parent.position += new Vector3(120f, 35f, 0);
+        currentSkill = skillIndex;
+        SkillBasicData skillData = SkillManager.Instance.SkillData.GetSkill((int)GameManager.Instance.CharacterStatus.HClass, skillIndex + 1);  // 고쳐야함
+        mySkillInfo.text = "스킬이름: " + skillData.SkillName + "  " + "쿨타임: " + skillData.SkillCoolTime.ToString() + "초" + "\n" + skillData.SkillBasicExplanation + "\n" + skillData.GetSkillData(1).SkillExplanation;
     }
 
     void OpenMyInfoUI()
