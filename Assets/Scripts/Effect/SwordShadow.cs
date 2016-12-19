@@ -14,8 +14,8 @@ public class SwordShadow : MonoBehaviour
 	{
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
-		skillLv = CharacterStatus.Instance.SkillLevel [1];
-		swordShadowDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, 2).GetSkillData (skillLv).SkillValue)* CharacterStatus.Instance.Attack);
+		skillLv = characterStatus.SkillLevel [1];
+		swordShadowDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)characterStatus.HClass, 2).GetSkillData (skillLv).SkillValue)* characterStatus.Attack);
 	}	
 	// Update is called once per frame
 

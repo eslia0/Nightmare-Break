@@ -15,9 +15,9 @@ public class FlameImpact : MonoBehaviour
 	{
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
-		skillLv = CharacterStatus.Instance.SkillLevel [0];
+		skillLv = characterStatus.SkillLevel [0];
 		ringSound = this.gameObject.GetComponent<AudioSource> ();
-		flameImpactDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, 1).GetSkillData (skillLv).SkillValue)* CharacterStatus.Instance.Attack);
+		flameImpactDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)characterStatus.HClass, 1).GetSkillData (skillLv).SkillValue)* characterStatus.Attack);
 
 	}
 

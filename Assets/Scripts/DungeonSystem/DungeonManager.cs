@@ -160,7 +160,7 @@ public class DungeonManager : MonoBehaviour
     {
         InitializePlayerSpawnPoint();
 
-        CreatePlayer((int)CharacterStatus.Instance.HGender, (int)CharacterStatus.Instance.HClass);
+        CreatePlayer((int)characterStatus.HGender, (int)characterStatus.HClass);
 
         InitializeMonsterSpawnPoint(stageNum);
         SpawnMonster(stageNum);

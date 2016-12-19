@@ -69,7 +69,7 @@ public class BattleUIManager : MonoBehaviour
         for (int i = 0; i < skillUI.Length; i++)
         {
             skillUI[i] = GameObject.Find("Skill" + (i + 1)).GetComponent<Image>();
-            skillUI[i].sprite = Resources.Load<Sprite>("UI/SkillIcon/" + CharacterStatus.Instance.HClass.ToString() + "/Skill" + (i + 1));
+            skillUI[i].sprite = Resources.Load<Sprite>("UI/SkillIcon/" + characterStatus.HClass.ToString() + "/Skill" + (i + 1));
             enterEvent[i] = new EventTrigger.Entry();
             enterEvent[i].eventID = EventTriggerType.PointerEnter;
             skillUI[i].GetComponent<EventTrigger>().triggers.Add(enterEvent[i]);
@@ -189,7 +189,7 @@ public class BattleUIManager : MonoBehaviour
 
     public void PointEnter(int skillIndex)
     {
-        SetPointEnterUI(skillIndex, 2, (int)CharacterStatus.Instance.HClass);
+        SetPointEnterUI(skillIndex, 2, (int)characterStatus.HClass);
     }
 
     public void OnPointExit()

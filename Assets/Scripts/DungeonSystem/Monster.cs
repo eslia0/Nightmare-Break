@@ -944,7 +944,7 @@ public class Monster : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
 
             bossRandomPattern++;
-            if (bossRandomPattern > 2)
+            if (bossRandomPattern > 1)
             {
                 bossRandomPattern = 0;
             }

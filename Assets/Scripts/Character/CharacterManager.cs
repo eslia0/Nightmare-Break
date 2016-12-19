@@ -24,6 +24,7 @@ public class CharacterManager : MonoBehaviour
 	public Rigidbody rigdbody;
 	public BoxCollider charWeapon;
 	public CharWeapon weapon;
+    protected CharacterStatus characterStatus;
 
     public GameObject[] enermy;
 
@@ -143,7 +144,7 @@ public class CharacterManager : MonoBehaviour
 
 	public void SetCharacterStatus ()
 	{
-		CharacterStatus.Instance.SetCharacterStatus ();
+		characterStatus.SetCharacterStatus ();
 		classSound ();
 	}
 
@@ -202,11 +203,11 @@ public class CharacterManager : MonoBehaviour
 					{	
 						if (hor == -1.0f || hor == 1.0f)
 						{
-							transform.Translate ((Vector3.forward * ver - Vector3.right * hor) * Time.deltaTime * (CharacterStatus.Instance.MoveSpeed - 3.0f), Space.World);
+							transform.Translate ((Vector3.forward * ver - Vector3.right * hor) * Time.deltaTime * (characterStatus.MoveSpeed - 3.0f), Space.World);
 						}
 						else
 						{
-							transform.Translate ((Vector3.forward * ver - Vector3.right * hor) * Time.deltaTime * (CharacterStatus.Instance.MoveSpeed), Space.World);
+							transform.Translate ((Vector3.forward * ver - Vector3.right * hor) * Time.deltaTime * (characterStatus.MoveSpeed), Space.World);
 						}
 						
 					}
@@ -223,7 +224,7 @@ public class CharacterManager : MonoBehaviour
 		}
 		else if (state == CharacterState.Jump && JumpMove)
 		{
-			transform.Translate ((Vector3.forward * ver - Vector3.right * hor) * Time.deltaTime * CharacterStatus.Instance.MoveSpeed, Space.World);
+			transform.Translate ((Vector3.forward * ver - Vector3.right * hor) * Time.deltaTime * characterStatus.MoveSpeed, Space.World);
 		}
 
 	}
@@ -333,7 +334,7 @@ public class CharacterManager : MonoBehaviour
 	{
 		for (int i = 0; i < potionCount; i++)
 		{
-            CharacterStatus.Instance.DecreaseHealthPoint ((int)(CharacterStatus.Instance.HealthPoint * -0.3));
+            characterStatus.DecreaseHealthPoint ((int)(characterStatus.HealthPoint * -0.3));
 			yield return new WaitForSeconds (1f);
 		}
 	}
@@ -440,19 +441,19 @@ public class CharacterManager : MonoBehaviour
 	{
 		if (charAlive)
 		{
-			if (CharacterStatus.Instance.HealthPoint > 0)
+			if (characterStatus.HealthPoint > 0)
 			{
-                CharacterStatus.Instance.DecreaseHealthPoint (damage);
+                characterStatus.DecreaseHealthPoint (damage);
 				CharState ((int)CharacterState.HitDamage);
 			}
-			if (CharacterStatus.Instance.HealthPoint <= 0)
+			if (characterStatus.HealthPoint <= 0)
 			{
 				//Death Animation
 				CharState ((int)CharacterState.Death);
 				charAlive = false;
 			}
 		}
-		Debug.Log (CharacterStatus.Instance.HealthPoint);
+		Debug.Log (characterStatus.HealthPoint);
 	}
 
 	public void SetPosition (UnitPositionData newPositionData)
@@ -477,7 +478,7 @@ public class CharacterManager : MonoBehaviour
 	public virtual void classSound()
 	{
 		MoveSound = Resources.Load<AudioClip> ("Sound/MoveSound");
-		if (CharacterStatus.Instance.HGender == CharacterStatus.Gender.Male)
+		if (characterStatus.HGender == CharacterStatus.Gender.Male)
 		{
 			attack1 = Resources.Load<AudioClip> ("Sound/ManSound/ManWarriorattack1");
 			attack2 = Resources.Load<AudioClip> ("Sound/ManSound/ManWarriorattack2");
@@ -498,7 +499,7 @@ public class CharacterManager : MonoBehaviour
 
 	public virtual void UsingMagicPoint(int SkillArray)
 	{
-        CharacterStatus.Instance.DecreaseMagicPoint (SkillManager.instance.SkillData.GetSkill ((int)CharacterStatus.Instance.HClass, SkillArray).ManaCost);
+        characterStatus.DecreaseMagicPoint (SkillManager.instance.SkillData.GetSkill ((int)characterStatus.HClass, SkillArray).ManaCost);
 	}
 
 	public IEnumerator MoveSoundCol ()

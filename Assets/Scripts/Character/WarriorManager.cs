@@ -49,7 +49,7 @@ public class WarriorManager : CharacterManager
 
 		if (wind)
 		{
-			//transform.Translate ((Vector3.forward * testinput.vertical - Vector3.right * testinput.horizontal) * Time.deltaTime * (CharacterStatus.Instance.MoveSpeed - 5f), Space.World);
+			//transform.Translate ((Vector3.forward * testinput.vertical - Vector3.right * testinput.horizontal) * Time.deltaTime * (characterStatus.MoveSpeed - 5f), Space.World);
 		}
 
         if (enermy != null)
@@ -196,29 +196,29 @@ public class WarriorManager : CharacterManager
 		if (!poweroverwhelming)
 		{
 			
-			if (CharacterStatus.Instance.SkillLevel [5] < 4)
+			if (characterStatus.SkillLevel [5] < 4)
 			{
 				if (charAlive)
 				{
 					if (charAlive)
 					{
-						if (CharacterStatus.Instance.HealthPoint > 0)
+						if (characterStatus.HealthPoint > 0)
 						{
 							int deFendDamage;
-							deFendDamage = _damage - (CharacterStatus.Instance.SkillLevel [5] * 1);
+							deFendDamage = _damage - (characterStatus.SkillLevel [5] * 1);
 							Debug.Log (deFendDamage);
 							if (deFendDamage < 0)
 							{
 								deFendDamage = 0;
 							}
-                            CharacterStatus.Instance.DecreaseHealthPoint (deFendDamage);
+                            characterStatus.DecreaseHealthPoint (deFendDamage);
 
 							if (State != CharacterState.Skill1 && State != CharacterState.Skill2 && State != CharacterState.Skill3 && State != CharacterState.Skill4)
 							{
 								CharState ((int)CharacterState.HitDamage);
 							}
 						}
-						if (CharacterStatus.Instance.HealthPoint <= 0)
+						if (characterStatus.HealthPoint <= 0)
 						{
 							CharState ((int)CharacterState.Death);
 							charAlive = false;
@@ -226,21 +226,21 @@ public class WarriorManager : CharacterManager
 					}
 				}
 			}
-			else if (CharacterStatus.Instance.SkillLevel [5] == 4)
+			else if (characterStatus.SkillLevel [5] == 4)
 			{
-				Debug.Log (CharacterStatus.Instance.HealthPoint);
+				Debug.Log (characterStatus.HealthPoint);
 				if (charAlive)
 				{
-					if (CharacterStatus.Instance.HealthPoint > 0)
+					if (characterStatus.HealthPoint > 0)
 					{
 						int deFendDamage;
-						deFendDamage = _damage - (CharacterStatus.Instance.SkillLevel [5] * 1);
+						deFendDamage = _damage - (characterStatus.SkillLevel [5] * 1);
 
 						if (deFendDamage < 0)
 						{
 							deFendDamage = 0;
 						}
-                        CharacterStatus.Instance.DecreaseHealthPoint (deFendDamage);
+                        characterStatus.DecreaseHealthPoint (deFendDamage);
 	
 						CharState ((int)CharacterState.HitDamage);
 
@@ -249,7 +249,7 @@ public class WarriorManager : CharacterManager
 							CharState ((int)CharacterState.HitDamage);
 						}
 					}
-					else if (CharacterStatus.Instance.HealthPoint <= 0)
+					else if (characterStatus.HealthPoint <= 0)
 					{
 					
 						CharState ((int)CharacterState.Death);
@@ -262,7 +262,7 @@ public class WarriorManager : CharacterManager
 							charAlive = true;
 							animator.SetBool ("Rise", false);
 							StartCoroutine (colltimeCheck ());
-                            CharacterStatus.Instance.DecreaseHealthPoint ((-100));
+                            characterStatus.DecreaseHealthPoint ((-100));
 					
 						}
 						else if (rise)
@@ -334,7 +334,7 @@ public class WarriorManager : CharacterManager
 	{
 		base.classSound ();
 
-        if (CharacterStatus.Instance.HGender == CharacterStatus.Gender.Male)
+        if (characterStatus.HGender == CharacterStatus.Gender.Male)
         {
             Skill1Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMealStrom");
 			Skill2Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManCutOff");

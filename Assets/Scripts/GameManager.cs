@@ -3,6 +3,29 @@ using System.Net;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance;
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (!instance)
+            {
+                instance = FindObjectOfType(typeof(GameManager)) as GameManager;
+
+                if (!instance)
+                {
+                    GameObject container = new GameObject();
+                    container.name = "GameManager";
+                    container.tag = "GameManager";
+                    instance = container.AddComponent(typeof(GameManager)) as GameManager;
+                }
+            }
+
+            return instance;
+        }
+    }
+
     DungeonManager dungeonManager;
     NetworkManager networkManager;
     InputManager inputManager;
@@ -10,39 +33,28 @@ public class GameManager : MonoBehaviour
     CharacterStatus characterStatus;
     SkillManager skillManager;
     
-    string myIP;    
+    string myIP;
     public string MyIP
     {
         get
         {
+            if(myIP == null)
+            {
+                for (int addressIndex = 0; addressIndex < Dns.GetHostAddresses(Dns.GetHostName()).Length; addressIndex++)
+                {
+                    if (Dns.GetHostAddresses(Dns.GetHostName())[addressIndex].ToString().Length == 13)
+                    {
+                        myIP = Dns.GetHostAddresses(Dns.GetHostName())[addressIndex].ToString();
+                    }
+                }
+            }
+            
             return myIP;
         }
     }
 
-    private static GameManager instance = null;
-    public static GameManager Instance
+    void Start()
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
-            }
-
-            return instance;
-        }
-    }
-
-    void Awake()
-    {
-        for (int addressIndex =0; addressIndex < Dns.GetHostAddresses(Dns.GetHostName()).Length; addressIndex++)
-        {
-            if(Dns.GetHostAddresses(Dns.GetHostName())[addressIndex].ToString().Length == 13)
-            {
-                myIP = Dns.GetHostAddresses(Dns.GetHostName())[addressIndex].ToString();
-            }
-        }
-        
         InitializeManager();
         Application.runInBackground = true;
     }

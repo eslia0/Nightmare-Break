@@ -46,26 +46,6 @@ public class CharacterStatus : MonoBehaviour
     int[] equipLevel;
     bool[] activeSkillUse;
 
-	private static CharacterStatus instance;
-
-    public static CharacterStatus Instance
-    {
-        get
-        {
-            instance = FindObjectOfType(typeof(CharacterStatus)) as CharacterStatus;
-
-            if (!instance)
-            {
-                GameObject container = new GameObject();
-                container.name = "CharacterStatus";
-                container.tag = "CharStatus";
-                instance = container.AddComponent(typeof(CharacterStatus)) as CharacterStatus;
-            }
-
-            return instance;
-        }
-    }
-
     public string HName { get { return hName; } }
     public Gender HGender { get { return hGender; } }
     public int Level { get { return level; } }

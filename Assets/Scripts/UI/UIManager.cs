@@ -14,7 +14,29 @@ public enum UIManagerIndex
 
 public class UIManager : MonoBehaviour
 {
-	CharacterManager charManager;
+    private static UIManager instance;
+    public static UIManager Instance
+    {
+        get
+        {
+            if (!instance)
+            {
+                instance = FindObjectOfType(typeof(UIManager)) as UIManager;
+
+                if (!instance)
+                {
+                    GameObject container = new GameObject();
+                    container.name = "UIManager";
+                    container.tag = "UIManager";
+                    instance = container.AddComponent(typeof(UIManager)) as UIManager;
+                }
+            }
+
+            return instance;
+        }
+    }
+
+    CharacterManager charManager;
     LoginUIManager loginUIManager;
     SelectUIManager selectUIManager;
     CreateUIManager createUIManager;
@@ -31,20 +53,6 @@ public class UIManager : MonoBehaviour
 
     public GameObject dialogPanel;
     public Text dialog;
-
-    private static UIManager instance = null;
-    public static UIManager Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
-            }
-
-            return instance;
-        }
-    }
 
     public void InitializeUIManager()
     {

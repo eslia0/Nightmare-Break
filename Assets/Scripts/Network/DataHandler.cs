@@ -274,7 +274,7 @@ public class DataHandler : MonoBehaviour
 
         Debug.Log(characterStatusData.HClass + ", " + characterStatusData.Gender);
 
-        CharacterStatus.Instance.SetCharacterStatus(characterStatusData);
+        characterStatus.SetCharacterStatus(characterStatusData);
 
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {

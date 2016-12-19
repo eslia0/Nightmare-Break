@@ -55,11 +55,14 @@ public class WaitingUIManager : MonoBehaviour
     int dungeonId;
     int dungeonLevel;
 
+    public CharacterStatus characterStatus;
+
     public Room[] Rooms { get { return rooms; } }
     public int CurrentRoomNum { get { return currentRoomNum; } }
 
     public void ManagerInitialize()
     {
+        characterStatus = GameObject.Find("CharacterStatus").GetComponent<CharacterStatus>();
         currentRoomNum = -1;
         dungeonId = 0;
         dungeonLevel = 1;
@@ -120,7 +123,7 @@ public class WaitingUIManager : MonoBehaviour
 		for (int i = 0; i < skillAddIcon.Length; i++) {
             skillAddSelectImage[i] = skillAddUI.transform.FindChild("SkillSelect" + (i + 1)).GetComponent<Image>();
             skillAddIcon[i] = skillAddUI.transform.FindChild("Skill" + (i + 1)).GetComponent<Button>();
-            skillAddIcon[i].image.sprite = Resources.Load<Sprite> ("UI/SkillIcon/" + CharacterStatus.Instance.HClass.ToString ()+"/Skill"+(i+1));
+            skillAddIcon[i].image.sprite = Resources.Load<Sprite> ("UI/SkillIcon/" + characterStatus.HClass.ToString ()+"/Skill"+(i+1));
             skillAddSelectImage[i].gameObject.SetActive(false);
 		}
 		for (int i = 0; i < maxRoomNum; i++) {
@@ -318,8 +321,8 @@ public class WaitingUIManager : MonoBehaviour
 
     public void SetMyInfoData()
     {
-        myInfoData.text = "\n" + "공격력:" + CharacterStatus.Instance.Attack.ToString() + "\n" + "방어력: " + CharacterStatus.Instance.Defense.ToString() + "\n" + "체력: " + CharacterStatus.Instance.MaxHealthPoint.ToString()
-             + "\n" + "마나: " + CharacterStatus.Instance.MaxMagicPoint.ToString() + "\n" + "체력회복: " + CharacterStatus.Instance.HpRegeneration.ToString() + "\n" + "마나회복: " + CharacterStatus.Instance.MpRegeneration.ToString()
+        myInfoData.text = "\n" + "공격력:" + characterStatus.Attack.ToString() + "\n" + "방어력: " + characterStatus.Defense.ToString() + "\n" + "체력: " + characterStatus.MaxHealthPoint.ToString()
+             + "\n" + "마나: " + characterStatus.MaxMagicPoint.ToString() + "\n" + "체력회복: " + characterStatus.HpRegeneration.ToString() + "\n" + "마나회복: " + characterStatus.MpRegeneration.ToString()
              + "\n" + "공격력 증가량: 10" + "\n" + "방어력 증가량: 10" + "\n" + "체력 증가량: 10" + "\n" + "마나 증가량: 10" + "\n" + "체력회복 증가량: 10" + "\n" + "마나회복 증가량: 10";
     }
 

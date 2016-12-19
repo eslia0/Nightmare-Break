@@ -26,7 +26,7 @@ public class CharWeapon : MonoBehaviour
     {
         character = GameObject.FindWithTag("Player");
         charManager = character.GetComponent<CharacterManager>();
-        CharacterStatus.Instance.SetCharacterStatus();
+        characterStatus.SetCharacterStatus();
 		attackSound = this.gameObject.GetComponent<AudioSource> ();
 		attack1 = Resources.Load<AudioClip> ("Sound/EffectSound/AttackEffectSound1");
 		attack2 = Resources.Load<AudioClip> ("Sound/EffectSound/AttackEffectSound2");
@@ -37,7 +37,7 @@ public class CharWeapon : MonoBehaviour
 		swordDanceFinishEffectSound =Resources.Load<AudioClip> ("Sound/WarriorEffectSound/SwordDanceFinishEffectSound");
 		giganticSwordSound = Resources.Load<AudioClip> ("Sound/WarriorEffectSound/GiganticSwordSummonSound");
 		attackSound.volume = 0.5f;
-		skillLv = CharacterStatus.Instance.SkillLevel[5];
+		skillLv = characterStatus.SkillLevel[5];
     }
 
     // Update is called once per frame
@@ -100,41 +100,41 @@ public class CharWeapon : MonoBehaviour
             {
                 if (normalAttack)
                 {
-                    damage = CharacterStatus.Instance.Attack;
+                    damage = characterStatus.Attack;
                 }
                 else if (skillAttack)
                 {
-                    damage = CharacterStatus.Instance.Attack;
+                    damage = characterStatus.Attack;
                 }
 
                 if (damage != 0)
                 {
-                    if (CharacterStatus.Instance.HClass == CharacterStatus.CharClass.Warrior)
+                    if (characterStatus.HClass == CharacterStatus.CharClass.Warrior)
                     {
-                        if (CharacterStatus.Instance.SkillLevel[5] < 4)
+                        if (characterStatus.SkillLevel[5] < 4)
                         {
                             if (normalAttack)
                             {
                                 int testPassiveHP;
 
-                                testPassiveHP = (int)((SkillManager.instance.SkillData.GetSkill((int)CharacterStatus.Instance.HClass, 4).GetSkillData(skillLv).SkillValue) * damage);
+                                testPassiveHP = (int)((SkillManager.instance.SkillData.GetSkill((int)characterStatus.HClass, 4).GetSkillData(skillLv).SkillValue) * damage);
 
-                                if (CharacterStatus.Instance.MaxHealthPoint > CharacterStatus.Instance.HealthPoint)
+                                if (characterStatus.MaxHealthPoint > characterStatus.HealthPoint)
                                 {
-                                    CharacterStatus.Instance.DecreaseHealthPoint(-testPassiveHP);
+                                    characterStatus.DecreaseHealthPoint(-testPassiveHP);
                                     Debug.Log("blood");
                                 }
                             }
                         }
-                        else if (CharacterStatus.Instance.SkillLevel[5] == 4)
+                        else if (characterStatus.SkillLevel[5] == 4)
                         {
                             Debug.Log("in Warrior");
                             int testPassiveHP;
 
-                            testPassiveHP = (int)((SkillManager.instance.SkillData.GetSkill((int)CharacterStatus.Instance.HClass, 4).GetSkillData(skillLv).SkillValue) * damage);
-                            if (CharacterStatus.Instance.MaxHealthPoint > CharacterStatus.Instance.HealthPoint)
+                            testPassiveHP = (int)((SkillManager.instance.SkillData.GetSkill((int)characterStatus.HClass, 4).GetSkillData(skillLv).SkillValue) * damage);
+                            if (characterStatus.MaxHealthPoint > characterStatus.HealthPoint)
                             {
-                                CharacterStatus.Instance.DecreaseHealthPoint(-testPassiveHP);
+                                characterStatus.DecreaseHealthPoint(-testPassiveHP);
                             }
                         }
                     }

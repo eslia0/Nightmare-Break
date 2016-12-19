@@ -33,7 +33,7 @@ public class MageNormalAttack : MonoBehaviour {
 
 			if (monsterDamage != null)
 			{	
-				MageBallDamage = CharacterStatus.Instance.Attack;
+				MageBallDamage = characterStatus.Attack;
 				monsterDamage.HitDamage (MageBallDamage, character);
 				Debug.Log (MageBallDamage);
 				MageBallDamage = 0;
