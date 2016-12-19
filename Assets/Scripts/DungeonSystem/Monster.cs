@@ -74,6 +74,7 @@ public class Monster : MonoBehaviour
     protected int level;
     [SerializeField]
     protected int currentHP;
+    [SerializeField]
     protected int maxHP;
     [SerializeField]
     protected int attack;
@@ -912,52 +913,38 @@ public class Monster : MonoBehaviour
     {
         aniState = this.animator.GetCurrentAnimatorStateInfo(0);
 
+        bossRandomPattern = 0;
         while (IsAlive)
         {
             yield return new WaitForSeconds(10f);
-            bossRandomPattern = Random.Range(0, 3);      // pattern = 1;
             bossSkill = true;
             animator.SetBool("BossSkill", true);
 
-            if (currentDisTance <= searchRange)
+            if (bossRandomPattern == 0)
             {
                 statePosition = StatePosition.BossJumpAttack;
                 Pattern(statePosition);
+
             }
-            else
+            else if (bossRandomPattern == 1)
             {
-                if (bossRandomPattern == 0)
+                if (!roarBreak)
                 {
-                    statePosition = StatePosition.BossJumpAttack;
+                    roarBreak = true;
+                    statePosition = StatePosition.BossOneHandAttack;
                     Pattern(statePosition);
-
                 }
-                else if (bossRandomPattern == 1)
-                {
-                    if (!roarBreak)
-                    {
-                        roarBreak = true;
-                        statePosition = StatePosition.BossOneHandAttack;
-                        Pattern(statePosition);
-                    }
-                    else
-                    {
-
-                        statePosition = StatePosition.BossRoar;
-                        Pattern(statePosition);
-                    }
-                }
-                else if (bossRandomPattern == 2)
-                {
-
-                }
-
             }
-
-
+            else if (bossRandomPattern == 2)
+            {
+                    statePosition = StatePosition.BossRoar;
+                    Pattern(statePosition);
+            }
 
             yield return new WaitForSeconds(1.0f);
 
+            bossRandomPattern++;
+            if(bossRandomPattern)
             bossSkill = false;
             animator.SetBool("BossSkill", false);
         }
