@@ -4,20 +4,34 @@ using System.Collections;
 public class SkillManager : MonoBehaviour {
 
 	private SkillData skillData = new SkillData ();
-    public SkillData SkillData  { get { return skillData; } }
+    public SkillData SkillData{ get { return skillData; } }
 
-	public static SkillManager instance = null;
+    private static SkillManager instance;
 
-	void Start()
-	{
-		if (instance) {
-			Destroy (gameObject);
-			return;
-		} else {
-			instance = this;
-		}
-		skillData.Initialize ();
-	} 
+    public static SkillManager Instance
+    {
+        get
+        {
+            if (!instance)
+            {
+                instance = FindObjectOfType(typeof(SkillManager)) as SkillManager;
 
+                if (!instance)
+                {
+                    GameObject container = new GameObject();
+                    container.name = "SkillManager";
+                    container.tag = "SkillManager";
+                    instance = container.AddComponent(typeof(SkillManager)) as SkillManager;   
+                }
+            }
+            return instance;
+        }
+    }
+
+    void Start()
+    {
+        instance = this;
+        skillData.Initialize();
+    }
 }
 

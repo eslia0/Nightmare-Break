@@ -85,8 +85,8 @@ public class CharacterStatus : MonoBehaviour
         attack = 100;
         defense = 10;
         dreamStone = 0;
-        skillLevel = new int[skillNum];
         activeSkillUse = new bool[equipNum];
+        skillLevel = new int[skillNum];
         equipLevel = new int[equipNum];
 
 		for (int i = 0; i < skillLevel.Length; i++)
@@ -117,6 +117,7 @@ public class CharacterStatus : MonoBehaviour
         attack = characterStatusData.Attack;
         defense = characterStatusData.Defense;
         dreamStone = characterStatusData.DreamStone;
+        activeSkillUse = new bool[equipNum];
         skillLevel = new int[skillNum];
         equipLevel = new int[equipNum];
 
@@ -130,6 +131,11 @@ public class CharacterStatus : MonoBehaviour
         for (int i = 0; i < equipNum; i++)
         {
             equipLevel[i] = characterStatusData.EquipLevel[i];
+        }
+
+        for (int i = 0; i < activeSkillUse.Length; i++)
+        {
+            activeSkillUse[i] = true;
         }
     }
 

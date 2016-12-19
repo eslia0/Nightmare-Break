@@ -21,7 +21,7 @@ public class SwordDance : MonoBehaviour
 		bladeStromRigid.velocity = transform.forward * bladeStormSpeed;
 		swordDanceEffect = Resources.Load<GameObject> ("Effect/SwordShadow");
 		skillLv = GameManager.Instance.CharacterStatus.SkillLevel [2];
-		bladeStormDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)GameManager.Instance.CharacterStatus.HClass, 3).GetSkillData (skillLv).SkillValue)* GameManager.Instance.CharacterStatus.Attack);
+		bladeStormDamage =(int) ((SkillManager.Instance.SkillData.GetSkill ((int)GameManager.Instance.CharacterStatus.HClass, 3).GetSkillData (skillLv).SkillValue)* GameManager.Instance.CharacterStatus.Attack);
 	}
 	void Update()
 	{

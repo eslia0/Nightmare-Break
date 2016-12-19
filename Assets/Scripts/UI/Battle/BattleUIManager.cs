@@ -92,14 +92,14 @@ public class BattleUIManager : MonoBehaviour
 
     public void SetPointEnterUI(int skillIndex, int skillLevel, int classIndex)
     {
-        SkillBasicData skillData = SkillManager.instance.SkillData.GetSkill(classIndex, skillIndex + 1);
+        SkillBasicData skillData = SkillManager.Instance.SkillData.GetSkill(classIndex, skillIndex + 1);
         if (!mouseOverUI.IsActive())
         {
             mouseOverUI.gameObject.transform.parent.gameObject.SetActive(true);
         } else
         {
             skillData = null;
-            skillData = SkillManager.instance.SkillData.GetSkill(classIndex, skillIndex + 1);
+            skillData = SkillManager.Instance.SkillData.GetSkill(classIndex, skillIndex + 1);
         }
        mouseOverUI.transform.parent.transform.localPosition = new Vector2(skillUI[skillIndex].transform.localPosition.x + mouseOverUI_xPos, mouseOverUI_yPos);
        mouseOverUI.text = "스킬이름: " + skillData.SkillName + "  " + "쿨타임: " + skillData.SkillCoolTime.ToString() + "초" + "\n" + skillData.SkillBasicExplanation +"\n"+ skillData.GetSkillData(skillLevel).SkillExplanation;

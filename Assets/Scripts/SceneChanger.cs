@@ -185,6 +185,7 @@ public class SceneChanger : MonoBehaviour
             DungeonManager.Instance.StartDungeon();
             ReSendManager.Instance.characterCreating = true;
             DungeonManager.Instance.SetCurrentStateNum(1);
+            
 
             currentScene = SceneName.TeddyBearStage1;
         }

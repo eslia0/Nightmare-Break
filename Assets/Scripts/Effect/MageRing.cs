@@ -23,7 +23,7 @@ public class MageRing : MonoBehaviour
 		charManager = character.GetComponent<CharacterManager> ();
 	
 		skillLv = charManager.CharacterStatus.SkillLevel [2];
-		ringDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charManager.CharacterStatus.HClass, 3).GetSkillData (skillLv).SkillValue)* charManager.CharacterStatus.Attack);
+		ringDamage =(int) ((SkillManager.Instance.SkillData.GetSkill ((int)charManager.CharacterStatus.HClass, 3).GetSkillData (skillLv).SkillValue)* charManager.CharacterStatus.Attack);
 	
 	}
 	
