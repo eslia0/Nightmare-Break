@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011237120542}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SwordExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

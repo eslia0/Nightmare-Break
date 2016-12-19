@@ -24,7 +24,7 @@ GameObject:
   - 65: {fileID: 65000011109421678}
   - 114: {fileID: 114000012660809960}
   - 114: {fileID: 114000012298874180}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MagicionRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,10 +79,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireBallparticleSystem: {fileID: 0}
-  charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
   ringDamage: 10
+  ringClipSound: {fileID: 0}
 --- !u!198 &198000013464442852
 ParticleSystem:
   m_ObjectHideFlags: 1

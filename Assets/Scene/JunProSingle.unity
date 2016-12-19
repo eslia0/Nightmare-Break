@@ -8365,10 +8365,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b55df912c131d44d8c71db0893ecdc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterData: []
   sceneChangeObject: []
   bossMonster: {fileID: 0}
-  mapNumber: 0
+  stageNum: 0
 --- !u!4 &1797509691
 Transform:
   m_ObjectHideFlags: 0

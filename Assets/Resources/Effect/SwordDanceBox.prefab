@@ -22,7 +22,7 @@ GameObject:
   - 65: {fileID: 65000011593509840}
   - 114: {fileID: 114000011206801826}
   - 54: {fileID: 54000012915451226}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: SwordDanceBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d255a01ad49d62848a08dde24e03de7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
   bladeStormDamage: 1

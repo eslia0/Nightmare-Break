@@ -28,7 +28,7 @@ GameObject:
   - 54: {fileID: 54000010587468124}
   - 82: {fileID: 82000012413018316}
   - 135: {fileID: 135000012468737070}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MageNormalAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

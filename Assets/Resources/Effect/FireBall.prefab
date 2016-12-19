@@ -25,7 +25,7 @@ GameObject:
   - 54: {fileID: 54000011973679868}
   - 65: {fileID: 65000011895559800}
   - 82: {fileID: 82000010927692056}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FireBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireBallparticleSystem: {fileID: 0}
-  charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
   FireBallDamage: 0
