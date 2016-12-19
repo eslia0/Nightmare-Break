@@ -68,6 +68,7 @@ GameObject:
   - 4: {fileID: 4000013778987594}
   - 95: {fileID: 95000011887125858}
   - 65: {fileID: 65000010173741008}
+  - 114: {fileID: 114000013133362974}
   m_Layer: 0
   m_Name: BossPotal
   m_TagString: Untagged
@@ -169,7 +170,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013323874742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24, y: 0, z: 28.13}
+  m_LocalPosition: {x: -0.3, y: -0.039999884, z: 27.68}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -329,3 +330,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114000013133362974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013323874742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970a924e5e7e93e49bbbc88ba6942ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Players: []
+  enterBox: {fileID: 0}
+  sceneObject: {fileID: 0}
+  inPlayer: 
