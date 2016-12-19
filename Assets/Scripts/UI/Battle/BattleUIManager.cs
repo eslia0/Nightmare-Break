@@ -41,7 +41,7 @@ public class BattleUIManager : MonoBehaviour
         mouseOverUI.transform.parent.gameObject.SetActive(false);
         startImage.gameObject.SetActive(false);
         readyImage.gameObject.SetActive(false);
-      //  monsterHpBar.transform.parent.gameObject.SetActive(false);
+      // monsterHpBar.transform.parent.gameObject.SetActive(false);
     }
 
     public void SetUIObject()
@@ -179,7 +179,6 @@ public class BattleUIManager : MonoBehaviour
     public void ComboAction(Transform mCamera)
     {
         mCamera.gameObject.transform.position = new Vector3(Random.Range(mCamera.position.x - 0.09f, mCamera.position.x + 0.09f), Random.Range(mCamera.position.y - 0.09f, mCamera.position.y + 0.09f), mCamera.position.z);
-
     }
 
     public void ComboEnd()
@@ -198,4 +197,10 @@ public class BattleUIManager : MonoBehaviour
         MouseOverUI.gameObject.transform.parent.gameObject.SetActive(false);
     }
 
+    public IEnumerator StartProcess()
+    {
+        yield return new WaitForSeconds(2.0f);
+        startImage.gameObject.SetActive(false);
+        readyImage.gameObject.SetActive(false);
+    }
 }
