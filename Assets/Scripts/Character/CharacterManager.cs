@@ -314,11 +314,15 @@ public class CharacterManager : MonoBehaviour
     //using Potion
     public void UsingPotion()
     {   //Potion Effect create
-        GameObject potionEffect = Instantiate(Resources.Load<GameObject>("Effect/Potion"), transform.position, Quaternion.identity) as GameObject;
-        StartCoroutine(UIManager.Instance.BattleUIManager.PotionCoolTimeUI());
-        potionEffect.transform.parent = gameObject.transform;
-        potionEffect.transform.position += Vector3.up;
-        StartCoroutine(Potion());
+        if (characterStatus.ActiveSkillUse[4])
+        {
+            GameObject potionEffect = Instantiate(Resources.Load<GameObject>("Effect/Potion"), transform.position, Quaternion.identity) as GameObject;
+            StartCoroutine(UIManager.Instance.BattleUIManager.PotionCoolTimeUI());
+            StartCoroutine(characterStatus.SkillCoolTimer(4, 15));
+            potionEffect.transform.parent = gameObject.transform;
+            potionEffect.transform.position += Vector3.up;
+            StartCoroutine(Potion());
+        }
     }
 
     IEnumerator Potion()
@@ -432,8 +436,9 @@ public class CharacterManager : MonoBehaviour
             if (characterStatus.HealthPoint > 0)
             {
                 characterStatus.DecreaseHealthPoint(damage);
-            
                 CharState((int)CharacterState.HitDamage);
+                UIManager.Instance.BattleUIManager.hpBarCalculation(characterStatus.MaxHealthPoint, characterStatus.HealthPoint);
+                print("HPcalcuUIIn!!");
             }
             if (characterStatus.HealthPoint <= 0)
             {
@@ -442,6 +447,7 @@ public class CharacterManager : MonoBehaviour
                 charAlive = false;
             }
         }
+        
         Debug.Log(characterStatus.HealthPoint);
     }
 
