@@ -6,12 +6,11 @@ public class SceneChangeObject : MonoBehaviour {
 	public GameObject[] Players;
 	public BoxCollider enterBox;
 	public GameObject sceneObject;
-	public GameObject[] inPlayer;
+	public bool[] inPlayer;
+	public bool AllPlayerEnter;
 	int playercount;
 
-	void Start(){
-		SceneChangeObjectSet (1);
-	}
+
 
 	public void SceneChangeObjectSet(int _number){
 		Players = GameObject.FindGameObjectsWithTag ("Player");
@@ -20,7 +19,7 @@ public class SceneChangeObject : MonoBehaviour {
 		enterBox = this.gameObject.GetComponent<BoxCollider>();
 		sceneObject = this.gameObject;
 		inPlayer = new GameObject[Players.Length];
-//		sceneObject.SetActive (false);
+		//      sceneObject.SetActive (false);
 
 	}
 
@@ -34,25 +33,25 @@ public class SceneChangeObject : MonoBehaviour {
 
 
 
-	
+
 	public void OnTriggerEnter(Collider coll){
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Player")) {
-			
+
 			for(int i=0 ; i< Players.Length; i++){
 				if(coll.gameObject == Players[i]){
-					inPlayer [i] = Players [i];
+					inPlayer [i] = true;
 					playercount++;
 				}
 			}
 
 			if (playercount >= Players.Length) {
-				DungeonManager dungeonManager=GameObject.Find("DungeonManager").GetComponent<DungeonManager>();
-//				dungeonManager.SceneChange ();
-			
+				AllPlayerEnter = true;
+
+				//DungeonManager dungeonManager=GameObject.Find("DungeonManager").GetComponent<DungeonManager>();
+				//      dungeonManager.SceneChange ();
+				//씬체인저에 씬체인지하면됨.
 
 			}
-
-		
 		}
 	}
 
@@ -60,8 +59,9 @@ public class SceneChangeObject : MonoBehaviour {
 		if(coll.gameObject.layer == LayerMask.NameToLayer("Player")){
 			for(int i=0 ; i< Players.Length; i++){
 				if(coll.gameObject == Players[i]){
-					inPlayer [i] = null;
+					inPlayer [i] = false;
 					playercount--;
+					AllPlayerEnter = false;
 				}
 			}
 		}

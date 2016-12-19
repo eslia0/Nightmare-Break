@@ -7,9 +7,7 @@ public class DefensePotal : MonoBehaviour {
 	protected int monsterDuckCount;
 	protected int monsterRabbitCount;
 
-	void Start () {
-	
-	}
+
 
 	public void DefensePotalSetting(){
 		monster = GameObject.FindGameObjectsWithTag ("Enermy");
@@ -18,13 +16,17 @@ public class DefensePotal : MonoBehaviour {
 		monsterRabbitCount = 0;
 	}
 
-	public void DefenseEndSend(){
-		//디펜스 끝났다고 전달.
-//		DungeonManager dungeonManager;
-//		dungeonManager = GameObject.Find ("DungonManager");
-//		dungeonManager.
-		
+	public IEnumerator DefenseEnd(){
+		yield return new WaitForSeconds (60f);
+
 	}
+
+
+	public void SetFalse(){
+
+	}
+
+
 
 
 	void OnTriggerEnter(Collider coll){
@@ -39,9 +41,9 @@ public class DefensePotal : MonoBehaviour {
 				monsterRabbitCount++;
 			}
 		}
-		
+		coll.gameObject.SetActive (false);
+
 	}
-//	public void 
-
-
 }
+
+
