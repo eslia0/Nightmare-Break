@@ -111,10 +111,6 @@ public class SceneChanger : MonoBehaviour
                 UIManager.Instance.SetUIManager(UIManagerIndex.InGame);
 
                 DataSender.Instance.RequestUdpConnection();
-                DataSender.Instance.RequestMonsterSpawnList(DungeonManager.Instance.DungeonId, DungeonManager.Instance.DungeonLevel);
-                DataSender.Instance.RequestMonsterStatusData(DungeonManager.Instance.DungeonId, DungeonManager.Instance.DungeonLevel);
-
-                StartCoroutine(CheckLoading());
             }
 
             currentScene = SceneName.LoadingScene;
@@ -242,7 +238,7 @@ public class SceneChanger : MonoBehaviour
         
     }
 
-    private IEnumerator CheckLoading()
+    public IEnumerator CheckLoading()
     {
         if(nextScene == (int)SceneName.SelectScene)
         {
