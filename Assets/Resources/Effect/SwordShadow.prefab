@@ -25,7 +25,7 @@ GameObject:
   - 65: {fileID: 65000013196187366}
   - 114: {fileID: 114000010333012580}
   - 54: {fileID: 54000012864560000}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: SwordShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57a0b54416cb6b4fb88f5b328e8bff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
 --- !u!198 &198000011468386114

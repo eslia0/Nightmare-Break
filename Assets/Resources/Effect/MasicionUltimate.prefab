@@ -54,7 +54,7 @@ GameObject:
   - 199: {fileID: 199000010486421234}
   - 198: {fileID: 198000013971411632}
   - 95: {fileID: 95000010410399194}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MasicionUltimate
   m_TagString: Untagged
   m_Icon: {fileID: 0}

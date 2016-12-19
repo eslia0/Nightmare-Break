@@ -23,7 +23,7 @@ GameObject:
   - 199: {fileID: 199000013622963348}
   - 65: {fileID: 65000012476185394}
   - 114: {fileID: 114000012486106306}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BossRoar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -60,7 +60,7 @@ GameObject:
   - 114: {fileID: 114000011760823724}
   - 114: {fileID: 114000011879123716}
   - 82: {fileID: 82000011843834568}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Meteor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

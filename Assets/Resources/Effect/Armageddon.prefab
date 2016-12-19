@@ -39,7 +39,7 @@ GameObject:
   - 65: {fileID: 65000013200273238}
   - 114: {fileID: 114000012172614606}
   - 82: {fileID: 82000013636137674}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Armageddon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011793264046}
-  m_LocalRotation: {x: 0.6147595, y: 0.6312392, z: 0.33876365, w: -0.32991973}
+  m_LocalRotation: {x: 0.61475956, y: 0.63123924, z: 0.33876368, w: -0.32991976}
   m_LocalPosition: {x: 0.009638963, y: 5.3197136, z: 3.4074135}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -735,13 +735,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9c36f76ec1fed459b0140c22098200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
   pieceBox: {fileID: 65000014102167700}
   armageddon: {fileID: 114000012172614606}
   armageddonPieceDamage: 0
-  armageddionPieceRigid: {fileID: 0}
 --- !u!114 &114000011240148512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -753,13 +751,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9c36f76ec1fed459b0140c22098200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
   pieceBox: {fileID: 65000010065523774}
   armageddon: {fileID: 114000012172614606}
   armageddonPieceDamage: 0
-  armageddionPieceRigid: {fileID: 0}
 --- !u!114 &114000011514022258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -771,13 +767,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9c36f76ec1fed459b0140c22098200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
   pieceBox: {fileID: 65000013258440550}
   armageddon: {fileID: 114000012172614606}
   armageddonPieceDamage: 0
-  armageddionPieceRigid: {fileID: 0}
 --- !u!114 &114000011633448268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -789,13 +783,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9c36f76ec1fed459b0140c22098200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
   pieceBox: {fileID: 65000012240712852}
   armageddon: {fileID: 114000012172614606}
   armageddonPieceDamage: 0
-  armageddionPieceRigid: {fileID: 0}
 --- !u!114 &114000012172614606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -808,7 +800,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireBallparticleSystem: {fileID: 0}
-  charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
   armageddonDamage: 0
@@ -817,10 +808,10 @@ MonoBehaviour:
   armageddonClipSound: {fileID: 8300000, guid: 21d41f06010961546be5fc34b5fc3d92, type: 3}
   armageddonImpact: {fileID: 0}
   armageddonExplosion: {fileID: 0}
-  armageddonSmallExplosion: {fileID: 0}
   meteorExplosion: {fileID: 0}
   meteorCenter: {fileID: 0}
   meteorCreatorHurt: {fileID: 0}
+  armageddonSmallExplosion: {fileID: 0}
   armageddonBox: {fileID: 65000013200273238}
   armageddonAni: {fileID: 95000011641399606}
   armageddonPiece:

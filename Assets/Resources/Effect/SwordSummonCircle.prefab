@@ -54,7 +54,7 @@ GameObject:
   - 4: {fileID: 4000011638806874}
   - 212: {fileID: 212000011154024420}
   - 114: {fileID: 114000011691743242}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: SwordSummonCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

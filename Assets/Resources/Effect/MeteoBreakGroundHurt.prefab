@@ -22,7 +22,7 @@ GameObject:
   - 33: {fileID: 33000013160567768}
   - 23: {fileID: 23000013521377568}
   - 54: {fileID: 54000010389613036}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MeteoBreakGroundHurt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

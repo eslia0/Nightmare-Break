@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011614984670}
   - 198: {fileID: 198000012354888672}
   - 199: {fileID: 199000012096374992}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MagicionPassive2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

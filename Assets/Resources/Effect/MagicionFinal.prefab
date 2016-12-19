@@ -22,7 +22,7 @@ GameObject:
   - 198: {fileID: 198000011269731110}
   - 199: {fileID: 199000014215946098}
   - 114: {fileID: 114000013325637228}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MagicionFinal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +53,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c635901c21144d04a907765605320870, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FireBallparticleSystem: {fileID: 0}
+  charManager: {fileID: 0}
+  character: {fileID: 0}
+  armageddonDamage: 0
+  FireBallSpeed: 0
+  FireBallRigid: {fileID: 0}
+  armageddonClipSound: {fileID: 0}
+  armageddonImpact: {fileID: 0}
+  armageddonExplosion: {fileID: 0}
+  meteorExplosion: {fileID: 0}
+  meteorCenter: {fileID: 0}
+  meteorCreatorHurt: {fileID: 0}
+  armageddonSmallExplosion: {fileID: 0}
+  armageddonBox: {fileID: 0}
+  armageddonAni: {fileID: 0}
+  armageddonPiece: []
+  pieceAttack: 0
+  meteorCenterRigd: {fileID: 0}
+  meteorCreatorHurtRigd: {fileID: 0}
+  meteorMaterial: {fileID: 0}
+  meteorAlpha: 0
 --- !u!198 &198000011269731110
 ParticleSystem:
   m_ObjectHideFlags: 1

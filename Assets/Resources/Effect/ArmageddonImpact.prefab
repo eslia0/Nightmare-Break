@@ -57,7 +57,7 @@ GameObject:
   - 4: {fileID: 4000013045215282}
   - 54: {fileID: 54000013293261684}
   - 65: {fileID: 65000012970458308}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArmageddonImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}

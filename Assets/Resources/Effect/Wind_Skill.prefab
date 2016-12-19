@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011241482450}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Wind_Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

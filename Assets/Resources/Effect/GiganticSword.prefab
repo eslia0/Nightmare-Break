@@ -43,7 +43,7 @@ GameObject:
   - 65: {fileID: 65000010153199934}
   - 114: {fileID: 114000013021141906}
   - 82: {fileID: 82000012488423830}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GiganticSword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,9 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bebcc55c5446a94b9785ad06a673bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rend: {fileID: 0}
-  count: 0
-  charStatus: {fileID: 0}
   charManager: {fileID: 0}
   character: {fileID: 0}
   swordEffect: {fileID: 0}
@@ -237,6 +234,10 @@ MonoBehaviour:
   swordFinishSound: {fileID: 0}
   giganticSwordRigd: {fileID: 0}
   swordSpeed: 0
+  checkMap: 0
+  giganticSwordBox: {fileID: 0}
+  swordMaterial: {fileID: 0}
+  swordAlpha: 0
 --- !u!114 &114000013833711046
 MonoBehaviour:
   m_ObjectHideFlags: 1

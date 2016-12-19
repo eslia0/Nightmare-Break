@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000012685749226}
   - 198: {fileID: 198000012135303842}
   - 199: {fileID: 199000014129511556}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ArmageddonSmallExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

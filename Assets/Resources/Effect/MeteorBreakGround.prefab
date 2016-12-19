@@ -165,7 +165,7 @@ GameObject:
   - 4: {fileID: 4000013803737028}
   - 95: {fileID: 95000011886035668}
   - 54: {fileID: 54000010068180264}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MeteorBreakGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}

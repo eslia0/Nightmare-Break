@@ -79,7 +79,7 @@ GameObject:
   - 82: {fileID: 82000011359089900}
   - 198: {fileID: 198000010447979122}
   - 199: {fileID: 199000014178146336}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: FlameImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
