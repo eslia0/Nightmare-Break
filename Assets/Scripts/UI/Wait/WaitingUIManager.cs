@@ -10,6 +10,8 @@ public class WaitingUIManager : MonoBehaviour
     public const int maxPlayerNum = 4;
     public const int maxSkillNum = 6;
 
+    private int currentSkill;
+
     private Button refreshBtn;
     private Button roomCreateBtn;
     private Button roomEntereBtn;
@@ -51,9 +53,6 @@ public class WaitingUIManager : MonoBehaviour
     private Image[] roomInfoClassIcon;
 	private Image[] roomInfoGenderIcon;
     private Image[] skillAddSelectImage;
-
-    private EventTrigger.Entry[] mouseOverIn;
-    private EventTrigger.Entry[] mouseOverOut;
 
     Room[] rooms;
 
@@ -101,8 +100,6 @@ public class WaitingUIManager : MonoBehaviour
 		roomInfoGenderIcon = new Image[maxPlayerNum];
         skillAddIcon = new Button[maxSkillNum];
         skillAddSelectImage = new Image[maxSkillNum];
-        mouseOverIn = new EventTrigger.Entry[maxSkillNum];
-        mouseOverOut = new EventTrigger.Entry[maxSkillNum];
 
         mySkillInfo = GameObject.Find("MouseOverUI").GetComponent<Text>();
         lockImage = GameObject.Find("LockObject").GetComponent<Image>();
@@ -201,12 +198,13 @@ public class WaitingUIManager : MonoBehaviour
         skillAddIcon[2].onClick.AddListener(() => SkillInfoEnter(2));
         skillAddIcon[3].onClick.AddListener(() => SkillInfoEnter(3));
         skillAddIcon[4].onClick.AddListener(() => SkillInfoEnter(4));
+        skillAddIcon[5].onClick.AddListener(() => SkillInfoEnter(5));
 
     }
 
     public void SkillInfoEnter(int skillIndex)
     {
-        SkillBasicData skillData = SkillManager.instance.SkillData.GetSkill(1, skillIndex + 1);  // 고쳐야함
+     
         for(int i=0; i< skillAddIcon.Length; i++)
         {
             if (skillAddSelectImage[i].IsActive())
@@ -216,10 +214,11 @@ public class WaitingUIManager : MonoBehaviour
         }
         skillAddSelectImage[skillIndex].gameObject.SetActive(true);
         mySkillInfo.transform.parent.gameObject.SetActive(true);
-        mySkillInfo.transform.parent.SetParent(skillAddIcon[skillIndex].transform);
-        mySkillInfo.transform.parent.position = Vector3.zero;
-        mySkillInfo.transform.parent.position = new Vector3(119f, 31f, 0f);
-     //   mySkillInfo.text = "스킬이름: " + skillData.SkillName + "  " + "쿨타임: " + skillData.SkillCoolTime.ToString() + "초" + "\n" + skillData.SkillBasicExplanation + "\n" + skillData.GetSkillData(skillLevel).SkillExplanation;
+        mySkillInfo.transform.parent.position = skillAddIcon[skillIndex].transform.position;
+        mySkillInfo.transform.parent.position += new Vector3(120f, 35f, 0);
+        currentSkill = skillIndex;
+        SkillBasicData skillData = SkillManager.instance.SkillData.GetSkill(1, skillIndex + 1);  // 고쳐야함
+        mySkillInfo.text = "스킬이름: " + skillData.SkillName + "  " + "쿨타임: " + skillData.SkillCoolTime.ToString() + "초" + "\n" + skillData.SkillBasicExplanation + "\n" + skillData.GetSkillData(1).SkillExplanation;
     }
 
     public void SkillInfoExit()
