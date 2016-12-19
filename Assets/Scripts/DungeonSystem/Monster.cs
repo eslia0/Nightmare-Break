@@ -944,7 +944,11 @@ public class Monster : MonoBehaviour
             yield return new WaitForSeconds(1.0f);
 
             bossRandomPattern++;
-            if(bossRandomPattern)
+            if (bossRandomPattern > 2)
+            {
+                bossRandomPattern = 0;
+            }
+                
             bossSkill = false;
             animator.SetBool("BossSkill", false);
         }

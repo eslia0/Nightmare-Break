@@ -334,9 +334,9 @@ public class WarriorManager : CharacterManager
 	{
 		base.classSound ();
 
-		if (false)
-		{
-			Skill1Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMealStrom");
+        if (CharacterStatus.Instance.HGender == CharacterStatus.Gender.Male)
+        {
+            Skill1Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMealStrom");
 			Skill2Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManCutOff");
 			Skill3Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManSwordDance");
 			Skill4Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManGiganticSwordStart");
@@ -344,7 +344,7 @@ public class WarriorManager : CharacterManager
 			giganticSwordFinishSound = Resources.Load<AudioClip> ("Sound/ManSound/ManGiganticSwordFinish");
 			swordFinishSound = Resources.Load<AudioClip> ("Sound/ManSound/ManSwordDanceFinish");
 		}
-		else if (true)
+		else
 		{
 			Skill1Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WomanMealStrom");
 			Skill2Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WomanCutOff");

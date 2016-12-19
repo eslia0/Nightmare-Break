@@ -254,9 +254,9 @@ public class MageManager : CharacterManager
 
 		base.classSound ();
 
-		if (false)
-		{
-			Skill1Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageFireBall");
+        if (CharacterStatus.Instance.HGender == CharacterStatus.Gender.Male)
+        {
+            Skill1Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageFireBall");
 			Skill2Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageDestroy");
 			Skill3Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageHowling");
 			Skill4Sound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageArmageddon");
@@ -264,7 +264,7 @@ public class MageManager : CharacterManager
 			fireBallCastSound = Resources.Load<AudioClip> ("Sound/ManSound/ManMageFireBallCast");
 			ArmageddonFinishSound = Resources.Load<AudioClip> ("Sound/ManSound/ManGiganticSwordFinish");
 		}
-		else if (true)
+		else
 		{
 			Skill1Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WoManMageFireBall");
 			Skill2Sound = Resources.Load<AudioClip> ("Sound/WoManSound/WoManDestroyCast");

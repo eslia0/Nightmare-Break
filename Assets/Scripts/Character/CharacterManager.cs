@@ -477,7 +477,7 @@ public class CharacterManager : MonoBehaviour
 	public virtual void classSound()
 	{
 		MoveSound = Resources.Load<AudioClip> ("Sound/MoveSound");
-		if (true)
+		if (CharacterStatus.Instance.HGender == CharacterStatus.Gender.Male)
 		{
 			attack1 = Resources.Load<AudioClip> ("Sound/ManSound/ManWarriorattack1");
 			attack2 = Resources.Load<AudioClip> ("Sound/ManSound/ManWarriorattack2");
@@ -485,7 +485,7 @@ public class CharacterManager : MonoBehaviour
 			dieSound = Resources.Load<AudioClip> ("Sound/ManSound/ManDie");
 			hitSound = Resources.Load<AudioClip> ("Sound/ManSound/ManHit");
 		}
-		else if (false)
+		else
 		{
 			attack1 = Resources.Load<AudioClip> ("Sound/WoManSound/WoManattack1");
 			attack2 = Resources.Load<AudioClip> ("Sound/WoManSound/WoManattack2");
