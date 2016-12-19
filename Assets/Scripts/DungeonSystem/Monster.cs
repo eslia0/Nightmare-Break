@@ -94,7 +94,7 @@ public class Monster : MonoBehaviour
     protected float currentDisTance;
     [SerializeField]
     protected float searchRange;
-    StatePosition statePosition;
+	[SerializeField]StatePosition statePosition;
 
     public bool isAlive;
     protected bool isAttack;
@@ -321,7 +321,7 @@ public class Monster : MonoBehaviour
             {
                 attackCollider[i].MonsterWeaponSet();
             }
-            searchRange = 12;
+            searchRange = 20;
             attackRange = 3;
             RunRange = 30;
             shootNumber = 6;
