@@ -144,6 +144,7 @@ public class DungeonManager : MonoBehaviour
 		for (int i = 0; i < 3; i++) {
 			if (SceneManager.GetActiveScene ().name == "LostTeddyBear_SingleType"+i) {
 				mapNumber = i;
+				Debug.Log (i);
 				if (i == 1) {
 					normalMode = false;
 				} else
