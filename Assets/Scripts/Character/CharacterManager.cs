@@ -61,7 +61,7 @@ public class CharacterManager : MonoBehaviour
     CharacterState state;
 
     public CharacterState State { get { return state; } }
-    public CharacterStatus CharacterStatus { get { return CharacterStatus; } }
+    public CharacterStatus CharacterStatus { get { return characterStatus; } }
     public bool NormalAttackState { get { return normalAttackState; } }
     public bool SkillAttackState { get { return skillAttackState; } }
     public int UnitIndex { get { return unitIndex; } }
