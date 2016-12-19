@@ -78,7 +78,7 @@ Material:
     m_Floats:
     - first:
         name: _Alpha
-      second: -0.90000015
+      second: -1.2000002
     - first:
         name: _BumpScale
       second: 1
