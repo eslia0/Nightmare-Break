@@ -41,7 +41,7 @@ public class FireBall : MonoBehaviour {
 		if(coll.gameObject.layer == LayerMask.NameToLayer("Map"))
 		{
 			Destroy(gameObject);
-			Instantiate(Resources.Load<GameObject>("Effect/MeteorExplosion"), coll.contacts[0].point, Quaternion.identity);
+			Instantiate(Resources.Load<GameObject>("Effect/FireBallExplosion"), coll.contacts[0].point, Quaternion.identity);
 		}
 
 	}
@@ -59,7 +59,7 @@ public class FireBall : MonoBehaviour {
 			}
 
 			Destroy(gameObject);
-			Instantiate(Resources.Load<GameObject>("Effect/MeteorExplosion"), this.transform.position, Quaternion.identity);
+			Instantiate(Resources.Load<GameObject>("Effect/FireBallExplosion"), this.transform.position, Quaternion.identity);
 
 		}
 	}

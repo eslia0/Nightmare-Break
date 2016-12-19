@@ -51,7 +51,7 @@ public class DungeonManager : MonoBehaviour
     
     GameObject m_camera;
 
-	[SerializeField]int stageNum;
+	[SerializeField]int mapNumber;
     int dungeonId;
     int dungeonLevel;
 
@@ -62,7 +62,6 @@ public class DungeonManager : MonoBehaviour
 
     public int DungeonId { get { return dungeonId; } }
     public int DungeonLevel { get { return dungeonLevel; } }
-    public int StageNum { get { return stageNum; } }
     public bool NormalMode
     {
 		get { return normalMode; }
@@ -76,9 +75,12 @@ public class DungeonManager : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("GameManager") == null)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
-        }
+        }		
 
 		//Instantiate 스폰포인트 생성조건 - > mapNumber != 2;
+
+		CurrentScene();
+
 
         if (GameObject.FindGameObjectWithTag("GameManager") == null)
         {
@@ -121,25 +123,35 @@ public class DungeonManager : MonoBehaviour
             MonsterStatusData monsterStatusData = new MonsterStatusData(5, monsterBaseData);
             SetMonsterData(monsterStatusData);
 
-			if (stageNum == 0) {
+			if (mapNumber==0) {
 				SpawnMonster (1);
 				SetMonsterStatus (1);
 			}
-			if (stageNum == 1){
+			if (mapNumber==1){
 				SpawnMonster(2);
 				SetMonsterStatus (2);
 			}
-			if (stageNum == 2) {
+			if (mapNumber==2) {
 				SpawnMonster (3);
 				SetMonsterStatus (3);
 			}
         }
 	}
 
-    public void SetCurrentStateNum(int newStageNum)
-    {
-        stageNum = newStageNum;
-    }
+
+	public void CurrentScene(){
+		//SceneManager.GetActiveScene ().name;
+		for (int i = 0; i < 3; i++) {
+			if (SceneManager.GetActiveScene ().name == "LostTeddyBear_SingleType"+i) {
+				mapNumber = i;
+				Debug.Log (i);
+				if (i == 1) {
+					normalMode = false;
+				} else
+					normalMode = true;
+			}
+		}
+	}
 
     //각종 매니저 초기화
     public void ManagerInitialize(int newDungeonId, int newDungeonLevel)
@@ -153,21 +165,6 @@ public class DungeonManager : MonoBehaviour
         Debug.Log("유저 수 : " + playerNum);
         players = new GameObject[playerNum];
         characterData = new CharacterManager[playerNum];
-    }
-
-    public void StartDungeon(int playerNum)
-    {
-        InitializePlayer(playerNum);
-        InitializePlayerSpawnPoint();
-
-        CreatePlayer((int)CharacterStatus.Instance.HGender, (int)CharacterStatus.Instance.HClass);
-
-        if (NetworkManager.Instance.MyIndex == 0)
-        {
-            InitializeMonsterSpawnPoint(1);
-            SpawnMonster(1);
-            SetMonsterStatus(1);
-        }
     }
 
     public void InitializePlayerSpawnPoint()
@@ -221,6 +218,20 @@ public class DungeonManager : MonoBehaviour
         }
     }
 
+    public void StartDungeon(int playerNum)
+    {
+        InitializePlayer(playerNum);
+        InitializePlayerSpawnPoint();
+
+        CreatePlayer((int)CharacterStatus.Instance.HGender, (int)CharacterStatus.Instance.HClass);
+        
+        if (NetworkManager.Instance.MyIndex == 0)
+        {
+            InitializeMonsterSpawnPoint(1);
+            SpawnMonster(1);
+        }
+    }
+
     public GameObject CreateMonster(int unitId, int unitIndex, Vector3 createPoint)
     {
         if (monsters[unitIndex] == null)
@@ -257,17 +268,6 @@ public class DungeonManager : MonoBehaviour
             monsterData[unitIndex] = monster.GetComponent<Monster>();
             monsterData[unitIndex].MonsterId = (MonsterId)unitId;
             monsterData[unitIndex].MonsterIndex = unitIndex;
-
-            if (NetworkManager.Instance.MyIndex==0)
-            {
-                for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
-                {
-                    if (index != NetworkManager.Instance.MyIndex)
-                    {
-                        DataSender.Instance.CreateUnitSend(NetworkManager.Instance.UserIndex[index].EndPoint, (byte)unitId, (byte)unitIndex, monster.transform.position.x, monster.transform.position.y, monster.transform.position.z);
-                    }
-                }
-            }            
 
             return monster;
         }
@@ -354,35 +354,35 @@ public class DungeonManager : MonoBehaviour
         {
             if (index != userNum)
             {
-                DataSender.Instance.CreateUnitSend(NetworkManager.Instance.UserIndex[index].EndPoint, (byte)characterId, (byte)userNum, player.transform.position.x, player.transform.position.y, player.transform.position.z);
+                DataSender.Instance.CreateUnitSend(NetworkManager.Instance.UserIndex[index].EndPoint, (byte)characterId, player.transform.position.x, player.transform.position.y, player.transform.position.z);
             }
         }
 
         return player;
     }
 
-    public void CreateUnit(CreateUnitData createUniData)
+    public void CreateUnit(int unitId, int unitIndex, Vector3 newPosition)
     {
-        if (createUniData.ID <= (int)UnitId.WomanMage)
+        if (unitId <= (int)UnitId.WomanMage)
         {
-            if (players[createUniData.UnitIndex] == null)
+            if (players[unitIndex] == null)
             {
-                GameObject unit = Instantiate(Resources.Load("Class" + createUniData.ID)) as GameObject;
-                unit.transform.position = new Vector3(createUniData.PosX, createUniData.PosY, createUniData.PosZ);
+                GameObject unit = Instantiate(Resources.Load("Class" + unitId)) as GameObject;
+                unit.transform.position = newPosition;
                 unit.tag = "Player";
-                players[createUniData.UnitIndex] = unit;
+                players[unitIndex] = unit;
 
-                characterData[createUniData.UnitIndex] = unit.GetComponent<CharacterManager>();
-                characterData[createUniData.UnitIndex].SetUserNum(createUniData.UnitIndex);
+                characterData[unitIndex] = unit.GetComponent<CharacterManager>();
+                characterData[unitIndex].SetUserNum(unitIndex);
             }
             else
             {
-                Debug.Log("이미 있는 캐릭터 인덱스 : " + createUniData.UnitIndex);
+                Debug.Log("이미 있는 캐릭터 인덱스 : " + unitIndex);
             }
         }
         else
         {
-            CreateMonster(createUniData.ID, createUniData.UnitIndex, monsterSpawnPoints[createUniData.UnitIndex].transform.position);
+            CreateMonster(unitId, unitIndex, monsterSpawnPoints[unitIndex].transform.position);
         }
     }
 

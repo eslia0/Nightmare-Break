@@ -8,6 +8,7 @@ public class MageManager : CharacterManager
 	public GameObject FireBallPos;
 	public GameObject armageddon;
 	public GameObject mageRing;
+	public GameObject howlingObj;
 	public Armageddon ArmageddonDamage;
 	public bool howling;
 	public bool poweroverwhelming;
@@ -80,6 +81,11 @@ public class MageManager : CharacterManager
 		}
 		
 	}
+	public void FlameObj()
+	{
+		howlingObj = Instantiate (Resources.Load<GameObject> ("Effect/HowlingExplosion"), new Vector3 (transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler (0, 0, 0))as GameObject;
+		Destroy(howlingObj , 2f);
+	}
 
 	public void FireHowling()
 	{
@@ -88,6 +94,7 @@ public class MageManager : CharacterManager
 			if (!mageRing)
 			{
 				mageRing = Instantiate (Resources.Load<GameObject> ("Effect/FlameImpact"), new Vector3 (transform.position.x, transform.position.y, transform.position.z), Quaternion.Euler (0, 0, 0))as GameObject;
+
 			}
 			float howlingSpeed = 5f;
 			float howlingDistance;

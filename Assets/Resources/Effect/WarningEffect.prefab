@@ -23,7 +23,6 @@ GameObject:
   - 23: {fileID: 23000013886023690}
   - 95: {fileID: 95000011366254592}
   - 65: {fileID: 65000013024446000}
-  - 114: {fileID: 114000012545116234}
   m_Layer: 0
   m_Name: WarningEffect
   m_TagString: Untagged
@@ -109,19 +108,3 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000012545116234
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011416233832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87c590e1ad97fb94cb6b2ec78a4e0714, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monster: {fileID: 0}
-  damage: 0
-  sphereRigid: {fileID: 0}
-  roarBox: {fileID: 0}
-  player: {fileID: 0}

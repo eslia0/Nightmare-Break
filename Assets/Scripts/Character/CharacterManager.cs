@@ -67,7 +67,7 @@ public class CharacterManager : MonoBehaviour
 
 	public bool SkillAttackState { get { return this.skillAttackState; } }
 
-	public TestInputManager testinput;
+	//public TestInputManager testinput;
 
     public int UserNum { get { return userNum; } }
 
