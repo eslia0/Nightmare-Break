@@ -1,0 +1,10 @@
+diff a/Assets/Scripts/Character/WarriorManager.cs b/Assets/Scripts/Character/WarriorManager.cs	(rejected hunks)
+@@ -10,7 +10,7 @@
+ 
+ 	public GameObject SwordDance;
+ 	public bool rise = false;
+-	public CharWeapon bloodingWeapon;
++	//public CharWeapon bloodingWeapon;
+ 	public float riseCooltime;
+     private GameObject wind;
+ 	public GameObject swordCircle;
