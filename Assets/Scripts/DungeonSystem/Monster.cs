@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public enum StatePosition
 {
     Idle = 0,
@@ -138,7 +139,7 @@ public class Monster : MonoBehaviour
     public AudioClip rabbitAttack;
     public AudioClip rabbitDeath;
     public AudioClip rabbitHit;
-
+    /*
     public void SetMonsterSound()
     {
         MonsterAudio = this.GetComponent<AudioSource>();
@@ -155,6 +156,7 @@ public class Monster : MonoBehaviour
         rabbitDeath = Resources.Load<AudioClip>("Sound/MonsterSound/RabbitDeath");
         rabbitHit = Resources.Load<AudioClip>("Sound/MonsterSound/RabbitHit");
     }
+
     public void BearRoarSound()
     {
         MonsterAudio.PlayOneShot(bearRoar);
@@ -199,7 +201,7 @@ public class Monster : MonoBehaviour
     {
         MonsterAudio.PlayOneShot(rabbitHit);
     }
-
+    */
 
     public int MonsterIndex
     {
@@ -256,106 +258,94 @@ public class Monster : MonoBehaviour
     public int Attack { get { return attack; } }
     public MonsterId MonsterId { get { return monsterId; } set { monsterId = value; } }
 
-    //   public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    //   {
-    //
-    //   }
-
     public void MonsterSet(MonsterBaseData monster)
-	{
-		player = GameObject.FindGameObjectsWithTag ("Player");
-		wall = GameObject.FindGameObjectsWithTag ("Wall");
-		currentDisTanceWall = new float[wall.Length];
-		SetMonsterSound ();
-		animator = this.gameObject.GetComponent<Animator> ();
-		HittedBox = this.gameObject.GetComponent<BoxCollider> ();
+    {
+        player = GameObject.FindGameObjectsWithTag("Player");
+        wall = GameObject.FindGameObjectsWithTag("Wall");
+        currentDisTanceWall = new float[wall.Length];
+        //SetMonsterSound();
+        animator = this.gameObject.GetComponent<Animator>();
+        HittedBox = this.gameObject.GetComponent<BoxCollider>();
 
-		isAlive = true;
-		isHited = false;
-		moveAble = true;
-		randomStandby = 0;
-		roarBreak = false;
+        isAlive = true;
+        isHited = false;
+        moveAble = true;
+        randomStandby = 0;
+        roarBreak = false;
 
-		_name = monster.Name;
-		level = monster.MonsterLevelData [0].Level;
-		attack = monster.MonsterLevelData [0].Attack;
-		defense = monster.MonsterLevelData [0].Defense;
-		currentHP = monster.MonsterLevelData [0].HealthPoint;
-		maxHP = monster.MonsterLevelData [0].HealthPoint;
-		moveSpeed = monster.MonsterLevelData [0].MoveSpeed;
+        _name = monster.Name;
+        level = monster.MonsterLevelData[0].Level;
+        attack = monster.MonsterLevelData[0].Attack;
+        defense = monster.MonsterLevelData[0].Defense;
+        currentHP = monster.MonsterLevelData[0].HealthPoint;
+        maxHP = monster.MonsterLevelData[0].HealthPoint;
+        moveSpeed = monster.MonsterLevelData[0].MoveSpeed;
 
-		//      
+        //      
 
-		if (monster.Id == (int)MonsterId.Rabbit)
-		{
-			searchRange = 12;
-			attackRange = 4;
-			attackCollider = this.transform.GetComponentsInChildren<MonsterWeapon> ();
-			attackCollider [0].MonsterWeaponSet ();
-		}
-
-
-		if (monster.Id == (int)MonsterId.Duck || monster.Id == (int)MonsterId.Frog)
-		{
-			if (monster.Id == (int)MonsterId.Duck)
-			{
-				bulletInstantiate = new GameObject[1];
-				bulletInstantiate [0] = Resources.Load<GameObject> ("Effect/Monster_ShockWave");
-			}
-			if (monster.Id == (int)MonsterId.Frog)
-			{
-				bulletInstantiate = new GameObject[1];
-				bulletInstantiate [0] = Resources.Load<GameObject> ("Monster/FrogBullet");
-			}
-			searchRange = 15;
-			attackRange = 9;
-		}
-
-		if (monster.Id == (int)MonsterId.Bear || monster.Id == (int)MonsterId.BlackBear)
-		{
-			if (monsterId == MonsterId.BlackBear)
-			{
-				bulletInstantiate = new GameObject[1];
-				bulletInstantiate [0] = Resources.Load<GameObject> ("Effect/BossDarkSphere");
-			}
-			attackCollider = this.transform.GetComponentsInChildren<MonsterWeapon> ();
-			for (int i = 0; i < attackCollider.Length; i++)
-			{
-				attackCollider [i].MonsterWeaponSet ();
-			}
-			searchRange = 12;
-			attackRange = 3;
-			RunRange = 30;
-			shootNumber = 6;
-
-		}
-
-		currentDisTanceArray = new float[player.Length];
-		aggroRank = new float[player.Length];
-		playerToMonsterDamage = new float[player.Length];
-
-		StartCoroutine (MonsterUpdate ());
-
-		StartCoroutine (ChangeRandomStanby ());
-
-		//      if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.DefenseScene)
-		//      {
-		//
-		//      }
-		//
-		//      if (SceneChanger.Instance.CurrentScene != SceneChanger.SceneName.DefenseScene) {
-		//   
-		//      }
-
-		DungeonManager dun = GameObject.Find ("DungeonManager").GetComponent<DungeonManager> ();
-		normalMode = dun.NormalMode;
+        if (monsterId == MonsterId.Rabbit)
+        {
+            searchRange = 12;
+            attackRange = 4;
+            attackCollider = this.transform.GetComponentsInChildren<MonsterWeapon>();
+            attackCollider[0].MonsterWeaponSet();
+        }
 
 
-		MonsterAIStart (dun.NormalMode);
-	}
+        if (monsterId == MonsterId.Duck || monsterId == MonsterId.Frog)
+        {
+            if (monsterId == MonsterId.Duck)
+            {
+                bulletInstantiate = new GameObject[1];
+                bulletInstantiate[0] = Resources.Load<GameObject>("Effect/Monster_ShockWave");
+            }
+            if (monsterId == MonsterId.Frog)
+            {
+                bulletInstantiate = new GameObject[1];
+                bulletInstantiate[0] = Resources.Load<GameObject>("Monster/FrogBullet");
+            }
+            searchRange = 15;
+            attackRange = 9;
+        }
 
-  
+        if (monsterId == MonsterId.Bear || monsterId == MonsterId.BlackBear)
+        {
+            if (monsterId == MonsterId.BlackBear)
+            {
+                bulletInstantiate = new GameObject[1];
+                bulletInstantiate[0] = Resources.Load<GameObject>("Effect/BossDarkSphere");
+            }
+            attackCollider = this.transform.GetComponentsInChildren<MonsterWeapon>();
+            for (int i = 0; i < attackCollider.Length; i++)
+            {
+                attackCollider[i].MonsterWeaponSet();
+            }
+            searchRange = 12;
+            attackRange = 3;
+            RunRange = 30;
+            shootNumber = 6;
 
+        }
+
+        currentDisTanceArray = new float[player.Length];
+        aggroRank = new float[player.Length];
+        playerToMonsterDamage = new float[player.Length];
+
+        if (NetworkManager.Instance.MyIndex == 0)
+        {
+            Debug.Log("몬스터 보내기!!!!!!!!!!!");
+            StartCoroutine(MonsterUpdate());
+            StartCoroutine(ChangeRandomStanby());
+
+            normalMode = DungeonManager.Instance.NormalMode;
+            normalMode = true;
+            MonsterAIStart(normalMode);
+
+            Debug.Log("노말 : " + normalMode);
+
+            DataSender.Instance.UnitPositionSend(gameObject);
+        }
+    }
 
     IEnumerator BossNormalAttackCycleSet()
     {
@@ -1032,6 +1022,11 @@ public class Monster : MonoBehaviour
                     animator.SetInteger("State", 5);
                     break;
                 }
+        }
+
+        if (NetworkManager.Instance.MyIndex == 0)
+        {
+            DataSender.Instance.MonsterStateSend((byte)state, monsterIndex);
         }
     }
 
