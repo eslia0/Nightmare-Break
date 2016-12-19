@@ -58,7 +58,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField]
     int unitIndex;
 
-    CharacterState state;
+    [SerializeField]  CharacterState state;
 
     public CharacterState State { get { return state; } }
     public CharacterStatus CharacterStatus { get { return characterStatus; } }
@@ -231,13 +231,14 @@ public class CharacterManager : MonoBehaviour
 
     public virtual void Skill1()
     {
-        if (characterStatus.MagicPoint > SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 1).ManaCost && characterStatus.ActiveSkillUse [0])
+        if (state == CharacterState.Idle)
+        {
+            if (characterStatus.MagicPoint > SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 1).ManaCost && characterStatus.ActiveSkillUse [0])
         {
             UsingMagicPoint (1);
             StartCoroutine (characterStatus.SkillCoolTimer (0, SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 1).SkillCoolTime));
             StartCoroutine (UIManager.Instance.BattleUIManager.SetSkillCoolTimeUI (0, SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 1).SkillCoolTime));
-            if (state == CharacterState.Idle)
-            {
+           
                 CharState((int)CharacterState.Skill1);
             }
         }
@@ -246,13 +247,14 @@ public class CharacterManager : MonoBehaviour
 
     public void skill2()
     {
-        if (characterStatus.MagicPoint > SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 2).ManaCost && characterStatus.ActiveSkillUse[1])
+        if (state == CharacterState.Idle)
         {
+            if (characterStatus.MagicPoint > SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 2).ManaCost && characterStatus.ActiveSkillUse[1])
+             {
             UsingMagicPoint(1);
             StartCoroutine(characterStatus.SkillCoolTimer(1, SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 2).SkillCoolTime));
             StartCoroutine(UIManager.Instance.BattleUIManager.SetSkillCoolTimeUI(1, SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 2).SkillCoolTime));
-            if (state == CharacterState.Idle)
-            {
+            
                 CharState((int)CharacterState.Skill2);
             }
         }
@@ -260,15 +262,14 @@ public class CharacterManager : MonoBehaviour
 
     public void skill3()
     {
-        print(characterStatus.MagicPoint);
-        print(SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 3).ManaCost);
-        if (characterStatus.MagicPoint > SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 3).ManaCost && characterStatus.ActiveSkillUse [2])
+        if (state == CharacterState.Idle)
+        {
+            if (characterStatus.MagicPoint > SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 3).ManaCost && characterStatus.ActiveSkillUse [2])
         {
             UsingMagicPoint (3);
             StartCoroutine (characterStatus.SkillCoolTimer (2, SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 3).SkillCoolTime));
             StartCoroutine(UIManager.Instance.BattleUIManager.SetSkillCoolTimeUI(2, SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 3).SkillCoolTime));
-            if (state == CharacterState.Idle)
-            {
+           
                 CharState((int)CharacterState.Skill3);
             }
         }
@@ -276,13 +277,14 @@ public class CharacterManager : MonoBehaviour
 
     public void Skill4()
     {
-        if (characterStatus.MagicPoint > SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 4).ManaCost && characterStatus.ActiveSkillUse [3])
+        if (state == CharacterState.Idle)
         {
-            UsingMagicPoint (4);
-            StartCoroutine (characterStatus.SkillCoolTimer (3, SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 4).SkillCoolTime));
-            StartCoroutine(UIManager.Instance.BattleUIManager.SetSkillCoolTimeUI(3, SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 4).SkillCoolTime));
-            if (state == CharacterState.Idle)
-            {
+            if (characterStatus.MagicPoint > SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 4).ManaCost && characterStatus.ActiveSkillUse [3])
+        {
+                UsingMagicPoint (4);
+                StartCoroutine (characterStatus.SkillCoolTimer (3, SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 4).SkillCoolTime));
+                StartCoroutine(UIManager.Instance.BattleUIManager.SetSkillCoolTimeUI(3, SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 4).SkillCoolTime));
+
                 //giganticSwordCastSword.SetActive(true);
                 CharState((int)CharacterState.Skill4);
             }
@@ -313,7 +315,7 @@ public class CharacterManager : MonoBehaviour
     public void UsingPotion()
     {   //Potion Effect create
         GameObject potionEffect = Instantiate(Resources.Load<GameObject>("Effect/Potion"), transform.position, Quaternion.identity) as GameObject;
-        UIManager.Instance.BattleUIManager.PotionCoolTimeUI();
+        StartCoroutine(UIManager.Instance.BattleUIManager.PotionCoolTimeUI());
         potionEffect.transform.parent = gameObject.transform;
         potionEffect.transform.position += Vector3.up;
         StartCoroutine(Potion());
@@ -430,7 +432,7 @@ public class CharacterManager : MonoBehaviour
             if (characterStatus.HealthPoint > 0)
             {
                 characterStatus.DecreaseHealthPoint(damage);
-                UIManager.Instance.BattleUIManager.hpBarCalculation(characterStatus.MaxHealthPoint, characterStatus.HealthPoint);
+            
                 CharState((int)CharacterState.HitDamage);
             }
             if (characterStatus.HealthPoint <= 0)

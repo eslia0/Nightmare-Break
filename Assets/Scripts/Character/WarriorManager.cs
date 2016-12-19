@@ -217,6 +217,7 @@ public class WarriorManager : CharacterManager
                             {
                                 CharState((int)CharacterState.HitDamage);
                             }
+                            UIManager.Instance.BattleUIManager.hpBarCalculation(characterStatus.MaxHealthPoint, characterStatus.HealthPoint);
                         }
                         if (characterStatus.HealthPoint <= 0)
                         {

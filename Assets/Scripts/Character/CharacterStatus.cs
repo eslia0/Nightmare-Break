@@ -31,7 +31,7 @@ public class CharacterStatus : MonoBehaviour
     int exp;
 
     int maxHealthPoint;
-    int healthPoint;
+   [SerializeField] int healthPoint;
     int maxMagicPoint = 200;
     int magicPoint;
     int hpRegeneration;
