@@ -149,9 +149,9 @@ public class BattleUIManager : MonoBehaviour
     #endregion
 
     public void hpBarCalculation(float maxHp, float currentHP)
-    {
+    {        
         hpBar.fillAmount = currentHP / maxHp;
-        print(hpBar.fillAmount);
+        Debug.Log(hpBar + " , " + hpBar.fillAmount);
     }
 
     public void mpBarCalculation(int maxMp, int currentMP)

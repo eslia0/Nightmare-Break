@@ -280,8 +280,8 @@ GameObject:
   - 95: {fileID: 95000011750961458}
   - 54: {fileID: 54000010772328008}
   - 65: {fileID: 65000010350973366}
-  - 114: {fileID: 114000010302674024}
   - 82: {fileID: 82000014015673584}
+  - 114: {fileID: 114000013230010244}
   m_Layer: 9
   m_Name: BlackBear
   m_TagString: Enermy
@@ -1121,7 +1121,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011865437514}
-  m_LocalRotation: {x: -0.024081098, y: 0.043201845, z: -0.24633761, w: 0.9679212}
+  m_LocalRotation: {x: -0.0240811, y: 0.04320185, z: -0.24633762, w: 0.96792126}
   m_LocalPosition: {x: -0.41856414, y: -0.000000005209034, z: -0.000000017834477}
   m_LocalScale: {x: 0.99999994, y: 0.9999999, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1301,7 +1301,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013022169288}
-  m_LocalRotation: {x: -0.05573529, y: -0.07021796, z: -0.67363966, w: 0.73360246}
+  m_LocalRotation: {x: -0.055735294, y: -0.07021797, z: -0.6736397, w: 0.7336025}
   m_LocalPosition: {x: -0.2640895, y: 0.41224036, z: -0.00000003103074}
   m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 0.99999994}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1582,7 +1582,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1604,7 +1604,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95000011750961458
 Animator:
   serializedVersion: 3
@@ -1622,55 +1622,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000010302674024
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011858546138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f4445226db14946a625617aba881f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalMode: 0
-  target: 0
-  HittedBox: {fileID: 0}
-  attackCollider: []
-  bulletInstantiate: []
-  player: []
-  targetPlayer: {fileID: 0}
-  movePoint: {x: 0, y: 0, z: 0}
-  currentHP: 0
-  attack: 0
-  moveSpeed: 0
-  RunRange: 0
-  attackRange: 0
-  attackCycle: 0
-  currentDisTance: 0
-  searchRange: 0
-  isAlive: 0
-  bossNormalAttackCycle: 0
-  bossRandomPattern: 0
-  shootNumber: 0
-  chasePlayer: {fileID: 0}
-  currentDisTanceArray: []
-  currentDisTanceWall: []
-  checkDirection: {x: 0, y: 0, z: 0}
-  pointVector: []
-  roarBreak: 0
-  MonsterAudio: {fileID: 0}
-  bearRoar: {fileID: 0}
-  frogAttack: {fileID: 0}
-  frogDeath: {fileID: 0}
-  frogHit: {fileID: 0}
-  middleBossAttack1: {fileID: 0}
-  middleBossAttack2: {fileID: 0}
-  middleBossDeath: {fileID: 0}
-  middleBossWave: {fileID: 0}
-  rabbitAttack: {fileID: 0}
-  rabbitDeath: {fileID: 0}
-  rabbitHit: {fileID: 0}
 --- !u!114 &114000010644420932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1699,6 +1650,56 @@ MonoBehaviour:
   monster: {fileID: 0}
   AttackCollider: {fileID: 0}
   damage: 0
+--- !u!114 &114000013230010244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011858546138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f4445226db14946a625617aba881f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalMode: 0
+  target: 0
+  HittedBox: {fileID: 0}
+  attackCollider: []
+  bulletInstantiate: []
+  player: []
+  targetPlayer: {fileID: 0}
+  movePoint: {x: 0, y: 0, z: 0}
+  currentHP: 0
+  maxHP: 0
+  attack: 0
+  moveSpeed: 0
+  RunRange: 0
+  attackRange: 0
+  attackCycle: 0
+  currentDisTance: 0
+  searchRange: 0
+  statePosition: 0
+  isAlive: 0
+  bossNormalAttackCycle: 0
+  bossRandomPattern: 0
+  shootNumber: 0
+  chasePlayer: {fileID: 0}
+  currentDisTanceArray: []
+  checkDirection: {x: 0, y: 0, z: 0}
+  pointVector: []
+  roarBreak: 0
+  MonsterAudio: {fileID: 0}
+  bearRoar: {fileID: 0}
+  frogAttack: {fileID: 0}
+  frogDeath: {fileID: 0}
+  frogHit: {fileID: 0}
+  middleBossAttack1: {fileID: 0}
+  middleBossAttack2: {fileID: 0}
+  middleBossDeath: {fileID: 0}
+  middleBossWave: {fileID: 0}
+  rabbitAttack: {fileID: 0}
+  rabbitDeath: {fileID: 0}
+  rabbitHit: {fileID: 0}
 --- !u!137 &137000010864942148
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

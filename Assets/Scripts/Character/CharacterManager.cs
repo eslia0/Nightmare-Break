@@ -54,7 +54,7 @@ public class CharacterManager : MonoBehaviour
 
     bool runSoundbool;
     protected float skillTime;
-
+     
     [SerializeField]
     int unitIndex;
 
@@ -193,11 +193,11 @@ public class CharacterManager : MonoBehaviour
                     {
                         if (hor == -1.0f || hor == 1.0f)
                         {
-                            transform.Translate((Vector3.forward * ver - Vector3.right * hor) * Time.deltaTime * (characterStatus.MoveSpeed - 3.0f), Space.World);
+                            transform.Translate((Vector3.forward * ver - Vector3.right * hor) * 0.016f * (characterStatus.MoveSpeed - 3.0f), Space.World);
                         }
                         else
                         {
-                            transform.Translate((Vector3.forward * ver - Vector3.right * hor) * Time.deltaTime * (characterStatus.MoveSpeed), Space.World);
+                            transform.Translate((Vector3.forward * ver - Vector3.right * hor) * 0.016f * (characterStatus.MoveSpeed), Space.World);
                         }
 
                     }

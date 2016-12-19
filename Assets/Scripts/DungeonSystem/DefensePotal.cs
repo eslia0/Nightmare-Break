@@ -31,18 +31,29 @@ public class DefensePotal : MonoBehaviour {
 
 	void OnTriggerEnter(Collider coll){
 		if (coll.gameObject.layer == LayerMask.NameToLayer ("Enermy")) {
-			if(coll.gameObject.GetComponent<Monster>().MonsterId == MonsterId.Frog){
-				monsterFrogCount++;
-			}
-			if (coll.gameObject.GetComponent<Monster> ().MonsterId == MonsterId.Duck) {
-				monsterDuckCount++;
-			}
-			if (coll.gameObject.GetComponent<Monster> ().MonsterId == MonsterId.Rabbit) {
-				monsterRabbitCount++;
-			}
+            try
+            {
+                if (coll.gameObject.GetComponent<Monster>().MonsterId == MonsterId.Frog)
+                {
+                    monsterFrogCount++;
+                }
+                if (coll.gameObject.GetComponent<Monster>().MonsterId == MonsterId.Duck)
+                {
+                    monsterDuckCount++;
+                }
+                if (coll.gameObject.GetComponent<Monster>().MonsterId == MonsterId.Rabbit)
+                {
+                    monsterRabbitCount++;
+                }
+            }
+            catch
+            {
+                Debug.Log(coll);
+            }
+			
 		}
-		coll.gameObject.SetActive (false);
 
+		Destroy(coll.gameObject);
 	}
 }
 

@@ -1314,7 +1314,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012246991878}
-  m_LocalRotation: {x: 0, y: -0, z: -0.7071063, w: 0.70710725}
+  m_LocalRotation: {x: 0, y: -0, z: -0.70710635, w: 0.7071073}
   m_LocalPosition: {x: -0, y: 7.0620943e-16, z: -0.6960613}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1872,8 +1872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b143f7a0671c14ab000f9a7fbb12ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  charManager: {fileID: 0}
   damage: 0
   attackSound: {fileID: 0}
   attack1: {fileID: 0}
@@ -1919,16 +1917,14 @@ MonoBehaviour:
   dieSound: {fileID: 0}
   hitSound: {fileID: 0}
   MoveSound: {fileID: 0}
-  runSoundbool: 0
-  skillTime: 0
-  userNum: 0
+  unitIndex: 0
   state: 0
-  testinput: {fileID: 0}
   frameDestroy: {fileID: 0}
   fireBall: {fileID: 0}
   FireBallPos: {fileID: 1000011346712698}
   armageddon: {fileID: 0}
   mageRing: {fileID: 0}
+  howlingObj: {fileID: 0}
   ArmageddonDamage: {fileID: 0}
   howling: 0
   poweroverwhelming: 0

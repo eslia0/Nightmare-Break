@@ -96,7 +96,15 @@ public class SceneChanger : MonoBehaviour
             }
             else if (nextScene == SceneName.WaitingScene)
             {
-                GameManager.Instance.SetManagerInWait();
+                if (currentScene == SceneName.TeddyBearBoss)
+                {
+                    GameManager.Instance.DestroyManagerInGame();
+                }
+                else
+                {
+                    GameManager.Instance.SetManagerInWait();
+                }
+
                 UIManager.Instance.SetUIManager(UIManagerIndex.Waiting);
                 DataSender.Instance.RequestCharacterStatus();
                 DataSender.Instance.RequestRoomList();
@@ -151,7 +159,7 @@ public class SceneChanger : MonoBehaviour
         #region 대기 씬 로드
         else if (scene.name == "WaitScene")
         {
-            if(currentScene == SceneName.LoadingScene)
+            if(currentScene == SceneName.LoadingScene || currentScene == SceneName.TeddyBearBoss)
             {
                 UIManager.Instance.WaitingUIManager.ManagerInitialize();
                 UIManager.Instance.WaitingUIManager.SetRoom();
@@ -183,11 +191,10 @@ public class SceneChanger : MonoBehaviour
         {
             UIManager.Instance.BattleUIManager.ManagerInitialize();
 
-            DungeonManager.Instance.IsDefense = false;
+            DungeonManager.Instance.SetCurrentStageNum(0);
+            DungeonManager.Instance.IsNormal = true;
             DungeonManager.Instance.StartDungeon();
             ReSendManager.Instance.characterCreating = true;
-            DungeonManager.Instance.SetCurrentStageNum(1);
-
 
             currentScene = SceneName.TeddyBearStage1;
         }
@@ -198,10 +205,10 @@ public class SceneChanger : MonoBehaviour
         {
             UIManager.Instance.BattleUIManager.ManagerInitialize();
 
-            DungeonManager.Instance.IsDefense = true;
+            DungeonManager.Instance.SetCurrentStageNum(1);
+            DungeonManager.Instance.IsNormal = false;
             DungeonManager.Instance.StartDungeon();
             ReSendManager.Instance.characterCreating = true;
-            DungeonManager.Instance.SetCurrentStageNum(2);
 
             currentScene = SceneName.TeddyBearStage2;
         }
@@ -212,10 +219,10 @@ public class SceneChanger : MonoBehaviour
         {
             UIManager.Instance.BattleUIManager.ManagerInitialize();
 
-            DungeonManager.Instance.IsDefense = false;
+            DungeonManager.Instance.SetCurrentStageNum(2);
+            DungeonManager.Instance.IsNormal = true;
             DungeonManager.Instance.StartDungeon();
             ReSendManager.Instance.characterCreating = true;
-            DungeonManager.Instance.SetCurrentStageNum(3);
 
             currentScene = SceneName.TeddyBearBoss;
         }

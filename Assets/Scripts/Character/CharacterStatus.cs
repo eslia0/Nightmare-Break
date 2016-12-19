@@ -39,6 +39,7 @@ public class CharacterStatus : MonoBehaviour
     int attack;
     int defense;
 
+    [SerializeField]
     float moveSpeed;
     //int skillPoint;
     int dreamStone;

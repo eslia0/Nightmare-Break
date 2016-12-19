@@ -286,7 +286,7 @@ public class Monster : MonoBehaviour
 
         if (monsterId == MonsterId.Rabbit)
         {
-            searchRange = 12;
+            searchRange = 20;
             attackRange = 4;
             attackCollider = this.transform.GetComponentsInChildren<MonsterWeapon>();
             attackCollider[0].MonsterWeaponSet();
@@ -337,8 +337,16 @@ public class Monster : MonoBehaviour
             StartCoroutine(MonsterUpdate());
             StartCoroutine(ChangeRandomStanby());
 
-            normalMode = DungeonManager.Instance.IsDefense;
-            MonsterAIStart(normalMode);
+            normalMode = DungeonManager.Instance.IsNormal;
+
+            if(MonsterId == MonsterId.Rabbit && !normalMode)
+            {
+                MonsterAIStart(!normalMode);
+            }
+            else
+            {
+                MonsterAIStart(normalMode);
+            }            
 
             DataSender.Instance.UnitPositionSend(gameObject);
         }
@@ -496,7 +504,11 @@ public class Monster : MonoBehaviour
                     }
                     if (!normalMode)
                     {
-                        this.transform.Translate(movePoint.normalized * moveSpeed * Time.deltaTime);
+                        if (movePoint.normalized.z < 0)
+                            this.transform.Translate(-movePoint.normalized * moveSpeed * Time.deltaTime);
+                        else
+                            this.transform.Translate(movePoint.normalized * moveSpeed * Time.deltaTime);
+                        //this.transform.Translate(movePoint.normalized * moveSpeed * Time.deltaTime);
                     }
 
                 }
@@ -530,41 +542,37 @@ public class Monster : MonoBehaviour
                     }
                 }
             }
-            while (!_normalMode)
+            else
             {
-                yield return null;
-                if (isAlive)
+                if (!isHited)
                 {
-                    if (!isHited)
+                    for (int i = 0; i < pointVector.Length; i++)
                     {
-                        for (int i = 0; i < pointVector.Length; i++)
+                        if (i > 0 && i < pointVector.Length - 1)
                         {
-                            if (i > 0 && i < pointVector.Length - 1)
-                            {
-                                movePoint = pointVector[i];
-                                pointVector[i] = pointVector[i + 1];
-                                pointVector[i + 1] = movePoint;
-                            }
+                            movePoint = pointVector[i];
+                            pointVector[i] = pointVector[i + 1];
+                            pointVector[i + 1] = movePoint;
+                        }
 
-                            if (i == pointVector.Length - 1)
-                            {
-                                movePoint = pointVector[i];
-                                pointVector[i] = pointVector[0];
-                                pointVector[0] = movePoint;
-                            }
-                        }
-                    }
-                    if (isHited)
-                    {
-                        if (targetPlayer.transform.position.z > transform.position.z)
+                        if (i == pointVector.Length - 1)
                         {
-                            movePoint = (targetPlayer.transform.position - transform.position);
+                            movePoint = pointVector[i];
+                            pointVector[i] = pointVector[0];
+                            pointVector[0] = movePoint;
                         }
-                        else
-                            isHited = false;
                     }
-                    yield return new WaitForSeconds(2f);
                 }
+                if (isHited)
+                {
+                    if (targetPlayer.transform.position.z > transform.position.z)
+                    {
+                        movePoint = (targetPlayer.transform.position - transform.position);
+                    }
+                    else
+                        isHited = false;
+                }
+                yield return new WaitForSeconds(2f);
             }
         }
     }

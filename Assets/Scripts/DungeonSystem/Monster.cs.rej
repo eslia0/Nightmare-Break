@@ -1,0 +1,10 @@
+diff a/Assets/Scripts/DungeonSystem/Monster.cs b/Assets/Scripts/DungeonSystem/Monster.cs	(rejected hunks)
+@@ -338,7 +338,7 @@
+             StartCoroutine(ChangeRandomStanby());
+ 
+             normalMode = DungeonManager.Instance.NormalMode;
+-            normalMode = true;
++            normalMode = false;
+             MonsterAIStart(normalMode);
+ 
+             DataSender.Instance.UnitPositionSend(gameObject);

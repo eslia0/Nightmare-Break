@@ -958,7 +958,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010359456232}
-  m_LocalRotation: {x: 0.32089207, y: -0.676239, z: 0.14497553, w: 0.64707893}
+  m_LocalRotation: {x: 0.3208921, y: -0.6762391, z: 0.14497554, w: 0.647079}
   m_LocalPosition: {x: 0.45070976, y: -0.28847197, z: -0.054199293}
   m_LocalScale: {x: 1, y: 0.99999994, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1673,7 +1673,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &65000012479464690
 BoxCollider:
@@ -1949,9 +1949,7 @@ MonoBehaviour:
   dieSound: {fileID: 0}
   hitSound: {fileID: 0}
   MoveSound: {fileID: 0}
-  runSoundbool: 0
-  skillTime: 0
-  userNum: 0
+  unitIndex: 0
   state: 0
   GiganticSword: {fileID: 0}
   giganticSwordSpeed: 0
@@ -1979,8 +1977,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b143f7a0671c14ab000f9a7fbb12ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  charManager: {fileID: 0}
   damage: 0
   attackSound: {fileID: 0}
   attack1: {fileID: 0}
