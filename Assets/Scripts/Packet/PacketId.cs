@@ -24,7 +24,7 @@
     RequestUdpConnection,
     RequestMonsterSpawnList,
     RequestMonsterStatusData,
-    UdpConnectComplete,
+    LoadingComplete,
 }
 
 public enum ServerPacketId

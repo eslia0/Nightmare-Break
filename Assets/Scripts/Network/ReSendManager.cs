@@ -31,6 +31,7 @@ public class ReSendManager : MonoBehaviour
 
     List<int> reSendKey;
 
+    public bool isConnecting;
     public bool characterCreating;
     public bool monsterCreateing;
 
@@ -44,6 +45,7 @@ public class ReSendManager : MonoBehaviour
         }
 
         StartCoroutine(CheckReSendData());
+        isConnecting = true;
     }
 
     public void AddReSendData(SendData sendData, int index)
@@ -102,6 +104,27 @@ public class ReSendManager : MonoBehaviour
                     {
                         DataReSend(reSendData);
                     }
+                }
+            }
+
+            if (isConnecting)
+            {
+                for (int userIndex = 0; userIndex < reSendDatum.Length; userIndex++)
+                {
+                    if (reSendDatum[userIndex].Count != 0)
+                    {
+                        isConnecting = true;
+                        break;
+                    }
+                    else
+                    {
+                        isConnecting = false;
+                    }
+                }
+
+                if (!isConnecting)
+                {
+                    DataSender.Instance.LoadingComplete();
                 }
             }
 

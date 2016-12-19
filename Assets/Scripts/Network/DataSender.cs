@@ -447,7 +447,7 @@ public class DataSender : MonoBehaviour
 
         ResultData resultData = new ResultData();
         ResultPacket resultPacket = new ResultPacket(resultData);
-        resultPacket.SetPacketId((int)ClientPacketId.UdpConnectComplete);
+        resultPacket.SetPacketId((int)ClientPacketId.LoadingComplete);
 
         DataPacket packet = new DataPacket(CreatePacket(resultPacket), null);
 

@@ -476,11 +476,6 @@ public class DataHandler : MonoBehaviour
         }
 
         DungeonManager.Instance.InitializePlayer(udpConnectionData.playerNum);
-
-        if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
-        {
-            SceneChanger.Instance.LoadingCheck[2] = true;
-        }
     }
 
     //Client - 연결 확인 답장
@@ -511,7 +506,7 @@ public class DataHandler : MonoBehaviour
 
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {
-            SceneChanger.Instance.LoadingCheck[NetworkManager.Instance.UserIndex.Count + 2] = true;
+            SceneChanger.Instance.SceneChange(SceneChanger.SceneName.TeddyBearStage1, false);
         }
     }
 

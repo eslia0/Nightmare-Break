@@ -282,7 +282,9 @@ public class SceneChanger : MonoBehaviour
         {
             DataSender.Instance.LoadingComplete();
         }
-
-        SceneManager.LoadScene(nextScene);
+        else
+        {
+            SceneManager.LoadScene(nextScene);
+        }        
     }
 }
