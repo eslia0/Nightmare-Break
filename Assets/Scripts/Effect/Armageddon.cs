@@ -49,7 +49,7 @@ public class Armageddon : MonoBehaviour
 		pieceAttack = false;
 		armageddonPiece = this.gameObject.GetComponentsInChildren<ArmageddonPiece> ();
 		FireBallRigid.velocity =((transform.forward - transform.up) * FireBallSpeed);
-		skillLv = characterStatus.SkillLevel [4];
+		skillLv = charManager.CharacterStatus.SkillLevel [4];
 		//armageddonDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charStatus.HClass, 4).GetSkillData (skillLv).SkillValue)*  charStatus.Attack);
 		armageddonDamage = 100;
 
@@ -144,7 +144,7 @@ public class Armageddon : MonoBehaviour
 			if (monsterDamage != null)
 			{	
 				Debug.Log (character);
-				monsterDamage.HitDamage (armageddonDamage,character );
+				monsterDamage.HitDamage (armageddonDamage);
 				armageddonDamage = 0;
 
 			}

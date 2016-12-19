@@ -15,9 +15,9 @@ public class FlameImpact : MonoBehaviour
 	{
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
-		skillLv = characterStatus.SkillLevel [0];
+		skillLv = charManager.CharacterStatus.SkillLevel [0];
 		ringSound = this.gameObject.GetComponent<AudioSource> ();
-		flameImpactDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)characterStatus.HClass, 1).GetSkillData (skillLv).SkillValue)* characterStatus.Attack);
+		flameImpactDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charManager.CharacterStatus.HClass, 1).GetSkillData (skillLv).SkillValue)* charManager.CharacterStatus.Attack);
 
 	}
 
@@ -30,7 +30,7 @@ public class FlameImpact : MonoBehaviour
 
 			if (monsterDamage != null)
 			{	
-				monsterDamage.HitDamage (flameImpactDamage,character );
+				monsterDamage.HitDamage (flameImpactDamage);
 				flameImpactDamage = 0;
 			}
 

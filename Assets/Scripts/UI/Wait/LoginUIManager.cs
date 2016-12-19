@@ -6,29 +6,22 @@ public class LoginUIManager : MonoBehaviour
 {
     GameObject loginPanel;
     GameObject createAccountPanel;
-    GameObject deleteAccountPanel;
     GameObject logoObject;
     GameObject[] loginObject;
 
     Button loginButton;
     Button createAccountButton;
-    Button deleteAccountButton;
     Button createAccountYesButton;
     Button createAccountNoButton;
-    Button deleteAccountYesButton;
-    Button deleteAccountNoButton;
     Button exitButton;
     
     Text loginId;
     Text loginPw;
     Text createId;
     Text createPw;
-    Text deleteId;
-    Text deletePw;
 
     InputField loginPwField;
     InputField accountPwField;
-    InputField deletePwField;
 
     bool isInput;
 
@@ -122,18 +115,6 @@ public class LoginUIManager : MonoBehaviour
 
         createAccountPanel.SetActive(false);
         loginPanel.SetActive(true);
-    }
-
-    public void OnClickDeleteAccountButton()
-    {
-        if (deleteId.text.Length >= 4 && deletePwField.text.Length >= 6)
-        {
-            DataSender.Instance.DeleteAccount(deleteId.text, deletePwField.text);
-        }
-        else
-        {
-            Debug.Log("아이디 4글자 이상, 비밀번호 6글자 이상 입력하세요");
-        }
     }
 
     public void OnClickLoginButton()

@@ -26,8 +26,8 @@ public class FireBall : MonoBehaviour {
 		fireBallSound.PlayOneShot (flyingBall);
 
 		FireBallparticleSystem = GetComponent<ParticleSystem>();
-		skillLv = characterStatus.SkillLevel [0];
-		FireBallDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)characterStatus.HClass, 1).GetSkillData (skillLv).SkillValue)* characterStatus.Attack);
+		skillLv = charManager.CharacterStatus.SkillLevel [0];
+		FireBallDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charManager.CharacterStatus.HClass, 1).GetSkillData (skillLv).SkillValue)* charManager.CharacterStatus.Attack);
 		Destroy (this.gameObject, 1.45f);
 	}
 
@@ -54,7 +54,7 @@ public class FireBall : MonoBehaviour {
 
 			if (monsterDamage != null)
 			{	
-				monsterDamage.HitDamage (FireBallDamage,character );
+				monsterDamage.HitDamage (FireBallDamage);
 				FireBallDamage = 0;
 			}
 

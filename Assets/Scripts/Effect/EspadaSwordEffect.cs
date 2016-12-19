@@ -77,7 +77,7 @@ public class EspadaSwordEffect : MonoBehaviour
 			{	
 				Debug.Log (character);
 
-				monsterDamage.HitDamage (swordDamage,character );
+				monsterDamage.HitDamage (swordDamage);
 				swordDamage = 0;
 
 			}

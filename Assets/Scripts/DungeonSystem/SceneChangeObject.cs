@@ -18,7 +18,7 @@ public class SceneChangeObject : MonoBehaviour {
 		//Players = _Players;
 		enterBox = this.gameObject.GetComponent<BoxCollider>();
 		sceneObject = this.gameObject;
-		inPlayer = new GameObject[Players.Length];
+		inPlayer = new bool[Players.Length];
 		//      sceneObject.SetActive (false);
 
 	}

@@ -22,8 +22,8 @@ public class MageRing : MonoBehaviour
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
 	
-		skillLv = characterStatus.SkillLevel [2];
-		ringDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)characterStatus.HClass, 3).GetSkillData (skillLv).SkillValue)* characterStatus.Attack);
+		skillLv = charManager.CharacterStatus.SkillLevel [2];
+		ringDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charManager.CharacterStatus.HClass, 3).GetSkillData (skillLv).SkillValue)* charManager.CharacterStatus.Attack);
 	
 	}
 	
@@ -38,7 +38,7 @@ public class MageRing : MonoBehaviour
 
 			if (monsterDamage != null)
 			{	
-				monsterDamage.HitDamage (ringDamage,character );
+				monsterDamage.HitDamage (ringDamage);
 				ringDamage = 0;
 			}
 

@@ -154,12 +154,6 @@ public class WaitingUIManager : MonoBehaviour
             roomInfoUserName[i] = roomInfoClassIcon[i].transform.GetChild(0).GetComponent<Text>();
             roomInfoGenderIcon[i] = roomInfoClassIcon[i].transform.GetChild(1).GetComponent<Image>();
         }
-        for(int i=0; i < maxSkillNum; i++)
-        {
-            mouseOverOut[i].eventID = EventTriggerType.PointerExit;
-            skillAddIcon[i].GetComponent<EventTrigger>().triggers.Add(mouseOverIn[i]);
-            skillAddIcon[i].GetComponent<EventTrigger>().triggers.Add(mouseOverOut[i]);
-        }
     }
 
     public void InitializeAddListner()
