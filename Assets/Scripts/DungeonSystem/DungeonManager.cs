@@ -350,12 +350,8 @@ public class DungeonManager : MonoBehaviour
 
     public void CreateUnit(CreateUnitData createUnitData)
     {
-        Debug.Log(createUnitData.UnitType);
         if (createUnitData.UnitType == (byte)UnitType.Hero)
         {
-            Debug.Log(createUnitData.ID);
-            Debug.Log(players[createUnitData.UnitIndex]);
-            Debug.Log(createUnitData.UnitIndex);
             if (players[createUnitData.UnitIndex] == null)
             {
                 GameObject unit = Instantiate(Resources.Load("Class" + createUnitData.ID)) as GameObject;
@@ -365,6 +361,7 @@ public class DungeonManager : MonoBehaviour
 
                 characterData[createUnitData.UnitIndex] = unit.GetComponent<CharacterManager>();
                 characterData[createUnitData.UnitIndex].SetUnitIndex(createUnitData.UnitIndex);
+                characterData[createUnitData.UnitIndex].InitializeCharacter();
             }
             else
             {

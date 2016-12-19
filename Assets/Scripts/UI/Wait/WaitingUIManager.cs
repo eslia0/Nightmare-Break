@@ -326,7 +326,7 @@ public class WaitingUIManager : MonoBehaviour
     public void SetRoom()
     {
 		for (int i = 0; i < maxRoomNum; i++) {
-            if (rooms[i].PlayerNum != 0)
+            if (rooms[i].State == 1 || rooms[i].State == 2)
 			{
 				roomBtn [i].image.sprite = Resources.Load<Sprite> ("UI/WaitingRoomImage/RoomActive");
 				roomIndex[i].text = "00"+(i+1);
@@ -391,6 +391,7 @@ public class Room
     int dungeonId;
     int dungeonLevel;
 	int playerNum;
+    int state;
     RoomUserData[] roomUserData;
 
     public string RoomName { get { return roomName; } }
@@ -398,6 +399,7 @@ public class Room
     public int DungeonId { get { return dungeonId; } }
     public int DungeonLevel { get { return dungeonLevel; } }
 	public int PlayerNum { get { return playerNum; } }
+    public int State { get { return state; } }
     public RoomUserData[] RoomUserData { get { return roomUserData; } }
     
     public Room()
@@ -407,6 +409,7 @@ public class Room
         playerNum = 0;
         dungeonId = 0;
         dungeonLevel = 0;
+        state = 0;
         roomUserData = new RoomUserData[WaitingUIManager.maxPlayerNum];
 
         for (int i = 0; i < WaitingUIManager.maxPlayerNum; i++)
@@ -423,6 +426,23 @@ public class Room
         dungeonLevel = newDungeonLevel;
         roomUserData = new RoomUserData[newRoomUserData.Length];
         playerNum = newPlayerNum;
+
+        for (int i = 0; i < newRoomUserData.Length; i++)
+        {
+            roomUserData[i] = new RoomUserData(newRoomUserData[i].UserName, newRoomUserData[i].UserGender, newRoomUserData[i].UserClass, newRoomUserData[i].UserLevel);
+        }
+    }
+
+    public Room(string newRoomName, int newDungeonId, int newDungeonLevel, RoomUserData[] newRoomUserData, int newPlayerNum, int newState)
+    {
+        roomName = newRoomName;
+        dungeonName = "";
+        dungeonId = newDungeonId;
+        dungeonLevel = newDungeonLevel;
+        playerNum = newPlayerNum;
+        state = newState;
+
+        roomUserData = new RoomUserData[newRoomUserData.Length];
 
         for (int i = 0; i < newRoomUserData.Length; i++)
         {

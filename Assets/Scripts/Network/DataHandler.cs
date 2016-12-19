@@ -291,6 +291,11 @@ public class DataHandler : MonoBehaviour
 
         UIManager.Instance.WaitingUIManager.SetRoomListData(roomListData);
 
+        for (int i =0;i<WaitingUIManager.maxRoomNum; i++)
+        {
+            Debug.Log(roomListData.Rooms[i].State);
+        }
+
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
         {
             SceneChanger.Instance.LoadingCheck[0] = true;
@@ -540,6 +545,8 @@ public class DataHandler : MonoBehaviour
     //Client - 유닛 위치
     public void UnitPosition(DataPacket packet, int udpId)
     {
+        Debug.Log("유닛 위치 수신");
+
         UnitPositionPacket unitPositionPacket = new UnitPositionPacket(packet.msg);
         UnitPositionData unitPositionData = unitPositionPacket.GetData();
 

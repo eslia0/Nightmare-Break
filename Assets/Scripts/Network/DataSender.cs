@@ -496,9 +496,7 @@ public class DataSender : MonoBehaviour
 
             for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
             {
-                int userIndex = NetworkManager.Instance.UserIndex[index].UserNum;
-
-                if (NetworkManager.Instance.MyIndex != userIndex)
+                if (NetworkManager.Instance.MyIndex != index)
                 {
                     DataPacket packet = new DataPacket(msg, NetworkManager.Instance.UserIndex[index].EndPoint);
                     sendMsgs.Enqueue(packet);
@@ -507,6 +505,8 @@ public class DataSender : MonoBehaviour
 
             yield return new WaitForSeconds(0.016f);
         }
+
+        Debug.Log("캐릭터 위치 보내기 종료");
     }
 
     //유닛 위치 -> Client
@@ -582,6 +582,7 @@ public class DataSender : MonoBehaviour
             }
         }
     }
+
 
     //패킷의 헤더 생성
     byte[] CreateHeader<T>(Packet<T> data)
