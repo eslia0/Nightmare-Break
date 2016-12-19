@@ -110,7 +110,6 @@ public class CharacterManager : MonoBehaviour
                 charWeapon.enabled = false;
             }
         }
-
     }
 
     public void InitializeCharacter()
@@ -132,6 +131,7 @@ public class CharacterManager : MonoBehaviour
 
         SetClassSound();
         SetClassEffect();
+        weapon.InitializeCharacterWeapon(this);
     }
 
     public void SetCharacterStatus(CharacterStatus newStatus)

@@ -40,12 +40,15 @@ public class MageManager : CharacterManager
 	{
 		if (transform.rotation.y == 0)
 		{
-			Instantiate (Resources.Load<GameObject> ("Effect/MageNormalAttack"), FireBallPos.transform.position, Quaternion.Euler (0, 0, 0));
-		}
+			GameObject strikeBall = Instantiate (Resources.Load<GameObject> ("Effect/MageNormalAttack"), FireBallPos.transform.position, Quaternion.Euler (0, 0, 0)) as GameObject;
+            strikeBall.GetComponent<MageNormalAttack>().InitializeMageNormalAttack(this);
+
+        }
 		else
 		{
-			Instantiate (Resources.Load<GameObject> ("Effect/MageNormalAttack"), FireBallPos.transform.position, Quaternion.Euler (0, 180, 0));
-		}
+            GameObject strikeBall = Instantiate(Resources.Load<GameObject> ("Effect/MageNormalAttack"), FireBallPos.transform.position, Quaternion.Euler (0, 180, 0)) as GameObject;
+            strikeBall.GetComponent<MageNormalAttack>().InitializeMageNormalAttack(this);
+        }
 	}
 
 	public void SummonFireBall()

@@ -10,10 +10,6 @@ public class MageNormalAttack : MonoBehaviour {
 	public float MageBallSpeed;
 	public Rigidbody MageBallRigid;
 
-	void Start () 
-	{
-	}
-
     public void InitializeMageNormalAttack(CharacterManager newCharacterManager)
     {
         characterManager = newCharacterManager;

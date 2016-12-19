@@ -7,7 +7,6 @@ public class SceneChangeObject : MonoBehaviour {
 	public BoxCollider enterBox;
 	public GameObject sceneObject;
 	public bool[] inPlayer;
-	public bool AllPlayerEnter;
 	int playercount;
 
 
@@ -39,13 +38,15 @@ public class SceneChangeObject : MonoBehaviour {
 
 			for(int i=0 ; i< Players.Length; i++){
 				if(coll.gameObject == Players[i]){
-					inPlayer [i] = true;
-					playercount++;
+                    if(!inPlayer[i])
+                    {
+                        inPlayer[i] = true;
+                        playercount++;
+                    }
 				}
 			}
 
 			if (playercount >= Players.Length) {
-				AllPlayerEnter = true;
 
 				//DungeonManager dungeonManager=GameObject.Find("DungeonManager").GetComponent<DungeonManager>();
 				//      dungeonManager.SceneChange ();
@@ -59,9 +60,11 @@ public class SceneChangeObject : MonoBehaviour {
 		if(coll.gameObject.layer == LayerMask.NameToLayer("Player")){
 			for(int i=0 ; i< Players.Length; i++){
 				if(coll.gameObject == Players[i]){
-					inPlayer [i] = false;
-					playercount--;
-					AllPlayerEnter = false;
+                    if (inPlayer[i])
+                    {
+                        inPlayer[i] = false;
+                        playercount--;
+                    }
 				}
 			}
 		}

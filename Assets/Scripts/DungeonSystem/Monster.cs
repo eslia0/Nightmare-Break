@@ -140,7 +140,7 @@ public class Monster : MonoBehaviour
     public AudioClip rabbitAttack;
     public AudioClip rabbitDeath;
     public AudioClip rabbitHit;
-    /*
+    
     public void SetMonsterSound()
     {
         MonsterAudio = this.GetComponent<AudioSource>();
@@ -202,7 +202,7 @@ public class Monster : MonoBehaviour
     {
         MonsterAudio.PlayOneShot(rabbitHit);
     }
-    */
+    
 
     public int MonsterIndex
     {

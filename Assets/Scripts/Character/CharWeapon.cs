@@ -2,7 +2,6 @@
 
 public class CharWeapon : MonoBehaviour
 {
-    GameObject character;
     CharacterManager characterManager;
     CharacterStatus characterStatus;
 
@@ -18,10 +17,9 @@ public class CharWeapon : MonoBehaviour
 	public AudioClip swordDanceFinishEffectSound;
 	public AudioClip giganticSwordSound;
 
-    public void InitializeCharacterWeapon(GameObject player)
+    public void InitializeCharacterWeapon(CharacterManager newCharacterManager)
     {
-        character = player;
-        characterManager = character.GetComponent<CharacterManager>();
+        characterManager = newCharacterManager;
         characterStatus = characterManager.CharacterStatus;
         attackSound = GetComponent<AudioSource>();
         attack1 = Resources.Load<AudioClip>("Sound/EffectSound/AttackEffectSound1");
