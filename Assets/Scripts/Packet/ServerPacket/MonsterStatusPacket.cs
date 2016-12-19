@@ -11,14 +11,14 @@ public class MonsterStatusPacket : Packet<MonsterStatusData>
 
             for (int i = 0; i < data.MonsterNum; i++)
             {
-                ret &= Serialize(data.MonsterData[i].Id);
+                ret &= Serialize((byte)data.MonsterData[i].Id);
                 ret &= Serialize((byte)Encoding.Unicode.GetBytes(data.MonsterData[i].Name).Length);
                 ret &= Serialize(data.MonsterData[i].Name);
-                ret &= Serialize(data.MonsterData[i].MonsterLevelData[0].Level);
-                ret &= Serialize(data.MonsterData[i].MonsterLevelData[0].Attack);
-                ret &= Serialize(data.MonsterData[i].MonsterLevelData[0].Defense);
+                ret &= Serialize((byte)data.MonsterData[i].MonsterLevelData[0].Level);
+                ret &= Serialize((short)data.MonsterData[i].MonsterLevelData[0].Attack);
+                ret &= Serialize((short)data.MonsterData[i].MonsterLevelData[0].Defense);
                 ret &= Serialize(data.MonsterData[i].MonsterLevelData[0].HealthPoint);
-                ret &= Serialize(data.MonsterData[i].MonsterLevelData[0].MoveSpeed);
+                ret &= Serialize((byte)data.MonsterData[i].MonsterLevelData[0].MoveSpeed);
             }
 
             return ret;
@@ -38,9 +38,9 @@ public class MonsterStatusPacket : Packet<MonsterStatusData>
             byte nameLength = 0;
             string _name;
             byte level = 0;
-            byte attack = 0;
-            byte defense = 0;
-            byte healthPoint = 0;
+            short attack = 0;
+            short defense = 0;
+            int healthPoint = 0;
             byte moveSpeed = 0;
 
             ret &= Deserialize(ref monsterNum);
