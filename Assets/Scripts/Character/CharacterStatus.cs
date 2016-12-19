@@ -113,11 +113,14 @@ public class CharacterStatus : MonoBehaviour
         magicPoint = characterStatusData.MagicPoint;
         hpRegeneration = characterStatusData.HpRegeneration;
         mpRegeneration = characterStatusData.MpRegeneration;
+        moveSpeed = characterStatusData.MoveSpeed;
         attack = characterStatusData.Attack;
         defense = characterStatusData.Defense;
         dreamStone = characterStatusData.DreamStone;
         skillLevel = new int[skillNum];
         equipLevel = new int[equipNum];
+
+        Debug.Log(moveSpeed);
 
         for (int i = 0; i < skillNum; i++)
         {

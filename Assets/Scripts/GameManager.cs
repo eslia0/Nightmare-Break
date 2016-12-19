@@ -108,6 +108,10 @@ public class GameManager : MonoBehaviour
         characterStatus = (Instantiate(Resources.Load("Manager/CharacterStatus")) as GameObject).GetComponent<CharacterStatus>();
         characterStatus.name = "CharacterStatus";
         characterStatus.tag = "CharacterStatus";
+
+        SkillManager skillManager = (Instantiate(Resources.Load("Manager/SkillManager")) as GameObject).GetComponent<SkillManager>();
+        skillManager.name = "SkillManager";
+        
         DontDestroyOnLoad(characterStatus);
     }
 
