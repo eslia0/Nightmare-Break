@@ -25,7 +25,7 @@ public class TestUIManager : MonoBehaviour
 
     public void PointEnter(int skillIndex)
     {
-        battleUIManager.SetPointEnterUI(skillIndex, 2, (int)characterStatus.HClass);
+        battleUIManager.SetPointEnterUI(skillIndex, 2, (int)GameManager.Instance.CharacterStatus.HClass);
     }
 
     public void OnPointExit()

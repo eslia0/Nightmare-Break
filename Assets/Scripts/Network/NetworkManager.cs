@@ -57,7 +57,9 @@ public class NetworkManager : MonoBehaviour
 
     List<UserIndex> userIndex;
     [SerializeField] int myIndex;
+    bool isHost;
 
+    public bool IsHost { get { return isHost; } }
     public int MyIndex { get { return myIndex; } }
     public Socket ServerSock { get { return serverSock; } }
     public Socket ClientSock { get { return clientSock; } }
@@ -148,6 +150,11 @@ public class NetworkManager : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public void SetHost()
+    {
+        isHost = true;
     }
 
     public void SetMyIndex(int newIndex)

@@ -48,6 +48,7 @@ public enum ServerPacketId
     RoomData,
     ExitRoomNumber,
     StartGame,
+    SetHost,
     MonsterSpawnList,
     MonsterStatusData,
     UdpConnection,

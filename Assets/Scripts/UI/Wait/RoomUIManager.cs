@@ -95,7 +95,7 @@ public class RoomUIManager : MonoBehaviour {
 
             skillSelectImage[i] = skillAddUI.transform.FindChild("SkillSelect" + (i + 1)).GetComponent<Image>();
             skillAddIcon[i] = skillAddUI.transform.FindChild("Skill" + (i + 1)).GetComponent<Button>();
-            skillAddIcon[i].image.sprite = Resources.Load<Sprite> ("UI/SkillIcon/" + characterStatus.HClass.ToString ()+"/Skill"+(i+1));
+            skillAddIcon[i].image.sprite = Resources.Load<Sprite> ("UI/SkillIcon/" + GameManager.Instance.CharacterStatus.HClass.ToString ()+"/Skill"+(i+1));
             skillSelectImage[i].gameObject.SetActive(false);
 		}
     }

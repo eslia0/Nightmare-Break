@@ -2,10 +2,9 @@
 using System.Collections;
 
 public class MageNormalAttack : MonoBehaviour {
-
-	public GameObject character;
-	public CharacterManager charManager;
-	public CharacterStatus charStatus;
+    
+	public CharacterManager characterManager;
+	public CharacterStatus characterStatus;
 
 	public int MageBallDamage;
 	public float MageBallSpeed;
@@ -13,17 +12,17 @@ public class MageNormalAttack : MonoBehaviour {
 
 	void Start () 
 	{
-		character = GameObject.FindWithTag ("Player");
-		charManager = character.GetComponent<CharacterManager> ();
-		charStatus = GameObject.FindGameObjectWithTag("CharStatus").GetComponent<CharacterStatus>();
-		charStatus.SetCharacterStatus ();
-		MageBallSpeed = 15;
-		MageBallRigid = GetComponent<Rigidbody> ();
-		MageBallRigid.velocity = transform.forward* MageBallSpeed;
-		Destroy (this.gameObject, 1f);
-
 	}
 
+    public void InitializeMageNormalAttack(CharacterManager newCharacterManager)
+    {
+        characterManager = newCharacterManager;
+        characterStatus = characterManager.CharacterStatus;
+        MageBallSpeed = 15;
+        MageBallRigid = GetComponent<Rigidbody>();
+        MageBallRigid.velocity = transform.forward * MageBallSpeed;
+        Destroy(this.gameObject, 1f);
+    }
 
 	void OnTriggerEnter(Collider coll)
 	{
@@ -34,7 +33,7 @@ public class MageNormalAttack : MonoBehaviour {
 			if (monsterDamage != null)
 			{	
 				MageBallDamage = characterStatus.Attack;
-				monsterDamage.HitDamage (MageBallDamage, character);
+				monsterDamage.HitDamage (MageBallDamage);
 				Debug.Log (MageBallDamage);
 				MageBallDamage = 0;
 			}

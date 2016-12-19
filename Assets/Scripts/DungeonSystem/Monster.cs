@@ -1272,7 +1272,7 @@ public class Monster : MonoBehaviour
 
     }
 
-    public void HitDamage(int _Damage, GameObject _weapon)
+    public void HitDamage(int _Damage)
     {
         currentHP -= _Damage;
 
@@ -1284,7 +1284,6 @@ public class Monster : MonoBehaviour
                 statePosition = StatePosition.TakeDamage;
                 Pattern(statePosition);
             }
-
         }
         else
         {

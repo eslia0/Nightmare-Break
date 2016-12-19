@@ -232,16 +232,7 @@ public class MageManager : CharacterManager
 
 		poweroverwhelming = false;
 	}
-
-
-    public override void SetCharacterType()
-    {
-        characterStatus.HClass = CharacterStatus.CharClass.Mage;
-
-    }
-
-
-
+    
 	public override void UsingMagicPoint(int SkillArray)
 	{
 		float manaFury =SkillManager.instance.SkillData.GetSkill ((int)characterStatus.HClass, 6).GetSkillData (characterStatus.SkillLevel [5]).SkillValue;
@@ -249,10 +240,10 @@ public class MageManager : CharacterManager
 	}
 
 
-	public override void classSound()
+	public override void SetClassSound()
 	{
 
-		base.classSound ();
+		base.SetClassSound();
 
         if (characterStatus.HGender == CharacterStatus.Gender.Male)
         {

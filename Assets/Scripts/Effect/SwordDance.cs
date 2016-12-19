@@ -20,8 +20,8 @@ public class SwordDance : MonoBehaviour
 		bladeStromRigid = GetComponent<Rigidbody> ();
 		bladeStromRigid.velocity = transform.forward * bladeStormSpeed;
 		swordDanceEffect = Resources.Load<GameObject> ("Effect/SwordShadow");
-		skillLv = characterStatus.SkillLevel [2];
-		bladeStormDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)characterStatus.HClass, 3).GetSkillData (skillLv).SkillValue)* characterStatus.Attack);
+		skillLv = GameManager.Instance.CharacterStatus.SkillLevel [2];
+		bladeStormDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)GameManager.Instance.CharacterStatus.HClass, 3).GetSkillData (skillLv).SkillValue)* GameManager.Instance.CharacterStatus.Attack);
 	}
 	void Update()
 	{
@@ -42,7 +42,7 @@ public class SwordDance : MonoBehaviour
 
 			if (monsterDamage != null)
 			{	
-				monsterDamage.HitDamage (bladeStormDamage,character );
+				monsterDamage.HitDamage (bladeStormDamage);
 				bladeStormDamage = 0;
 			}
 		}

@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
             return myIP;
         }
     }
+    public CharacterStatus CharacterStatus { get { return characterStatus; } }
 
     void Start()
     {
@@ -106,7 +107,7 @@ public class GameManager : MonoBehaviour
     {
         characterStatus = (Instantiate(Resources.Load("Manager/CharacterStatus")) as GameObject).GetComponent<CharacterStatus>();
         characterStatus.name = "CharacterStatus";
-        characterStatus.tag = "CharStatus";
+        characterStatus.tag = "CharacterStatus";
         DontDestroyOnLoad(characterStatus);
     }
 

@@ -53,6 +53,7 @@ public class DataHandler : MonoBehaviour
         server_notifier.Add((int)ServerPacketId.ExitRoomNumber, ExitRoomNumber);
         server_notifier.Add((int)ServerPacketId.RoomData, RoomData);
         server_notifier.Add((int)ServerPacketId.StartGame, StartGame);
+        server_notifier.Add((int)ServerPacketId.SetHost, SetHost);
         server_notifier.Add((int)ServerPacketId.UdpConnection, UdpConnection);
         server_notifier.Add((int)ServerPacketId.MonsterSpawnList, MonsterSpawnList);
         server_notifier.Add((int)ServerPacketId.MonsterStatusData, MonsterStatusData);
@@ -274,6 +275,7 @@ public class DataHandler : MonoBehaviour
 
         Debug.Log(characterStatusData.HClass + ", " + characterStatusData.Gender);
 
+        CharacterStatus characterStatus = GameObject.Find("CharacterStatus").GetComponent<CharacterStatus>();
         characterStatus.SetCharacterStatus(characterStatusData);
 
         if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.LoadingScene)
@@ -402,6 +404,14 @@ public class DataHandler : MonoBehaviour
         {
             Debug.Log("게임 시작 실패");
         }
+    }
+
+    //Server - 호스트 설정
+    public void SetHost(DataPacket packet)
+    {
+        Debug.Log("호스트 설정");
+
+        NetworkManager.Instance.SetHost();
     }
 
     //Server - 던전 몬스터 소환 데이터 수신

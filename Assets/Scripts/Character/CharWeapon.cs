@@ -2,11 +2,11 @@
 
 public class CharWeapon : MonoBehaviour
 {
-    public GameObject character;
-    public CharacterManager charManager;
+    GameObject character;
+    CharacterManager characterManager;
+    CharacterStatus characterStatus;
+
     public int damage = 0;
-    bool normalAttack;
-    bool skillAttack;
     int skillLv;
 	public AudioSource attackSound;
 	public AudioClip attack1;
@@ -18,33 +18,22 @@ public class CharWeapon : MonoBehaviour
 	public AudioClip swordDanceFinishEffectSound;
 	public AudioClip giganticSwordSound;
 
-    public bool NormalAttack { get { return this.normalAttack; } }
-    public bool SkillAttack { get { return this.skillAttack; } }
-
-    // Use this for initialization
-    void Start()
+    public void InitializeCharacterWeapon(GameObject player)
     {
-        character = GameObject.FindWithTag("Player");
-        charManager = character.GetComponent<CharacterManager>();
-        characterStatus.SetCharacterStatus();
-		attackSound = this.gameObject.GetComponent<AudioSource> ();
-		attack1 = Resources.Load<AudioClip> ("Sound/EffectSound/AttackEffectSound1");
-		attack2 = Resources.Load<AudioClip> ("Sound/EffectSound/AttackEffectSound2");
-		attack3 = Resources.Load<AudioClip> ("Sound/EffectSound/AttackEffectSound3");
-		cutOffEffectSound = Resources.Load<AudioClip> ("Sound/WarriorEffectSound/CutOffEffectSound");
-		swordDanceEffectSound=Resources.Load<AudioClip> ("Sound/WarriorEffectSound/SwordDanceEffectSound");
-		mealstromEffectSound=Resources.Load<AudioClip> ("Sound/WarriorEffectSound/MealstromEffectSound");
-		swordDanceFinishEffectSound =Resources.Load<AudioClip> ("Sound/WarriorEffectSound/SwordDanceFinishEffectSound");
-		giganticSwordSound = Resources.Load<AudioClip> ("Sound/WarriorEffectSound/GiganticSwordSummonSound");
-		attackSound.volume = 0.5f;
-		skillLv = characterStatus.SkillLevel[5];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        normalAttack = charManager.NormalAttackState;
-        skillAttack = charManager.SkillAttackState;
+        character = player;
+        characterManager = character.GetComponent<CharacterManager>();
+        characterStatus = characterManager.CharacterStatus;
+        attackSound = GetComponent<AudioSource>();
+        attack1 = Resources.Load<AudioClip>("Sound/EffectSound/AttackEffectSound1");
+        attack2 = Resources.Load<AudioClip>("Sound/EffectSound/AttackEffectSound2");
+        attack3 = Resources.Load<AudioClip>("Sound/EffectSound/AttackEffectSound3");
+        cutOffEffectSound = Resources.Load<AudioClip>("Sound/WarriorEffectSound/CutOffEffectSound");
+        swordDanceEffectSound = Resources.Load<AudioClip>("Sound/WarriorEffectSound/SwordDanceEffectSound");
+        mealstromEffectSound = Resources.Load<AudioClip>("Sound/WarriorEffectSound/MealstromEffectSound");
+        swordDanceFinishEffectSound = Resources.Load<AudioClip>("Sound/WarriorEffectSound/SwordDanceFinishEffectSound");
+        giganticSwordSound = Resources.Load<AudioClip>("Sound/WarriorEffectSound/GiganticSwordSummonSound");
+        attackSound.volume = 0.5f;
+        skillLv = characterStatus.SkillLevel[5];
     }
 
 	public void AttackEffectSound1()
@@ -89,20 +78,19 @@ public class CharWeapon : MonoBehaviour
     {
         if (coll.gameObject.layer == LayerMask.NameToLayer("Enermy"))
         {
-			Debug.Log ("in deb");
             Monster monster = coll.gameObject.GetComponent<Monster>();
          //  charManager.UIManager.BattleUIManager.monsterHpBarCalculation(monster.gameObject.name, monster.MaxHP, monster.CurrentHP);
 //           ComboSystem.instance.ComboProcess(++charManager.ComboCount);
-           StartCoroutine(charManager.ComboCheck(charManager.ComboCount));
+           StartCoroutine(characterManager.ComboCheck(characterManager.ComboCount));
 
             Instantiate(Resources.Load<GameObject>("Effect/HitEffect"), new Vector3(coll.transform.position.x, coll.transform.position.y + 1.0f, coll.transform.position.z + 0.5f), Quaternion.identity);
             if (monster != null)
             {
-                if (normalAttack)
+                if (characterManager.NormalAttackState)
                 {
                     damage = characterStatus.Attack;
                 }
-                else if (skillAttack)
+                else if (characterManager.SkillAttackState)
                 {
                     damage = characterStatus.Attack;
                 }
@@ -113,7 +101,7 @@ public class CharWeapon : MonoBehaviour
                     {
                         if (characterStatus.SkillLevel[5] < 4)
                         {
-                            if (normalAttack)
+                            if (characterManager.NormalAttackState)
                             {
                                 int testPassiveHP;
 
@@ -138,7 +126,7 @@ public class CharWeapon : MonoBehaviour
                             }
                         }
                     }
-					monster.HitDamage (damage, this.gameObject.GetComponentInParent<CharacterManager>().gameObject);
+					monster.HitDamage (damage);
                     damage = 0;
                 }
             }

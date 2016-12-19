@@ -160,11 +160,15 @@ public class DungeonManager : MonoBehaviour
     {
         InitializePlayerSpawnPoint();
 
-        CreatePlayer((int)characterStatus.HGender, (int)characterStatus.HClass);
+        CreatePlayer((int)GameManager.Instance.CharacterStatus.HGender, (int)GameManager.Instance.CharacterStatus.HClass);
 
-        InitializeMonsterSpawnPoint(stageNum);
-        SpawnMonster(stageNum);
-        SetMonsterStatus(stageNum);
+
+        if (NetworkManager.Instance.IsHost)
+        {
+            InitializeMonsterSpawnPoint(stageNum);
+            SpawnMonster(stageNum);
+            SetMonsterStatus(stageNum);
+        }        
     }
 
     public void InitializePlayerSpawnPoint()
@@ -317,19 +321,18 @@ public class DungeonManager : MonoBehaviour
         //딕셔너리를 사용하여 그에 맞는 캐릭터를 소환해야 하지만 Prototype 진행 시에는 고정된 플레이어를 소환하도록 함.
 
         int characterId = (hClass * CharacterStatus.maxGender) + gender + 1;
-        int userNum = NetworkManager.Instance.MyIndex;
-        Debug.Log("내 캐릭터 생성 번호" + userNum);
+        int unitIndex = NetworkManager.Instance.MyIndex;
+        Debug.Log("내 캐릭터 생성 번호" + unitIndex);
 
         GameObject player = Instantiate(Resources.Load("Class" + characterId)) as GameObject;
         player.tag = "Player";
-        player.transform.position = playerSpawnPoints[userNum].transform.position;
-        players[userNum] = player;
+        player.transform.position = playerSpawnPoints[unitIndex].transform.position;
+        players[unitIndex] = player;
 
-        characterData[userNum] = player.GetComponent<CharacterManager>();
-        characterData[userNum].enabled = true;
-        characterData[userNum].SetUserNum(userNum);
-        characterData[userNum].SetCharacterStatus();
-        characterData[userNum].SetCharacterType();
+        characterData[unitIndex] = player.GetComponent<CharacterManager>();
+        characterData[unitIndex].enabled = true;
+        characterData[unitIndex].SetUnitIndex(unitIndex);
+        characterData[unitIndex].SetCharacterStatus(GameManager.Instance.CharacterStatus);
 
         m_camera = GameObject.FindGameObjectWithTag("MainCamera");
         StartCoroutine(m_camera.GetComponent<CameraController>().CameraCtrl(player.transform));
@@ -338,9 +341,9 @@ public class DungeonManager : MonoBehaviour
 
         for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
         {
-            if (index != userNum)
+            if (index != unitIndex)
             {
-                DataSender.Instance.CreateUnitSend(NetworkManager.Instance.UserIndex[index].EndPoint, (byte)UnitType.Hero, (byte)characterId, (byte)userNum, player.transform.position.x, player.transform.position.y, player.transform.position.z);
+                DataSender.Instance.CreateUnitSend(NetworkManager.Instance.UserIndex[index].EndPoint, (byte)UnitType.Hero, (byte)characterId, (byte)unitIndex, player.transform.position.x, player.transform.position.y, player.transform.position.z);
             }
         }
 
@@ -363,7 +366,7 @@ public class DungeonManager : MonoBehaviour
                 players[createUnitData.UnitIndex] = unit;
 
                 characterData[createUnitData.UnitIndex] = unit.GetComponent<CharacterManager>();
-                characterData[createUnitData.UnitIndex].SetUserNum(createUnitData.UnitIndex);
+                characterData[createUnitData.UnitIndex].SetUnitIndex(createUnitData.UnitIndex);
             }
             else
             {

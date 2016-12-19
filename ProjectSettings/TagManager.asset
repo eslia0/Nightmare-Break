@@ -10,14 +10,12 @@ TagManager:
   - DungeonManager
   - CharacterManager
   - UIManager
-  - Wall
-  - Floor
-  - BossBody
-  - Enermy
-  - Enemy
+  - CharacterStatus
   - UI
-  - CharStatus
-  - MonsterSpawnPoint
+  - Enermy
+  - BossBody
+  - Floor
+  - Wall
   layers:
   - Default
   - TransparentFX
