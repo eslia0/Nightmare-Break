@@ -455,6 +455,8 @@ public class DataHandler : MonoBehaviour
             }
         }
 
+        StartCoroutine(SceneChanger.Instance.CheckLoading(udpConnectionData.playerNum + 3));
+
         NetworkManager.Instance.InitializeUdpConnection();
         NetworkManager.Instance.ReSendManager.Initialize(udpConnectionData.playerNum);
         DataSender.Instance.InitializeUdpSend(NetworkManager.Instance.ClientSock);
@@ -479,8 +481,6 @@ public class DataHandler : MonoBehaviour
 
         DataSender.Instance.RequestMonsterSpawnList(DungeonManager.Instance.DungeonId, DungeonManager.Instance.DungeonLevel);
         DataSender.Instance.RequestMonsterStatusData(DungeonManager.Instance.DungeonId, DungeonManager.Instance.DungeonLevel);
-
-        StartCoroutine(SceneChanger.Instance.CheckLoading());
     }
 
     //Client - 연결 확인 답장
