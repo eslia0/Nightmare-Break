@@ -338,7 +338,7 @@ public class Monster : MonoBehaviour
             StartCoroutine(ChangeRandomStanby());
 
             normalMode = DungeonManager.Instance.NormalMode;
-            normalMode = true;
+            normalMode = false;
             MonsterAIStart(normalMode);
 
             DataSender.Instance.UnitPositionSend(gameObject);

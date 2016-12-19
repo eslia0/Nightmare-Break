@@ -238,8 +238,8 @@ public class MageManager : CharacterManager
     
 	public override void UsingMagicPoint(int SkillArray)
 	{
-		float manaFury =SkillManager.instance.SkillData.GetSkill ((int)characterStatus.HClass, 6).GetSkillData (characterStatus.SkillLevel [5]).SkillValue;
-        characterStatus.DecreaseMagicPoint ((int)((float)(SkillManager.instance.SkillData.GetSkill ((int)characterStatus.HClass, SkillArray).ManaCost)* manaFury));
+		float manaFury =SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, 6).GetSkillData (characterStatus.SkillLevel [5]).SkillValue;
+        characterStatus.DecreaseMagicPoint ((int)((float)(SkillManager.Instance.SkillData.GetSkill ((int)characterStatus.HClass, SkillArray).ManaCost)* manaFury));
 	}
 
 

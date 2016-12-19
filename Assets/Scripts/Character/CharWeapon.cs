@@ -103,7 +103,7 @@ public class CharWeapon : MonoBehaviour
                             {
                                 int testPassiveHP;
 
-                                testPassiveHP = (int)((SkillManager.instance.SkillData.GetSkill((int)characterStatus.HClass, 4).GetSkillData(skillLv).SkillValue) * damage);
+                                testPassiveHP = (int)((SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 4).GetSkillData(skillLv).SkillValue) * damage);
 
                                 if (characterStatus.MaxHealthPoint > characterStatus.HealthPoint)
                                 {
@@ -117,7 +117,7 @@ public class CharWeapon : MonoBehaviour
                             Debug.Log("in Warrior");
                             int testPassiveHP;
 
-                            testPassiveHP = (int)((SkillManager.instance.SkillData.GetSkill((int)characterStatus.HClass, 4).GetSkillData(skillLv).SkillValue) * damage);
+                            testPassiveHP = (int)((SkillManager.Instance.SkillData.GetSkill((int)characterStatus.HClass, 4).GetSkillData(skillLv).SkillValue) * damage);
                             if (characterStatus.MaxHealthPoint > characterStatus.HealthPoint)
                             {
                                 characterStatus.DecreaseHealthPoint(-testPassiveHP);

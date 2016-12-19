@@ -217,7 +217,7 @@ public class WaitingUIManager : MonoBehaviour
         mySkillInfo.transform.parent.position = skillAddIcon[skillIndex].transform.position;
         mySkillInfo.transform.parent.position += new Vector3(120f, 35f, 0);
         currentSkill = skillIndex;
-        SkillBasicData skillData = SkillManager.instance.SkillData.GetSkill(1, skillIndex + 1);  // 고쳐야함
+        SkillBasicData skillData = SkillManager.Instance.SkillData.GetSkill(1, skillIndex + 1);  // 고쳐야함
         mySkillInfo.text = "스킬이름: " + skillData.SkillName + "  " + "쿨타임: " + skillData.SkillCoolTime.ToString() + "초" + "\n" + skillData.SkillBasicExplanation + "\n" + skillData.GetSkillData(1).SkillExplanation;
     }
 
@@ -300,10 +300,20 @@ public class WaitingUIManager : MonoBehaviour
         {
             if (rooms[roomNum].PlayerNum > 0)
             {
-                roomInfoClassIcon[i].sprite = Resources.Load<Sprite>("UI/RoomClassIcon/Class" + rooms[roomNum].RoomUserData[i].UserClass);
-                roomInfoUserName[i].text = rooms[roomNum].RoomUserData[i].UserName;
-                roomInfoGenderIcon[i].sprite = Resources.Load<Sprite>("UI/RoomGenderIcon/Gender" + rooms[roomNum].RoomUserData[i].UserGender);
-            }
+                if (rooms[roomNum].RoomUserData[i].UserClass > 0)
+                {
+                    roomInfoClassIcon[i].gameObject.SetActive(true);
+                    roomInfoGenderIcon[i].gameObject.SetActive(true);
+                    roomInfoClassIcon[i].sprite = Resources.Load<Sprite>("UI/RoomClassIcon/Class" + rooms[roomNum].RoomUserData[i].UserClass);
+                    roomInfoUserName[i].text = rooms[roomNum].RoomUserData[i].UserName;
+                    roomInfoGenderIcon[i].sprite = Resources.Load<Sprite>("UI/RoomGenderIcon/Gender" + rooms[roomNum].RoomUserData[i].UserGender);
+                } else
+                {
+                    roomInfoClassIcon[i].gameObject.SetActive(false);
+                    roomInfoUserName[i].text = rooms[roomNum].RoomUserData[i].UserName;
+                    roomInfoGenderIcon[i].gameObject.SetActive(false);
+                }
+             } 
         }
         currentRoomNum = roomNum;
     }
