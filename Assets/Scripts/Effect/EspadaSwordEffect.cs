@@ -3,9 +3,7 @@ using System.Collections;
 
 public class EspadaSwordEffect : MonoBehaviour
 {
-	GameObject giganticSword;
 	public CharacterManager charManager;
-	float giganticSwordAliveTime;
 	public GameObject character;
 	public GameObject swordEffect;
 	public int swordDamage;
@@ -33,7 +31,6 @@ public class EspadaSwordEffect : MonoBehaviour
 		swordSpeed = 40;
 		giganticSwordRigd.velocity = (transform.forward* swordSpeed);
 		swordDamage = 10000;
-		giganticSword = this.gameObject;
 		swordSound.volume = 0.1f;
 		swordSound.PlayOneShot (swordSummonSound);
 		checkMap = true;

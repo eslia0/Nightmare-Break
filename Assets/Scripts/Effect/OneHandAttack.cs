@@ -4,7 +4,6 @@ using System.Collections;
 public class OneHandAttack : MonoBehaviour 
 {
 	public GameObject monster;
-	[SerializeField]int damage;
 	public Rigidbody sphereRigid;
 	public float sphereSpeed;
 	// Use this for initialization
@@ -22,7 +21,6 @@ public class OneHandAttack : MonoBehaviour
 		chase = false;
 	}
 	public void SetDamage(int _damage, GameObject _AttackMonster){
-		damage = _damage;
 		monster = _AttackMonster;
 	}
 

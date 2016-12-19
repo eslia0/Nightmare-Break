@@ -40,7 +40,7 @@ public class CharacterStatus : MonoBehaviour
     int defense;
 
     float moveSpeed;
-    int skillPoint;
+    //int skillPoint;
     int dreamStone;
     int[] skillLevel;
     int[] equipLevel;
@@ -64,7 +64,7 @@ public class CharacterStatus : MonoBehaviour
 	public int MaxSkillNum { get { return skillNum; } }
 
     public float MoveSpeed { get { return moveSpeed; } }
-    public int SkillPoint { get { return skillPoint; } }
+    //public int SkillPoint { get { return skillPoint; } }
     public int DreamStone { get { return dreamStone; } }
     public int[] SkillLevel { get { return skillLevel; } }
     public int[] EquipLevel { get { return equipLevel; } }

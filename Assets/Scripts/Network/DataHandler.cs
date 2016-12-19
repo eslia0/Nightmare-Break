@@ -13,7 +13,6 @@ public enum Result
 public class DataHandler : MonoBehaviour
 {
     public Queue<DataPacket> receiveMsgs;
-    object receiveLock;
 
     public delegate void P2PRecvNotifier(DataPacket packet, int udpId);
     public delegate void ServerRecvNotifier(DataPacket packet);
@@ -24,10 +23,9 @@ public class DataHandler : MonoBehaviour
 
     public DateTime dTime;
 
-    public void Initialize(Queue<DataPacket> receiveQueue, Queue<DataPacket> sendQueue, object newLock)
+    public void Initialize(Queue<DataPacket> receiveQueue, Queue<DataPacket> sendQueue)
     {
         receiveMsgs = receiveQueue;
-        receiveLock = newLock;
 
         SetServerNotifier();
         SetUdpNotifier();

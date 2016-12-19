@@ -21,7 +21,6 @@ public class SoundManager : MonoBehaviour {
 
 	public void BossSound(int _num, float _Range)
 	{
-		GameObject myplay;
 
 
 		float soundRange = _Range * 0.01f;

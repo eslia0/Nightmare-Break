@@ -23,7 +23,8 @@ public class ShockWave : MonoBehaviour
 		{
 			tempData = checkTempData.GetComponent<CharacterManager> ();
 			tempData.HitDamage (damage);
-		} catch (NullReferenceException e)
+		} catch
+
 		{
 		}
 	}

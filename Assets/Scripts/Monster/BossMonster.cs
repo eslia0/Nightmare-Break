@@ -17,10 +17,6 @@ public class BossMonster : Monster {
 	public AnimationCurve hurt;
 	public AnimationCurve healthy;
 
-	private float criticalValue;
-	private float hurtValue;
-	private float healthyValue;
-
 	public GameObject muzzle;
 	public GameObject bullet;
 
@@ -40,11 +36,7 @@ public class BossMonster : Monster {
 	void Update () {
 		
 	}
-	void FuzzyHPValue(){
-		criticalValue = critical.Evaluate (currentHP);
-		hurtValue = hurt.Evaluate (currentHP);
-		healthyValue = healthy.Evaluate (currentHP);
-	}
+
 	IEnumerator CheckMonsterState(){
 		while (IsAlive) 
 		{
@@ -78,7 +70,6 @@ public class BossMonster : Monster {
 						//walk
 
 					}else if(currentDistance < (perceive * 0.2f)) {
-						FuzzyHPValue ();
 
 						int attackState = Random.Range (4,9);
 

@@ -120,7 +120,6 @@ public class CharacterStatusPacket : Packet<CharacterStatusData>
 
 public class CharacterStatusData
 {
-    byte nameLength;
     string name;
     byte gender;
     byte level;
@@ -137,8 +136,7 @@ public class CharacterStatusData
     byte dreamStone;
     byte[] skillLevel;
     byte[] equipLevel;
-
-    public byte NameLength { get { return nameLength; } }
+    
     public string Name { get { return name; } }
     public byte Gender { get { return gender; } }
     public byte Level { get { return level; } }

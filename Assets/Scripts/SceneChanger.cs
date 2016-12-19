@@ -28,12 +28,13 @@ public class SceneChanger : MonoBehaviour
     private Image fadePanel;
     private LoadingSceneUI loadingScene;
     private SceneName currentScene;
-    private int nextScene;
+    private SceneName nextScene;
 
     private bool[] loadingCheck;
 
     public bool[] LoadingCheck { get { return loadingCheck; } set { loadingCheck = value; } }
     public SceneName CurrentScene { get { return currentScene; } }
+    public SceneName NextScene { get { return nextScene; } }
 
     private static SceneChanger instance = null;
     public static SceneChanger Instance
@@ -75,7 +76,7 @@ public class SceneChanger : MonoBehaviour
         #region 로딩 씬 로드
         else if (scene.name == "LoadingScene")
         {
-            if (nextScene == (int)SceneName.SelectScene)
+            if (nextScene == SceneName.SelectScene)
             {
                 if (currentScene == SceneName.WaitingScene)
                 {
@@ -91,9 +92,9 @@ public class SceneChanger : MonoBehaviour
             {
                 DataSender.Instance.Logout();
                 Destroy(GameManager.Instance.gameObject);
-                SceneManager.LoadScene(nextScene);
+                SceneManager.LoadScene((int)nextScene);
             }
-            else if (nextScene == (int)SceneName.WaitingScene)
+            else if (nextScene == SceneName.WaitingScene)
             {
                 GameManager.Instance.SetManagerInWait();
                 UIManager.Instance.SetUIManager(UIManagerIndex.Waiting);
@@ -102,7 +103,7 @@ public class SceneChanger : MonoBehaviour
 
                 StartCoroutine(CheckLoading(2));
             }
-            else if (nextScene == (int)SceneName.TeddyBearStage1)
+            else if (nextScene == SceneName.TeddyBearStage1)
             {
                 //매니저 생성
                 GameManager.Instance.SetManagerInGame();
@@ -177,17 +178,46 @@ public class SceneChanger : MonoBehaviour
         }
         #endregion
 
-        #region 던전 씬 로드
+        #region 던전 1씬 로드
         else if (scene.name == "LostTeddyBear_Stage1")
         {
             UIManager.Instance.BattleUIManager.ManagerInitialize();
 
+            DungeonManager.Instance.IsDefense = false;
             DungeonManager.Instance.StartDungeon();
             ReSendManager.Instance.characterCreating = true;
-            DungeonManager.Instance.SetCurrentStateNum(1);
-            
+            DungeonManager.Instance.SetCurrentStageNum(1);
+
 
             currentScene = SceneName.TeddyBearStage1;
+        }
+        #endregion
+
+        #region 던전 2씬 로드
+        else if (scene.name == "LostTeddyBear_Stage2")
+        {
+            UIManager.Instance.BattleUIManager.ManagerInitialize();
+
+            DungeonManager.Instance.IsDefense = true;
+            DungeonManager.Instance.StartDungeon();
+            ReSendManager.Instance.characterCreating = true;
+            DungeonManager.Instance.SetCurrentStageNum(2);
+
+            currentScene = SceneName.TeddyBearStage2;
+        }
+        #endregion
+
+        #region 보스 씬 로드
+        else if (scene.name == "LostTeddyBear_Boss")
+        {
+            UIManager.Instance.BattleUIManager.ManagerInitialize();
+
+            DungeonManager.Instance.IsDefense = false;
+            DungeonManager.Instance.StartDungeon();
+            ReSendManager.Instance.characterCreating = true;
+            DungeonManager.Instance.SetCurrentStageNum(3);
+
+            currentScene = SceneName.TeddyBearBoss;
         }
         #endregion
 
@@ -195,7 +225,7 @@ public class SceneChanger : MonoBehaviour
 
     public void SceneChange(SceneName sceneName, bool needLoadingScene)
     {
-        nextScene = (int)sceneName;
+        nextScene = sceneName;
 
         if (needLoadingScene)
         {
@@ -243,7 +273,7 @@ public class SceneChanger : MonoBehaviour
     {
         loadingCheck = new bool[checkSize];
 
-        if (nextScene == (int)SceneName.TeddyBearStage1)
+        if (nextScene == SceneName.TeddyBearStage1)
         {
             LoadingCheck[NetworkManager.Instance.MyIndex + 2] = true;
         }
@@ -269,13 +299,13 @@ public class SceneChanger : MonoBehaviour
             }
         }
 
-        if (nextScene == (int)SceneName.TeddyBearStage1)
+        if (nextScene == SceneName.TeddyBearStage1)
         {
             DataSender.Instance.LoadingComplete();
         }
         else
         {
-            SceneManager.LoadScene(nextScene);
+            SceneManager.LoadScene((int)nextScene);
         }        
     }
 }

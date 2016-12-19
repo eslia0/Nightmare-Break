@@ -481,16 +481,14 @@ public class DataSender : MonoBehaviour
 
         Debug.Log("캐릭터 위치 보내기 시작");
 
-        while (true)
+        while (characterManager != null)
         {
-            yield return new WaitForSeconds(0.016f);
-
             bool dir = characterManager.charDir;
             float xPos = characterManager.transform.position.x;
             float yPos = characterManager.transform.position.y;
             float zPos = characterManager.transform.position.z;
 
-            UnitPositionData unitPositionData = new UnitPositionData((byte)UnitType.Hero ,dir, xPos, yPos, zPos, (byte)NetworkManager.Instance.MyIndex);
+            UnitPositionData unitPositionData = new UnitPositionData((byte)UnitType.Hero, dir, xPos, yPos, zPos, (byte)NetworkManager.Instance.MyIndex);
             UnitPositionPacket unitPositionPacket = new UnitPositionPacket(unitPositionData);
             unitPositionPacket.SetPacketId((int)P2PPacketId.UnitPosition);
 
@@ -502,10 +500,12 @@ public class DataSender : MonoBehaviour
 
                 if (NetworkManager.Instance.MyIndex != userIndex)
                 {
-                    DataPacket packet = new DataPacket(CreateUdpPacket(unitPositionPacket, udpId[userIndex]), NetworkManager.Instance.UserIndex[index].EndPoint);
+                    DataPacket packet = new DataPacket(msg, NetworkManager.Instance.UserIndex[index].EndPoint);
                     sendMsgs.Enqueue(packet);
                 }
             }
+
+            yield return new WaitForSeconds(0.016f);
         }
     }
 
@@ -536,7 +536,7 @@ public class DataSender : MonoBehaviour
 
                 if (NetworkManager.Instance.MyIndex != userIndex)
                 {
-                    DataPacket packet = new DataPacket(CreateUdpPacket(unitPositionPacket, udpId[userIndex]), NetworkManager.Instance.UserIndex[index].EndPoint);
+                    DataPacket packet = new DataPacket(msg, NetworkManager.Instance.UserIndex[index].EndPoint);
                     sendMsgs.Enqueue(packet);
                 }
             }
@@ -551,8 +551,6 @@ public class DataSender : MonoBehaviour
         unitStatePacket.SetPacketId((int)P2PPacketId.UnitState);
 
         byte[] msg = CreatePacket(unitStatePacket);
-
-        Debug.Log("캐릭터 상태 보냄");
         
         for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
         {
@@ -560,7 +558,7 @@ public class DataSender : MonoBehaviour
 
             if (NetworkManager.Instance.MyIndex != userIndex)
             {
-                DataPacket packet = new DataPacket(CreateUdpPacket(unitStatePacket, udpId[userIndex]), NetworkManager.Instance.UserIndex[index].EndPoint);
+                DataPacket packet = new DataPacket(msg, NetworkManager.Instance.UserIndex[index].EndPoint);
                 sendMsgs.Enqueue(packet);
             }
         }
@@ -579,7 +577,7 @@ public class DataSender : MonoBehaviour
         {
             if (index != NetworkManager.Instance.MyIndex)
             {
-                DataPacket packet = new DataPacket(CreateUdpPacket(unitStatePacket, udpId[index]), NetworkManager.Instance.UserIndex[index].EndPoint);
+                DataPacket packet = new DataPacket(msg, NetworkManager.Instance.UserIndex[index].EndPoint);
                 sendMsgs.Enqueue(packet);
             }
         }

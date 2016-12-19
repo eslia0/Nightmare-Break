@@ -44,8 +44,6 @@ public class NetworkManager : MonoBehaviour
     Queue<DataPacket> receiveMsgs;
     Queue<DataPacket> sendMsgs;
 
-    object receiveLock;
-
     Socket clientSock;
     Socket serverSock;
 
@@ -75,7 +73,6 @@ public class NetworkManager : MonoBehaviour
 
         receiveMsgs = new Queue<DataPacket>();
         sendMsgs = new Queue<DataPacket>();
-        receiveLock = new object();
 
         InitializeTcpConnection();
 
@@ -83,8 +80,8 @@ public class NetworkManager : MonoBehaviour
         dataHandler = GetComponent<DataHandler>();
         dataSender = GetComponent<DataSender>();
 
-        dataReceiver.Initialize(receiveMsgs, serverSock, receiveLock);
-        dataHandler.Initialize(receiveMsgs, sendMsgs, receiveLock);
+        dataReceiver.Initialize(receiveMsgs, serverSock);
+        dataHandler.Initialize(receiveMsgs, sendMsgs);
         dataSender.Initialize(sendMsgs, serverSock);
     }
 

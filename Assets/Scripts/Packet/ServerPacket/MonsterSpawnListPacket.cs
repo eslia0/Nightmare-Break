@@ -10,6 +10,7 @@ public class MonsterSpawnListPacket : Packet<DungeonLevelData>
 
             //총 스테이지 개수
             ret &= Serialize((byte)data.Stages.Count);
+            ret &= Serialize((byte)data.WaveCount);
 
             for (int stageIndex = 0; stageIndex < data.Stages.Count; stageIndex++)
             {
@@ -37,12 +38,16 @@ public class MonsterSpawnListPacket : Packet<DungeonLevelData>
 
             bool ret = true;
             byte stageNum = 0;
+            byte waveCount = 0;
             byte monsterKind = 0;
             byte monsterId = 0;
             byte monsterLevel = 0;
             byte monsterNum = 0;
 
             ret &= Deserialize(ref stageNum);
+            ret &= Deserialize(ref waveCount);
+
+            element = new DungeonLevelData(stageNum, waveCount);
 
             for (int stageIndex = 0; stageIndex < stageNum; stageIndex++)
             {
@@ -151,20 +156,31 @@ public class DungeonBaseData
 public class DungeonLevelData
 {
     int level;
+    int waveCount;
     List<Stage> stages;
 
     public int Level { get { return level; } }
+    public int WaveCount { get { return waveCount; } }
     public List<Stage> Stages { get { return stages; } }
 
     public DungeonLevelData()
     {
         level = 0;
+        waveCount = 0;
         stages = new List<Stage>();
     }
 
     public DungeonLevelData(int newLevel)
     {
         level = newLevel;
+        waveCount = 0;
+        stages = new List<Stage>();
+    }
+
+    public DungeonLevelData(int newLevel, int newWaveCount)
+    {
+        level = newLevel;
+        waveCount = newWaveCount;
         stages = new List<Stage>();
     }
 

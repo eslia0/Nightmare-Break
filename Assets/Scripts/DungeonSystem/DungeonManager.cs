@@ -45,7 +45,7 @@ public class DungeonManager : MonoBehaviour
     DungeonLevelData dungeonLevelData;
     MonsterStatusData monsterStatusData;
 
-    StagePortal[] stagePortal;
+    StagePortal stagePortal;
     SceneChanger.SceneName[] sceneList;
 
     GameObject m_camera;
@@ -55,7 +55,7 @@ public class DungeonManager : MonoBehaviour
     int dungeonId;
     int dungeonLevel;
 
-    bool normalMode; //false  -> normalBattle, true -> Defence; 
+    bool isDefense;
 
     public GameObject[] Players { get { return players; } }
     public CharacterManager[] CharacterData { get { return characterData; } }
@@ -64,80 +64,10 @@ public class DungeonManager : MonoBehaviour
     public int DungeonId { get { return dungeonId; } }
     public int DungeonLevel { get { return dungeonLevel; } }
     public int StageNum { get { return stageNum; } }
-    public bool NormalMode { get { return normalMode; } set { normalMode = value; } }
+    public bool IsDefense { get { return isDefense; } set { isDefense = value; } }
     public GameObject[] Monsters { get { return monsters; } }
-
-    void Start()
-    {
-        //test
-
-        if (GameObject.FindGameObjectWithTag("GameManager") == null)
-        {
-            players = GameObject.FindGameObjectsWithTag("Player");
-        }
-
-        //Instantiate 스폰포인트 생성조건 - > mapNumber != 2;
-
-        if (GameObject.FindGameObjectWithTag("GameManager") == null)
-        {
-            InitializeMonsterSpawnPoint(1);
-
-            Stage stage1 = new Stage(1);
-            stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 3));
-            stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 3));
-            stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
-            stage1.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Bear, 1, 1));
-            Stage stage2 = new Stage(2);
-            stage2.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 9));
-            stage2.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 9));
-            stage2.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 9));
-            Stage stage3 = new Stage(3);
-            stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Frog, 1, 3));
-            stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Duck, 1, 3));
-            stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.Rabbit, 1, 2));
-            stage3.MonsterSpawnData.Add(new MonsterSpawnData((int)MonsterId.BlackBear, 1, 1));
-
-            dungeonLevelData = new DungeonLevelData(1);
-
-            dungeonLevelData.AddStage(stage1);
-            dungeonLevelData.AddStage(stage2);
-            dungeonLevelData.AddStage(stage3);
-
-            MonsterBaseData[] monsterBaseData = new MonsterBaseData[5];
-            monsterBaseData[0] = new MonsterBaseData((int)MonsterId.Frog, "Frog");
-            monsterBaseData[0].AddLevelData(new MonsterLevelData(1, 2, 0, 900, 3));
-            monsterBaseData[1] = new MonsterBaseData((int)MonsterId.Duck, "Duck");
-            monsterBaseData[1].AddLevelData(new MonsterLevelData(1, 3, 0, 1050, 3));
-            monsterBaseData[2] = new MonsterBaseData((int)MonsterId.Rabbit, "Rabbit");
-            monsterBaseData[2].AddLevelData(new MonsterLevelData(1, 5, 0, 2250, 4));
-            monsterBaseData[3] = new MonsterBaseData((int)MonsterId.Bear, "Bear");
-            monsterBaseData[3].AddLevelData(new MonsterLevelData(1, 25, 0, 11250, 3));
-
-            monsterBaseData[3] = new MonsterBaseData((int)MonsterId.BlackBear, "BlackBear");
-            monsterBaseData[3].AddLevelData(new MonsterLevelData(1, 25, 0, 11250, 3));
-
-            MonsterStatusData monsterStatusData = new MonsterStatusData(5, monsterBaseData);
-            SetMonsterData(monsterStatusData);
-
-            if (stageNum == 0)
-            {
-                SpawnMonster(1);
-                SetMonsterStatus(1);
-            }
-            if (stageNum == 1)
-            {
-                SpawnMonster(2);
-                SetMonsterStatus(2);
-            }
-            if (stageNum == 2)
-            {
-                SpawnMonster(3);
-                SetMonsterStatus(3);
-            }
-        }
-    }
-
-    public void SetCurrentStateNum(int newStageNum)
+    
+    public void SetCurrentStageNum(int newStageNum)
     {
         stageNum = newStageNum;
     }
@@ -165,10 +95,18 @@ public class DungeonManager : MonoBehaviour
                 
         if (NetworkManager.Instance.IsHost)
         {
-            InitializeStagePortal();
             InitializeMonsterSpawnPoint(stageNum);
-            SpawnMonster(stageNum);
-            SetMonsterStatus(stageNum);
+
+            if (isDefense)
+            {
+                StartCoroutine(DefenseWave());
+            }
+            else
+            {
+                InitializeStagePortal();
+                SpawnMonster(stageNum);
+                SetMonsterStatus(stageNum);
+            }            
         }
     }
 
@@ -207,27 +145,9 @@ public class DungeonManager : MonoBehaviour
 
     public void InitializeStagePortal()
     {
-        int portalNum = 0;
-
-        if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.TeddyBearStage1)
-        {
-            portalNum = 1;
-        }
-        else if(SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.TeddyBearStage2)
-        {
-            portalNum = 2;
-        }
-        else if (SceneChanger.Instance.CurrentScene == SceneChanger.SceneName.TeddyBearBoss)
-        {
-            portalNum = 0;
-        }
-
-        stagePortal = new StagePortal[portalNum];
-
-        for (int i = 0; i < portalNum; i++)
-        {
-            stagePortal[i] = GameObject.Find("StagePortal" + (i + 1)).GetComponent<StagePortal>();
-        }
+        stagePortal = GameObject.Find("StagePortal").GetComponent<StagePortal>();
+        stagePortal.InitializePortal();
+        StartCoroutine(CheckMapClear());
     }
 
     public void SetMonsterSpawnList(DungeonLevelData newDungeonData)
@@ -301,6 +221,22 @@ public class DungeonManager : MonoBehaviour
         else { return null; }
     }
 
+    public IEnumerator DefenseWave()
+    {
+        for (int spawnCount = 0; spawnCount < dungeonLevelData.WaveCount; spawnCount++)
+        {
+            SpawnMonster(stageNum);
+            SetMonsterStatus(stageNum);
+
+            if (spawnCount == dungeonLevelData.WaveCount - 1)
+                break;
+
+            yield return new WaitForSeconds(10f);
+        }
+
+        InitializeStagePortal();
+    }
+
     public void SetMonsterData(MonsterStatusData newMonsterStatusData)
     {
         monsterStatusData = newMonsterStatusData;
@@ -349,7 +285,7 @@ public class DungeonManager : MonoBehaviour
             }
         }
 
-        //SceneChange();
+        stagePortal.StagePortalActivate();
     }
 
     public GameObject CreatePlayer(int gender, int hClass)
@@ -370,6 +306,7 @@ public class DungeonManager : MonoBehaviour
         characterData[unitIndex].enabled = true;
         characterData[unitIndex].SetUnitIndex(unitIndex);
         characterData[unitIndex].SetCharacterStatus(GameManager.Instance.CharacterStatus);
+        characterData[unitIndex].InitializeCharacter();
 
         m_camera = GameObject.FindGameObjectWithTag("MainCamera");
         StartCoroutine(m_camera.GetComponent<CameraController>().CameraCtrl(player.transform));

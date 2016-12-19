@@ -3,13 +3,11 @@ using System.Collections;
 
 public class BossSphereExplosion : MonoBehaviour
 {
-	BoxCollider box;
 	public int damage;
 
 	// Use this for initialization
 	void Start () 
 	{
-		box = this.GetComponent<BoxCollider> ();
 		damage = 20;
 		Destroy (this.gameObject, 0.3f);
 	}

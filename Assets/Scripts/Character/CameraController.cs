@@ -14,10 +14,10 @@ public class CameraController : MonoBehaviour
     {
         SetCameraDistance();
 
-        while (true)
+        while (character != null)
         {
-            yield return new WaitForEndOfFrame();
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, character.position + cameraDistance, Time.deltaTime * 10);
+            yield return new WaitForEndOfFrame();
         }
     }
 }

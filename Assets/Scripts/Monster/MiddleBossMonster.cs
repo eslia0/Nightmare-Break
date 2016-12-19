@@ -21,7 +21,6 @@ public class MiddleBossMonster : Monster {
 	public float currentDistance; //중간 보스와 플레이어의 거리
 
 	public GameObject[] bossplayer; //플레이어 배열
-	public GameObject chasePlayer;// 현재 쫓는 플레이어
 	int randomAttack; //어택 패턴값
 
 	void Start () {

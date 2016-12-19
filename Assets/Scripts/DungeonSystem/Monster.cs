@@ -119,8 +119,8 @@ public class Monster : MonoBehaviour
 
     [SerializeField]
     private float[] currentDisTanceArray;
-    [SerializeField]
-    private float[] currentDisTanceWall;
+    //[SerializeField]
+    //private float[] currentDisTanceWall;
     [SerializeField]
     protected Vector3 checkDirection; // monster chaseplayer and move variable;
     [SerializeField]
@@ -263,7 +263,7 @@ public class Monster : MonoBehaviour
     {
         player = GameObject.FindGameObjectsWithTag("Player");
         wall = GameObject.FindGameObjectsWithTag("Wall");
-        currentDisTanceWall = new float[wall.Length];
+        //currentDisTanceWall = new float[wall.Length];
         //SetMonsterSound();
         animator = this.gameObject.GetComponent<Animator>();
         HittedBox = this.gameObject.GetComponent<BoxCollider>();
@@ -337,8 +337,7 @@ public class Monster : MonoBehaviour
             StartCoroutine(MonsterUpdate());
             StartCoroutine(ChangeRandomStanby());
 
-            normalMode = DungeonManager.Instance.NormalMode;
-            normalMode = false;
+            normalMode = DungeonManager.Instance.IsDefense;
             MonsterAIStart(normalMode);
 
             DataSender.Instance.UnitPositionSend(gameObject);
@@ -374,8 +373,7 @@ public class Monster : MonoBehaviour
             }
             StartCoroutine(MonsterDefenceWaveControll(_normalMode));
         }
-
-        if (_normalMode)
+        else
         {
             if (monsterId == MonsterId.Rabbit)
             {
@@ -396,14 +394,12 @@ public class Monster : MonoBehaviour
                 StartCoroutine(BossNormalAttackCycleSet());
                 StartCoroutine(SetTargetPlayer());
 
-
                 if (monsterId == MonsterId.BlackBear)
                 {
                     StartCoroutine(BossSkillAI());
                 }
                 if (monsterId == MonsterId.Bear)
                 {
-
                     StartCoroutine(MiddleBossSkillAI());
                 }
 
@@ -520,6 +516,7 @@ public class Monster : MonoBehaviour
         while (IsAlive)
         {
             yield return null;
+
             if (_normalMode)
             {
                 if (targetPlayer != null)
@@ -720,8 +717,6 @@ public class Monster : MonoBehaviour
             }
         }
     }
-
-
 
     IEnumerator MonsterActAIADC(bool _normalMode)
     {

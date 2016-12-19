@@ -4,16 +4,13 @@ using System.Collections;
 public class Magic_Meteor : MonoBehaviour {
 
 	public GameObject meteorEffect;
-	private float time;
+
 	private float timeInterval;
-	private float currentTime;
     Vector3 pos;
 
     void Start()
 	{
 		timeInterval = 0.1f;
-		currentTime = 0;
-		time = 2.0f;
     
         StartCoroutine(meteorBurst());
 	}

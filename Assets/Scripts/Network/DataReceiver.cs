@@ -11,14 +11,11 @@ public class DataReceiver : MonoBehaviour
 
     Queue<DataPacket> msgs;
 
-    object receiveLock;
-
     //클래스 초기화
-    public void Initialize(Queue<DataPacket> receiveMsgs, Socket newSock, object newLock)
+    public void Initialize(Queue<DataPacket> receiveMsgs, Socket newSock)
     {
         msgs = receiveMsgs;
         tcpSock = newSock;
-        receiveLock = newLock;
         StartTcpReceive();
     }
 

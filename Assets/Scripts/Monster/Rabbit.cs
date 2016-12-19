@@ -9,8 +9,7 @@ public class Rabbit : Monster {
 	float middleBossToMonsterLimitDistanceMonsterToCenter = 6.0f;
 //	private float middleBossToMonsterMinDistance = 1.5f;
 
-
-	[SerializeField]GameObject middleboss;
+        
 
 
 //	public override void HitDamage(int _Damage,GameObject attacker)
@@ -34,8 +33,6 @@ public class Rabbit : Monster {
 //			Pattern (monsterState);
 //		}
 //	}
-
-	private Vector3 idlePoint = new Vector3(0,0,0);
 
 	//private Vector3 boomPoint = new Vector3(100,100,100);
 
