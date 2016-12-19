@@ -129,7 +129,7 @@ public class RoomUIManager : MonoBehaviour {
             {
                 if(playerPrefeb[i] == null)
                 {
-                    GameObject character = Instantiate(Resources.Load<GameObject>("UI/Class" + (roomData.RoomUserData[i].UserClass + (roomData.RoomUserData[i].UserGender * CharacterCreateUI.minClass) + 1)), rendPos[i].transform) as GameObject;
+                    GameObject character = Instantiate(Resources.Load<GameObject>("UI/Class" + (roomData.RoomUserData[i].UserClass + (roomData.RoomUserData[i].UserGender * CharacterCreateUI.minClass) + 2)), rendPos[i].transform) as GameObject;
                     playerPrefeb[i] = character;
                     character.transform.localPosition = Vector3.zero;
                     character.transform.localRotation = new Quaternion(0, 180, 0, 0);

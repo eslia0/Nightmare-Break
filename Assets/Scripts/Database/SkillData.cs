@@ -57,8 +57,10 @@ public class SkillData{
 		skillList.Add(new SkillBasicData(SkillBasicData.SkillTypes.Active, "메테오스트라이크", 2, 25, 3, "마법진을 소환하여 메테오 폭격을 가한다."));
 		skillList.Add(new SkillBasicData(SkillBasicData.SkillTypes.Active, "플레임임팩트", 3, 30, 3, "주위 적들에게 데미지를 주며, 캐릭터에게서 밀쳐낸다."));
 		skillList.Add(new SkillBasicData(SkillBasicData.SkillTypes.Active, "아마겟돈", 4, 120, 4, "거대한 화염구를 소환하여 적들을 섬멸한다."));
-		skillList.Add(new SkillBasicData(SkillBasicData.SkillTypes.Passive, "스펠레이지", 5, "스킬시전시 공격력을 추가하지만, 더 많은 마나를 소모하게 한다."));
-		skillList.Add(new SkillBasicData(SkillBasicData.SkillTypes.Passive, "집중", 6, "마나 회복량이 증가한다."));
+        skillList.Add(new SkillBasicData(SkillBasicData.SkillTypes.Passive, "스펠레이지", 5, "스킬시전시 공격력을 추가하지만, 더 많은 마나를 소모하게 한다."));
+        skillList.Add(new SkillBasicData(SkillBasicData.SkillTypes.Passive, "집중", 6, "마나 회복량이 증가한다."));
+     
+		
 
 		skillList[7].AddSkillLevelData(new SkillLevelData(1, 1.2f, "마법 공격력에 120%의 공격력을 가진다."));
 		skillList[7].AddSkillLevelData(new SkillLevelData(2, 1.4f, "마법 공격력에 140%의 공격력을 가진다."));
