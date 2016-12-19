@@ -23,7 +23,7 @@ public class CharacterManager : MonoBehaviour
 	public AnimatorStateInfo runState;
 	public Rigidbody rigdbody;
 	public BoxCollider charWeapon;
-	public CharWeapon weapon;
+	//public CharWeapon weapon;
     protected CharacterStatus characterStatus;
 
     public GameObject[] enermy;
@@ -86,8 +86,8 @@ public class CharacterManager : MonoBehaviour
 		//testinput = GameObject.Find ("TestInputManager").GetComponent<TestInputManager> ();
 		charDir = true;
 		JumpMove = false;
-		weapon = this.gameObject.GetComponentInChildren<CharWeapon>();
-		charWeapon =this.gameObject.GetComponentInChildren<CharWeapon>().GetComponent<BoxCollider>();
+	//	weapon = this.gameObject.GetComponentInChildren<CharWeapon>();
+		//charWeapon =this.gameObject.GetComponentInChildren<CharWeapon>().GetComponent<BoxCollider>();
 		CharAudio.volume = 0.3f;
 		jumpPower = 10;
         comboCount = 0;
