@@ -2956,9 +2956,9 @@ RectTransform:
   - {fileID: 2089782941}
   - {fileID: 1108313601}
   - {fileID: 1065661280}
+  - {fileID: 1360370796}
   - {fileID: 885385434}
   - {fileID: 1874380194}
-  - {fileID: 1360370796}
   - {fileID: 431120138}
   - {fileID: 1203668600}
   - {fileID: 758860868}
@@ -4971,7 +4971,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 828241296}
   m_HandleRect: {fileID: 828241295}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8043,7 +8043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 345623543}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -44.99993, y: 24.300056}
@@ -10113,7 +10113,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1628013898}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.31700367
+  m_Size: 0.31700364
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12102,7 +12102,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1443896619}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.68361896
+  m_Size: 0.6877604
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12263,7 +12263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 345623543}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -44.99993, y: -58.999985}
@@ -13802,7 +13802,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 411115739}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17605,7 +17605,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 345623543}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 45, y: 24.3}
@@ -18252,7 +18252,7 @@ RectTransform:
   m_RootOrder: 22
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 73.9, y: 139.40009}
+  m_AnchoredPosition: {x: 75, y: 143.29999}
   m_SizeDelta: {x: 290.4, y: 170.20001}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1961123583
