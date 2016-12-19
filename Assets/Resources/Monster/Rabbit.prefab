@@ -1000,7 +1000,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 36
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!65 &65000012197808818
 BoxCollider:
@@ -1097,6 +1097,7 @@ MonoBehaviour:
   targetPlayer: {fileID: 0}
   movePoint: {x: 0, y: 0, z: 0}
   currentHP: 0
+  maxHP: 0
   attack: 0
   moveSpeed: 0
   RunRange: 0
@@ -1104,6 +1105,7 @@ MonoBehaviour:
   attackCycle: 0
   currentDisTance: 0
   searchRange: 0
+  statePosition: 0
   isAlive: 0
   bossNormalAttackCycle: 0
   bossRandomPattern: 0
@@ -1113,6 +1115,19 @@ MonoBehaviour:
   currentDisTanceWall: []
   checkDirection: {x: 0, y: 0, z: 0}
   pointVector: []
+  roarBreak: 0
+  MonsterAudio: {fileID: 0}
+  bearRoar: {fileID: 0}
+  frogAttack: {fileID: 0}
+  frogDeath: {fileID: 0}
+  frogHit: {fileID: 0}
+  middleBossAttack1: {fileID: 0}
+  middleBossAttack2: {fileID: 0}
+  middleBossDeath: {fileID: 0}
+  middleBossWave: {fileID: 0}
+  rabbitAttack: {fileID: 0}
+  rabbitDeath: {fileID: 0}
+  rabbitHit: {fileID: 0}
 --- !u!114 &114000011177505994
 MonoBehaviour:
   m_ObjectHideFlags: 1

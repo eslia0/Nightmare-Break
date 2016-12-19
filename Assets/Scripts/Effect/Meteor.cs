@@ -15,7 +15,7 @@ public class Meteor : MonoBehaviour {
 		character = GameObject.FindWithTag ("Player");
 		charManager = character.GetComponent<CharacterManager> ();
 		skillLv = charManager.CharacterStatus.SkillLevel [1];
-		MeteorDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)GameManager.Instance.CharacterStatus.HClass, 2).GetSkillData (skillLv).SkillValue)* charManager.CharacterStatus.Attack);
+		MeteorDamage =(int) ((SkillManager.Instance.SkillData.GetSkill ((int)GameManager.Instance.CharacterStatus.HClass, 2).GetSkillData (skillLv).SkillValue)* charManager.CharacterStatus.Attack);
 		meteorSound = this.gameObject.GetComponent<AudioSource> ();
 		meteorDropSound = Resources.Load<AudioClip> ("Sound/MageEffectSound/MeteorDropSound");
 

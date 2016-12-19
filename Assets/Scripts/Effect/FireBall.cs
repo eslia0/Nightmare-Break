@@ -27,7 +27,7 @@ public class FireBall : MonoBehaviour {
 
 		FireBallparticleSystem = GetComponent<ParticleSystem>();
 		skillLv = charManager.CharacterStatus.SkillLevel [0];
-		FireBallDamage =(int) ((SkillManager.instance.SkillData.GetSkill ((int)charManager.CharacterStatus.HClass, 1).GetSkillData (skillLv).SkillValue)* charManager.CharacterStatus.Attack);
+		FireBallDamage =(int) ((SkillManager.Instance.SkillData.GetSkill ((int)charManager.CharacterStatus.HClass, 1).GetSkillData (skillLv).SkillValue)* charManager.CharacterStatus.Attack);
 		Destroy (this.gameObject, 1.45f);
 	}
 
