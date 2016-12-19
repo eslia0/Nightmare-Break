@@ -68,7 +68,7 @@ public class SkillData{
 		skillList[8].AddSkillLevelData(new SkillLevelData(1, 1.1f, "마법 공격력에 110%의 공격력을 가진다."));
 		skillList[8].AddSkillLevelData(new SkillLevelData(2, 1.2f, "마법 공격력에 120%의 공격력을 가진다."));
 		skillList[8].AddSkillLevelData(new SkillLevelData(3, 1.3f, "마법 공격력에 130%의 공격력을 가진다."));
-		skillList[8].AddSkillLevelData(new SkillLevelData(4, 1.4f, "마법 공격력에 140%의 공격력을 가진다."));
+		skillList[8].AddSkillLevelData(new SkillLevelData(4, 1.4f, 0.2f, "20프로의 쿨타임 감소와 마법 공격력에 140%의 공격력을 가진다."));
 
 		skillList[9].AddSkillLevelData(new SkillLevelData(1, 1.2f, "마법 공격력에 120%의 공격력을 가진다."));
 		skillList[9].AddSkillLevelData(new SkillLevelData(2, 1.4f, "마법 공격력에 140%의 공격력을 가진다."));

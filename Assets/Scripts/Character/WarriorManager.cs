@@ -10,7 +10,7 @@ public class WarriorManager : CharacterManager
 
 	public GameObject SwordDance;
 	public bool rise = false;
-	public CharWeapon bloodingWeapon;
+	//public CharWeapon bloodingWeapon;
 	public float riseCooltime;
     private GameObject wind;
 	public GameObject swordCircle;

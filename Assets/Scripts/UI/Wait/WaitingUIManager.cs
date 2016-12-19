@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class WaitingUIManager : MonoBehaviour
 {
     public const int maxCharacterNum = 3;
     public const int maxRoomNum = 20;
     public const int maxPlayerNum = 4;
+    public const int maxSkillNum = 6;
 
     private Button refreshBtn;
     private Button roomCreateBtn;
@@ -35,6 +37,7 @@ public class WaitingUIManager : MonoBehaviour
 	private GameObject myInfoUI;
 	private GameObject roomInfoUI;
 
+    private Text mySkillInfo;
     private Text myInfoData;
     private Text dungeonLevelText;
     private Text[] roomIndex;
@@ -49,6 +52,9 @@ public class WaitingUIManager : MonoBehaviour
 	private Image[] roomInfoGenderIcon;
     private Image[] skillAddSelectImage;
 
+    private EventTrigger.Entry[] mouseOverIn;
+    private EventTrigger.Entry[] mouseOverOut;
+
     Room[] rooms;
 
     int currentRoomNum;
@@ -59,6 +65,11 @@ public class WaitingUIManager : MonoBehaviour
 
     public Room[] Rooms { get { return rooms; } }
     public int CurrentRoomNum { get { return currentRoomNum; } }
+
+    void Start()
+    {
+
+    }
 
     public void ManagerInitialize()
     {
@@ -88,9 +99,12 @@ public class WaitingUIManager : MonoBehaviour
         roomIndex = new Text[maxRoomNum];
         roomInfoClassIcon = new Image[maxPlayerNum];
 		roomInfoGenderIcon = new Image[maxPlayerNum];
-        skillAddIcon = new Button[CharacterStatus.skillNum];
-        skillAddSelectImage = new Image[CharacterStatus.skillNum];
+        skillAddIcon = new Button[maxSkillNum];
+        skillAddSelectImage = new Image[maxSkillNum];
+        mouseOverIn = new EventTrigger.Entry[maxSkillNum];
+        mouseOverOut = new EventTrigger.Entry[maxSkillNum];
 
+        mySkillInfo = GameObject.Find("MouseOverUI").GetComponent<Text>();
         lockImage = GameObject.Find("LockObject").GetComponent<Image>();
         myInfoData = GameObject.Find("MyInfoData").GetComponent<Text>();
         roomCreateUI = GameObject.Find("RoomCreateUI");
@@ -119,6 +133,7 @@ public class WaitingUIManager : MonoBehaviour
         myInfoExitBtn = myInfoUI.transform.FindChild("ExitBtn").GetComponent<Button>();
         roomInfoExitBtn = roomInfoUI.transform.FindChild("ExitBtn").GetComponent<Button>();
 
+        mySkillInfo.transform.parent.gameObject.SetActive(false);
         dungeonLevelText.text = dungeonLevel.ToString();
 		for (int i = 0; i < skillAddIcon.Length; i++) {
             skillAddSelectImage[i] = skillAddUI.transform.FindChild("SkillSelect" + (i + 1)).GetComponent<Image>();
@@ -138,6 +153,12 @@ public class WaitingUIManager : MonoBehaviour
             roomInfoClassIcon[i] = roomInfoUI.transform.FindChild("ClassIcon" + (i + 1)).GetComponent<Image>();
             roomInfoUserName[i] = roomInfoClassIcon[i].transform.GetChild(0).GetComponent<Text>();
             roomInfoGenderIcon[i] = roomInfoClassIcon[i].transform.GetChild(1).GetComponent<Image>();
+        }
+        for(int i=0; i < maxSkillNum; i++)
+        {
+            mouseOverOut[i].eventID = EventTriggerType.PointerExit;
+            skillAddIcon[i].GetComponent<EventTrigger>().triggers.Add(mouseOverIn[i]);
+            skillAddIcon[i].GetComponent<EventTrigger>().triggers.Add(mouseOverOut[i]);
         }
     }
 
@@ -180,6 +201,36 @@ public class WaitingUIManager : MonoBehaviour
 		roomBtn [17].onClick.AddListener (() => RoomInfo (17));
 		roomBtn [18].onClick.AddListener (() => RoomInfo (18));
 		roomBtn [19].onClick.AddListener (() => RoomInfo (19));
+
+        skillAddIcon[0].onClick.AddListener(() => SkillInfoEnter(0));
+        skillAddIcon[1].onClick.AddListener(() => SkillInfoEnter(1));
+        skillAddIcon[2].onClick.AddListener(() => SkillInfoEnter(2));
+        skillAddIcon[3].onClick.AddListener(() => SkillInfoEnter(3));
+        skillAddIcon[4].onClick.AddListener(() => SkillInfoEnter(4));
+
+    }
+
+    public void SkillInfoEnter(int skillIndex)
+    {
+        SkillBasicData skillData = SkillManager.instance.SkillData.GetSkill(1, skillIndex + 1);  // 고쳐야함
+        for(int i=0; i< skillAddIcon.Length; i++)
+        {
+            if (skillAddSelectImage[i].IsActive())
+            {
+                skillAddSelectImage[i].gameObject.SetActive(false);
+            }
+        }
+        skillAddSelectImage[skillIndex].gameObject.SetActive(true);
+        mySkillInfo.transform.parent.gameObject.SetActive(true);
+        mySkillInfo.transform.parent.SetParent(skillAddIcon[skillIndex].transform);
+        mySkillInfo.transform.parent.position = Vector3.zero;
+        mySkillInfo.transform.parent.position = new Vector3(119f, 31f, 0f);
+     //   mySkillInfo.text = "스킬이름: " + skillData.SkillName + "  " + "쿨타임: " + skillData.SkillCoolTime.ToString() + "초" + "\n" + skillData.SkillBasicExplanation + "\n" + skillData.GetSkillData(skillLevel).SkillExplanation;
+    }
+
+    public void SkillInfoExit()
+    {
+        mySkillInfo.transform.parent.gameObject.SetActive(false);
     }
 
     public void RoomCreate()
@@ -256,9 +307,9 @@ public class WaitingUIManager : MonoBehaviour
         {
             if (rooms[roomNum].PlayerNum > 0)
             {
-                roomInfoClassIcon[i].sprite = Resources.Load<Sprite>("RoomClassIcon/Class" + (rooms[roomNum].RoomUserData[i].UserClass));
+                roomInfoClassIcon[i].sprite = Resources.Load<Sprite>("UI/RoomClassIcon/Class" + rooms[roomNum].RoomUserData[i].UserClass);
                 roomInfoUserName[i].text = rooms[roomNum].RoomUserData[i].UserName;
-                roomInfoGenderIcon[i].sprite = Resources.Load<Sprite>("RoomClassIcon/Gender" + rooms[roomNum].RoomUserData[i].UserGender);
+                roomInfoGenderIcon[i].sprite = Resources.Load<Sprite>("UI/RoomGenderIcon/Gender" + rooms[roomNum].RoomUserData[i].UserGender);
             }
         }
         currentRoomNum = roomNum;
@@ -321,9 +372,11 @@ public class WaitingUIManager : MonoBehaviour
 
     public void SetMyInfoData()
     {
+        /*
         myInfoData.text = "\n" + "공격력:" + characterStatus.Attack.ToString() + "\n" + "방어력: " + characterStatus.Defense.ToString() + "\n" + "체력: " + characterStatus.MaxHealthPoint.ToString()
              + "\n" + "마나: " + characterStatus.MaxMagicPoint.ToString() + "\n" + "체력회복: " + characterStatus.HpRegeneration.ToString() + "\n" + "마나회복: " + characterStatus.MpRegeneration.ToString()
              + "\n" + "공격력 증가량: 10" + "\n" + "방어력 증가량: 10" + "\n" + "체력 증가량: 10" + "\n" + "마나 증가량: 10" + "\n" + "체력회복 증가량: 10" + "\n" + "마나회복 증가량: 10";
+        */
     }
 
 }
