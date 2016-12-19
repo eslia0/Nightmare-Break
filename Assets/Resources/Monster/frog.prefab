@@ -877,7 +877,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -899,7 +899,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95000012969393050
 Animator:
   serializedVersion: 3
@@ -909,7 +909,7 @@ Animator:
   m_GameObject: {fileID: 1000010695308990}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e160dded33bcc0747bd0ab7db564b713, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9ffd6ad1c9363ed4da1f30c3e1fb661a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 87fb34dedd0f974409e823a88cc096a1, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
