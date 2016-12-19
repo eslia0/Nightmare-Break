@@ -27,6 +27,7 @@ public class BattleUIManager : MonoBehaviour
     private Image monsterHpBar;
     private Image startImage;
     private Image readyImage;
+    private Image resultImage;
 
     private Animator comboAnim;
    
@@ -52,13 +53,15 @@ public class BattleUIManager : MonoBehaviour
         mpBar = GameObject.Find("MPBar").GetComponent<Image>();
         startImage = GameObject.Find("StartImage").GetComponent<Image>();
         readyImage = GameObject.Find("ReadyImage").GetComponent<Image>();
+        resultImage = GameObject.Find("ResultImage").GetComponent<Image>();
+        resultImage.gameObject.SetActive(false);
         //monsterHpBar = GameObject.Find("MonsterHPBar").GetComponent<Image>();
         //monsterName = GameObject.Find("MonsterName").GetComponent<Text>();
         mouseOverUI = GameObject.Find("MouseOverUI").GetComponent<Text>();
         potionCoolTimeUI = GameObject.Find("Potion_CoolTime").GetComponent<Image>();
 
         comboText = GameObject.Find("ComBoText").GetComponent<Text>();
-        comboAnim = comboText.GetComponent<Animator>();
+        comboAnim = comboText.transform.parent.GetComponent<Animator>();
     
         skillUI = new Image[maxSkillUI];
         skillCoolTimeUI = new Image[maxskillCoolTimeUI];
