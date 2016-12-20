@@ -18,7 +18,6 @@ public class MageManager : CharacterManager
 	public AudioClip Meteor;
 	public AudioClip fireBallCastSound;
 
-
 	public override void ProcessSkill1 ()
 	{
 		

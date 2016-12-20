@@ -295,11 +295,11 @@ public class WaitingUIManager : MonoBehaviour
         {
             if (rooms[roomNum].PlayerNum > 0)
             {
-                if (rooms[roomNum].RoomUserData[i].UserClass > 0)
+                if (rooms[roomNum].RoomUserData[i].UserLevel > 0)
                 {
                     roomInfoClassIcon[i].gameObject.SetActive(true);
                     roomInfoGenderIcon[i].gameObject.SetActive(true);
-                    roomInfoClassIcon[i].sprite = Resources.Load<Sprite>("UI/RoomClassIcon/Class" + rooms[roomNum].RoomUserData[i].UserClass);
+                    roomInfoClassIcon[i].sprite = Resources.Load<Sprite>("UI/RoomClassIcon/Class" + (rooms[roomNum].RoomUserData[i].UserClass+1));
                     roomInfoUserName[i].text = rooms[roomNum].RoomUserData[i].UserName;
                     roomInfoGenderIcon[i].sprite = Resources.Load<Sprite>("UI/RoomGenderIcon/Gender" + rooms[roomNum].RoomUserData[i].UserGender);
                 } else

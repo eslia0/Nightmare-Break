@@ -496,6 +496,7 @@ public class DataSender : MonoBehaviour
                 if (NetworkManager.Instance.MyIndex != index)
                 {
                     DataPacket packet = new DataPacket(CreateUdpPacket(unitPositionPacket, udpId[index]), NetworkManager.Instance.UserIndex[index].EndPoint);
+                    Debug.Log(packet.endPoint.ToString());
                     sendMsgs.Enqueue(packet);
                 }
             }
