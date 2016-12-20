@@ -72,6 +72,7 @@ public class DataSender : MonoBehaviour
 
                 if (packet.endPoint != null)
                 {
+                    Debug.Log(packet.msg[3] + ", " + packet.endPoint.ToString());
                     udpSock.SendTo(packet.msg, 0, packet.msg.Length, SocketFlags.None, packet.endPoint);
                 }
                 else if (packet.endPoint == null)
@@ -477,6 +478,7 @@ public class DataSender : MonoBehaviour
     //캐릭터 위치 -> Client
     public IEnumerator CharacterPositionSend()
     {
+        Debug.Log("캐릭터 위치 보내기 시작");
         CharacterManager characterManager = GameObject.FindWithTag("Player").GetComponent<CharacterManager>();
 
         while (characterManager != null)
@@ -492,6 +494,8 @@ public class DataSender : MonoBehaviour
 
             for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
             {
+                Debug.Log(NetworkManager.Instance.MyIndex);
+                Debug.Log(index);
                 if (NetworkManager.Instance.MyIndex != index)
                 {
                     byte[] msg = CreateUdpPacket(unitPositionPacket, udpId[index]);
@@ -503,8 +507,6 @@ public class DataSender : MonoBehaviour
 
             yield return new WaitForSeconds(0.016f);
         }
-
-        Debug.Log("캐릭터 위치 보내기 종료");
     }
 
     //유닛 위치 -> Client

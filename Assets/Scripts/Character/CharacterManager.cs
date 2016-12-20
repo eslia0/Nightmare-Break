@@ -114,12 +114,14 @@ public class CharacterManager : MonoBehaviour
 
     public void InitializeCharacter()
     {
+
         animator = GetComponent<Animator>();
         rigdbody = GetComponent<Rigidbody>();
         CharAudio = GetComponent<AudioSource>();
         enermy = DungeonManager.Instance.Monsters;
         weapon = GetComponentInChildren<CharWeapon>();
         charWeapon = weapon.GetComponent<BoxCollider>();
+        weapon.InitializeCharacterWeapon(this);
 
         charDir = true;
         JumpMove = false;
@@ -131,7 +133,6 @@ public class CharacterManager : MonoBehaviour
 
         SetClassSound();
         SetClassEffect();
-        weapon.InitializeCharacterWeapon(this);
         UIManager.Instance.BattleUIManager.hpBarCalculation(characterStatus.MaxHealthPoint, characterStatus.HealthPoint);
         UIManager.Instance.BattleUIManager.mpBarCalculation(characterStatus.MaxMagicPoint, characterStatus.MagicPoint);
 
