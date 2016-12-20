@@ -475,18 +475,16 @@ public class DataSender : MonoBehaviour
     }
 
     //캐릭터 위치 -> Client
-    public IEnumerator CharacterPositionSend(GameObject unit)
+    public IEnumerator CharacterPositionSend(CharacterManager unit)
     {
-        CharacterManager characterManager = unit.GetComponent<CharacterManager>();
-
         Debug.Log("캐릭터 위치 보내기 시작");
 
-        while (characterManager != null)
+        while (unit != null)
         {
-            bool dir = characterManager.charDir;
-            float xPos = characterManager.transform.position.x;
-            float yPos = characterManager.transform.position.y;
-            float zPos = characterManager.transform.position.z;
+            bool dir = unit.charDir;
+            float xPos = unit.transform.position.x;
+            float yPos = unit.transform.position.y;
+            float zPos = unit.transform.position.z;
 
             UnitPositionData unitPositionData = new UnitPositionData((byte)UnitType.Hero, dir, xPos, yPos, zPos, (byte)NetworkManager.Instance.MyIndex);
             UnitPositionPacket unitPositionPacket = new UnitPositionPacket(unitPositionData);
@@ -554,9 +552,7 @@ public class DataSender : MonoBehaviour
         
         for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
         {
-            int userIndex = NetworkManager.Instance.UserIndex[index].UserNum;
-
-            if (NetworkManager.Instance.MyIndex != userIndex)
+            if (NetworkManager.Instance.MyIndex != index)
             {
                 DataPacket packet = new DataPacket(msg, NetworkManager.Instance.UserIndex[index].EndPoint);
                 sendMsgs.Enqueue(packet);
