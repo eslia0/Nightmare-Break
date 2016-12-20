@@ -35,7 +35,7 @@ public class NetworkManager : MonoBehaviour
         ClientSource = 1,
     }
 
-    public const string serverIP = "192.168.94.53";
+    public const string serverIP = "211.186.39.207";
     public const int serverPortNumber = 8800;
     public const int clientPortNumber = 9000;
     public IPEndPoint serverEndPoint;
