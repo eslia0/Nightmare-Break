@@ -594,7 +594,7 @@ GameObject:
   - 65: {fileID: 65000011729639712}
   - 114: {fileID: 114000011403482076}
   - 82: {fileID: 82000012923639928}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bip01 Prop2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
