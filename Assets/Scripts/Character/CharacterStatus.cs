@@ -79,8 +79,8 @@ public class CharacterStatus : MonoBehaviour
         charClass = 0;
         exp = 0;
         healthPoint = 2000;
-        maxMagicPoint = 2000;
-        magicPoint = maxMagicPoint;
+     //   maxMagicPoint = 2000;
+     //   magicPoint = maxMagicPoint;
         hpRegeneration = 0;
         mpRegeneration = 0;
 		moveSpeed = 7;
@@ -112,14 +112,15 @@ public class CharacterStatus : MonoBehaviour
         maxExp = characterStatusData.Exp;
         healthPoint = characterStatusData.HealthPoint;
         maxHealthPoint = characterStatusData.HealthPoint;
-        magicPoint = characterStatusData.MagicPoint;
+        maxMagicPoint = 2000;
+        magicPoint = 2000;
         hpRegeneration = characterStatusData.HpRegeneration;
         mpRegeneration = characterStatusData.MpRegeneration;
         moveSpeed = characterStatusData.MoveSpeed;
         attack = characterStatusData.Attack;
         defense = characterStatusData.Defense;
         dreamStone = characterStatusData.DreamStone;
-        activeSkillUse = new bool[equipNum];
+        activeSkillUse = new bool[5];
         skillLevel = new int[skillNum];
         equipLevel = new int[equipNum];
 
@@ -144,12 +145,32 @@ public class CharacterStatus : MonoBehaviour
     public void DecreaseHealthPoint(int amount)
     {
         healthPoint -= amount;
-
     }
 
     public void DecreaseMagicPoint(int amount)
     {
         magicPoint -= amount;
+    }
+
+    public void IncreaseHealthPoint(int amount)
+    {
+        if(healthPoint >= maxHealthPoint)
+        {
+            healthPoint = maxHealthPoint;
+            return;
+        }
+
+        healthPoint += amount;
+    }
+
+    public void IncreaseMagicPoint(int amount)
+    {
+        if (magicPoint >= maxHealthPoint)
+        {
+            magicPoint = maxHealthPoint;
+            return;
+        }
+        magicPoint += amount;
     }
 
     public IEnumerator SkillCoolTimer(int activeSkillIndex, int skillCoolTime)
