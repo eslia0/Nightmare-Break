@@ -24,8 +24,9 @@ public class CharacterStatus : MonoBehaviour
     public const int maxClass = 2;
 
     string hName;
-    Gender hGender;
+    [SerializeField]Gender hGender;
     int level;
+    [SerializeField]
     CharClass charClass;
     int maxExp;
     int exp;

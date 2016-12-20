@@ -359,7 +359,14 @@ public class DungeonManager : MonoBehaviour
                 unit.tag = "Player";
                 players[createUnitData.UnitIndex] = unit;
 
+                int gender = createUnitData.ID % 2;
+                int hClass = createUnitData.ID / 2;
+
+                CharacterStatusData characterStatusData = new CharacterStatusData((byte)gender, (byte)hClass);
+
                 characterData[createUnitData.UnitIndex] = unit.GetComponent<CharacterManager>();
+                characterData[createUnitData.UnitIndex].SetCharacterStatus(unit.AddComponent<CharacterStatus>());
+                characterData[createUnitData.UnitIndex].CharacterStatus.SetCharacterStatus(characterStatusData);
                 characterData[createUnitData.UnitIndex].SetUnitIndex(createUnitData.UnitIndex);
                 characterData[createUnitData.UnitIndex].InitializeCharacter();
             }

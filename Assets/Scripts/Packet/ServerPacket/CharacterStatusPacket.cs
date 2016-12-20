@@ -157,8 +157,29 @@ public class CharacterStatusData
     public CharacterStatusData()
     {
         name = "Hero";
+        gender = 0;
         level = 0;
         hClass = 0;
+        exp = 0;
+        healthPoint = 0;
+        magicPoint = 0;
+        hpRegeneration = 0;
+        mpRegeneration = 0;
+        moveSpeed = 0;
+        attack = 0;
+        defense = 0;
+        skillPoint = 0;
+        dreamStone = 0;
+        skillLevel = new byte[CharacterStatus.skillNum];
+        equipLevel = new byte[CharacterStatus.equipNum];
+    }
+
+    public CharacterStatusData(int newGender, int newClass)
+    {
+        name = "Hero";
+        level = 0;
+        gender = (byte)newGender;
+        hClass = (byte)newClass;
         exp = 0;
         healthPoint = 0;
         magicPoint = 0;
