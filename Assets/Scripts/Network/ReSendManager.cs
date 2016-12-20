@@ -146,7 +146,7 @@ public class ReSendManager : MonoBehaviour
                 if (!characterCreating)
                 {
                     GameObject character = DungeonManager.Instance.Players[NetworkManager.Instance.MyIndex];
-                    StartCoroutine(DataSender.Instance.CharacterPositionSend(character.GetComponent<CharacterManager>()));
+                    StartCoroutine(DataSender.Instance.CharacterPositionSend());
                 }
             }
 

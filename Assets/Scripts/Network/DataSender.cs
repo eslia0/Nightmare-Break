@@ -475,16 +475,16 @@ public class DataSender : MonoBehaviour
     }
 
     //캐릭터 위치 -> Client
-    public IEnumerator CharacterPositionSend(CharacterManager unit)
+    public IEnumerator CharacterPositionSend()
     {
-        Debug.Log("캐릭터 위치 보내기 시작");
+        CharacterManager characterManager = GameObject.FindWithTag("Player").GetComponent<CharacterManager>();
 
-        while (unit != null)
+        while (characterManager != null)
         {
-            bool dir = unit.charDir;
-            float xPos = unit.transform.position.x;
-            float yPos = unit.transform.position.y;
-            float zPos = unit.transform.position.z;
+            bool dir = characterManager.charDir;
+            float xPos = characterManager.transform.position.x;
+            float yPos = characterManager.transform.position.y;
+            float zPos = characterManager.transform.position.z;
 
             UnitPositionData unitPositionData = new UnitPositionData((byte)UnitType.Hero, dir, xPos, yPos, zPos, (byte)NetworkManager.Instance.MyIndex);
             UnitPositionPacket unitPositionPacket = new UnitPositionPacket(unitPositionData);
@@ -547,13 +547,12 @@ public class DataSender : MonoBehaviour
         UnitStateData unitStateData = new UnitStateData((byte)UnitType.Hero, state, (byte)unitIndex);
         UnitStatePacket unitStatePacket = new UnitStatePacket(unitStateData);
         unitStatePacket.SetPacketId((int)P2PPacketId.UnitState);
-
-        byte[] msg = CreatePacket(unitStatePacket);
-        
+       
         for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
         {
             if (NetworkManager.Instance.MyIndex != index)
             {
+                byte[] msg = CreateUdpPacket(unitStatePacket, udpId[index]);
                 DataPacket packet = new DataPacket(msg, NetworkManager.Instance.UserIndex[index].EndPoint);
                 sendMsgs.Enqueue(packet);
             }
