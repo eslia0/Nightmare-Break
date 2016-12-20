@@ -107,6 +107,9 @@ public class DataHandler : MonoBehaviour
                 else
                 {
                     headerSerializer.UdpDeserialize(ref headerData);
+
+                    Debug.Log(headerData.id);
+
                     DataReceiver.ResizeByteArray(0, NetworkManager.packetSource + NetworkManager.packetId + NetworkManager.udpId, ref packet.msg);
 
                     if (p2p_notifier.TryGetValue(headerData.id, out p2pRecvNotifier))
