@@ -276,10 +276,10 @@ public class Monster : MonoBehaviour
 
         _name = monster.Name;
         level = monster.MonsterLevelData[0].Level;
-        attack = monster.MonsterLevelData[0].Attack;
+        attack = 10;
         defense = monster.MonsterLevelData[0].Defense;
-        currentHP = monster.MonsterLevelData[0].HealthPoint;
-        maxHP = monster.MonsterLevelData[0].HealthPoint;
+        currentHP = 10000;
+        maxHP = 10000;
         moveSpeed = monster.MonsterLevelData[0].MoveSpeed;
 
         //      

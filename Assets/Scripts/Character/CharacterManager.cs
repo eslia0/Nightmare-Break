@@ -132,6 +132,9 @@ public class CharacterManager : MonoBehaviour
         SetClassSound();
         SetClassEffect();
         weapon.InitializeCharacterWeapon(this);
+        UIManager.Instance.BattleUIManager.hpBarCalculation(characterStatus.MaxHealthPoint, characterStatus.HealthPoint);
+        UIManager.Instance.BattleUIManager.mpBarCalculation(characterStatus.MaxMagicPoint, characterStatus.MagicPoint);
+
     }
 
     public void SetCharacterStatus(CharacterStatus newStatus)
@@ -330,6 +333,9 @@ public class CharacterManager : MonoBehaviour
         for (int i = 0; i < potionCount; i++)
         {
             characterStatus.DecreaseHealthPoint((int)(characterStatus.HealthPoint * -0.3));
+            characterStatus.DecreaseMagicPoint((int)(characterStatus.MagicPoint * -0.3));
+            UIManager.Instance.BattleUIManager.hpBarCalculation(characterStatus.MaxHealthPoint, characterStatus.HealthPoint);
+            UIManager.Instance.BattleUIManager.mpBarCalculation(characterStatus.MaxMagicPoint, characterStatus.MagicPoint);
             yield return new WaitForSeconds(1f);
         }
     }
@@ -438,7 +444,6 @@ public class CharacterManager : MonoBehaviour
                 characterStatus.DecreaseHealthPoint(damage);
                 CharState((int)CharacterState.HitDamage);
                 UIManager.Instance.BattleUIManager.hpBarCalculation(characterStatus.MaxHealthPoint, characterStatus.HealthPoint);
-                print("HPcalcuUIIn!!");
             }
             if (characterStatus.HealthPoint <= 0)
             {
@@ -528,7 +533,7 @@ public class CharacterManager : MonoBehaviour
         if (comboCount == count)
         {
             comboCount = 0;
-            //   ComboSystem.instance.ComboEnd();
+            UIManager.Instance.BattleUIManager.ComboEnd();
         }
         checkTime = 0;
     }

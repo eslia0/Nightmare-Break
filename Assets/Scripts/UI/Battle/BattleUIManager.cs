@@ -16,6 +16,7 @@ public class BattleUIManager : MonoBehaviour
     private Text mouseOverUI;
     private Text comboText;
     private Text monsterName;
+    private Text resultText;
 
     private Image potionCoolTimeUI;
 	private Image[] skillUI;
@@ -29,6 +30,8 @@ public class BattleUIManager : MonoBehaviour
     private Image readyImage;
     private Image resultImage;
 
+    private Button resultCheckBtn;
+
     private Animator comboAnim;
    
 	public Image[] SkillCoolTimeUI{ get{ return skillCoolTimeUI; }}
@@ -38,10 +41,11 @@ public class BattleUIManager : MonoBehaviour
     {
         SetUIObject();
 
+        resultImage.gameObject.SetActive(false);
         comboText.transform.parent.gameObject.SetActive(false);
         mouseOverUI.transform.parent.gameObject.SetActive(false);
-        startImage.gameObject.SetActive(false);
-        readyImage.gameObject.SetActive(false);
+      //  startImage.gameObject.SetActive(false);
+       // readyImage.gameObject.SetActive(false);
       // monsterHpBar.transform.parent.gameObject.SetActive(false);
     }
 
@@ -53,8 +57,11 @@ public class BattleUIManager : MonoBehaviour
         mpBar = GameObject.Find("MPBar").GetComponent<Image>();
         startImage = GameObject.Find("StartImage").GetComponent<Image>();
         readyImage = GameObject.Find("ReadyImage").GetComponent<Image>();
+        StartCoroutine(StartProcess());
         resultImage = GameObject.Find("ResultImage").GetComponent<Image>();
-        resultImage.gameObject.SetActive(false);
+        resultCheckBtn = resultImage.transform.GetChild(0).GetComponent<Button>();
+        resultText = resultImage.transform.GetChild(1).GetComponent<Text>();
+       
         //monsterHpBar = GameObject.Find("MonsterHPBar").GetComponent<Image>();
         //monsterName = GameObject.Find("MonsterName").GetComponent<Text>();
         mouseOverUI = GameObject.Find("MouseOverUI").GetComponent<Text>();
@@ -91,6 +98,19 @@ public class BattleUIManager : MonoBehaviour
         enterEvent[3].callback.AddListener((data) => { PointEnter(3); });
         enterEvent[4].callback.AddListener((data) => { PointEnter(4); });
         enterEvent[5].callback.AddListener((data) => { PointEnter(5); });
+        resultCheckBtn.onClick.AddListener(() => InGameExit());
+     
+    }
+
+    public void resultOpen()
+    {
+        resultImage.gameObject.SetActive(true);
+        resultText.text = "2";
+    }
+
+    public void InGameExit()
+    {
+        SceneChanger.Instance.SceneChange(SceneChanger.SceneName.WaitingScene, true);
     }
 
     public void SetPointEnterUI(int skillIndex, int skillLevel, int classIndex)
@@ -149,9 +169,9 @@ public class BattleUIManager : MonoBehaviour
     #endregion
 
     public void hpBarCalculation(float maxHp, float currentHP)
-    {        
+    {
         hpBar.fillAmount = currentHP / maxHp;
-        Debug.Log(hpBar + " , " + hpBar.fillAmount);
+        print(hpBar.fillAmount);
     }
 
     public void mpBarCalculation(int maxMp, int currentMP)

@@ -273,7 +273,6 @@ public class SceneChanger : MonoBehaviour
         fadePanel = null;
         Destroy(fadeCanvas);
         fadeTime = 0;
-        
     }
 
     public IEnumerator CheckLoading(int checkSize)

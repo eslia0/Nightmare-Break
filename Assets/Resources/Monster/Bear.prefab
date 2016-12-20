@@ -1593,7 +1593,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -1656,6 +1656,7 @@ MonoBehaviour:
   targetPlayer: {fileID: 0}
   movePoint: {x: 0, y: 0, z: 0}
   currentHP: 0
+  maxHP: 0
   attack: 0
   moveSpeed: 0
   RunRange: 0
@@ -1663,13 +1664,13 @@ MonoBehaviour:
   attackCycle: 0
   currentDisTance: 0
   searchRange: 0
+  statePosition: 0
   isAlive: 0
   bossNormalAttackCycle: 0
   bossRandomPattern: 0
   shootNumber: 0
   chasePlayer: {fileID: 0}
   currentDisTanceArray: []
-  currentDisTanceWall: []
   checkDirection: {x: 0, y: 0, z: 0}
   pointVector: []
   roarBreak: 0
