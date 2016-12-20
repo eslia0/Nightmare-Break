@@ -492,12 +492,12 @@ public class DataSender : MonoBehaviour
             UnitPositionPacket unitPositionPacket = new UnitPositionPacket(unitPositionData);
             unitPositionPacket.SetPacketId((int)P2PPacketId.UnitPosition);
 
-            byte[] msg = CreatePacket(unitPositionPacket);
-
             for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
             {
                 if (NetworkManager.Instance.MyIndex != index)
                 {
+                    byte[] msg = CreateUdpPacket(unitPositionPacket, udpId[index]);
+                    
                     DataPacket packet = new DataPacket(msg, NetworkManager.Instance.UserIndex[index].EndPoint);
                     sendMsgs.Enqueue(packet);
                 }
@@ -524,7 +524,7 @@ public class DataSender : MonoBehaviour
             float yPos = monster.transform.position.y;
             float zPos = monster.transform.position.z;
 
-            UnitPositionData unitPositionData = new UnitPositionData((byte)UnitType.Hero, dir, xPos, yPos, zPos, (byte)monster.MonsterIndex);
+            UnitPositionData unitPositionData = new UnitPositionData((byte)UnitType.Monster, dir, xPos, yPos, zPos, (byte)monster.MonsterIndex);
             UnitPositionPacket unitPositionPacket = new UnitPositionPacket(unitPositionData);
             unitPositionPacket.SetPacketId((int)P2PPacketId.UnitPosition);
 
@@ -532,10 +532,10 @@ public class DataSender : MonoBehaviour
 
             for (int index = 0; index < NetworkManager.Instance.UserIndex.Count; index++)
             {
-                int userIndex = NetworkManager.Instance.UserIndex[index].UserNum;
-
-                if (NetworkManager.Instance.MyIndex != userIndex)
+                Debug.Log(index + ", " + NetworkManager.Instance.MyIndex);
+                if (NetworkManager.Instance.MyIndex != index)
                 {
+                    Debug.Log("몬스터 위치 보냄");
                     DataPacket packet = new DataPacket(msg, NetworkManager.Instance.UserIndex[index].EndPoint);
                     sendMsgs.Enqueue(packet);
                 }
