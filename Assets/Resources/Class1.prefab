@@ -1928,7 +1928,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   rend: {fileID: 0}
   rigdbody: {fileID: 0}
-  charWeapon: {fileID: 0}
+  charWeapon: {fileID: 65000012479464690}
   weapon: {fileID: 0}
   enermy: []
   jumpPower: 0

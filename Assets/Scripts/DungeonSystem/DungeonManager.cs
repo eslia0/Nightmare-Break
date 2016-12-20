@@ -115,6 +115,7 @@ public class DungeonManager : MonoBehaviour
             if(stageNum + 1 >= sceneList.Length)
             {
                 StartCoroutine(CheckDungeonEnd(monsters[0]));
+              
             }
         }
     }
@@ -128,7 +129,7 @@ public class DungeonManager : MonoBehaviour
             if(bossMonster == null)
             {
                 dungeonEnd = true;
-                SceneChanger.Instance.SceneChange(SceneChanger.SceneName.WaitingScene, true);
+                UIManager.Instance.BattleUIManager.resultOpen();
             }
         }
     }
@@ -223,6 +224,7 @@ public class DungeonManager : MonoBehaviour
             else if (unitId == (int)MonsterId.BlackBear)
             {
                 monster = (GameObject)Instantiate(Resources.Load("Monster/BlackBear"), createPoint.position, gameObject.transform.rotation);
+    
             }
             else if (unitId == (int)MonsterId.Bear)
             {
@@ -284,6 +286,12 @@ public class DungeonManager : MonoBehaviour
                 monsterData[monsterIndex].MonsterSet(monsterStatusData.MonsterData[spawnIndex]);
                 monsterIndex++;
             }
+        }
+
+        if(stageIndex == 2)
+        {
+
+
         }
     }
 
@@ -350,8 +358,12 @@ public class DungeonManager : MonoBehaviour
 
     public void CreateUnit(CreateUnitData createUnitData)
     {
+        Debug.Log(createUnitData.UnitType);
         if (createUnitData.UnitType == (byte)UnitType.Hero)
         {
+            Debug.Log(createUnitData.ID);
+            Debug.Log(players[createUnitData.UnitIndex]);
+            Debug.Log(createUnitData.UnitIndex);
             if (players[createUnitData.UnitIndex] == null)
             {
                 GameObject unit = Instantiate(Resources.Load("Class" + createUnitData.ID)) as GameObject;
@@ -359,16 +371,8 @@ public class DungeonManager : MonoBehaviour
                 unit.tag = "Player";
                 players[createUnitData.UnitIndex] = unit;
 
-                int gender = createUnitData.ID % 2;
-                int hClass = createUnitData.ID / 2;
-
-                CharacterStatusData characterStatusData = new CharacterStatusData((byte)gender, (byte)hClass);
-
                 characterData[createUnitData.UnitIndex] = unit.GetComponent<CharacterManager>();
-                characterData[createUnitData.UnitIndex].SetCharacterStatus(unit.AddComponent<CharacterStatus>());
-                characterData[createUnitData.UnitIndex].CharacterStatus.SetCharacterStatus(characterStatusData);
                 characterData[createUnitData.UnitIndex].SetUnitIndex(createUnitData.UnitIndex);
-                characterData[createUnitData.UnitIndex].InitializeCharacter();
             }
             else
             {
@@ -396,5 +400,7 @@ public class DungeonManager : MonoBehaviour
     public void MonsterState(UnitStateData unitStateData)
     {
         monsterData[unitStateData.UnitIndex].Pattern((StatePosition)unitStateData.State);
+
+
     }
 }

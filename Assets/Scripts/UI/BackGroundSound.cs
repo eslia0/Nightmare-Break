@@ -18,15 +18,15 @@ public class BackGroundSound : MonoBehaviour
         if(scene.name == "LostTeddyBear_Stage1")
         {
             audioSource.Stop();
-            audioSource.clip = backSound[2];
+            audioSource.clip = backSound[1];
             audioSource.Play();
             ;
-        } //else if (scene.name == "LostTeddyBear_Boss")
-       // {
-         //   audioSource.Stop();
-         //   audioSource.clip = backSound[1];
-          //  audioSource.Play();
-      //  }
+        } else if (scene.name == "LostTeddyBear_Boss")
+       {
+           audioSource.Stop();
+           audioSource.clip = backSound[2];
+           audioSource.Play();
+       }
 
     }
 }
