@@ -50,10 +50,9 @@ public class DefensePotal : MonoBehaviour {
             {
                 Debug.Log(coll);
             }
-			
-		}
 
-		Destroy(coll.gameObject);
+            Destroy(coll.gameObject);
+        }
 	}
 }
 

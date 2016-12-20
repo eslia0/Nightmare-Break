@@ -65,11 +65,6 @@ public class WaitingUIManager : MonoBehaviour
     public Room[] Rooms { get { return rooms; } }
     public int CurrentRoomNum { get { return currentRoomNum; } }
 
-    void Start()
-    {
-
-    }
-
     public void ManagerInitialize()
     {
         characterStatus = GameObject.Find("CharacterStatus").GetComponent<CharacterStatus>();

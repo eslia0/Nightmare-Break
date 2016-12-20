@@ -480,7 +480,7 @@ public class DataSender : MonoBehaviour
         Debug.Log("캐릭터 위치 보내기 시작");
         CharacterManager characterManager = GameObject.FindWithTag("Player").GetComponent<CharacterManager>();
 
-        while (true)
+        while (characterManager!= null)
         {
             bool dir = characterManager.charDir;
             float xPos = characterManager.transform.position.x;

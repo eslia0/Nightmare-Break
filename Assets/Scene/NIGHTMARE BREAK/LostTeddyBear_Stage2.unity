@@ -270,7 +270,7 @@ GameObject:
   - 114: {fileID: 57045613}
   - 65: {fileID: 57045612}
   m_Layer: 0
-  m_Name: StagePotal
+  m_Name: StagePortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -398,7 +398,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -332006063
+  randomSeed: -655195753
   InitialModule:
     serializedVersion: 2
     enabled: 1
