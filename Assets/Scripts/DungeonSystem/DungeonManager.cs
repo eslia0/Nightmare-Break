@@ -383,7 +383,6 @@ public class DungeonManager : MonoBehaviour
 
     public void SetCharacterPosition(UnitPositionData unitPositionData)
     {
-        Debug.Log(characterData[unitPositionData.UnitIndex] + "!");
         characterData[unitPositionData.UnitIndex].SetPosition(unitPositionData);
     }
 

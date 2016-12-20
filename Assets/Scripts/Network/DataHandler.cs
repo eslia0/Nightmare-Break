@@ -542,12 +542,9 @@ public class DataHandler : MonoBehaviour
     {
         UnitPositionPacket unitPositionPacket = new UnitPositionPacket(packet.msg);
         UnitPositionData unitPositionData = unitPositionPacket.GetData();
-        
-        Debug.Log("유닛 위치 수신 : " + unitPositionData.UnitType);
 
         if (unitPositionData.UnitType == (byte)UnitType.Hero)
         {
-            Debug.Log("유닛 위치 수신 : " + unitPositionData.UnitType);
             DungeonManager.Instance.SetCharacterPosition(unitPositionData);
         }
         else if (unitPositionData.UnitType == (byte)UnitType.Monster)
